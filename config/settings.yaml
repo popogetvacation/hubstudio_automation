@@ -1,0 +1,40 @@
+# HubStudio 自动化配置文件
+
+hubstudio:
+  # API 基础地址 (本地客户端)
+  api_url: "http://127.0.0.1:6873"
+  # API Key (从 HubStudio 客户端获取)
+  api_key: "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCkOeTCMKkbG7entrilANThioH400bH3tth+TH8/5KZRodVv1SUJH3d5avIED31GOS1zIYDssr7W0++atS1XlQ4Py88LZn0TEO6vAshK+Lu35WXiXyUs8ugxsKeq85YDhBolQN3nJf7E9J55TCsr66Rp7tu5tTr6xvXr1YIw8EFWkcxhebqjWGZewiGfWDPFyWKU0hNIqaFDcRvx0iLSeAy5NXQoO5f3yx61TFztIacj1ApFsK8YooBzVdBxpvRDCFcqav6NtxQ36B6x2XVSJkT4mZxgjpCN3LoiMHB5KrR3sTnnJjSj3o8rb6PL0hQwSGYQZyuXs5A27cwCMuMrf1xAgMBAAECggEBAJdmD/C+b4fgO6XQG9VyOM9co4nDLSOh3loqI917t6i6jpWMd+rC4Y6p533fC19jfaXkUUAjmmGzwoZncoVp2vanuWIfIClKDb6fERuZm/JgCUbUpxdn0bf8xPsGpIolHRdtGO8yXCJKGeXqVr88jxEUswUApRaBfv+OUyBtZwsIvnzKcHQseAsdWPJ+qUu3FoBrwgzrgUUCMmU0+VB5XYZ/kcR31iOfhj3sPa9rjzj+k2iJsw/XSnAFr+RYipRMK4TFVHTzFwYIC5BZLEVnyeYZFnsLQLeEFv80N/6kK6R3KCAtBS28L6WNogkCtA/C0PaT0cO85JtTnulBwDIGTIECgYEA2nEt+uf06SH7spPYfmEm6y1uKriwJB1tr2O3qoV8BoS+cpqH0jOptcm+yDJBIgaYuW0ahfZxoKEWAGKrpg3k1NEBu2LB9h3Cv1PKMe3tAJND9bgTJ0ket9Ixyxxy00jZsjCJKBqEHysyxvJg9fKjXqczh8yABUnUG65YFw6PgLkCgYEAwHZgOLECd1U/M7ZcDqnmoCzWDgJ86BPEFWN8CQNTpHquUGpI04QwvnisD3alqOLioVBh6eevKIxQ3ldpvdqU7ocX3x/6vgsvlYAnCagsVmdEosGLf3dX3uCQrUOBrd92dOjdtSDzSpY94LZV+3Hf5WRnX6/Repoq3Ajekfx8VnkCgYAE2Kn6fRbz7SsWZS1ScHlakmF1VS+jPXvnfkDe6aM8yckn5cHJqhfDzrwK2QKU7KyKwJ7sBfGzbJ9+VrIUNw6yogh1zdUbzsE5WXSM8whlEN9bHkBeiMLDtUghh3oMsfsSdv00BJKV1nGD9HCuRDnXqcH8606Tz3WDP7T4nfwVEQKBgDM8kFsnTHfGWwACUTmaI4qKxSWPpf8GnBHxnSitGQxVmKhR0zd0HqHmcC/hrzJpzFmTk614f1n1GOZIMR9Y3IMvtbwxwEftpGpRZpMckUkjTtNhYSi69cqg0ANAUHqgXeG7yKIatoopuyligTtiUm+4Lgj8PnE8L6LKPa5xoAxJAoGAKbqcfBBVXXY7Hekp3zmA+8irTEafT3SZR9jFRxsYMIXGTVUN/6Gd6eiVNRBcxSfOJQ5d+PbTpJSFPiInjoqpUT4ZurGS1n99RvMYdWaZLW84LxwGY44V3VxIdK2EGljvmoUdZSjlyBvWu2VZW3MvmiHxXdost2d8O6r4urE84zU="
+  # 请求超时时间(秒)
+  timeout: 30
+
+database:
+  # Access 数据库路径
+  access_path: "./data/automation.accdb"
+  # 数据库连接池大小
+  pool_size: 5
+
+scheduler:
+  # 最大并发环境数
+  max_concurrent: 10
+  # 单个任务超时时间(秒)
+  task_timeout: 300
+  # 环境启动超时(秒)
+  env_startup_timeout: 60
+  # 重试次数
+  max_retries: 3
+  # 重试间隔(秒)
+  retry_interval: 5
+
+browser:
+  # ChromeDriver 路径
+  chromedriver_path: "D:\\Program Files (x86)\\chromedriver.exe"
+  # 浏览器启动参数
+  page_load_timeout: 30
+  script_timeout: 30
+  implicit_wait: 10
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "./logs/automation.log"

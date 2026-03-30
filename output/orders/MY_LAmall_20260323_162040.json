@@ -1,0 +1,138 @@
+{
+  "env_name": "MY LAmall",
+  "timestamp": "2026-03-23T16:20:40.027665",
+  "total_count": 26,
+  "pages_fetched": 1,
+  "orders_without_tracking": [
+    {
+      "order_id": 227943553213560,
+      "order_sn": "260323UER2EW3R",
+      "buyer_user_id": 252105966,
+      "buyer_username": "clement8828",
+      "shop_id": 919177773,
+      "region_id": "MY",
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 452160.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Super Fully Automatic Electric Coffee Grinder 100 Thicknesses Business Commercial Cafe Grinder Flat Burr Upgrade",
+          "description": "Variation: Commercial Grinder [CG301-B CG301]",
+          "amount": 1,
+          "item_id": 29464444993,
+          "model_id": 256804090013
+        }
+      ],
+      "shipping_name": "c****** ",
+      "shipping_phone": "******18",
+      "shipping_address": "No 11, Jalan Aman Serenia 7/3, Bandar Serenia, 43900 Sepang, Selangor, Sepang, 43900, Selangor",
+      "user_chat_message": "",
+      "user_messages_count": 0
+    },
+    {
+      "order_id": 227938742258030,
+      "order_sn": "260323UA8PC6BE",
+      "buyer_user_id": 132259189,
+      "buyer_username": "amanda921228",
+      "shop_id": 919177773,
+      "region_id": "MY",
+      "status": "To Ship",
+      "fulfilment_channel": "Instant Delivery",
+      "total_price": 90090.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Electric Milk Frother Cold/Hot Latte Cappuccino Chocolate Milk Foam Maker Warmer 奶泡器",
+          "description": "Variation: Cold/Hot Milk Fother [NPJ-XB15 NPJ-XB15]",
+          "amount": 1,
+          "item_id": 24196934599,
+          "model_id": 271542616978
+        }
+      ],
+      "shipping_name": "A******k",
+      "shipping_phone": "******75",
+      "shipping_address": "Lot G09   ,   LOUIS VUITTON Kuala Lumpur Suria KLCC Store, Kuala Lumpur City Centre, W.P. Kuala Lumpur, 50088, W.P. Kuala Lumpur",
+      "user_chat_message": "",
+      "user_messages_count": 0
+    },
+    {
+      "order_id": 227937173274993,
+      "order_sn": "260323U8SX2MBH",
+      "buyer_user_id": 103801386,
+      "buyer_username": "shong98",
+      "shop_id": 919177773,
+      "region_id": "MY",
+      "status": "To Ship",
+      "fulfilment_channel": "POS Malaysia",
+      "total_price": 4150.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "【Read Stock 】LAHOME 100pcs 51mm Coffee Bottomless Portafilter Filter Paper Espresso Moka Pot Dripper Accessories 咖啡机粉碗滤纸",
+          "description": "Variation: White Paper-51mm [51FP 51FP-White]",
+          "amount": 1,
+          "item_id": 26876053476,
+          "model_id": 227367285753
+        }
+      ],
+      "shipping_name": "S******g",
+      "shipping_phone": "******17",
+      "shipping_address": "C-13-10   ,   The Era @ Duta North, No. 208, Jalan Segambut, 51200, W.P. Kuala Lumpur, 51200, W.P. Kuala Lumpur",
+      "user_chat_message": "",
+      "user_messages_count": 0
+    },
+    {
+      "order_id": 227930611280572,
+      "order_sn": "260323U2PC2ENV",
+      "buyer_user_id": 115753334,
+      "buyer_username": "tekawheroastery",
+      "shop_id": 919177773,
+      "region_id": "MY",
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 16000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Round Grill Pan Korean BBQ Barbecue Non-Stick/Stainless Steel Grill Pan Fry Pan Steak",
+          "description": "Variation: Stainless Steel [KP KP-SUS01]",
+          "amount": 1,
+          "item_id": 26264310231,
+          "model_id": 251794220402
+        }
+      ],
+      "shipping_name": "Y******N",
+      "shipping_phone": "******81",
+      "shipping_address": "6, Putra Mahkota 7/3C, Petaling Jaya, 47650, Selangor",
+      "user_chat_message": "",
+      "user_messages_count": 0
+    },
+    {
+      "order_id": 227913368259841,
+      "order_sn": "260323TJMFU781",
+      "buyer_user_id": 130543247,
+      "buyer_username": "fadafifah",
+      "shop_id": 919177773,
+      "region_id": "MY",
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 93620.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Electric Milk Frother Cold/Hot Latte Cappuccino Chocolate Milk Foam Maker Warmer 奶泡器",
+          "description": "Variation: Cold/Hot Milk Fother [NPJ-XB15 NPJ-XB15]",
+          "amount": 1,
+          "item_id": 24196934599,
+          "model_id": 271542616978
+        }
+      ],
+      "shipping_name": "F******h",
+      "shipping_phone": "******24",
+      "shipping_address": "11-01   ,   Sunway Gandaria, Jalan Pusat Bandar 2, Seksyen 9, Ulu Langat, 43650, Selangor",
+      "user_chat_message": "",
+      "user_messages_count": 0
+    }
+  ]
+}

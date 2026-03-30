@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python run_shopee_order.py)",
+      "Bash(python test_order_detail.py)",
+      "Bash(python debug_auth.py)",
+      "Bash(python debug_buyer_info.py)"
+    ]
+  }
+}

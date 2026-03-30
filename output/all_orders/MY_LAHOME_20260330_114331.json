@@ -1,0 +1,2155 @@
+{
+  "env_name": "MY LAHOME",
+  "timestamp": "2026-03-30T11:43:31.795477",
+  "total_count": 16988,
+  "pages_fetched": 2,
+  "order_status_summary": {},
+  "orders": [
+    {
+      "order_id": 228540319284017,
+      "order_sn": "260330FQ6RKXSH",
+      "buyer_user_id": 180566592,
+      "buyer_username": "aromafantasia",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 204250.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 Lahome Bear 3.5L Automatic Smart Dough Mixer Dough Maker Household Electric Kneading Flour Machine Bread 小熊 和面机 1 Year",
+          "description": "Variation: 3.5L Stainless Steel [HMJ-A35Q2 A35M1]",
+          "amount": 1,
+          "item_id": 20215256871,
+          "model_id": 225845420853
+        }
+      ],
+      "shipping_name": "A******a",
+      "shipping_phone": "******82",
+      "shipping_address": "No 9 jalan seroja 1/1 bandar aman jaya sungai lalang, Kuala Muda, 08100, Kedah",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228540031281409,
+      "order_sn": "260330FPX5XT81",
+      "buyer_user_id": 60740969,
+      "buyer_username": "vincentchiangkimfoo",
+      "shop_id": null,
+      "status": "Unpaid",
+      "fulfilment_channel": "",
+      "total_price": 257310.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Lahome Espresso Coffee Machine Hot/Cold Brew Coffee Maker 20 Bar With Milk Frother Auto Shut-off & LCD Display 冷萃咖啡机",
+          "description": "Variation: Cold/Hot Maker-Black [KF5082-1 5082-B]",
+          "amount": 1,
+          "item_id": 29906686784,
+          "model_id": 176600401255
+        }
+      ],
+      "shipping_name": "S******r",
+      "shipping_phone": "******52",
+      "shipping_address": "No******",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228539703241798,
+      "order_sn": "260330FPMD3U26",
+      "buyer_user_id": 307601806,
+      "buyer_username": "lily1828",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 328530.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 LAHOME Dough Stand Mixer Machine Upgraded Blade Motor Dough Kneader Mixer Electric Mixer for Baking Stand Mixer",
+          "description": "Variation: 3.5L Mixer+grinder-S [A50B1 A35M1+DZC+GMZ+CS-3LSUS]",
+          "amount": 1,
+          "item_id": 13551138015,
+          "model_id": 255410645251
+        }
+      ],
+      "shipping_name": "L******）",
+      "shipping_phone": "******68",
+      "shipping_address": "No 12 JALAN SULTAN ISMAIL, Kuala Terengganu, 20200, Terengganu",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228539568293118,
+      "order_sn": "260330FPGCDH7X",
+      "buyer_user_id": 10171222,
+      "buyer_username": "mamaaulia_uni",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 87900.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 5Function+10free bag [FK7912-W FK7911-W-Big]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467660
+        }
+      ],
+      "shipping_name": "N******k",
+      "shipping_phone": "******39",
+      "shipping_address": "14, Jalan SG 9/7, Taman Seri Gombak, Gombak, 68100, Selangor",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228538713251016,
+      "order_sn": "260330FNPVYQ68",
+      "buyer_user_id": 124637222,
+      "buyer_username": "anuar1109",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 257780.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 Lahome Bear 3.5L Automatic Smart Dough Mixer Dough Maker Household Electric Kneading Flour Machine Bread 小熊 和面机 1 Year",
+          "description": "Variation: 5L [HMJ-A35Q2 A50B1]",
+          "amount": 1,
+          "item_id": 20215256871,
+          "model_id": 222318225163
+        }
+      ],
+      "shipping_name": "H******n",
+      "shipping_phone": "******22",
+      "shipping_address": "No 117 A jalan masjid kg kempas baru,Johor bahru, Johor Bahru, 81200, Johor",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228537704298200,
+      "order_sn": "260330FMRTRWPR",
+      "buyer_user_id": 1047083,
+      "buyer_username": "three_sistersjb",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 236420.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 LAHOME Food Dehydrator Machine Fruit Dryer Dryed Meat Vegetable Food Preserver 5 Trays Timer Energy Saving 10L",
+          "description": "Variation: Dryer+Big Sealer [LA-GGJ10 GGJ10+FK7911+Bag100-20]",
+          "amount": 1,
+          "item_id": 22115050499,
+          "model_id": 221587180776
+        }
+      ],
+      "shipping_name": "N******d",
+      "shipping_phone": "******31",
+      "shipping_address": "34   ,   Jalan Elektron, FU16/F, Denai Alam, Shah Alam, Selangor, Petaling, 40160, Selangor",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228535539292324,
+      "order_sn": "260330FJRA2654",
+      "buyer_user_id": 65214745,
+      "buyer_username": "unylin",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 126070.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Lahome Gooseneck Kettle Pour Over Kettle Electric Pouring Coffee Temperature Control 12h Keep Warm",
+          "description": "Variation: White- Temp control [DSH DSH-101W]",
+          "amount": 1,
+          "item_id": 21793377655,
+          "model_id": 108190111033
+        }
+      ],
+      "shipping_name": "K*****n",
+      "shipping_phone": "******01",
+      "shipping_address": "88-10, Lebuh Katz, Timur Laut, 10300, Pulau Pinang",
+      "tracking_numbers": [
+        "SPXMY066456071703"
+      ]
+    },
+    {
+      "order_id": 228535366233806,
+      "order_sn": "260330FJK50UPE",
+      "buyer_user_id": 1063861883,
+      "buyer_username": "faridtajili425",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 83000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 5Function+10free bag [FK7912-W FK7911-W-Big]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467660
+        }
+      ],
+      "shipping_name": "F******i",
+      "shipping_phone": "******38",
+      "shipping_address": "620, Jalan Seri Bayu 16, Taman Seri Bayu, 08000, Sungai Petani, Kuala Muda, 08000, Kedah",
+      "tracking_numbers": [
+        "SPXMY068498869623"
+      ]
+    },
+    {
+      "order_id": 228532324225962,
+      "order_sn": "260330FFRFX4WA",
+      "buyer_user_id": 94669189,
+      "buyer_username": "ahmadshaqirin7",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "Instant Delivery",
+      "total_price": 128510.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Lahome 7pcs Espresso Coffee Maker Needle Distributor Filter Paper 51mm Distibutor Knockbox Milk Pitcher Tamper Mat Tools",
+          "description": "Variation: Espresso Maker Set7 [Cset7 Cset7.1]",
+          "amount": 1,
+          "item_id": 24492357856,
+          "model_id": 252816562230
+        }
+      ],
+      "shipping_name": "A******n",
+      "shipping_phone": "******96",
+      "shipping_address": "32-06   ,   Tuan Residency, Jalan Selingsing, Taman City, W.P. Kuala Lumpur, 51200, W.P. Kuala Lumpur",
+      "tracking_numbers": [
+        "3022412992567296847"
+      ]
+    },
+    {
+      "order_id": 228528428241541,
+      "order_sn": "260330FC4CE4M5",
+      "buyer_user_id": 415000981,
+      "buyer_username": "1w66vs1o5t",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 137120.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 LAHOME Food Dehydrator Machine Fruit Dryer Dryed Meat Vegetable Food Preserver 5 Trays Timer Energy Saving 10L",
+          "description": "Variation: Dehydrator Pro [LA-GGJ10 LA-GGJ10]",
+          "amount": 1,
+          "item_id": 22115050499,
+          "model_id": 88558920643
+        }
+      ],
+      "shipping_name": "K******e",
+      "shipping_phone": "******12",
+      "shipping_address": "Lot 2940   ,   Philea Resort & Spa, Melaka, Malaysia, Alor Gajah, 75450, Melaka",
+      "tracking_numbers": [
+        "SPXMY060838174843"
+      ]
+    },
+    {
+      "order_id": 228527351213381,
+      "order_sn": "260330FB499UA5",
+      "buyer_user_id": 769363954,
+      "buyer_username": "sdmemart",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 32740.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 20*30cm (100pcs) [FK7912-W Bag100-20*30cm]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467662
+        }
+      ],
+      "shipping_name": "R****n",
+      "shipping_phone": "******88",
+      "shipping_address": "7 Jalan Magnesium 7/106d, 40000, Shah Alam, 40000, Selangor",
+      "tracking_numbers": [
+        "SPXMY068352256703"
+      ]
+    },
+    {
+      "order_id": 228523068280249,
+      "order_sn": "260330F74MS3DS",
+      "buyer_user_id": 117356593,
+      "buyer_username": "hanifizz",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 125570.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 5Function+10free bag [FK7912-W FK7911-W-Big]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467660
+        },
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 20*30cm (100pcs) [FK7912-W Bag100-20*30cm]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467662
+        }
+      ],
+      "shipping_name": "M******i",
+      "shipping_phone": "******89",
+      "shipping_address": "141,Jalan Sendayan Indah 7 Taman Sendayan Indah, Seremban, 71950, Negeri Sembilan",
+      "tracking_numbers": [
+        "SPXMY067713271893"
+      ]
+    },
+    {
+      "order_id": 228506621211549,
+      "order_sn": "260330EQTFMCVW",
+      "buyer_user_id": 50907193,
+      "buyer_username": "miraothman29",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 245030.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 LAHOME Bear 5L Automatic Smart Dough Mixer Household Electric Kneading Flour Machine Baking Bread Pengadun Dough小熊 和面机",
+          "description": "Variation: 5L Bear Brand [Dough Mixer HMJ-A50B1]",
+          "amount": 1,
+          "item_id": 13653537138,
+          "model_id": 85959993708
+        }
+      ],
+      "shipping_name": "N******n",
+      "shipping_phone": "******09",
+      "shipping_address": "No 6, JALAN RAJAWALI, RUMAH MURAH ENDAU., Mersing, 86900, Johor",
+      "tracking_numbers": [
+        "SPXMY066737831413"
+      ]
+    },
+    {
+      "order_id": 228506148226901,
+      "order_sn": "260330EQCCJ1TN",
+      "buyer_user_id": 50907193,
+      "buyer_username": "miraothman29",
+      "shop_id": null,
+      "status": "Unpaid",
+      "fulfilment_channel": "",
+      "total_price": 318890.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁Lahome Bear Dough Mixer Machine Fermentation OnSale Stand Mixer Maker Kneader Electric Mixer For Baking 7L 小熊 和面机 和面发酵",
+          "description": "Variation: 2 in 1Dough Mixer 7L [HMJ-A70C1 HMJ-A70C1]",
+          "amount": 1,
+          "item_id": 13698604276,
+          "model_id": 221368929870
+        }
+      ],
+      "shipping_name": "N******n",
+      "shipping_phone": "******09",
+      "shipping_address": "No******",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228504355211614,
+      "order_sn": "260330ENPXKJAX",
+      "buyer_user_id": 503283668,
+      "buyer_username": "_ehsan02",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 20000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Lahome Coffee Grinder Cleaning Brush & Air blower For Espresso Machine Coffee Grinder Accessories 咖啡机/磨豆机清洁套装",
+          "description": "Variation: Air Blower + Brush [Pump01+Brush01 Pump01+Brush01]",
+          "amount": 1,
+          "item_id": 24986888509,
+          "model_id": 241742931147
+        }
+      ],
+      "shipping_name": "E***n",
+      "shipping_phone": "******97",
+      "shipping_address": "Kabin gunting   ,   no 109, Lorong 4, Taman Ria, Kuala Muda, 08000, Kedah",
+      "tracking_numbers": [
+        "SPXMY064321748563"
+      ]
+    },
+    {
+      "order_id": 228503887257955,
+      "order_sn": "260330EN90ARB3",
+      "buyer_user_id": 121524315,
+      "buyer_username": "gwynethlow",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 217810.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 LAHOME Bear 5L Automatic Smart Dough Mixer Household Electric Kneading Flour Machine Baking Bread Pengadun Dough小熊 和面机",
+          "description": "Variation: 5L Bear Brand [Dough Mixer HMJ-A50B1]",
+          "amount": 1,
+          "item_id": 13653537138,
+          "model_id": 85959993708
+        }
+      ],
+      "shipping_name": "A*****o",
+      "shipping_phone": "******87",
+      "shipping_address": "18, Jalan Puteri 11/5, Petaling, 47100, Selangor",
+      "tracking_numbers": [
+        "SPXMY065136118963"
+      ]
+    },
+    {
+      "order_id": 228501442271413,
+      "order_sn": "260330EK04KP5N",
+      "buyer_user_id": 391059563,
+      "buyer_username": "ashleyok",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "Self Collection Point (SPX Express)",
+      "total_price": 99600.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "✅LAHOME Smart Electric Ceramic Stove Original Burner Infrared Induction Cooker Touch Sreen Cooktop 便携式电陶炉",
+          "description": "Variation: Portable Stove+GrilN [SQ816 SQ816+KP-NON02]",
+          "amount": 1,
+          "item_id": 51503969590,
+          "model_id": 410377748478
+        }
+      ],
+      "shipping_name": "A****y",
+      "shipping_phone": "******26",
+      "shipping_address": "Pejabat POS AEON Cheras Selatan\nLot F27, Kompleks Membeli Belah Aeon Cheras Selatan, Lebuh Tun Hussein Onn, 43200 Cheras 43200",
+      "tracking_numbers": [
+        "SPXMY064771836793"
+      ]
+    },
+    {
+      "order_id": 228500669243720,
+      "order_sn": "260330EJ93CRA8",
+      "buyer_user_id": 419038233,
+      "buyer_username": "xqr0jtepj4",
+      "shop_id": null,
+      "status": "Unpaid",
+      "fulfilment_channel": "",
+      "total_price": 317700.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 LAHOME Bear 5L Automatic Smart Dough Mixer Household Electric Kneading Flour Machine Baking Bread Pengadun Dough小熊 和面机",
+          "description": "Variation: 7L+ Scale [Dough Mixer A70C1+DZC-10k]",
+          "amount": 1,
+          "item_id": 13653537138,
+          "model_id": 137786705326
+        }
+      ],
+      "shipping_name": "M******H",
+      "shipping_phone": "******14",
+      "shipping_address": "Kg******",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228499724220716,
+      "order_sn": "260330EHCX4X9C",
+      "buyer_user_id": 146554373,
+      "buyer_username": "mas802",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 8500.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME 51mm Coffee Filter Paper Natural Unbleached Disposable Round Moka Pot Coffee Dripper Accessories 100pcs 圆形咖啡机粉碗滤纸",
+          "description": "Variation: Brown Paper+SUS Box [51FP 51FP-Brown+RB-65]",
+          "amount": 1,
+          "item_id": 27576061047,
+          "model_id": 247630516598
+        }
+      ],
+      "shipping_name": "H******h",
+      "shipping_phone": "******27",
+      "shipping_address": "D-05-03, Verde Ara Damansara, Jalan PJU 1A/20 47301 Petaling Jaya Selangor, Petaling Jaya, 47301, Selangor",
+      "tracking_numbers": [
+        "SPXMY067149221993"
+      ]
+    },
+    {
+      "order_id": 228497172215759,
+      "order_sn": "260329EF0VBWXF",
+      "buyer_user_id": 62843205,
+      "buyer_username": "carrie2909",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 178160.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Electric Conical Burr Coffee Bean Grinder Adjustable Burr Mill w/ 38 Setting for Drip Espresso Coffee Grinder 磨豆机",
+          "description": "Variation: Black+Blower+Cup [CG011-White CG011-B+Blower03+PCUP51]",
+          "amount": 1,
+          "item_id": 27902056622,
+          "model_id": 119283162050
+        }
+      ],
+      "shipping_name": "C******n",
+      "shipping_phone": "******08",
+      "shipping_address": "No 18 jalan tk 2/18 taman kinrara, Petaling Jaya, 47180, Selangor",
+      "tracking_numbers": [
+        "SPXMY067045081223"
+      ]
+    },
+    {
+      "order_id": 228494344209665,
+      "order_sn": "260329ECCKC181",
+      "buyer_user_id": 11842858,
+      "buyer_username": "chowkj",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 45350.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Premium Espresso Bottomless Portafilter 51MM Solid Rosewood Handle Stainless Steel Basket",
+          "description": "Variation: Ground Holder 51mm [Handle02 6001/5403-Handle+Filter]",
+          "amount": 1,
+          "item_id": 25925898546,
+          "model_id": 205050438561
+        }
+      ],
+      "shipping_name": "C******n",
+      "shipping_phone": "******66",
+      "shipping_address": "B-53-05   ,   Trion Kl, Block B, Jalan Dua, Sungai Besi, 50250, Bandar Kuala Lumpur, W.P. Kuala Lumpur, 55200, W.P. Kuala Lumpur",
+      "tracking_numbers": [
+        "SPXMY069795055343"
+      ]
+    },
+    {
+      "order_id": 228491534222134,
+      "order_sn": "260329E9RUJ0SP",
+      "buyer_user_id": 213893391,
+      "buyer_username": "habsyah5616",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 114950.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 5Function+10free bag [FK7912-W FK7911-W-Big]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467660
+        },
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 20*30cm (100pcs) [FK7912-W Bag100-20*30cm]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467662
+        },
+        {
+          "name": "LAHOME BBQ Tongs Food Tongs Stainless steel Tongs Food Gripper Ice Tongs Kitchen Cooking Tongs",
+          "description": "[TONGS01 ]",
+          "amount": 1,
+          "item_id": 19295300366,
+          "model_id": 225810206144
+        }
+      ],
+      "shipping_name": "H******A",
+      "shipping_phone": "******23",
+      "shipping_address": "NO 10 JALAN 4/5, TAMAN TASIK TAMBAHAN, Hulu Langat, 68000, Selangor",
+      "tracking_numbers": [
+        "SPXMY061287259413"
+      ]
+    },
+    {
+      "order_id": 228490038246526,
+      "order_sn": "260329E8C8VF3X",
+      "buyer_user_id": 1598312991,
+      "buyer_username": "songoku0086",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 129140.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Lahome 7pcs Espresso Coffee Maker Needle Distributor Filter Paper 51mm Distibutor Knockbox Milk Pitcher Tamper Mat Tools",
+          "description": "Variation: Espresso Maker Set7 [Cset7 Cset7.1]",
+          "amount": 1,
+          "item_id": 24492357856,
+          "model_id": 252816562230
+        }
+      ],
+      "shipping_name": "H******h",
+      "shipping_phone": "******10",
+      "shipping_address": "Habib Tech, No. 11, Jalan Klebang Ria 3, Taman Klebang Ria, Kinta, 31200, Perak",
+      "tracking_numbers": [
+        "SPXMY060086025873"
+      ]
+    },
+    {
+      "order_id": 228488341290486,
+      "order_sn": "260329E6SPHFFP",
+      "buyer_user_id": 76327986,
+      "buyer_username": "s4pique",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 118640.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 5Function+10free bag [FK7912-W FK7911-W-Big]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467660
+        },
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 20*30cm (100pcs) [FK7912-W Bag100-20*30cm]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467662
+        }
+      ],
+      "shipping_name": "A******q",
+      "shipping_phone": "******30",
+      "shipping_address": "Rumah Kos Rendah Gong Cengal, Block 15, Pt 4962, Kampung Gong Cengal, Kemaman, 24200, Terengganu",
+      "tracking_numbers": [
+        "SPXMY060166888393"
+      ]
+    },
+    {
+      "order_id": 228487323249857,
+      "order_sn": "260329E5UBNB61",
+      "buyer_user_id": 46582934,
+      "buyer_username": "nadiakama",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 74390.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Premium Espresso Bottomless Portafilter 51MM Solid Rosewood Handle Stainless Steel Basket",
+          "description": "Variation: Upgreade Stainless [Handle02 Handle02]",
+          "amount": 1,
+          "item_id": 25925898546,
+          "model_id": 205050438559
+        }
+      ],
+      "shipping_name": "N******n",
+      "shipping_phone": "******52",
+      "shipping_address": "G-4-7, Pangsapuri Pelangi Heights Phase 2, Jalan Ungu/KU1, Off Jalan Landasan,, Klang, 41300, Selangor",
+      "tracking_numbers": [
+        "SPXMY065933864203"
+      ]
+    },
+    {
+      "order_id": 228487179241401,
+      "order_sn": "260329E5Q2AHWS",
+      "buyer_user_id": 126906485,
+      "buyer_username": "grungeg5622",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 87260.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 5Function+10free bag [FK7912-W FK7911-W-Big]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467660
+        }
+      ],
+      "shipping_name": "N******m",
+      "shipping_phone": "******16",
+      "shipping_address": "No. 24 Jalan 8/3 Blok 14 Maple, Bandar Tasik Puteri, Gombak, 48020, Selangor",
+      "tracking_numbers": [
+        "SPXMY069759878193"
+      ]
+    },
+    {
+      "order_id": 228485869264609,
+      "order_sn": "260329E4G117Q1",
+      "buyer_user_id": 76524432,
+      "buyer_username": "amfirzdaus",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (East Malaysia)",
+      "total_price": 236800.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁LAHOME Electric Conical Burr Coffee Grinder Automatic Adjustable Burr Mill W/ 51 Precise Grind Pengisar Commercial 磨豆机",
+          "description": "Variation: 51 Super Grinding [CG018pro CG018PRO]",
+          "amount": 1,
+          "item_id": 17165028713,
+          "model_id": 98837088401
+        }
+      ],
+      "shipping_name": "F******i",
+      "shipping_phone": "******96",
+      "shipping_address": "Jurutera Azan Bersekutu Sdn Bhd, 2nd Floor, Lot 148, Jalan Datuk Ajibah Abol, Kampung Masjid, Kuching, 93400, Sarawak",
+      "tracking_numbers": [
+        "MY261731766280J"
+      ]
+    },
+    {
+      "order_id": 228485093273506,
+      "order_sn": "260329E3RVYUW2",
+      "buyer_user_id": 64731638,
+      "buyer_username": "rossimamyudi",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 476900.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Lahome Commercial Coffee Grinder Flat Burr 100 Setting Automatic Bussiness Electric Espresso Grinder",
+          "description": "Variation: Grinder+Blower [CG301-B CG301-B+CG301-Blower04]",
+          "amount": 1,
+          "item_id": 27405439735,
+          "model_id": 217655168533
+        }
+      ],
+      "shipping_name": "M******i",
+      "shipping_phone": "******16",
+      "shipping_address": "Unit B.13A.13, Condominium Puri Aiyu, Jalan Jubli Perak 22/1, Petaling Jaya, 40400, Selangor",
+      "tracking_numbers": [
+        "SPXMY060170394823"
+      ]
+    },
+    {
+      "order_id": 228483503225763,
+      "order_sn": "260329E29GKEW3",
+      "buyer_user_id": 200864518,
+      "buyer_username": "djninieibrahim22",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 119790.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 25*35cm(100pcs) [FK7912-W Bag100-25*35cm]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467659
+        },
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 5Function+10free bag [FK7912-W FK7911-W-Big]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467660
+        }
+      ],
+      "shipping_name": "F******i",
+      "shipping_phone": "******49",
+      "shipping_address": "Lot 1892-4 Jalan Taman Harmonis,Taman Harmonis, 53100 Gombak Kuala Lumpur, W.P. Kuala Lumpur, 53100, W.P. Kuala Lumpur",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228478301225931,
+      "order_sn": "260329DWEFK0XB",
+      "buyer_user_id": 457981978,
+      "buyer_username": "nonongnonong04",
+      "shop_id": null,
+      "status": "Unpaid",
+      "fulfilment_channel": "",
+      "total_price": 242170.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 LAHOME Bear 5L Automatic Smart Dough Mixer Household Electric Kneading Flour Machine Baking Bread Pengadun Dough小熊 和面机",
+          "description": "Variation: 3.5L [Dough Mixer A35M1]",
+          "amount": 1,
+          "item_id": 13653537138,
+          "model_id": 137786705327
+        }
+      ],
+      "shipping_name": "N******a",
+      "shipping_phone": "******51",
+      "shipping_address": "Kg******",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228475731259099,
+      "order_sn": "260329DU1VNUPU",
+      "buyer_user_id": 253671968,
+      "buyer_username": "yeeqinbeh",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 76740.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Lahome 7pcs Espresso Coffee Maker Needle Distributor Filter Paper 51mm Distibutor Knockbox Milk Pitcher Tamper Mat Tools",
+          "description": "Variation: Espresso Maker Set5 [Cset7 Cset5.1]",
+          "amount": 1,
+          "item_id": 24492357856,
+          "model_id": 99771950128
+        }
+      ],
+      "shipping_name": "A***E",
+      "shipping_phone": "******68",
+      "shipping_address": "NO 1 JALAN JENAHAK TAMAN TUN HUSSEIN, Seberang Perai Tengah, 13700, Pulau Pinang",
+      "tracking_numbers": [
+        "SPXMY061114622223"
+      ]
+    },
+    {
+      "order_id": 228475201238602,
+      "order_sn": "260329DTJ36WJA",
+      "buyer_user_id": 48760976,
+      "buyer_username": "akma085712",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 115170.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 5Function+10free bag [FK7912-W FK7911-W-Big]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467660
+        },
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 20*30cm (100pcs) [FK7912-W Bag100-20*30cm]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467662
+        },
+        {
+          "name": "LAHOME BBQ Tongs Food Tongs Stainless steel Tongs Food Gripper Ice Tongs Kitchen Cooking Tongs",
+          "description": "[TONGS01 ]",
+          "amount": 1,
+          "item_id": 19295300366,
+          "model_id": 225810206144
+        }
+      ],
+      "shipping_name": "N******N",
+      "shipping_phone": "******24",
+      "shipping_address": "15, LALUAN WIRA JAYA TIMUR 25, TAMAN RAPAT KOPERASI, IPOH, Kinta, 31350, Perak",
+      "tracking_numbers": [
+        "SPXMY064452548953"
+      ]
+    },
+    {
+      "order_id": 228474489252007,
+      "order_sn": "260329DSVV6T57",
+      "buyer_user_id": 37447368,
+      "buyer_username": "black_sheep.os",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 82990.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 5Function+10free bag [FK7912-W FK7911-W-Big]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467660
+        }
+      ],
+      "shipping_name": "B******p",
+      "shipping_phone": "******99",
+      "shipping_address": "6，Jalan IJ 2 1/1, Taman Indah Jaya 2, Hilir Perak, 36000, Perak",
+      "tracking_numbers": [
+        "SPXMY060374659993"
+      ]
+    },
+    {
+      "order_id": 228474395299696,
+      "order_sn": "260329DST2KKUG",
+      "buyer_user_id": 159919550,
+      "buyer_username": "crunchy_hq",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 30000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME  Coffee Grinder Single Dose Hopper Bellows Blower + Lid Cleaning Tools For CG301-B 磨豆机豆仓清洁工具",
+          "description": "Variation: For CG301-B/CG308 [CG301-PUMP For CG301-B/CG308]",
+          "amount": 1,
+          "item_id": 42506474001,
+          "model_id": 315453652480
+        }
+      ],
+      "shipping_name": "K******i",
+      "shipping_phone": "******93",
+      "shipping_address": "09-11 level9   ,   Villa Tropika Apartment, Jalan Vila, Taman Villa Tropika, 43000, Kajang, Ulu Langat, 43000, Selangor",
+      "tracking_numbers": [
+        "SPXMY066073507573"
+      ]
+    },
+    {
+      "order_id": 228462400282763,
+      "order_sn": "260329DEMK8R4B",
+      "buyer_user_id": 88025266,
+      "buyer_username": "shuquriefaisal",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 79450.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 5Function+10free bag [FK7912-W FK7911-W-Big]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467660
+        }
+      ],
+      "shipping_name": "S******l",
+      "shipping_phone": "******42",
+      "shipping_address": "No. 19, Jalan Impian Emas 5, Taman Impian Emas, Kg. Tengah, Segamat, 85000, Johor",
+      "tracking_numbers": [
+        "SPXMY064968399363"
+      ]
+    },
+    {
+      "order_id": 228459109294191,
+      "order_sn": "260329DBJGQR3F",
+      "buyer_user_id": 233008614,
+      "buyer_username": "acxpx98",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 27190.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 LAHOME Coffee Milk Frother Handheld 3-Speed USB Rechargeable Electric Whisk Mixers Egg Beater Rich Crama Long Life",
+          "description": "Variation: 2in1 Milk Frother [J3-White J3-White]",
+          "amount": 1,
+          "item_id": 14206304625,
+          "model_id": 183667759537
+        }
+      ],
+      "shipping_name": "P******i",
+      "shipping_phone": "******31",
+      "shipping_address": "12/16   ,   Tuan 2egacy, Jalan Kuching, W.P. Kuala Lumpur, 51200, W.P. Kuala Lumpur",
+      "tracking_numbers": [
+        "SPXMY062196734433"
+      ]
+    },
+    {
+      "order_id": 228456908216249,
+      "order_sn": "260329D9GWM5WS",
+      "buyer_user_id": 279973422,
+      "buyer_username": "dalilahussin",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 147780.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Smart Electric Pressure Cooker 2.5L & 5L Multifunction Rice Cooker Hotpot Soup Safety Cooking Pot 多功能电压力锅 电饭煲",
+          "description": "Variation: 2.5L-White Cooker [EPC3325-White EPC3325-White]",
+          "amount": 1,
+          "item_id": 41056513019,
+          "model_id": 295547961485
+        }
+      ],
+      "shipping_name": "j******n",
+      "shipping_phone": "******18",
+      "shipping_address": "No. 17 lorong 33 taman penaga 13100 kepada batas pulau pinang, Seberang Perai Utara, 13100, Pulau Pinang",
+      "tracking_numbers": [
+        "SPXMY065999154963"
+      ]
+    },
+    {
+      "order_id": 228455707210400,
+      "order_sn": "260329D8D48CN0",
+      "buyer_user_id": 328402600,
+      "buyer_username": "teddyjah89",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 65800.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LaHome Coffee Grinder Electric Spice Rice Bean Herb Seasoning Grain Grinder Mill Stainless Steel",
+          "description": "Variation: Upgraded Model [CG981S CG981S]",
+          "amount": 1,
+          "item_id": 19185747581,
+          "model_id": 222189188783
+        }
+      ],
+      "shipping_name": "H******m",
+      "shipping_phone": "******37",
+      "shipping_address": "No 16, Jalan Hopea U15/26, Elmina West, Seksyen U15, Shah Alam, 40170, Selangor",
+      "tracking_numbers": [
+        "SPXMY060065582513"
+      ]
+    },
+    {
+      "order_id": 228454363298156,
+      "order_sn": "260329D752KEBC",
+      "buyer_user_id": 581267877,
+      "buyer_username": "erissf",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 478730.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Professional Coffee Grinder Flat Burr Automatic Adjustable 100 Grinding Metal Stainless Steel LCD Display 可商用磨豆机",
+          "description": "Variation: Super Grinder-SUS [CG308SUS CG308-Combo]",
+          "amount": 1,
+          "item_id": 42167650316,
+          "model_id": 224483514056
+        }
+      ],
+      "shipping_name": "E******n",
+      "shipping_phone": "******02",
+      "shipping_address": "Moody Cow @gurney Plaza, Basement 1, Gurney Plaza, Gurney Dr, Timur Laut, 10250, Pulau Pinang",
+      "tracking_numbers": [
+        "SPXMY066835583303"
+      ]
+    },
+    {
+      "order_id": 228445679237261,
+      "order_sn": "260329CY28TX4D",
+      "buyer_user_id": 45627929,
+      "buyer_username": "281215iman",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "",
+      "total_price": 89900.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 5Function+10free bag [FK7912-W FK7911-W-Big]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467660
+        }
+      ],
+      "shipping_name": "w******r",
+      "shipping_phone": "******01",
+      "shipping_address": "No. 2, Lorong Sepadu Jaya 1/2, Seberang Perai Utara, 13300, Pulau Pinang",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228441602258196,
+      "order_sn": "260329CU8RQD8M",
+      "buyer_user_id": 96886395,
+      "buyer_username": "snar161",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 82450.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "✅【Free 10 Bags】 Food Vacuum Sealer Machine Heat Sealing Machine Food Sealer Machine For Pet Food Snack Dried Fruit",
+          "description": "Variation: 5Function+10free bag [FK7912-W FK7911-W-Big]",
+          "amount": 1,
+          "item_id": 23540221877,
+          "model_id": 175852469442
+        }
+      ],
+      "shipping_name": "S******i",
+      "shipping_phone": "******25",
+      "shipping_address": "C-06-10 Pangsapuri Desaru Utama, Jalan Kempas 2, Kota Tinggi, 81930, Johor",
+      "tracking_numbers": [
+        "SPXMY065589094253"
+      ]
+    },
+    {
+      "order_id": 228440782247012,
+      "order_sn": "260329CTGAPN34",
+      "buyer_user_id": 114807939,
+      "buyer_username": "fendy012",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 130370.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 LAHOME Food Dehydrator Machine Fruit Dryer Dryed Meat Vegetable Food Preserver 5 Trays Timer Energy Saving 10L",
+          "description": "Variation: Dehydrator Pro [LA-GGJ10 LA-GGJ10]",
+          "amount": 1,
+          "item_id": 22115050499,
+          "model_id": 88558920643
+        }
+      ],
+      "shipping_name": "M******R",
+      "shipping_phone": "******76",
+      "shipping_address": "No. 45, Persiaran Bercham Selatan 5, Taman Desa Kencana, Kinta, 31400, Perak",
+      "tracking_numbers": [
+        "SPXMY064810400153"
+      ]
+    },
+    {
+      "order_id": 228434402281039,
+      "order_sn": "260329CMJ69HJF",
+      "buyer_user_id": 275389631,
+      "buyer_username": "wanhakim27",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "Self Collection Point (SPX Express)",
+      "total_price": 10650.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Soft Silicone Single Dose Hopper Bellow Coffee Grinder Bean Air Blower Cleaning Tools Reusable",
+          "description": "Variation: GrinderCG018/CG028 [Blower CG018-Blower02]",
+          "amount": 1,
+          "item_id": 25672302376,
+          "model_id": 245580259824
+        }
+      ],
+      "shipping_name": "H******y",
+      "shipping_phone": "******42",
+      "shipping_address": "SPX Collection Point Kerepek Dm Trading\nPT 11242 Tanah Lot Surau Haji Mat Zin, 21400 Bukit Payong, Terengganu 21400",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228434402234311,
+      "order_sn": "260329CMJ683X7",
+      "buyer_user_id": 1082600609,
+      "buyer_username": "fif16",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "Self Collection Point (SPX Express)",
+      "total_price": 8000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Soft Silicone Single Dose Hopper Bellow Coffee Grinder Bean Air Blower Cleaning Tools Reusable",
+          "description": "Variation: GrinderCG018/CG028 [Blower CG018-Blower02]",
+          "amount": 1,
+          "item_id": 25672302376,
+          "model_id": 245580259824
+        }
+      ],
+      "shipping_name": "W******i",
+      "shipping_phone": "******09",
+      "shipping_address": "CollectCo CP - Wanarich Resources Caw Bintong\nBatu 1, Taman bunga Padi, Jalan Raja Syed Saffi, 01000 Kangar Perlis 01000",
+      "tracking_numbers": [
+        "SPXMY061941738223"
+      ]
+    },
+    {
+      "order_id": 228427306295691,
+      "order_sn": "260329CDXQ18CB",
+      "buyer_user_id": 29048397,
+      "buyer_username": "joeylow1199",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 168930.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 Lahome Bear 3.5L Automatic Smart Dough Mixer Dough Maker Household Electric Kneading Flour Machine Bread 小熊 和面机 1 Year",
+          "description": "Variation: 5L [HMJ-A35Q2 A50B1]",
+          "amount": 1,
+          "item_id": 20215256871,
+          "model_id": 222318225163
+        }
+      ],
+      "shipping_name": "L******U",
+      "shipping_phone": "******99",
+      "shipping_address": "207,Taman Simpang Jaya,Simpang Empat, Alor Setar, Kota Setar, 06650, Kedah",
+      "tracking_numbers": [
+        "SPXMY060727163803"
+      ]
+    },
+    {
+      "order_id": 228427213276677,
+      "order_sn": "260329CDUXAHG5",
+      "buyer_user_id": 1082600609,
+      "buyer_username": "fif16",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "Self Collection Point (SPX Express)",
+      "total_price": 18000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Soft Silicone Single Dose Hopper Bellow Coffee Grinder Bean Air Blower Cleaning Tools Reusable",
+          "description": "Variation: GrinderCG018/CG028 [Blower CG018-Blower02]",
+          "amount": 1,
+          "item_id": 25672302376,
+          "model_id": 245580259824
+        }
+      ],
+      "shipping_name": "W******i",
+      "shipping_phone": "******09",
+      "shipping_address": "CollectCo CP - Wanarich Resources Caw Bintong\nBatu 1, Taman bunga Padi, Jalan Raja Syed Saffi, 01000 Kangar Perlis 01000",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228410602235823,
+      "order_sn": "260328BXCVSSWF",
+      "buyer_user_id": 53881187,
+      "buyer_username": "afrinasz",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 451860.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Lahome Commercial Coffee Grinder Flat Burr 100 Setting Automatic Bussiness Electric Espresso Grinder",
+          "description": "Variation: Commercial Grinder [CG301-B CG301]",
+          "amount": 1,
+          "item_id": 27405439735,
+          "model_id": 217655168532
+        }
+      ],
+      "shipping_name": "E******i",
+      "shipping_phone": "******36",
+      "shipping_address": "113, JALAN PULAI JAYA 3, BANDAR PULAI JAYA, KAMPUNG KEPAYANG, Kinta, 31300, Perak",
+      "tracking_numbers": [
+        "SPXMY065697476583"
+      ]
+    },
+    {
+      "order_id": 228408086237038,
+      "order_sn": "260328BV1WBKUE",
+      "buyer_user_id": 105751555,
+      "buyer_username": "ahmadai80",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 70490.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LaHome Coffee Grinder Electric Spice Rice Bean Herb Seasoning Grain Grinder Mill Stainless Steel",
+          "description": "Variation: Upgraded Model [CG981S CG981S]",
+          "amount": 1,
+          "item_id": 19185747581,
+          "model_id": 222189188783
+        }
+      ],
+      "shipping_name": "a******i",
+      "shipping_phone": "******51",
+      "shipping_address": "no. 24, lorong maju 4, taman assam maju 34000 taiping perak, Larut, 34000, Perak",
+      "tracking_numbers": [
+        "SPXMY066315393073"
+      ]
+    },
+    {
+      "order_id": 228405622244350,
+      "order_sn": "260328BSRFGGYX",
+      "buyer_user_id": 29048397,
+      "buyer_username": "joeylow1199",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "",
+      "total_price": 174230.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 Lahome Bear 3.5L Automatic Smart Dough Mixer Dough Maker Household Electric Kneading Flour Machine Bread 小熊 和面机 1 Year",
+          "description": "Variation: 5L [HMJ-A35Q2 A50B1]",
+          "amount": 1,
+          "item_id": 20215256871,
+          "model_id": 222318225163
+        }
+      ],
+      "shipping_name": "L******U",
+      "shipping_phone": "******99",
+      "shipping_address": "207,Taman Simpang Jaya,Simpang Empat, Alor Setar, Kota Setar, 06650, Kedah",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228404648284255,
+      "order_sn": "260328BRUENM2Y",
+      "buyer_user_id": 1645272190,
+      "buyer_username": "aemanjkw",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "Brunei Direct Shipment (SPX)",
+      "total_price": 600160.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Professional Coffee Grinder Flat Burr Automatic Adjustable 100 Grinding Metal Stainless Steel LCD Display 可商用磨豆机",
+          "description": "Variation: Super Grinder-SUS [CG308SUS CG308-Combo]",
+          "amount": 1,
+          "item_id": 42167650316,
+          "model_id": 224483514056
+        }
+      ],
+      "shipping_name": "M******i",
+      "shipping_phone": "******88",
+      "shipping_address": "Lot 143, No. 16, Simpang 41-30, Jalan Dipa Negara Kuala Belait, Kuala Belait, KA1731, Belait",
+      "tracking_numbers": [
+        "MY262935479505R"
+      ]
+    },
+    {
+      "order_id": 228404555246458,
+      "order_sn": "260328BRRNXAUT",
+      "buyer_user_id": 302240543,
+      "buyer_username": "aynazayn",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 257780.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 LAHOME Bear 5L Automatic Smart Dough Mixer Household Electric Kneading Flour Machine Baking Bread Pengadun Dough小熊 和面机",
+          "description": "Variation: 5L Bear Brand [Dough Mixer HMJ-A50B1]",
+          "amount": 1,
+          "item_id": 13653537138,
+          "model_id": 85959993708
+        }
+      ],
+      "shipping_name": "N******A",
+      "shipping_phone": "******62",
+      "shipping_address": "NO 16   ,   Right Power Technology Sdn Bhd, Jalan Tpk 2/4, Taman Perindustrian Kinrara, Petaling Jaya, 47100, Selangor",
+      "tracking_numbers": [
+        "SPXMY064308667363"
+      ]
+    },
+    {
+      "order_id": 228404096280388,
+      "order_sn": "260328BRB07ST4",
+      "buyer_user_id": 9779852,
+      "buyer_username": "memiliananoordin",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 90530.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 5Function+10free bag [FK7912-W FK7911-W-Big]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467660
+        }
+      ],
+      "shipping_name": "M******n",
+      "shipping_phone": "******40",
+      "shipping_address": "No.25, Jalan Sungai Daun 24B/KU4, Taman Kembara, Rantau Panjang, 42100 Klang, Klang, 42100, Selangor",
+      "tracking_numbers": [
+        "SPXMY060671596713"
+      ]
+    },
+    {
+      "order_id": 228395413260679,
+      "order_sn": "260328BG87F2C7",
+      "buyer_user_id": 1102340097,
+      "buyer_username": "fazillah_hassan",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 117180.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 5Function+10free bag [FK7912-W FK7911-W-Big]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467660
+        },
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 20*30cm (100pcs) [FK7912-W Bag100-20*30cm]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467662
+        }
+      ],
+      "shipping_name": "F******n",
+      "shipping_phone": "******88",
+      "shipping_address": "No. 14, Jalan Putra Permai 8c, Seri Kembangan, 43300, Petaling, Petaling, 43300, Selangor",
+      "tracking_numbers": [
+        "SPXMY069886181463"
+      ]
+    },
+    {
+      "order_id": 228392811274344,
+      "order_sn": "260328BDTP0R38",
+      "buyer_user_id": 1494710938,
+      "buyer_username": "maghaumahu",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 83740.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 5Function+10free bag [FK7912-W FK7911-W-Big]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467660
+        }
+      ],
+      "shipping_name": "M******u",
+      "shipping_phone": "******51",
+      "shipping_address": "Landed   ,   15, Jalan Tani, Kampung Aman, Johor Bahru, 80350, Johor",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228392572225877,
+      "order_sn": "260328BDKJ1JAN",
+      "buyer_user_id": 59068544,
+      "buyer_username": "hasnizahmohdyusof",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 121600.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 5Function+10free bag [FK7912-W FK7911-W-Big]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467660
+        },
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 20*30cm (100pcs) [FK7912-W Bag100-20*30cm]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467662
+        }
+      ],
+      "shipping_name": "H******F",
+      "shipping_phone": "******94",
+      "shipping_address": "BLOK F-T05-U05, JALAN P18B, FASA 18R12, PRESINT 18, Putrajaya, 62100, Putrajaya",
+      "tracking_numbers": [
+        "SPXMY060698003383"
+      ]
+    },
+    {
+      "order_id": 228389651249128,
+      "order_sn": "260328BAVGCDY8",
+      "buyer_user_id": 959111570,
+      "buyer_username": "ridhwanmansor",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 30000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME  Coffee Grinder Single Dose Hopper Bellows Blower + Lid Cleaning Tools For CG301-B 磨豆机豆仓清洁工具",
+          "description": "Variation: For CG301-B/CG308 [CG301-PUMP For CG301-B/CG308]",
+          "amount": 1,
+          "item_id": 42506474001,
+          "model_id": 315453652480
+        }
+      ],
+      "shipping_name": "R******r",
+      "shipping_phone": "******12",
+      "shipping_address": "No. 43, Jalan Kejora 42, Taman Langat Utama, Kuala Langat, 42700, Selangor",
+      "tracking_numbers": [
+        "SPXMY064378249783"
+      ]
+    },
+    {
+      "order_id": 228388391248258,
+      "order_sn": "260328B9PXR8C2",
+      "buyer_user_id": 268244432,
+      "buyer_username": "joytengjl",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 194570.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 LAHOME Bear 5L Automatic Smart Dough Mixer Household Electric Kneading Flour Machine Baking Bread Pengadun Dough小熊 和面机",
+          "description": "Variation: 3.5L [Dough Mixer A35M1]",
+          "amount": 1,
+          "item_id": 13653537138,
+          "model_id": 137786705327
+        }
+      ],
+      "shipping_name": "J******g",
+      "shipping_phone": "******29",
+      "shipping_address": "3-8-5 Fiera Vista, Barat Daya, 11900, Pulau Pinang",
+      "tracking_numbers": [
+        "SPXMY061238331943"
+      ]
+    },
+    {
+      "order_id": 228387890261875,
+      "order_sn": "260328B980YBUK",
+      "buyer_user_id": 2737515,
+      "buyer_username": "dansonkhaw",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 289020.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME 51mm Coffee Filter Paper Natural Unbleached Disposable Round Moka Pot Coffee Dripper Accessories 100pcs 圆形咖啡机粉碗滤纸",
+          "description": "Variation: White Paper Only [51FP 51FP-White]",
+          "amount": 1,
+          "item_id": 27576061047,
+          "model_id": 247630516599
+        },
+        {
+          "name": "Lahome Espresso Coffee Machine Hot/Cold Brew Coffee Maker 20 Bar With Milk Frother Auto Shut-off & LCD Display 冷萃咖啡机",
+          "description": "Variation: 2N1 Espresso Maker-B [KF5082-1 5082-Black+CF-51B]",
+          "amount": 1,
+          "item_id": 29906686784,
+          "model_id": 148761831044
+        }
+      ],
+      "shipping_name": "K******G",
+      "shipping_phone": "******89",
+      "shipping_address": "P-07-06   ,   Desa Clarissa (Block P), Lebuh Relau 4, Taman Desa Relau 2, Timur Laut, 11900, Pulau Pinang",
+      "tracking_numbers": [
+        "SPXMY064936317173"
+      ]
+    },
+    {
+      "order_id": 228387437232786,
+      "order_sn": "260328B8TGX0MJ",
+      "buyer_user_id": 583634890,
+      "buyer_username": "puzzling_orange11",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 139070.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 LAHOME Food Dehydrator Machine Fruit Dryer Dryed Meat Vegetable Food Preserver 5 Trays Timer Energy Saving 10L",
+          "description": "Variation: Dehydrator Pro [LA-GGJ10 LA-GGJ10]",
+          "amount": 1,
+          "item_id": 22115050499,
+          "model_id": 88558920643
+        }
+      ],
+      "shipping_name": "L******g",
+      "shipping_phone": "******54",
+      "shipping_address": "no. 2172, Lorong Nusari Bayu 7/3i, Taman Nusari Bayu 3, Seremban, 71950, Negeri Sembilan",
+      "tracking_numbers": [
+        "SPXMY064735167453"
+      ]
+    },
+    {
+      "order_id": 228387156245415,
+      "order_sn": "260328B8J4XXW7",
+      "buyer_user_id": 2737515,
+      "buyer_username": "dansonkhaw",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "",
+      "total_price": 305670.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME 51mm Coffee Filter Paper Natural Unbleached Disposable Round Moka Pot Coffee Dripper Accessories 100pcs 圆形咖啡机粉碗滤纸",
+          "description": "Variation: White Paper Only [51FP 51FP-White]",
+          "amount": 1,
+          "item_id": 27576061047,
+          "model_id": 247630516599
+        },
+        {
+          "name": "LAHOME Cold/Hot Brew Espresso Coffee Maker Machine Americano Automatic LCD Display With Milk Frother Steamer 冷萃咖啡机",
+          "description": "Variation: 2In1 Espresso Maker [KFJ913 KFJ913+CF-51B.1]",
+          "amount": 1,
+          "item_id": 29066158417,
+          "model_id": 185515415010
+        }
+      ],
+      "shipping_name": "K******G",
+      "shipping_phone": "******89",
+      "shipping_address": "P-07-06   ,   Desa Clarissa (Block P), Lebuh Relau 4, Taman Desa Relau 2, Timur Laut, 11900, Pulau Pinang",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228383045232548,
+      "order_sn": "260328B4QMCSW4",
+      "buyer_user_id": 100175122,
+      "buyer_username": "quivoussavez",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (Sea Shipping)",
+      "total_price": 368430.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁LAHOME Electric Conical Burr Coffee Grinder Automatic Adjustable Burr Mill W/ 51 Precise Grind Pengisar Commercial 磨豆机",
+          "description": "Variation: Touch Control Grider [CG018pro CG028+Blower02.1]",
+          "amount": 1,
+          "item_id": 17165028713,
+          "model_id": 188146482032
+        },
+        {
+          "name": "Lahome 7pcs Espresso Coffee Maker Needle Distributor Filter Paper 51mm Distibutor Knockbox Milk Pitcher Tamper Mat Tools",
+          "description": "Variation: Espresso Maker Set7 [Cset7 Cset7.1]",
+          "amount": 1,
+          "item_id": 24492357856,
+          "model_id": 252816562230
+        }
+      ],
+      "shipping_name": "S******f",
+      "shipping_phone": "******15",
+      "shipping_address": "No.25, JS2 / 22 PETRONAS HOUSING, JALAN MANI, TANJUNG KIDURONG., Bintulu, 97001, Sarawak",
+      "tracking_numbers": [
+        "MY263751526811O"
+      ]
+    },
+    {
+      "order_id": 228383037283434,
+      "order_sn": "260328B4QCT73A",
+      "buyer_user_id": 73628362,
+      "buyer_username": "noorazrin1980",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 540800.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Professional Coffee Grinder Flat Burr Automatic Adjustable 100 Grinding Metal Stainless Steel LCD Display 可商用磨豆机",
+          "description": "Variation: Super Grinder-SUS [CG308SUS CG308-Combo]",
+          "amount": 1,
+          "item_id": 42167650316,
+          "model_id": 224483514056
+        }
+      ],
+      "shipping_name": "N******n",
+      "shipping_phone": "******90",
+      "shipping_address": "No. 668, Lorong Cempaka, Taman Sri Kamin, Ulu Yam Bharu, Ulu Selangor, 44300, Selangor",
+      "tracking_numbers": [
+        "SPXMY068618947593"
+      ]
+    },
+    {
+      "order_id": 228382447280152,
+      "order_sn": "260328B45T4R0R",
+      "buyer_user_id": 155333475,
+      "buyer_username": "andreafaithcharlie",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 229530.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁LAHOME Electric Conical Burr Coffee Grinder Automatic Adjustable Burr Mill W/ 51 Precise Grind Pengisar Commercial 磨豆机",
+          "description": "Variation: 51 Super Grinding [CG018pro CG018PRO]",
+          "amount": 1,
+          "item_id": 17165028713,
+          "model_id": 98837088401
+        }
+      ],
+      "shipping_name": "A******e",
+      "shipping_phone": "******94",
+      "shipping_address": "Block A-28-02   ,   Cubic Botanical, Block A-28-02, Jalan Pantai Sentral 3, W.P. Kuala Lumpur, 59200, W.P. Kuala Lumpur",
+      "tracking_numbers": [
+        "SPXMY061709783013"
+      ]
+    },
+    {
+      "order_id": 228377721234729,
+      "order_sn": "260328AYRY1999",
+      "buyer_user_id": 6644855127,
+      "buyer_username": "robertveapowski",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 18000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 LAHOME Coffee Milk Frother Handheld 3-Speed USB Rechargeable Electric Whisk Mixers Egg Beater Rich Crama Long Life",
+          "description": "Variation: 2in1 Milk Frother [J3-White J3-White]",
+          "amount": 1,
+          "item_id": 14206304625,
+          "model_id": 183667759537
+        }
+      ],
+      "shipping_name": "R******i",
+      "shipping_phone": "******16",
+      "shipping_address": "The Andes Condo Villa, Block B, 2, Jalan Mas 3 (B-16-03 Lobby 1), W.P. Kuala Lumpur, 58200, W.P. Kuala Lumpur",
+      "tracking_numbers": [
+        "SPXMY062236979193"
+      ]
+    },
+    {
+      "order_id": 228369334203282,
+      "order_sn": "260328AQY0HCVJ",
+      "buyer_user_id": 1347444984,
+      "buyer_username": "ujang7464",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 257780.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 LAHOME Bear 5L Automatic Smart Dough Mixer Household Electric Kneading Flour Machine Baking Bread Pengadun Dough小熊 和面机",
+          "description": "Variation: 5L Bear Brand [Dough Mixer HMJ-A50B1]",
+          "amount": 1,
+          "item_id": 13653537138,
+          "model_id": 85959993708
+        }
+      ],
+      "shipping_name": "U******s",
+      "shipping_phone": "******53",
+      "shipping_address": "Lot 4210-G,PARIT HAJI OMAR LAUT,KAMPUNG API - API,82000 PONTIAN,JOHOR, Pontian, 82000, Johor",
+      "tracking_numbers": [
+        "SPXMY060198304593"
+      ]
+    },
+    {
+      "order_id": 228365700223425,
+      "order_sn": "260328AMJPW4E1",
+      "buyer_user_id": 205774469,
+      "buyer_username": "sitinorainimohamad",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 272010.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Lahome Multi Bread Maker Machine Auto Digital 15 / 19 In 1 Gluten Free Dough Machine Yogurt Jam Cake Toaster 2lb/3lb",
+          "description": "Variation: Bread Maker-3lb [BM BM8902]",
+          "amount": 1,
+          "item_id": 46755872132,
+          "model_id": 267390030488
+        }
+      ],
+      "shipping_name": "S******r",
+      "shipping_phone": "******02",
+      "shipping_address": "PT 865,TAMAN SRI JAZA,JLN KAMPUNG HUTAN PASIR, Kota Bharu, 16450, Kelantan",
+      "tracking_numbers": [
+        "SPXMY066568720653"
+      ]
+    },
+    {
+      "order_id": 228328005277133,
+      "order_sn": "2603289HFA6NED",
+      "buyer_user_id": 73628362,
+      "buyer_username": "noorazrin1980",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 486000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Lahome Commercial Coffee Grinder Flat Burr 100 Setting Automatic Bussiness Electric Espresso Grinder",
+          "description": "Variation: Commercial Grinder [CG301-B CG301]",
+          "amount": 1,
+          "item_id": 27405439735,
+          "model_id": 217655168532
+        }
+      ],
+      "shipping_name": "N******n",
+      "shipping_phone": "******90",
+      "shipping_address": "No. 668, Lorong Cempaka, Taman Sri Kamin, Ulu Yam Bharu, Ulu Selangor, 44300, Selangor",
+      "tracking_numbers": [
+        "SPXMY061497974773"
+      ]
+    },
+    {
+      "order_id": 228324586253047,
+      "order_sn": "2603279E9DJAQQ",
+      "buyer_user_id": 72213474,
+      "buyer_username": "abitomouriho",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 137120.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 LAHOME Food Dehydrator Machine Fruit Dryer Dryed Meat Vegetable Food Preserver 5 Trays Timer Energy Saving 10L",
+          "description": "Variation: Dehydrator Pro [LA-GGJ10 LA-GGJ10]",
+          "amount": 1,
+          "item_id": 22115050499,
+          "model_id": 88558920643
+        }
+      ],
+      "shipping_name": "F******H",
+      "shipping_phone": "******31",
+      "shipping_address": "87******",
+      "tracking_numbers": [
+        "SPXMY064563272413"
+      ]
+    },
+    {
+      "order_id": 228322319251884,
+      "order_sn": "2603279C5UJXDC",
+      "buyer_user_id": 395468700,
+      "buyer_username": "gene0423",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 5500.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME 51mm Coffee Filter Paper Natural Unbleached Disposable Round Moka Pot Coffee Dripper Accessories 100pcs 圆形咖啡机粉碗滤纸",
+          "description": "Variation: White Paper+SUS Box [51FP 51FP-White+RB-65]",
+          "amount": 1,
+          "item_id": 27576061047,
+          "model_id": 247630516597
+        }
+      ],
+      "shipping_name": "E****** ",
+      "shipping_phone": "******51",
+      "shipping_address": "5-******",
+      "tracking_numbers": [
+        "SPXMY068073346113"
+      ]
+    },
+    {
+      "order_id": 228322132248173,
+      "order_sn": "2603279C0981KD",
+      "buyer_user_id": 123303187,
+      "buyer_username": "opiemza",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 252800.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 LAHOME Dough Stand Mixer Machine Upgraded Blade Motor Dough Kneader Mixer Electric Mixer for Baking Stand Mixer",
+          "description": "Variation: 2 in 1 5L + Scale [A50B1 A50B1+DZC]",
+          "amount": 1,
+          "item_id": 13551138015,
+          "model_id": 167967235686
+        }
+      ],
+      "shipping_name": "M******D",
+      "shipping_phone": "******76",
+      "shipping_address": "85******",
+      "tracking_numbers": [
+        "SPXMY062313393493"
+      ]
+    },
+    {
+      "order_id": 228320245267654,
+      "order_sn": "2603279A81NY66",
+      "buyer_user_id": 14442387,
+      "buyer_username": "bennyliewsh",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 115920.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Smart Electric Pressure Cooker 2.5L & 5L Multifunction Rice Cooker Hotpot Soup Safety Cooking Pot 多功能电压力锅 电饭煲",
+          "description": "Variation: 2.5L-White Cooker [EPC3325-White EPC3325-White]",
+          "amount": 1,
+          "item_id": 41056513019,
+          "model_id": 295547961485
+        }
+      ],
+      "shipping_name": "B******w",
+      "shipping_phone": "******36",
+      "shipping_address": "Unit A-6-10, Block A, X2 Residency, Jalan Putra Prima Utama, Taman Putra Prima, Petaling Jaya, 47130, Selangor",
+      "tracking_numbers": [
+        "SPXMY060964396823"
+      ]
+    },
+    {
+      "order_id": 228301569250058,
+      "order_sn": "2603278RUEU4RA",
+      "buyer_user_id": 353055708,
+      "buyer_username": "christiekoo13",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 167100.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 LAHOME Coffee Milk Frother Handheld 3-Speed USB Rechargeable Electric Whisk Mixers Egg Beater Rich Crama Long Life",
+          "description": "Variation: Frother+Pitcher [J3-White CUP350+J3-White.1]",
+          "amount": 1,
+          "item_id": 14206304625,
+          "model_id": 213819516793
+        },
+        {
+          "name": "Lahome Gooseneck Kettle Pour Over Kettle Electric Pouring Coffee Temperature Control 12h Keep Warm",
+          "description": "Variation: White- Temp control [DSH DSH-101W]",
+          "amount": 1,
+          "item_id": 21793377655,
+          "model_id": 108190111033
+        }
+      ],
+      "shipping_name": "C******o",
+      "shipping_phone": "******38",
+      "shipping_address": "11, Jalan Damai Bakti 4, Alam Damai Cheras, 56000 Kuala Lumpur, W.P. Kuala Lumpur, 56000, W.P. Kuala Lumpur",
+      "tracking_numbers": [
+        "SPXMY066290063483"
+      ]
+    },
+    {
+      "order_id": 228298878215404,
+      "order_sn": "2603278PB8F97C",
+      "buyer_user_id": 410555682,
+      "buyer_username": "cheecs88",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 257780.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 LAHOME Bear 5L Automatic Smart Dough Mixer Household Electric Kneading Flour Machine Baking Bread Pengadun Dough小熊 和面机",
+          "description": "Variation: 5L Bear Brand [Dough Mixer HMJ-A50B1]",
+          "amount": 1,
+          "item_id": 13653537138,
+          "model_id": 85959993708
+        }
+      ],
+      "shipping_name": "C******)",
+      "shipping_phone": "******71",
+      "shipping_address": "Pt 656, Jalan Padang Tembak, Kawasan Perindustrian Pengkalan Chepa, Mukim Panchor, Kenumin, 16100 Kota Bharu, Kelantan., Kota Bharu, 16100, Kelantan",
+      "tracking_numbers": [
+        "SPXMY067044489203"
+      ]
+    },
+    {
+      "order_id": 228297320264782,
+      "order_sn": "2603278MVTPD2E",
+      "buyer_user_id": 1319317034,
+      "buyer_username": "_x_jnsh56o",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 215000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 Lahome Bear 3.5L Automatic Smart Dough Mixer Dough Maker Household Electric Kneading Flour Machine Bread 小熊 和面机 1 Year",
+          "description": "Variation: 3.5L Stainless Steel [HMJ-A35Q2 A35M1]",
+          "amount": 1,
+          "item_id": 20215256871,
+          "model_id": 225845420853
+        }
+      ],
+      "shipping_name": "Z******t",
+      "shipping_phone": "******04",
+      "shipping_address": "26-3   ,   Tower 1, Serini Melawati, Unit No. Nit 3, Jalan Melawati 1, Taman Melawati, Setapak, Shah Alam, 53100, Selangor",
+      "tracking_numbers": [
+        "SPXMY067638034553"
+      ]
+    },
+    {
+      "order_id": 228296772229394,
+      "order_sn": "2603278MCG1P8J",
+      "buyer_user_id": 193015158,
+      "buyer_username": "zaibo77",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 29900.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME  Coffee Grinder Single Dose Hopper Bellows Blower + Lid Cleaning Tools For CG301-B 磨豆机豆仓清洁工具",
+          "description": "Variation: For CG301-B/CG308 [CG301-PUMP For CG301-B/CG308]",
+          "amount": 1,
+          "item_id": 42506474001,
+          "model_id": 315453652480
+        }
+      ],
+      "shipping_name": "Z***d",
+      "shipping_phone": "******24",
+      "shipping_address": "01-11 blok J jalan camar 13 taman perling (01-11 blok j jalan camar 13 taman perling johor bahru), Johor Bahru, 81200, Johor",
+      "tracking_numbers": [
+        "SPXMY061402882513"
+      ]
+    },
+    {
+      "order_id": 228296647238906,
+      "order_sn": "2603278M8RU97T",
+      "buyer_user_id": 358180123,
+      "buyer_username": "saindee",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 37040.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Lahome Gooseneck Kettle Pour Over Kettle Electric Pouring Coffee Temperature Control 12h Keep Warm",
+          "description": "Variation: White- Temp control [DSH DSH-101W]",
+          "amount": 1,
+          "item_id": 21793377655,
+          "model_id": 108190111033
+        }
+      ],
+      "shipping_name": "S*****e",
+      "shipping_phone": "******88",
+      "shipping_address": "B-12-11, Bayu Tasik 2 Condo, Jalan Sri Permaisuri 5, Bandar Sri Permaisuri, 56000 Kuala Lumpur, W.P. Kuala Lumpur, 56000, W.P. Kuala Lumpur",
+      "tracking_numbers": [
+        "SPXMY069415396253"
+      ]
+    },
+    {
+      "order_id": 228290135283265,
+      "order_sn": "2603278E6PJ5J1",
+      "buyer_user_id": 252513493,
+      "buyer_username": "qq3098",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "Instant Delivery",
+      "total_price": 139500.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Smart Electric Pressure Cooker Rice Cooker Non-stick Multifunction Cookers High-Pressure Fast Cooking 智能电压力锅",
+          "description": "Variation: White Cooker-2.5L [EPC3325-Black EPC3325-White.1]",
+          "amount": 1,
+          "item_id": 29888207920,
+          "model_id": 285576587988
+        }
+      ],
+      "shipping_name": "Q***o",
+      "shipping_phone": "******23",
+      "shipping_address": "B2******",
+      "tracking_numbers": [
+        "3018398010710016847"
+      ]
+    },
+    {
+      "order_id": 228289278249772,
+      "order_sn": "2603278DD57JSC",
+      "buyer_user_id": 145820011,
+      "buyer_username": "wannursahira",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 85360.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 5Function+10free bag [FK7912-W FK7911-W-Big]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467660
+        }
+      ],
+      "shipping_name": "W******r",
+      "shipping_phone": "******05",
+      "shipping_address": "No.3 Jalan Tanjung Resang 30/25A seksyen 30 40460 Shah Alam,Selangor, Klang, 40460, Selangor",
+      "tracking_numbers": [
+        "SPXMY067957184873"
+      ]
+    },
+    {
+      "order_id": 228289186267400,
+      "order_sn": "2603278DADGG88",
+      "buyer_user_id": 96699199,
+      "buyer_username": "amydakhalid",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 114040.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "🎁 【Free 10 Bags】 Vacuum Sealer Machine Auto Food Sealing Machine Electric Snack Heat Sealing Machine",
+          "description": "Variation: 5Function+10free bag [FK7912-W FK7911-W-Big]",
+          "amount": 1,
+          "item_id": 15097354147,
+          "model_id": 165852467660
+        },
+        {
+          "name": "✅【Free 10 Bags】 Food Vacuum Sealer Machine Heat Sealing Machine Food Sealer Machine For Pet Food Snack Dried Fruit",
+          "description": "Variation: 20*30cm (100pcs) [FK7912-W Bag100-20*30cm]",
+          "amount": 1,
+          "item_id": 23540221877,
+          "model_id": 175852469439
+        }
+      ],
+      "shipping_name": "n******d",
+      "shipping_phone": "******09",
+      "shipping_address": "no******",
+      "tracking_numbers": [
+        "SPXMY069729249923"
+      ]
+    },
+    {
+      "order_id": 228288257207266,
+      "order_sn": "2603278CEQFTY2",
+      "buyer_user_id": 189013929,
+      "buyer_username": "torzher",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 135540.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Lahome Gooseneck Kettle Pour Over Kettle Electric Pouring Coffee Temperature Control 12h Keep Warm",
+          "description": "Variation: White- Temp control [DSH DSH-101W]",
+          "amount": 1,
+          "item_id": 21793377655,
+          "model_id": 108190111033
+        }
+      ],
+      "shipping_name": "T******r",
+      "shipping_phone": "******63",
+      "shipping_address": "PT104272   ,   PT104272, Jalan Residensi Tembesu 3, 21300, Kuala Nerus, Terengganu, Kuala Terengganu, 21300, Terengganu",
+      "tracking_numbers": [
+        "SPXMY066291784043"
+      ]
+    }
+  ]
+}

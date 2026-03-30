@@ -1,0 +1,2123 @@
+{
+  "env_name": "MY LAmall",
+  "timestamp": "2026-03-25T19:33:45.616842",
+  "total_count": 5001,
+  "pages_fetched": 2,
+  "order_status_summary": {
+    "unknown": 80
+  },
+  "orders": [
+    {
+      "order_id": 228134638218742,
+      "order_sn": "2603253WCH0BFP",
+      "buyer_user_id": 1034444173,
+      "buyer_username": "roszitahambali",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 45040.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Vacuum Sealer Auto Food Sealing Machine Electric Snack Heat Suitable For Dry And Wet, Long-Term Preservation",
+          "description": "Variation: 25*35cm(100pcs) [FK7912-W Bag100-25*35cm]",
+          "amount": 1,
+          "item_id": 29564444966,
+          "model_id": 233337254515
+        }
+      ],
+      "shipping_name": "R*****a",
+      "shipping_phone": "******66",
+      "shipping_address": "no 27,Jalan Merak Emas 3, Taman Sri Jeram 2, Muar, 84200, Johor",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228134449236650,
+      "order_sn": "2603253W6VS2NA",
+      "buyer_user_id": 1034444173,
+      "buyer_username": "roszitahambali",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 67810.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Vacuum Sealer Auto Food Sealing Machine Electric Snack Heat Suitable For Dry And Wet, Long-Term Preservation",
+          "description": "Variation: 5Function+10free bag [FK7912-W FK7911-W-Big]",
+          "amount": 1,
+          "item_id": 29564444966,
+          "model_id": 233337254512
+        }
+      ],
+      "shipping_name": "R*****a",
+      "shipping_phone": "******66",
+      "shipping_address": "no 27,Jalan Merak Emas 3, Taman Sri Jeram 2, Muar, 84200, Johor",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228129168284839,
+      "order_sn": "2603253R9GF757",
+      "buyer_user_id": 240606849,
+      "buyer_username": "shafpadzil",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 417930.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Bottomless Portafilter Wooden Handle Portafilter (51mm)",
+          "description": "Variation: Upgreade Stainless [Handle02 Handle02]",
+          "amount": 1,
+          "item_id": 26164387231,
+          "model_id": 236890573844
+        },
+        {
+          "name": "【Read Stock 】LAHOME 100pcs 51mm Coffee Bottomless Portafilter Filter Paper Espresso Moka Pot Dripper Accessories 咖啡机粉碗滤纸",
+          "description": "Variation: White +SUS Box [51FP 51FP-White+RB-65]",
+          "amount": 1,
+          "item_id": 26876053476,
+          "model_id": 227367285751
+        },
+        {
+          "name": "LAHOME Latte Art Pitcher Milk Frothing Cup Coffee Appliance Stainless Steel Jug (350ml)",
+          "description": "Variation: 350ML [CUP350 CUP350]",
+          "amount": 1,
+          "item_id": 29117344845,
+          "model_id": 157550088683
+        },
+        {
+          "name": "Lahome Cold / Hot Brew Espresso Coffee Machine Maker Professional Automatic Smart Touch Panel Descaling 智能触摸屏 意式 咖啡机",
+          "description": "Variation: Espresso Machine [KFJ5216 KFJ5216]",
+          "amount": 1,
+          "item_id": 51706740583,
+          "model_id": 292433684251
+        }
+      ],
+      "shipping_name": "M******l",
+      "shipping_phone": "******53",
+      "shipping_address": "A-09-03A   ,   M Adora, Jalan Wangsa Melawati 1, Setapak, 53300, Setapak, W.P. Kuala Lumpur, 53300, W.P. Kuala Lumpur",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228122534246114,
+      "order_sn": "2603253J3SRDQ2",
+      "buyer_user_id": 4121036,
+      "buyer_username": "jamie.low91",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 75950.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Electric Milk Frother Hot & Cold 4 in 1 Milk Foam Maker Warm Latte Cappuccino Coffee Steamer 奶泡器",
+          "description": "Variation: Frother+Pitcher [NPJ-YL29 NPJ-YL29-W+CUP350]",
+          "amount": 1,
+          "item_id": 27264308265,
+          "model_id": 301568334838
+        }
+      ],
+      "shipping_name": "J******w",
+      "shipping_phone": "******33",
+      "shipping_address": "5C   ,   Lord Hope Church, 5C, Jalan Pjs 11/7, Petaling, 47500, Selangor",
+      "tracking_numbers": [
+        "SPXMY067564245113"
+      ]
+    },
+    {
+      "order_id": 228121930259387,
+      "order_sn": "2603253HHSR6WU",
+      "buyer_user_id": 143462651,
+      "buyer_username": "accelwong",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 144430.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME  Smart Pressure Cooker Multifunction 2.5L Versatile Multi-Cooking Rice Cookers Easy Clean 多功能电压力锅",
+          "description": "Variation: 2.5L Fast Cooking-B [EPC3325-Black EPC3325-B]",
+          "amount": 1,
+          "item_id": 42956843427,
+          "model_id": 260579252869
+        }
+      ],
+      "shipping_name": "B******g",
+      "shipping_phone": "******61",
+      "shipping_address": "5168, Lorong Selasih 2/6, Taman Selasih, Kulim, 09000, Kedah",
+      "tracking_numbers": [
+        "SPXMY068165300403"
+      ]
+    },
+    {
+      "order_id": 228115192257774,
+      "order_sn": "2603253B8YVQ7E",
+      "buyer_user_id": 114508893,
+      "buyer_username": "saraharisa9876",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 125320.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME 5 Trays Timer Food Dehydrator Machine (10L)  Fruit Dryer Dryed Meat Vegetable Food Preserver  Energy Saving",
+          "description": "Variation: Upgrade 10L w/ TIMER [LA-GGJ10 LA-GGJ10]",
+          "amount": 1,
+          "item_id": 18670163547,
+          "model_id": 117874512102
+        }
+      ],
+      "shipping_name": "M******a",
+      "shipping_phone": "******17",
+      "shipping_address": "Blok 31-3-1, Bukit Mas Apartment, Jalan 1/4B, W.P. Kuala Lumpur, 53100, W.P. Kuala Lumpur",
+      "tracking_numbers": [
+        "SPXMY068711652253"
+      ]
+    },
+    {
+      "order_id": 228112435220675,
+      "order_sn": "26032538PTJM63",
+      "buyer_user_id": 61315103,
+      "buyer_username": "88wani",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 141310.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Smart Drip Coffee Machine Hot/Ice Americano Tea Brew Maker Programmable Timer (1.8L) Touch Screen Anti-Drip Syste",
+          "description": "Variation: Maker+Frother+Cup [KFJ530 530+J3+CUP350]",
+          "amount": 1,
+          "item_id": 29216730447,
+          "model_id": 108581974814
+        }
+      ],
+      "shipping_name": "S**z",
+      "shipping_phone": "******02",
+      "shipping_address": "No 9 Jalan Sungai Terap 32/122 Taman Alam Permai 40460 Shah Alam Selangor, Klang, 40460, Selangor",
+      "tracking_numbers": [
+        "SPXMY068069774093"
+      ]
+    },
+    {
+      "order_id": 228110452264052,
+      "order_sn": "26032536UQFK3M",
+      "buyer_user_id": 1174625427,
+      "buyer_username": "loan2014",
+      "shop_id": null,
+      "status": "Unpaid",
+      "fulfilment_channel": "",
+      "total_price": 72800.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Electric Milk Frother Cold/Hot Latte Cappuccino Chocolate Milk Foam Maker Warmer 奶泡器",
+          "description": "Variation: Cold/Hot Milk Fother [NPJ-XB15 NPJ-XB15]",
+          "amount": 1,
+          "item_id": 24196934599,
+          "model_id": 271542616978
+        }
+      ],
+      "shipping_name": "L**n",
+      "shipping_phone": "******71",
+      "shipping_address": "Pa******",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228098893231094,
+      "order_sn": "2603252V37WVYP",
+      "buyer_user_id": 27559504,
+      "buyer_username": "annaliza910",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "Instant Delivery",
+      "total_price": 107760.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Coffee Milk Frother Handheld 3-Speed USB Rechargeable Electric Whisk USB Rechargeable Egg Beater Rich Crama",
+          "description": "Variation: Milk Frother+Pitcher [J3-White CUP350+J3-White.1]",
+          "amount": 1,
+          "item_id": 26364308409,
+          "model_id": 109289534560
+        },
+        {
+          "name": "LAHOME Health-Care Beverage Health Glass Visualization Pot Tea Maker Electric Kettle 8 In 1 Smart Touch Control 多功能养生壶",
+          "description": "Variation: Kettle（Long Life） [YSH520W YSH520W]",
+          "amount": 1,
+          "item_id": 28964311237,
+          "model_id": 280688776618
+        }
+      ],
+      "shipping_name": "A******r",
+      "shipping_phone": "******85",
+      "shipping_address": "No. 6 jalan 12/4, Petaling Jaya, 46200, Selangor",
+      "tracking_numbers": [
+        "3015342711625728822"
+      ]
+    },
+    {
+      "order_id": 228082691267637,
+      "order_sn": "2603252D0CH71N",
+      "buyer_user_id": 11836043,
+      "buyer_username": "pohlin2002",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 86000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Electric Milk Frother Cold/Hot Latte Cappuccino Chocolate Milk Foam Maker Warmer 奶泡器",
+          "description": "Variation: Cold/Hot Milk Fother [NPJ-XB15 NPJ-XB15]",
+          "amount": 1,
+          "item_id": 24196934599,
+          "model_id": 271542616978
+        }
+      ],
+      "shipping_name": "P****n",
+      "shipping_phone": "******01",
+      "shipping_address": "30 Jalan Sering 2, Taman Sungai Sering, W.P. Kuala Lumpur, 43200, W.P. Kuala Lumpur",
+      "tracking_numbers": [
+        "SPXMY067899504683"
+      ]
+    },
+    {
+      "order_id": 228071003259635,
+      "order_sn": "2603252241YGQK",
+      "buyer_user_id": 94686933,
+      "buyer_username": "raeann99",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 70400.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Electric Milk Frother Hot & Cold 4 in 1 Milk Foam Maker Warm Latte Cappuccino Coffee Steamer 奶泡器",
+          "description": "Variation: Frother+Pitcher [NPJ-YL29 NPJ-YL29-W+CUP350]",
+          "amount": 1,
+          "item_id": 27264308265,
+          "model_id": 301568334838
+        }
+      ],
+      "shipping_name": "T******n",
+      "shipping_phone": "******11",
+      "shipping_address": "13, Jalan Delima 6, Bandar Botanik, Klang, 41200, Selangor",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228070937206606,
+      "order_sn": "2603252222YQTE",
+      "buyer_user_id": 8208874,
+      "buyer_username": "mieyna27",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (East Malaysia)",
+      "total_price": 28720.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Coffee Milk Frother Handheld 3-Speed USB Rechargeable Electric Whisk USB Rechargeable Egg Beater Rich Crama",
+          "description": "Variation: 2 in 1 Milk Frother [J3-White J3-White]",
+          "amount": 1,
+          "item_id": 26364308409,
+          "model_id": 109289534559
+        }
+      ],
+      "shipping_name": "M******I",
+      "shipping_phone": "******84",
+      "shipping_address": "No.191, KAMPUNG KUALA TENGAH, OYA, Dalat, 96300, Sarawak",
+      "tracking_numbers": [
+        "MY269069222317F"
+      ]
+    },
+    {
+      "order_id": 228070394267118,
+      "order_sn": "26032521HW6HFE",
+      "buyer_user_id": 53863412,
+      "buyer_username": "youngltee",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 63990.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Electric Milk Frother Hot & Cold 4 in 1 Milk Foam Maker Warm Latte Cappuccino Coffee Steamer 奶泡器",
+          "description": "Variation: Frother+Pitcher [NPJ-YL29 NPJ-YL29-W+CUP350]",
+          "amount": 1,
+          "item_id": 27264308265,
+          "model_id": 301568334838
+        }
+      ],
+      "shipping_name": "T******g",
+      "shipping_phone": "******85",
+      "shipping_address": "24, Jalan Bawal, Taman Sri Gadong, Klang, 41250, Selangor",
+      "tracking_numbers": [
+        "SPXMY063170602753"
+      ]
+    },
+    {
+      "order_id": 228067703260476,
+      "order_sn": "2603251Y1PUH9V",
+      "buyer_user_id": 311916138,
+      "buyer_username": "kac_f47dso",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (East Malaysia)",
+      "total_price": 83380.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Electric Ceramic Stove Infrared Burner Glass Surface Hot Plate Inverter Cooktop Countertop 节能电陶炉 方形",
+          "description": "Variation: Energy Saving Stove [SQ816 SQ816]",
+          "amount": 1,
+          "item_id": 45554000135,
+          "model_id": 325377753023
+        }
+      ],
+      "shipping_name": "P******i",
+      "shipping_phone": "******43",
+      "shipping_address": "Lot 8387,lorong Setia 2 , taman jelita ,, Miri, 98000, Sarawak",
+      "tracking_numbers": [
+        "MY268584287472I"
+      ]
+    },
+    {
+      "order_id": 228067197224658,
+      "order_sn": "2603241XJM8HPJ",
+      "buyer_user_id": 581347462,
+      "buyer_username": "mohdabuzar762",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 33810.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Coffee Milk Frother Handheld 3-Speed USB Rechargeable Electric Whisk USB Rechargeable Egg Beater Rich Crama",
+          "description": "Variation: Milk Frother+Pitcher [J3-White CUP350+J3-White.1]",
+          "amount": 1,
+          "item_id": 26364308409,
+          "model_id": 109289534560
+        }
+      ],
+      "shipping_name": "M******d",
+      "shipping_phone": "******52",
+      "shipping_address": "E1, Rumah kakitangan FELDA Chiku 02, Gua Musang, 18300, Kelantan",
+      "tracking_numbers": [
+        "SPXMY062363569503"
+      ]
+    },
+    {
+      "order_id": 228063503250091,
+      "order_sn": "2603241U4HDCNB",
+      "buyer_user_id": 2685670,
+      "buyer_username": "lubeelin",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 26600.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Coffee Milk Frother Handheld 3-Speed USB Rechargeable Electric Whisk USB Rechargeable Egg Beater Rich Crama",
+          "description": "Variation: 2 in 1 Milk Frother [J3-White J3-White]",
+          "amount": 1,
+          "item_id": 26364308409,
+          "model_id": 109289534559
+        }
+      ],
+      "shipping_name": "L******N",
+      "shipping_phone": "******39",
+      "shipping_address": "A32 TAMAN CENGAL JALAN DATUK KUMBAR Alor Setar, Kota Setar, 05300, Kedah",
+      "tracking_numbers": [
+        "SPXMY062890896563"
+      ]
+    },
+    {
+      "order_id": 228057452220969,
+      "order_sn": "2603241NG6PMH9",
+      "buyer_user_id": 30010593,
+      "buyer_username": "jalicenkn",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 70660.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Electric Ceramic Stove Infrared Burner Glass Surface Hot Plate Inverter Cooktop Countertop 节能电陶炉 方形",
+          "description": "Variation: Energy Saving Stove [SQ816 SQ816]",
+          "amount": 1,
+          "item_id": 45554000135,
+          "model_id": 325377753023
+        }
+      ],
+      "shipping_name": "J******n",
+      "shipping_phone": "******17",
+      "shipping_address": "38-1, Jalan Tasik Utama 5, Sungai Besi, W.P. Kuala Lumpur, 57000, W.P. Kuala Lumpur",
+      "tracking_numbers": [
+        "SPXMY065206544053"
+      ]
+    },
+    {
+      "order_id": 228056368239549,
+      "order_sn": "2603241MFVX4WW",
+      "buyer_user_id": 12839899,
+      "buyer_username": "junnychen",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 114120.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME 5 Trays Timer Food Dehydrator Machine (10L)  Fruit Dryer Dryed Meat Vegetable Food Preserver  Energy Saving",
+          "description": "Variation: Upgrade 10L w/ TIMER [LA-GGJ10 LA-GGJ10]",
+          "amount": 1,
+          "item_id": 18670163547,
+          "model_id": 117874512102
+        }
+      ],
+      "shipping_name": "J******n",
+      "shipping_phone": "******91",
+      "shipping_address": "SANO PAIN CARE   ,   no 72, Jalan Mahogani 1, Bandar Botanik, Klang, 41200, Selangor",
+      "tracking_numbers": [
+        "SPXMY060543892163"
+      ]
+    },
+    {
+      "order_id": 228055097297845,
+      "order_sn": "2603241KA0V2WN",
+      "buyer_user_id": 162189322,
+      "buyer_username": "margarineweera",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 26000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Coffee Milk Frother Handheld 3-Speed USB Rechargeable Electric Whisk USB Rechargeable Egg Beater Rich Crama",
+          "description": "Variation: 2 in 1 Milk Frother [J3-White J3-White]",
+          "amount": 1,
+          "item_id": 26364308409,
+          "model_id": 109289534559
+        }
+      ],
+      "shipping_name": "M****e",
+      "shipping_phone": "******93",
+      "shipping_address": "No 9,JALAN USJ HEIGHTS 6/1B 47610 SUBANG JAYA SELANGOR, Petaling, 47610, Selangor",
+      "tracking_numbers": [
+        "SPXMY065764032893"
+      ]
+    },
+    {
+      "order_id": 228054616236716,
+      "order_sn": "2603241JUP38NC",
+      "buyer_user_id": 1696200416,
+      "buyer_username": "norzilawatifarhanamdsaad",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 30410.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Coffee Milk Frother Handheld 3-Speed USB Rechargeable Electric Whisk USB Rechargeable Egg Beater Rich Crama",
+          "description": "Variation: Milk Frother+Pitcher [J3-White CUP350+J3-White.1]",
+          "amount": 1,
+          "item_id": 26364308409,
+          "model_id": 109289534560
+        }
+      ],
+      "shipping_name": "S****y",
+      "shipping_phone": "******98",
+      "shipping_address": "Lot 4942, Kampung Sama Gagah, Semanggol, 34400, Gunong Semanggol, Kerian, 34400, Perak",
+      "tracking_numbers": [
+        "SPXMY068152280093"
+      ]
+    },
+    {
+      "order_id": 228051517273184,
+      "order_sn": "2603241FYAPD30",
+      "buyer_user_id": 314707263,
+      "buyer_username": "msnira",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 97940.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Electric Milk Frother Hot & Cold 4 in 1 Milk Foam Maker Warm Latte Cappuccino Coffee Steamer 奶泡器",
+          "description": "Variation: Frother+Pitcher [NPJ-YL29 NPJ-YL29-W+CUP350]",
+          "amount": 1,
+          "item_id": 27264308265,
+          "model_id": 301568334838
+        }
+      ],
+      "shipping_name": "N******d",
+      "shipping_phone": "******57",
+      "shipping_address": "69 Jalan Elektron U16/93,Denai Alam, Shah Alam, 40160, Selangor",
+      "tracking_numbers": [
+        "SPXMY067139432253"
+      ]
+    },
+    {
+      "order_id": 228050849206098,
+      "order_sn": "2603241FBDJKTJ",
+      "buyer_user_id": 8857375,
+      "buyer_username": "domnicslau",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 28000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Coffee Milk Frother Handheld 3-Speed USB Rechargeable Electric Whisk USB Rechargeable Egg Beater Rich Crama",
+          "description": "Variation: 2 in 1 Milk Frother [J3-White J3-White]",
+          "amount": 1,
+          "item_id": 26364308409,
+          "model_id": 109289534559
+        }
+      ],
+      "shipping_name": "D******u",
+      "shipping_phone": "******08",
+      "shipping_address": "No. 5, Jalan Biru 3, Taman Sg Abong Sutera 2, Jalan Sg Abong 84000 MUAR, JOHOR, Muar, 84000, Johor",
+      "tracking_numbers": [
+        "SPXMY062564257263"
+      ]
+    },
+    {
+      "order_id": 228044529203215,
+      "order_sn": "26032419F2BE0F",
+      "buyer_user_id": 376732430,
+      "buyer_username": "adpme_vsk",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (East Malaysia)",
+      "total_price": 47510.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Coffee Milk Frother Handheld 3-Speed USB Rechargeable Electric Whisk USB Rechargeable Egg Beater Rich Crama",
+          "description": "Variation: Milk Frother+Pitcher [J3-White CUP350+J3-White.1]",
+          "amount": 1,
+          "item_id": 26364308409,
+          "model_id": 109289534560
+        }
+      ],
+      "shipping_name": "J******o",
+      "shipping_phone": "******19",
+      "shipping_address": "Lot 69, Lorong Pokok Seraya 3A, Taman khidmat, bukit padang, Kota Kinabalu, 88450, Sabah",
+      "tracking_numbers": [
+        "MY266244591783K"
+      ]
+    },
+    {
+      "order_id": 228043978225408,
+      "order_sn": "26032418XMVWR0",
+      "buyer_user_id": 88938716,
+      "buyer_username": "sharonkhoo97",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 99390.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Electric Milk Frother Cold/Hot Latte Cappuccino Chocolate Milk Foam Maker Warmer 奶泡器",
+          "description": "Variation: Cold/Hot Milk Fother [NPJ-XB15 NPJ-XB15]",
+          "amount": 1,
+          "item_id": 24196934599,
+          "model_id": 271542616978
+        }
+      ],
+      "shipping_name": "S******o",
+      "shipping_phone": "******02",
+      "shipping_address": "10 Jln BS 8/2 Taman Bukit Serdang, Petaling Jaya, 43300, Selangor",
+      "tracking_numbers": [
+        "SPXMY066848968923"
+      ]
+    },
+    {
+      "order_id": 228041819204297,
+      "order_sn": "26032416X9VTP9",
+      "buyer_user_id": 77961696,
+      "buyer_username": "patricialiew2017",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 38510.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Coffee Milk Frother Handheld 3-Speed USB Rechargeable Electric Whisk USB Rechargeable Egg Beater Rich Crama",
+          "description": "Variation: Milk Frother+Pitcher [J3-White CUP350+J3-White.1]",
+          "amount": 1,
+          "item_id": 26364308409,
+          "model_id": 109289534560
+        }
+      ],
+      "shipping_name": "P******w",
+      "shipping_phone": "******13",
+      "shipping_address": "629 Legal Dpt   ,   1, Jln Forest City - Lebuhraya Tanjung Pelepas, 81550 Gelang Patah, Johor Bahru, 81550, Johor",
+      "tracking_numbers": [
+        "SPXMY066451051823"
+      ]
+    },
+    {
+      "order_id": 228040878281952,
+      "order_sn": "2603241628J570",
+      "buyer_user_id": 383508750,
+      "buyer_username": "cseng1",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 82210.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Electric Milk Frother Hot & Cold 4 in 1 Milk Foam Maker Warm Latte Cappuccino Coffee Steamer 奶泡器",
+          "description": "Variation: Frother (Hot/Cold） [NPJ-YL29 NPJ-YL29White]",
+          "amount": 1,
+          "item_id": 27264308265,
+          "model_id": 241794218978
+        }
+      ],
+      "shipping_name": "e******e",
+      "shipping_phone": "******21",
+      "shipping_address": "no 8665 taman mutiara, Jerantut, 27000, Pahang",
+      "tracking_numbers": [
+        "SPXMY065076848523"
+      ]
+    },
+    {
+      "order_id": 228038977237959,
+      "order_sn": "260324149KJVX7",
+      "buyer_user_id": 46995660,
+      "buyer_username": "haziqfikhry",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 328940.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Dough Electric Mixer Machine Fermentation Kneader  (7L)  Stand Mixer Maker Kneader Electric For Baking Bear OEM",
+          "description": "Variation: 2 in1 Dough Mixer 7L [HMJ-A70C1 HMJ-A70C1]",
+          "amount": 1,
+          "item_id": 29264304758,
+          "model_id": 246794227334
+        }
+      ],
+      "shipping_name": "H******)",
+      "shipping_phone": "******12",
+      "shipping_address": "JD 5270   ,   Scientex Bandar Jasin, Jalan Baru Serkam, Jasin, 77300, Melaka",
+      "tracking_numbers": [
+        "SPXMY065614165163"
+      ]
+    },
+    {
+      "order_id": 228035163215024,
+      "order_sn": "26032410QX855G",
+      "buyer_user_id": 114484961,
+      "buyer_username": "bornbeaute_",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 78000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Electric Milk Frother Hot & Cold 4 in 1 Milk Foam Maker Warm Latte Cappuccino Coffee Steamer 奶泡器",
+          "description": "Variation: Black Milk Frother [NPJ-YL29 NPJ-YL29Black]",
+          "amount": 1,
+          "item_id": 27264308265,
+          "model_id": 272365143222
+        }
+      ],
+      "shipping_name": "I******n",
+      "shipping_phone": "******81",
+      "shipping_address": "A-1-12   ,   No A-1-12，Presit 1 Cameron Centrum 39100 Brinchang Cameron Highlands ，pahang, Cameron Highlands, 39100, Pahang",
+      "tracking_numbers": [
+        "SPXMY065894908283"
+      ]
+    },
+    {
+      "order_id": 228031488247211,
+      "order_sn": "2603240WADH1DB",
+      "buyer_user_id": 262137674,
+      "buyer_username": "piggievon",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 68170.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Electric Milk Frother Hot & Cold 4 in 1 Milk Foam Maker Warm Latte Cappuccino Coffee Steamer 奶泡器",
+          "description": "Variation: Frother (Hot/Cold） [NPJ-YL29 NPJ-YL29White]",
+          "amount": 1,
+          "item_id": 27264308265,
+          "model_id": 241794218978
+        }
+      ],
+      "shipping_name": "E**n",
+      "shipping_phone": "******76",
+      "shipping_address": "Kuss Essentials (Appointments Only), 7, Jalan TK 5/42, Taman Perindustrian Kinrara (Kuss), Petaling, 47190, Selangor",
+      "tracking_numbers": [
+        "SPXMY061496146903"
+      ]
+    },
+    {
+      "order_id": 228025286205708,
+      "order_sn": "2603240QHJSR8C",
+      "buyer_user_id": 132084271,
+      "buyer_username": "tiongangie",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "",
+      "total_price": 65400.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Lahome Electric Egg Cooker Food children Breakfast Cooker Vegetable Steamer Electric Egg Maker Egg Steamer ZDQ",
+          "description": "Variation: LAHOME Mult Cooker [ZDQ-B14R1 ZDQ-B14R1]",
+          "amount": 1,
+          "item_id": 52001685748,
+          "model_id": 208778841717
+        }
+      ],
+      "shipping_name": "A******g",
+      "shipping_phone": "******32",
+      "shipping_address": "ECOVAPE       No ,7 Ground Floor, Jalan SS 15/8b ,ss 15 ,47500 Subang Jaya Selangor, Petaling, 47500, Selangor",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228025131291163,
+      "order_sn": "2603240QCY24GU",
+      "buyer_user_id": 255317961,
+      "buyer_username": "shah622akd",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "Self Collection Point (SPX Express)",
+      "total_price": 78000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Electric Milk Frother Hot & Cold 4 in 1 Milk Foam Maker Warm Latte Cappuccino Coffee Steamer 奶泡器",
+          "description": "Variation: Black Milk Frother [NPJ-YL29 NPJ-YL29Black]",
+          "amount": 1,
+          "item_id": 27264308265,
+          "model_id": 272365143222
+        }
+      ],
+      "shipping_name": "S******d",
+      "shipping_phone": "******88",
+      "shipping_address": "SPX Service Point Supzz Kota Damansara\n13-G, Cecawi 6/33, Kota Damansara, 47810 Petaling Jaya, Selangor 47810",
+      "tracking_numbers": [
+        "SPXMY065820876483"
+      ]
+    },
+    {
+      "order_id": 228024419298388,
+      "order_sn": "2603240PQR1U2M",
+      "buyer_user_id": 845090661,
+      "buyer_username": "syahidaamohd",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 28000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Coffee Milk Frother Handheld 3-Speed USB Rechargeable Electric Whisk USB Rechargeable Egg Beater Rich Crama",
+          "description": "Variation: 2 in 1 Milk Frother [J3-White J3-White]",
+          "amount": 1,
+          "item_id": 26364308409,
+          "model_id": 109289534559
+        }
+      ],
+      "shipping_name": "N******a",
+      "shipping_phone": "******34",
+      "shipping_address": "Lot 34419   ,   Lorong DB18, Jalan desa baginda, kampung Dato Abu Bakar Baginda, Sepang, 43650, Selangor",
+      "tracking_numbers": [
+        "SPXMY069876432703"
+      ]
+    },
+    {
+      "order_id": 227984872244899,
+      "order_sn": "260324VN7FBNN3",
+      "buyer_user_id": 29252870,
+      "buyer_username": "winniegym",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 228860.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME 5 Trays Timer Food Dehydrator Machine (10L)  Fruit Dryer Dryed Meat Vegetable Food Preserver  Energy Saving",
+          "description": "Variation: Upgrade+Sealer05+100 [LA-GGJ10 GGJ10+FK7911-W-Big+Bag100-20]",
+          "amount": 1,
+          "item_id": 18670163547,
+          "model_id": 89723996745
+        }
+      ],
+      "shipping_name": "G******n",
+      "shipping_phone": "******68",
+      "shipping_address": "No 2, Jalan Seri Putra 2/2c, Bandar Seri Putra, Kajang 43000 Selangor, Hulu Langat, 43000, Selangor",
+      "tracking_numbers": [
+        "SPXMY061896088533"
+      ]
+    },
+    {
+      "order_id": 227973774289122,
+      "order_sn": "260323VAVQGX72",
+      "buyer_user_id": 868154640,
+      "buyer_username": "az8889",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (East Malaysia)",
+      "total_price": 142710.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Gooseneck Pour Over Kettle Electric Temperature Control 12h Keep Warm Gooseneck Kettle Pouring Coffee",
+          "description": "Variation: White Pour Over [DSH DSH-101W]",
+          "amount": 1,
+          "item_id": 26264310180,
+          "model_id": 256794217253
+        }
+      ],
+      "shipping_name": "R******g",
+      "shipping_phone": "******80",
+      "shipping_address": "no.8, Lorong 4 Jalan Palma, 96100, Sarikei, 96100, Sarawak",
+      "tracking_numbers": [
+        "MY265129230907Y"
+      ]
+    },
+    {
+      "order_id": 227971259206180,
+      "order_sn": "260323V8HRXPH4",
+      "buyer_user_id": 618178807,
+      "buyer_username": "anti_flash_gear",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 79680.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Bottomless Portafilter Wooden Handle Portafilter (51mm)",
+          "description": "Variation: Upgreade Stainless [Handle02 Handle02]",
+          "amount": 1,
+          "item_id": 26164387231,
+          "model_id": 236890573844
+        }
+      ],
+      "shipping_name": "F******M",
+      "shipping_phone": "******29",
+      "shipping_address": "B2-3A-06, ROYAL DOMAIN, SRI PUTRAMAS 2, OFF JALAN KUCHING,, W.P. Kuala Lumpur, 51200, W.P. Kuala Lumpur",
+      "tracking_numbers": [
+        "SPXMY066760098503"
+      ]
+    },
+    {
+      "order_id": 227964276259837,
+      "order_sn": "260323V21NG2YW",
+      "buyer_user_id": 59765601,
+      "buyer_username": "annesim72",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "Self Collection Point (SPX Express)",
+      "total_price": 122110.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Lahome Electric Egg Cooker Food children Breakfast Cooker Vegetable Steamer Electric Egg Maker Egg Steamer ZDQ",
+          "description": "Variation: LAHOME Mult Cooker [ZDQ-B14R1 ZDQ-B14R1]",
+          "amount": 2,
+          "item_id": 52001685748,
+          "model_id": 208778841717
+        }
+      ],
+      "shipping_name": "S******n",
+      "shipping_phone": "******13",
+      "shipping_address": "SPX Mesra Jaya Drop Off Point\n6196, Tingkat Bawah, Lorong Mesra Jaya 1, Taman Mesra Jaya, 13400 Butterworth, Pulau Pinang 13400",
+      "tracking_numbers": [
+        "SPXMY069980061333"
+      ]
+    },
+    {
+      "order_id": 227959676298587,
+      "order_sn": "260323UWRJMDAU",
+      "buyer_user_id": 58916171,
+      "buyer_username": "skomeng",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 12420.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "【Read Stock 】LAHOME 100pcs 51mm Coffee Bottomless Portafilter Filter Paper Espresso Moka Pot Dripper Accessories 咖啡机粉碗滤纸",
+          "description": "Variation: White +SUS Box [51FP 51FP-White+RB-65]",
+          "amount": 1,
+          "item_id": 26876053476,
+          "model_id": 227367285751
+        }
+      ],
+      "shipping_name": "H****m",
+      "shipping_phone": "******18",
+      "shipping_address": "37-2 Jalan WP 3/4, Ayden Townhouse, Kota Warisan, Sepang, 43900, Selangor",
+      "tracking_numbers": [
+        "SPXMY060607773733"
+      ]
+    },
+    {
+      "order_id": 227959071285649,
+      "order_sn": "260323UW6HMVCH",
+      "buyer_user_id": 1612432249,
+      "buyer_username": "wer0bb5j03",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "Instant Delivery",
+      "total_price": 22120.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Latte Art Pitcher Milk Frothing Cup Coffee Appliance Stainless Steel Jug (350ml)",
+          "description": "Variation: 350ML [CUP350 CUP350]",
+          "amount": 1,
+          "item_id": 29117344845,
+          "model_id": 157550088683
+        }
+      ],
+      "shipping_name": "D***k",
+      "shipping_phone": "******28",
+      "shipping_address": "41******",
+      "tracking_numbers": [
+        "3013934297323008822"
+      ]
+    },
+    {
+      "order_id": 227951546252724,
+      "order_sn": "260323UP6973DM",
+      "buyer_user_id": 41181845,
+      "buyer_username": "lumlum.chong",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 375440.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Dough Electric Mixer Machine Fermentation Kneader  (7L)  Stand Mixer Maker Kneader Electric For Baking Bear OEM",
+          "description": "Variation: 2 in1 Dough Mixer 7L [HMJ-A70C1 HMJ-A70C1]",
+          "amount": 1,
+          "item_id": 29264304758,
+          "model_id": 246794227334
+        }
+      ],
+      "shipping_name": "L******g",
+      "shipping_phone": "******85",
+      "shipping_address": "NO 12A, LORONG TEMENGGUNG 37E/KS07, TAMAN SEJAHTERA ,41200 KLANG BANDAR DIRAJA ,SELANGOR DARUL EHSAN., Klang, 41200, Selangor",
+      "tracking_numbers": [
+        "SPXMY063092485943"
+      ]
+    },
+    {
+      "order_id": 227943553213560,
+      "order_sn": "260323UER2EW3R",
+      "buyer_user_id": 252105966,
+      "buyer_username": "clement8828",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 452160.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Super Fully Automatic Electric Coffee Grinder 100 Thicknesses Business Commercial Cafe Grinder Flat Burr Upgrade",
+          "description": "Variation: Commercial Grinder [CG301-B CG301]",
+          "amount": 1,
+          "item_id": 29464444993,
+          "model_id": 256804090013
+        }
+      ],
+      "shipping_name": "c****** ",
+      "shipping_phone": "******18",
+      "shipping_address": "No 11, Jalan Aman Serenia 7/3, Bandar Serenia, 43900 Sepang, Selangor, Sepang, 43900, Selangor",
+      "tracking_numbers": [
+        "SPXMY060163357093"
+      ]
+    },
+    {
+      "order_id": 228134638218742,
+      "order_sn": "2603253WCH0BFP",
+      "buyer_user_id": 1034444173,
+      "buyer_username": "roszitahambali",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 45040.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Vacuum Sealer Auto Food Sealing Machine Electric Snack Heat Suitable For Dry And Wet, Long-Term Preservation",
+          "description": "Variation: 25*35cm(100pcs) [FK7912-W Bag100-25*35cm]",
+          "amount": 1,
+          "item_id": 29564444966,
+          "model_id": 233337254515
+        }
+      ],
+      "shipping_name": "R*****a",
+      "shipping_phone": "******66",
+      "shipping_address": "no 27,Jalan Merak Emas 3, Taman Sri Jeram 2, Muar, 84200, Johor",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228134449236650,
+      "order_sn": "2603253W6VS2NA",
+      "buyer_user_id": 1034444173,
+      "buyer_username": "roszitahambali",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 67810.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Vacuum Sealer Auto Food Sealing Machine Electric Snack Heat Suitable For Dry And Wet, Long-Term Preservation",
+          "description": "Variation: 5Function+10free bag [FK7912-W FK7911-W-Big]",
+          "amount": 1,
+          "item_id": 29564444966,
+          "model_id": 233337254512
+        }
+      ],
+      "shipping_name": "R*****a",
+      "shipping_phone": "******66",
+      "shipping_address": "no 27,Jalan Merak Emas 3, Taman Sri Jeram 2, Muar, 84200, Johor",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228129168284839,
+      "order_sn": "2603253R9GF757",
+      "buyer_user_id": 240606849,
+      "buyer_username": "shafpadzil",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 417930.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Bottomless Portafilter Wooden Handle Portafilter (51mm)",
+          "description": "Variation: Upgreade Stainless [Handle02 Handle02]",
+          "amount": 1,
+          "item_id": 26164387231,
+          "model_id": 236890573844
+        },
+        {
+          "name": "【Read Stock 】LAHOME 100pcs 51mm Coffee Bottomless Portafilter Filter Paper Espresso Moka Pot Dripper Accessories 咖啡机粉碗滤纸",
+          "description": "Variation: White +SUS Box [51FP 51FP-White+RB-65]",
+          "amount": 1,
+          "item_id": 26876053476,
+          "model_id": 227367285751
+        },
+        {
+          "name": "LAHOME Latte Art Pitcher Milk Frothing Cup Coffee Appliance Stainless Steel Jug (350ml)",
+          "description": "Variation: 350ML [CUP350 CUP350]",
+          "amount": 1,
+          "item_id": 29117344845,
+          "model_id": 157550088683
+        },
+        {
+          "name": "Lahome Cold / Hot Brew Espresso Coffee Machine Maker Professional Automatic Smart Touch Panel Descaling 智能触摸屏 意式 咖啡机",
+          "description": "Variation: Espresso Machine [KFJ5216 KFJ5216]",
+          "amount": 1,
+          "item_id": 51706740583,
+          "model_id": 292433684251
+        }
+      ],
+      "shipping_name": "M******l",
+      "shipping_phone": "******53",
+      "shipping_address": "A-09-03A   ,   M Adora, Jalan Wangsa Melawati 1, Setapak, 53300, Setapak, W.P. Kuala Lumpur, 53300, W.P. Kuala Lumpur",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228122534246114,
+      "order_sn": "2603253J3SRDQ2",
+      "buyer_user_id": 4121036,
+      "buyer_username": "jamie.low91",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 75950.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Electric Milk Frother Hot & Cold 4 in 1 Milk Foam Maker Warm Latte Cappuccino Coffee Steamer 奶泡器",
+          "description": "Variation: Frother+Pitcher [NPJ-YL29 NPJ-YL29-W+CUP350]",
+          "amount": 1,
+          "item_id": 27264308265,
+          "model_id": 301568334838
+        }
+      ],
+      "shipping_name": "J******w",
+      "shipping_phone": "******33",
+      "shipping_address": "5C   ,   Lord Hope Church, 5C, Jalan Pjs 11/7, Petaling, 47500, Selangor",
+      "tracking_numbers": [
+        "SPXMY067564245113"
+      ]
+    },
+    {
+      "order_id": 228121930259387,
+      "order_sn": "2603253HHSR6WU",
+      "buyer_user_id": 143462651,
+      "buyer_username": "accelwong",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 144430.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME  Smart Pressure Cooker Multifunction 2.5L Versatile Multi-Cooking Rice Cookers Easy Clean 多功能电压力锅",
+          "description": "Variation: 2.5L Fast Cooking-B [EPC3325-Black EPC3325-B]",
+          "amount": 1,
+          "item_id": 42956843427,
+          "model_id": 260579252869
+        }
+      ],
+      "shipping_name": "B******g",
+      "shipping_phone": "******61",
+      "shipping_address": "5168, Lorong Selasih 2/6, Taman Selasih, Kulim, 09000, Kedah",
+      "tracking_numbers": [
+        "SPXMY068165300403"
+      ]
+    },
+    {
+      "order_id": 228115192257774,
+      "order_sn": "2603253B8YVQ7E",
+      "buyer_user_id": 114508893,
+      "buyer_username": "saraharisa9876",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 125320.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME 5 Trays Timer Food Dehydrator Machine (10L)  Fruit Dryer Dryed Meat Vegetable Food Preserver  Energy Saving",
+          "description": "Variation: Upgrade 10L w/ TIMER [LA-GGJ10 LA-GGJ10]",
+          "amount": 1,
+          "item_id": 18670163547,
+          "model_id": 117874512102
+        }
+      ],
+      "shipping_name": "M******a",
+      "shipping_phone": "******17",
+      "shipping_address": "Blok 31-3-1, Bukit Mas Apartment, Jalan 1/4B, W.P. Kuala Lumpur, 53100, W.P. Kuala Lumpur",
+      "tracking_numbers": [
+        "SPXMY068711652253"
+      ]
+    },
+    {
+      "order_id": 228112435220675,
+      "order_sn": "26032538PTJM63",
+      "buyer_user_id": 61315103,
+      "buyer_username": "88wani",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 141310.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Smart Drip Coffee Machine Hot/Ice Americano Tea Brew Maker Programmable Timer (1.8L) Touch Screen Anti-Drip Syste",
+          "description": "Variation: Maker+Frother+Cup [KFJ530 530+J3+CUP350]",
+          "amount": 1,
+          "item_id": 29216730447,
+          "model_id": 108581974814
+        }
+      ],
+      "shipping_name": "S**z",
+      "shipping_phone": "******02",
+      "shipping_address": "No 9 Jalan Sungai Terap 32/122 Taman Alam Permai 40460 Shah Alam Selangor, Klang, 40460, Selangor",
+      "tracking_numbers": [
+        "SPXMY068069774093"
+      ]
+    },
+    {
+      "order_id": 228110452264052,
+      "order_sn": "26032536UQFK3M",
+      "buyer_user_id": 1174625427,
+      "buyer_username": "loan2014",
+      "shop_id": null,
+      "status": "Unpaid",
+      "fulfilment_channel": "",
+      "total_price": 72800.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Electric Milk Frother Cold/Hot Latte Cappuccino Chocolate Milk Foam Maker Warmer 奶泡器",
+          "description": "Variation: Cold/Hot Milk Fother [NPJ-XB15 NPJ-XB15]",
+          "amount": 1,
+          "item_id": 24196934599,
+          "model_id": 271542616978
+        }
+      ],
+      "shipping_name": "L**n",
+      "shipping_phone": "******71",
+      "shipping_address": "Pa******",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228098893231094,
+      "order_sn": "2603252V37WVYP",
+      "buyer_user_id": 27559504,
+      "buyer_username": "annaliza910",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "Instant Delivery",
+      "total_price": 107760.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Coffee Milk Frother Handheld 3-Speed USB Rechargeable Electric Whisk USB Rechargeable Egg Beater Rich Crama",
+          "description": "Variation: Milk Frother+Pitcher [J3-White CUP350+J3-White.1]",
+          "amount": 1,
+          "item_id": 26364308409,
+          "model_id": 109289534560
+        },
+        {
+          "name": "LAHOME Health-Care Beverage Health Glass Visualization Pot Tea Maker Electric Kettle 8 In 1 Smart Touch Control 多功能养生壶",
+          "description": "Variation: Kettle（Long Life） [YSH520W YSH520W]",
+          "amount": 1,
+          "item_id": 28964311237,
+          "model_id": 280688776618
+        }
+      ],
+      "shipping_name": "A******r",
+      "shipping_phone": "******85",
+      "shipping_address": "No. 6 jalan 12/4, Petaling Jaya, 46200, Selangor",
+      "tracking_numbers": [
+        "3015342711625728822"
+      ]
+    },
+    {
+      "order_id": 228082691267637,
+      "order_sn": "2603252D0CH71N",
+      "buyer_user_id": 11836043,
+      "buyer_username": "pohlin2002",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 86000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Electric Milk Frother Cold/Hot Latte Cappuccino Chocolate Milk Foam Maker Warmer 奶泡器",
+          "description": "Variation: Cold/Hot Milk Fother [NPJ-XB15 NPJ-XB15]",
+          "amount": 1,
+          "item_id": 24196934599,
+          "model_id": 271542616978
+        }
+      ],
+      "shipping_name": "P****n",
+      "shipping_phone": "******01",
+      "shipping_address": "30 Jalan Sering 2, Taman Sungai Sering, W.P. Kuala Lumpur, 43200, W.P. Kuala Lumpur",
+      "tracking_numbers": [
+        "SPXMY067899504683"
+      ]
+    },
+    {
+      "order_id": 228071003259635,
+      "order_sn": "2603252241YGQK",
+      "buyer_user_id": 94686933,
+      "buyer_username": "raeann99",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 70400.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Electric Milk Frother Hot & Cold 4 in 1 Milk Foam Maker Warm Latte Cappuccino Coffee Steamer 奶泡器",
+          "description": "Variation: Frother+Pitcher [NPJ-YL29 NPJ-YL29-W+CUP350]",
+          "amount": 1,
+          "item_id": 27264308265,
+          "model_id": 301568334838
+        }
+      ],
+      "shipping_name": "T******n",
+      "shipping_phone": "******11",
+      "shipping_address": "13, Jalan Delima 6, Bandar Botanik, Klang, 41200, Selangor",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228070937206606,
+      "order_sn": "2603252222YQTE",
+      "buyer_user_id": 8208874,
+      "buyer_username": "mieyna27",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (East Malaysia)",
+      "total_price": 28720.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Coffee Milk Frother Handheld 3-Speed USB Rechargeable Electric Whisk USB Rechargeable Egg Beater Rich Crama",
+          "description": "Variation: 2 in 1 Milk Frother [J3-White J3-White]",
+          "amount": 1,
+          "item_id": 26364308409,
+          "model_id": 109289534559
+        }
+      ],
+      "shipping_name": "M******I",
+      "shipping_phone": "******84",
+      "shipping_address": "No.191, KAMPUNG KUALA TENGAH, OYA, Dalat, 96300, Sarawak",
+      "tracking_numbers": [
+        "MY269069222317F"
+      ]
+    },
+    {
+      "order_id": 228070394267118,
+      "order_sn": "26032521HW6HFE",
+      "buyer_user_id": 53863412,
+      "buyer_username": "youngltee",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 63990.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Electric Milk Frother Hot & Cold 4 in 1 Milk Foam Maker Warm Latte Cappuccino Coffee Steamer 奶泡器",
+          "description": "Variation: Frother+Pitcher [NPJ-YL29 NPJ-YL29-W+CUP350]",
+          "amount": 1,
+          "item_id": 27264308265,
+          "model_id": 301568334838
+        }
+      ],
+      "shipping_name": "T******g",
+      "shipping_phone": "******85",
+      "shipping_address": "24, Jalan Bawal, Taman Sri Gadong, Klang, 41250, Selangor",
+      "tracking_numbers": [
+        "SPXMY063170602753"
+      ]
+    },
+    {
+      "order_id": 228067703260476,
+      "order_sn": "2603251Y1PUH9V",
+      "buyer_user_id": 311916138,
+      "buyer_username": "kac_f47dso",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (East Malaysia)",
+      "total_price": 83380.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Electric Ceramic Stove Infrared Burner Glass Surface Hot Plate Inverter Cooktop Countertop 节能电陶炉 方形",
+          "description": "Variation: Energy Saving Stove [SQ816 SQ816]",
+          "amount": 1,
+          "item_id": 45554000135,
+          "model_id": 325377753023
+        }
+      ],
+      "shipping_name": "P******i",
+      "shipping_phone": "******43",
+      "shipping_address": "Lot 8387,lorong Setia 2 , taman jelita ,, Miri, 98000, Sarawak",
+      "tracking_numbers": [
+        "MY268584287472I"
+      ]
+    },
+    {
+      "order_id": 228067197224658,
+      "order_sn": "2603241XJM8HPJ",
+      "buyer_user_id": 581347462,
+      "buyer_username": "mohdabuzar762",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 33810.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Coffee Milk Frother Handheld 3-Speed USB Rechargeable Electric Whisk USB Rechargeable Egg Beater Rich Crama",
+          "description": "Variation: Milk Frother+Pitcher [J3-White CUP350+J3-White.1]",
+          "amount": 1,
+          "item_id": 26364308409,
+          "model_id": 109289534560
+        }
+      ],
+      "shipping_name": "M******d",
+      "shipping_phone": "******52",
+      "shipping_address": "E1, Rumah kakitangan FELDA Chiku 02, Gua Musang, 18300, Kelantan",
+      "tracking_numbers": [
+        "SPXMY062363569503"
+      ]
+    },
+    {
+      "order_id": 228063503250091,
+      "order_sn": "2603241U4HDCNB",
+      "buyer_user_id": 2685670,
+      "buyer_username": "lubeelin",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 26600.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Coffee Milk Frother Handheld 3-Speed USB Rechargeable Electric Whisk USB Rechargeable Egg Beater Rich Crama",
+          "description": "Variation: 2 in 1 Milk Frother [J3-White J3-White]",
+          "amount": 1,
+          "item_id": 26364308409,
+          "model_id": 109289534559
+        }
+      ],
+      "shipping_name": "L******N",
+      "shipping_phone": "******39",
+      "shipping_address": "A32 TAMAN CENGAL JALAN DATUK KUMBAR Alor Setar, Kota Setar, 05300, Kedah",
+      "tracking_numbers": [
+        "SPXMY062890896563"
+      ]
+    },
+    {
+      "order_id": 228057452220969,
+      "order_sn": "2603241NG6PMH9",
+      "buyer_user_id": 30010593,
+      "buyer_username": "jalicenkn",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 70660.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Electric Ceramic Stove Infrared Burner Glass Surface Hot Plate Inverter Cooktop Countertop 节能电陶炉 方形",
+          "description": "Variation: Energy Saving Stove [SQ816 SQ816]",
+          "amount": 1,
+          "item_id": 45554000135,
+          "model_id": 325377753023
+        }
+      ],
+      "shipping_name": "J******n",
+      "shipping_phone": "******17",
+      "shipping_address": "38-1, Jalan Tasik Utama 5, Sungai Besi, W.P. Kuala Lumpur, 57000, W.P. Kuala Lumpur",
+      "tracking_numbers": [
+        "SPXMY065206544053"
+      ]
+    },
+    {
+      "order_id": 228056368239549,
+      "order_sn": "2603241MFVX4WW",
+      "buyer_user_id": 12839899,
+      "buyer_username": "junnychen",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 114120.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME 5 Trays Timer Food Dehydrator Machine (10L)  Fruit Dryer Dryed Meat Vegetable Food Preserver  Energy Saving",
+          "description": "Variation: Upgrade 10L w/ TIMER [LA-GGJ10 LA-GGJ10]",
+          "amount": 1,
+          "item_id": 18670163547,
+          "model_id": 117874512102
+        }
+      ],
+      "shipping_name": "J******n",
+      "shipping_phone": "******91",
+      "shipping_address": "SANO PAIN CARE   ,   no 72, Jalan Mahogani 1, Bandar Botanik, Klang, 41200, Selangor",
+      "tracking_numbers": [
+        "SPXMY060543892163"
+      ]
+    },
+    {
+      "order_id": 228055097297845,
+      "order_sn": "2603241KA0V2WN",
+      "buyer_user_id": 162189322,
+      "buyer_username": "margarineweera",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 26000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Coffee Milk Frother Handheld 3-Speed USB Rechargeable Electric Whisk USB Rechargeable Egg Beater Rich Crama",
+          "description": "Variation: 2 in 1 Milk Frother [J3-White J3-White]",
+          "amount": 1,
+          "item_id": 26364308409,
+          "model_id": 109289534559
+        }
+      ],
+      "shipping_name": "M****e",
+      "shipping_phone": "******93",
+      "shipping_address": "No 9,JALAN USJ HEIGHTS 6/1B 47610 SUBANG JAYA SELANGOR, Petaling, 47610, Selangor",
+      "tracking_numbers": [
+        "SPXMY065764032893"
+      ]
+    },
+    {
+      "order_id": 228054616236716,
+      "order_sn": "2603241JUP38NC",
+      "buyer_user_id": 1696200416,
+      "buyer_username": "norzilawatifarhanamdsaad",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 30410.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Coffee Milk Frother Handheld 3-Speed USB Rechargeable Electric Whisk USB Rechargeable Egg Beater Rich Crama",
+          "description": "Variation: Milk Frother+Pitcher [J3-White CUP350+J3-White.1]",
+          "amount": 1,
+          "item_id": 26364308409,
+          "model_id": 109289534560
+        }
+      ],
+      "shipping_name": "S****y",
+      "shipping_phone": "******98",
+      "shipping_address": "Lot 4942, Kampung Sama Gagah, Semanggol, 34400, Gunong Semanggol, Kerian, 34400, Perak",
+      "tracking_numbers": [
+        "SPXMY068152280093"
+      ]
+    },
+    {
+      "order_id": 228051517273184,
+      "order_sn": "2603241FYAPD30",
+      "buyer_user_id": 314707263,
+      "buyer_username": "msnira",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 97940.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Electric Milk Frother Hot & Cold 4 in 1 Milk Foam Maker Warm Latte Cappuccino Coffee Steamer 奶泡器",
+          "description": "Variation: Frother+Pitcher [NPJ-YL29 NPJ-YL29-W+CUP350]",
+          "amount": 1,
+          "item_id": 27264308265,
+          "model_id": 301568334838
+        }
+      ],
+      "shipping_name": "N******d",
+      "shipping_phone": "******57",
+      "shipping_address": "69 Jalan Elektron U16/93,Denai Alam, Shah Alam, 40160, Selangor",
+      "tracking_numbers": [
+        "SPXMY067139432253"
+      ]
+    },
+    {
+      "order_id": 228050849206098,
+      "order_sn": "2603241FBDJKTJ",
+      "buyer_user_id": 8857375,
+      "buyer_username": "domnicslau",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 28000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Coffee Milk Frother Handheld 3-Speed USB Rechargeable Electric Whisk USB Rechargeable Egg Beater Rich Crama",
+          "description": "Variation: 2 in 1 Milk Frother [J3-White J3-White]",
+          "amount": 1,
+          "item_id": 26364308409,
+          "model_id": 109289534559
+        }
+      ],
+      "shipping_name": "D******u",
+      "shipping_phone": "******08",
+      "shipping_address": "No. 5, Jalan Biru 3, Taman Sg Abong Sutera 2, Jalan Sg Abong 84000 MUAR, JOHOR, Muar, 84000, Johor",
+      "tracking_numbers": [
+        "SPXMY062564257263"
+      ]
+    },
+    {
+      "order_id": 228044529203215,
+      "order_sn": "26032419F2BE0F",
+      "buyer_user_id": 376732430,
+      "buyer_username": "adpme_vsk",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (East Malaysia)",
+      "total_price": 47510.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Coffee Milk Frother Handheld 3-Speed USB Rechargeable Electric Whisk USB Rechargeable Egg Beater Rich Crama",
+          "description": "Variation: Milk Frother+Pitcher [J3-White CUP350+J3-White.1]",
+          "amount": 1,
+          "item_id": 26364308409,
+          "model_id": 109289534560
+        }
+      ],
+      "shipping_name": "J******o",
+      "shipping_phone": "******19",
+      "shipping_address": "Lot 69, Lorong Pokok Seraya 3A, Taman khidmat, bukit padang, Kota Kinabalu, 88450, Sabah",
+      "tracking_numbers": [
+        "MY266244591783K"
+      ]
+    },
+    {
+      "order_id": 228043978225408,
+      "order_sn": "26032418XMVWR0",
+      "buyer_user_id": 88938716,
+      "buyer_username": "sharonkhoo97",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 99390.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Electric Milk Frother Cold/Hot Latte Cappuccino Chocolate Milk Foam Maker Warmer 奶泡器",
+          "description": "Variation: Cold/Hot Milk Fother [NPJ-XB15 NPJ-XB15]",
+          "amount": 1,
+          "item_id": 24196934599,
+          "model_id": 271542616978
+        }
+      ],
+      "shipping_name": "S******o",
+      "shipping_phone": "******02",
+      "shipping_address": "10 Jln BS 8/2 Taman Bukit Serdang, Petaling Jaya, 43300, Selangor",
+      "tracking_numbers": [
+        "SPXMY066848968923"
+      ]
+    },
+    {
+      "order_id": 228041819204297,
+      "order_sn": "26032416X9VTP9",
+      "buyer_user_id": 77961696,
+      "buyer_username": "patricialiew2017",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 38510.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Coffee Milk Frother Handheld 3-Speed USB Rechargeable Electric Whisk USB Rechargeable Egg Beater Rich Crama",
+          "description": "Variation: Milk Frother+Pitcher [J3-White CUP350+J3-White.1]",
+          "amount": 1,
+          "item_id": 26364308409,
+          "model_id": 109289534560
+        }
+      ],
+      "shipping_name": "P******w",
+      "shipping_phone": "******13",
+      "shipping_address": "629 Legal Dpt   ,   1, Jln Forest City - Lebuhraya Tanjung Pelepas, 81550 Gelang Patah, Johor Bahru, 81550, Johor",
+      "tracking_numbers": [
+        "SPXMY066451051823"
+      ]
+    },
+    {
+      "order_id": 228040878281952,
+      "order_sn": "2603241628J570",
+      "buyer_user_id": 383508750,
+      "buyer_username": "cseng1",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 82210.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Electric Milk Frother Hot & Cold 4 in 1 Milk Foam Maker Warm Latte Cappuccino Coffee Steamer 奶泡器",
+          "description": "Variation: Frother (Hot/Cold） [NPJ-YL29 NPJ-YL29White]",
+          "amount": 1,
+          "item_id": 27264308265,
+          "model_id": 241794218978
+        }
+      ],
+      "shipping_name": "e******e",
+      "shipping_phone": "******21",
+      "shipping_address": "no 8665 taman mutiara, Jerantut, 27000, Pahang",
+      "tracking_numbers": [
+        "SPXMY065076848523"
+      ]
+    },
+    {
+      "order_id": 228038977237959,
+      "order_sn": "260324149KJVX7",
+      "buyer_user_id": 46995660,
+      "buyer_username": "haziqfikhry",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 328940.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Dough Electric Mixer Machine Fermentation Kneader  (7L)  Stand Mixer Maker Kneader Electric For Baking Bear OEM",
+          "description": "Variation: 2 in1 Dough Mixer 7L [HMJ-A70C1 HMJ-A70C1]",
+          "amount": 1,
+          "item_id": 29264304758,
+          "model_id": 246794227334
+        }
+      ],
+      "shipping_name": "H******)",
+      "shipping_phone": "******12",
+      "shipping_address": "JD 5270   ,   Scientex Bandar Jasin, Jalan Baru Serkam, Jasin, 77300, Melaka",
+      "tracking_numbers": [
+        "SPXMY065614165163"
+      ]
+    },
+    {
+      "order_id": 228035163215024,
+      "order_sn": "26032410QX855G",
+      "buyer_user_id": 114484961,
+      "buyer_username": "bornbeaute_",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 78000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Electric Milk Frother Hot & Cold 4 in 1 Milk Foam Maker Warm Latte Cappuccino Coffee Steamer 奶泡器",
+          "description": "Variation: Black Milk Frother [NPJ-YL29 NPJ-YL29Black]",
+          "amount": 1,
+          "item_id": 27264308265,
+          "model_id": 272365143222
+        }
+      ],
+      "shipping_name": "I******n",
+      "shipping_phone": "******81",
+      "shipping_address": "A-1-12   ,   No A-1-12，Presit 1 Cameron Centrum 39100 Brinchang Cameron Highlands ，pahang, Cameron Highlands, 39100, Pahang",
+      "tracking_numbers": [
+        "SPXMY065894908283"
+      ]
+    },
+    {
+      "order_id": 228031488247211,
+      "order_sn": "2603240WADH1DB",
+      "buyer_user_id": 262137674,
+      "buyer_username": "piggievon",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express (NDD)",
+      "total_price": 68170.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Electric Milk Frother Hot & Cold 4 in 1 Milk Foam Maker Warm Latte Cappuccino Coffee Steamer 奶泡器",
+          "description": "Variation: Frother (Hot/Cold） [NPJ-YL29 NPJ-YL29White]",
+          "amount": 1,
+          "item_id": 27264308265,
+          "model_id": 241794218978
+        }
+      ],
+      "shipping_name": "E**n",
+      "shipping_phone": "******76",
+      "shipping_address": "Kuss Essentials (Appointments Only), 7, Jalan TK 5/42, Taman Perindustrian Kinrara (Kuss), Petaling, 47190, Selangor",
+      "tracking_numbers": [
+        "SPXMY061496146903"
+      ]
+    },
+    {
+      "order_id": 228025286205708,
+      "order_sn": "2603240QHJSR8C",
+      "buyer_user_id": 132084271,
+      "buyer_username": "tiongangie",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "",
+      "total_price": 65400.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Lahome Electric Egg Cooker Food children Breakfast Cooker Vegetable Steamer Electric Egg Maker Egg Steamer ZDQ",
+          "description": "Variation: LAHOME Mult Cooker [ZDQ-B14R1 ZDQ-B14R1]",
+          "amount": 1,
+          "item_id": 52001685748,
+          "model_id": 208778841717
+        }
+      ],
+      "shipping_name": "A******g",
+      "shipping_phone": "******32",
+      "shipping_address": "ECOVAPE       No ,7 Ground Floor, Jalan SS 15/8b ,ss 15 ,47500 Subang Jaya Selangor, Petaling, 47500, Selangor",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228025131291163,
+      "order_sn": "2603240QCY24GU",
+      "buyer_user_id": 255317961,
+      "buyer_username": "shah622akd",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "Self Collection Point (SPX Express)",
+      "total_price": 78000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Electric Milk Frother Hot & Cold 4 in 1 Milk Foam Maker Warm Latte Cappuccino Coffee Steamer 奶泡器",
+          "description": "Variation: Black Milk Frother [NPJ-YL29 NPJ-YL29Black]",
+          "amount": 1,
+          "item_id": 27264308265,
+          "model_id": 272365143222
+        }
+      ],
+      "shipping_name": "S******d",
+      "shipping_phone": "******88",
+      "shipping_address": "SPX Service Point Supzz Kota Damansara\n13-G, Cecawi 6/33, Kota Damansara, 47810 Petaling Jaya, Selangor 47810",
+      "tracking_numbers": [
+        "SPXMY065820876483"
+      ]
+    },
+    {
+      "order_id": 228024419298388,
+      "order_sn": "2603240PQR1U2M",
+      "buyer_user_id": 845090661,
+      "buyer_username": "syahidaamohd",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 28000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Coffee Milk Frother Handheld 3-Speed USB Rechargeable Electric Whisk USB Rechargeable Egg Beater Rich Crama",
+          "description": "Variation: 2 in 1 Milk Frother [J3-White J3-White]",
+          "amount": 1,
+          "item_id": 26364308409,
+          "model_id": 109289534559
+        }
+      ],
+      "shipping_name": "N******a",
+      "shipping_phone": "******34",
+      "shipping_address": "Lot 34419   ,   Lorong DB18, Jalan desa baginda, kampung Dato Abu Bakar Baginda, Sepang, 43650, Selangor",
+      "tracking_numbers": [
+        "SPXMY069876432703"
+      ]
+    },
+    {
+      "order_id": 227984872244899,
+      "order_sn": "260324VN7FBNN3",
+      "buyer_user_id": 29252870,
+      "buyer_username": "winniegym",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express (2DD)",
+      "total_price": 228860.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME 5 Trays Timer Food Dehydrator Machine (10L)  Fruit Dryer Dryed Meat Vegetable Food Preserver  Energy Saving",
+          "description": "Variation: Upgrade+Sealer05+100 [LA-GGJ10 GGJ10+FK7911-W-Big+Bag100-20]",
+          "amount": 1,
+          "item_id": 18670163547,
+          "model_id": 89723996745
+        }
+      ],
+      "shipping_name": "G******n",
+      "shipping_phone": "******68",
+      "shipping_address": "No 2, Jalan Seri Putra 2/2c, Bandar Seri Putra, Kajang 43000 Selangor, Hulu Langat, 43000, Selangor",
+      "tracking_numbers": [
+        "SPXMY061896088533"
+      ]
+    },
+    {
+      "order_id": 227973774289122,
+      "order_sn": "260323VAVQGX72",
+      "buyer_user_id": 868154640,
+      "buyer_username": "az8889",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (East Malaysia)",
+      "total_price": 142710.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Gooseneck Pour Over Kettle Electric Temperature Control 12h Keep Warm Gooseneck Kettle Pouring Coffee",
+          "description": "Variation: White Pour Over [DSH DSH-101W]",
+          "amount": 1,
+          "item_id": 26264310180,
+          "model_id": 256794217253
+        }
+      ],
+      "shipping_name": "R******g",
+      "shipping_phone": "******80",
+      "shipping_address": "no.8, Lorong 4 Jalan Palma, 96100, Sarikei, 96100, Sarawak",
+      "tracking_numbers": [
+        "MY265129230907Y"
+      ]
+    },
+    {
+      "order_id": 227971259206180,
+      "order_sn": "260323V8HRXPH4",
+      "buyer_user_id": 618178807,
+      "buyer_username": "anti_flash_gear",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 79680.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Bottomless Portafilter Wooden Handle Portafilter (51mm)",
+          "description": "Variation: Upgreade Stainless [Handle02 Handle02]",
+          "amount": 1,
+          "item_id": 26164387231,
+          "model_id": 236890573844
+        }
+      ],
+      "shipping_name": "F******M",
+      "shipping_phone": "******29",
+      "shipping_address": "B2-3A-06, ROYAL DOMAIN, SRI PUTRAMAS 2, OFF JALAN KUCHING,, W.P. Kuala Lumpur, 51200, W.P. Kuala Lumpur",
+      "tracking_numbers": [
+        "SPXMY066760098503"
+      ]
+    },
+    {
+      "order_id": 227964276259837,
+      "order_sn": "260323V21NG2YW",
+      "buyer_user_id": 59765601,
+      "buyer_username": "annesim72",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "Self Collection Point (SPX Express)",
+      "total_price": 122110.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Lahome Electric Egg Cooker Food children Breakfast Cooker Vegetable Steamer Electric Egg Maker Egg Steamer ZDQ",
+          "description": "Variation: LAHOME Mult Cooker [ZDQ-B14R1 ZDQ-B14R1]",
+          "amount": 2,
+          "item_id": 52001685748,
+          "model_id": 208778841717
+        }
+      ],
+      "shipping_name": "S******n",
+      "shipping_phone": "******13",
+      "shipping_address": "SPX Mesra Jaya Drop Off Point\n6196, Tingkat Bawah, Lorong Mesra Jaya 1, Taman Mesra Jaya, 13400 Butterworth, Pulau Pinang 13400",
+      "tracking_numbers": [
+        "SPXMY069980061333"
+      ]
+    },
+    {
+      "order_id": 227959676298587,
+      "order_sn": "260323UWRJMDAU",
+      "buyer_user_id": 58916171,
+      "buyer_username": "skomeng",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 12420.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "【Read Stock 】LAHOME 100pcs 51mm Coffee Bottomless Portafilter Filter Paper Espresso Moka Pot Dripper Accessories 咖啡机粉碗滤纸",
+          "description": "Variation: White +SUS Box [51FP 51FP-White+RB-65]",
+          "amount": 1,
+          "item_id": 26876053476,
+          "model_id": 227367285751
+        }
+      ],
+      "shipping_name": "H****m",
+      "shipping_phone": "******18",
+      "shipping_address": "37-2 Jalan WP 3/4, Ayden Townhouse, Kota Warisan, Sepang, 43900, Selangor",
+      "tracking_numbers": [
+        "SPXMY060607773733"
+      ]
+    },
+    {
+      "order_id": 227959071285649,
+      "order_sn": "260323UW6HMVCH",
+      "buyer_user_id": 1612432249,
+      "buyer_username": "wer0bb5j03",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "Instant Delivery",
+      "total_price": 22120.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Latte Art Pitcher Milk Frothing Cup Coffee Appliance Stainless Steel Jug (350ml)",
+          "description": "Variation: 350ML [CUP350 CUP350]",
+          "amount": 1,
+          "item_id": 29117344845,
+          "model_id": 157550088683
+        }
+      ],
+      "shipping_name": "D***k",
+      "shipping_phone": "******28",
+      "shipping_address": "41******",
+      "tracking_numbers": [
+        "3013934297323008822"
+      ]
+    },
+    {
+      "order_id": 227951546252724,
+      "order_sn": "260323UP6973DM",
+      "buyer_user_id": 41181845,
+      "buyer_username": "lumlum.chong",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 375440.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Dough Electric Mixer Machine Fermentation Kneader  (7L)  Stand Mixer Maker Kneader Electric For Baking Bear OEM",
+          "description": "Variation: 2 in1 Dough Mixer 7L [HMJ-A70C1 HMJ-A70C1]",
+          "amount": 1,
+          "item_id": 29264304758,
+          "model_id": 246794227334
+        }
+      ],
+      "shipping_name": "L******g",
+      "shipping_phone": "******85",
+      "shipping_address": "NO 12A, LORONG TEMENGGUNG 37E/KS07, TAMAN SEJAHTERA ,41200 KLANG BANDAR DIRAJA ,SELANGOR DARUL EHSAN., Klang, 41200, Selangor",
+      "tracking_numbers": [
+        "SPXMY063092485943"
+      ]
+    },
+    {
+      "order_id": 227943553213560,
+      "order_sn": "260323UER2EW3R",
+      "buyer_user_id": 252105966,
+      "buyer_username": "clement8828",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express (West Malaysia)",
+      "total_price": 452160.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Super Fully Automatic Electric Coffee Grinder 100 Thicknesses Business Commercial Cafe Grinder Flat Burr Upgrade",
+          "description": "Variation: Commercial Grinder [CG301-B CG301]",
+          "amount": 1,
+          "item_id": 29464444993,
+          "model_id": 256804090013
+        }
+      ],
+      "shipping_name": "c****** ",
+      "shipping_phone": "******18",
+      "shipping_address": "No 11, Jalan Aman Serenia 7/3, Bandar Serenia, 43900 Sepang, Selangor, Sepang, 43900, Selangor",
+      "tracking_numbers": [
+        "SPXMY060163357093"
+      ]
+    }
+  ]
+}

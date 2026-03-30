@@ -1,0 +1,2080 @@
+{
+  "env_name": "TH LAmall",
+  "timestamp": "2026-03-30T13:25:14.221754",
+  "total_count": 9955,
+  "pages_fetched": 2,
+  "order_status_summary": {},
+  "orders": [
+    {
+      "order_id": 228507837254436,
+      "order_sn": "260330ERXQB2S4",
+      "buyer_user_id": 300010642,
+      "buyer_username": "fah.nps",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 1026000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "กาต้มน้ำคอห่าน Lahome กาต้มน้ำเทกาแฟ กาต้มน้ำเทไฟฟ้า ระบบควบคุมอุณหภูมิที่แม่นยำ 12 ชม. ฟังก์ชั่นอุ่นอุ่น อเมริกาโน่เย็น",
+          "description": "Variation: White Pour Over [DSH DSH-101W]",
+          "amount": 1,
+          "item_id": 15898190878,
+          "model_id": 222052541166
+        }
+      ],
+      "shipping_name": "น******ช",
+      "shipping_phone": "******22",
+      "shipping_address": "****** อำเภอเมืองสมุทรสงคราม ตำบลลาดใหญ่ อำเภอเมืองสมุทรสงคราม จังหวัดสมุทรสงคราม 75000",
+      "tracking_numbers": [
+        "TH2637712195270"
+      ]
+    },
+    {
+      "order_id": 228503124201600,
+      "order_sn": "260330EMJ8M440",
+      "buyer_user_id": 33638435,
+      "buyer_username": "nickychawon",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 608000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME เครื่องทำโฟมนม ไฟฟ้าดิจิตอล 4-in-1 เครื่องตีฟองนมโฟมนุ่มอุ่นสําหรับกาแฟ Cold / Hot Electric Milk Frother Steamer",
+          "description": "Variation: Smart Touch Frother [NPJ-YL29 NPJ-YL29White]",
+          "amount": 1,
+          "item_id": 40311034306,
+          "model_id": 167253757884
+        }
+      ],
+      "shipping_name": "ล******ว",
+      "shipping_phone": "******99",
+      "shipping_address": "******่งคล้า, อำเภอบุ่งคล้า ตำบลบุ่งคล้า อำเภอบุ่งคล้า จังหวัดบึงกาฬ 38000",
+      "tracking_numbers": [
+        "TH265104182056P"
+      ]
+    },
+    {
+      "order_id": 228484637248847,
+      "order_sn": "260329E3BA33AF",
+      "buyer_user_id": 454239042,
+      "buyer_username": "lifelzsasccc",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 560000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAhome เตาไฟฟ้าเซรามิก เตาอินฟราเรด อินเวอร์เตอร์ อินฟราเรด จานร้อน เตาตั้งโต๊ะ จับเวลา Infrared Stove Energy Saving",
+          "description": "Variation: White 1 Heating Mode [W811 W536]",
+          "amount": 1,
+          "item_id": 20584391776,
+          "model_id": 207046944394
+        }
+      ],
+      "shipping_name": "ศ******ม",
+      "shipping_phone": "******16",
+      "shipping_address": "******, เลขที่ 21, หมู่ที่ 3, ซอย 5, ตำบลนิคมพัฒนา, อำเภอนิคมพัฒนา ตำบลนิคมพัฒนา อำเภอนิคมพัฒนา จังหวัดระยอง 21180",
+      "tracking_numbers": [
+        "TH2616598130809"
+      ]
+    },
+    {
+      "order_id": 228473635280432,
+      "order_sn": "260329DS3DSNHG",
+      "buyer_user_id": 917204883,
+      "buyer_username": "361kti08h_",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 726000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME เตาไฟฟ้าเซรามิก เคาน์เตอร์ เครื่องทำความร้อนอินฟราเรด หม้อหุงในตัว อเนกประสงค์ Electric Ceramic Stove Infrared",
+          "description": "Variation: 3 โหมดทำความร้อน [D390 D480-B]",
+          "amount": 1,
+          "item_id": 20014317242,
+          "model_id": 176242488897
+        }
+      ],
+      "shipping_name": "ส******์",
+      "shipping_phone": "******98",
+      "shipping_address": "******, อำเภอโคกโพโคกโพธิ์ จ.ปัตตานี ตำบลนาประดู่ อำเภอโคกโพธิ์ จังหวัดปัตตานี 94180",
+      "tracking_numbers": [
+        "TH269736337615F"
+      ]
+    },
+    {
+      "order_id": 228466202263758,
+      "order_sn": "260329DJ5W406E",
+      "buyer_user_id": 619175474,
+      "buyer_username": "lhw5pb_xj2",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 1133000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "เครื่องอบแห้งอาหาร LAHOME เนื้อแห้ง ผลไม้ ผัก สมุนไพร และขนมสัตว์เลี้ยง ด้วยเครื่องอบแห้งอาหารแห้งนี้ R2",
+          "description": "Variation: Upgrade 10L w/ TIMER [JZE-R2-White GGJ10]",
+          "amount": 1,
+          "item_id": 21815839329,
+          "model_id": 156546414876
+        }
+      ],
+      "shipping_name": "เ******์",
+      "shipping_phone": "******95",
+      "shipping_address": "****** ตำบลหมากแข้ง ตำบลหมากแข้ง อำเภอเมืองอุดรธานี จังหวัดอุดรธานี 41000",
+      "tracking_numbers": [
+        "TH2606472064093"
+      ]
+    },
+    {
+      "order_id": 228462804274405,
+      "order_sn": "260329DF0MHK75",
+      "buyer_user_id": 171895524,
+      "buyer_username": "lixsamon111",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 1868000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Bread Maker เครื่องทำขนมปังดิจิตอลอัตโนมัติ 19-in-1 330*270*290MM",
+          "description": "Variation: 3lb+scale [Bread Machine BM8902+DZC-10kg]",
+          "amount": 1,
+          "item_id": 20814320764,
+          "model_id": 203861165937
+        }
+      ],
+      "shipping_name": "ล******ล",
+      "shipping_phone": "******65",
+      "shipping_address": "******4, บางนา, เขตบางนา แขวงบางนาใต้ เขตบางนา จังหวัดกรุงเทพมหานคร 10260",
+      "tracking_numbers": [
+        "TH264246844437L"
+      ]
+    },
+    {
+      "order_id": 228460552224985,
+      "order_sn": "260329DCWGTG6S",
+      "buyer_user_id": 9121639,
+      "buyer_username": "mei_thimphakan",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 226000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Lahome กระทะย่างทรงกลมบาร์บีคิวเกาหลีไม่ติด/สแตนเลสกลางแจ้งในร่มย่างบาร์บีคิวกระทะแหนบ Korean BBQ Grill Pan",
+          "description": "Variation: เคลือบสารกันติด [KP KP-NON02]",
+          "amount": 1,
+          "item_id": 14688798405,
+          "model_id": 163438515724
+        }
+      ],
+      "shipping_name": "ท******์",
+      "shipping_phone": "******71",
+      "shipping_address": "******้าน บ้านงามเจริญ19 ตำบลหนองปลาไหล อำเภอบางละมุง จังหวัดชลบุรี 20150",
+      "tracking_numbers": [
+        "TH2620020702561"
+      ]
+    },
+    {
+      "order_id": 228460081239237,
+      "order_sn": "260329DCFFN565",
+      "buyer_user_id": 52483527,
+      "buyer_username": "khajittanop",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 632000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME เตาอินฟราเรดเคาน์เตอร์ไฟฟ้าเซรามิคความร้อนเร็วในตัวหม้อหุงข้าวดิจิตอลสมาร์ทควบคุมหน้าจอสัมผัส Multi-ฟังก์ชั่น Str",
+          "description": "Variation: เตาสี่เหลี่ยม Stove [A305 Pro SQ816.1]",
+          "amount": 1,
+          "item_id": 19614303389,
+          "model_id": 217928229602
+        }
+      ],
+      "shipping_name": "ข******ณ",
+      "shipping_phone": "******32",
+      "shipping_address": "******5 ต.คลองตะเกรา ตำบลคลองตะเกรา อำเภอท่าตะเกียบ จังหวัดฉะเชิงเทรา 24160",
+      "tracking_numbers": [
+        "TH264359032106S"
+      ]
+    },
+    {
+      "order_id": 228457980228410,
+      "order_sn": "260329DAGUYCST",
+      "buyer_user_id": 200480447,
+      "buyer_username": "callme_ninar",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 499000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Lahome อาหาร Dehydrator Maker เครื่อง 10L ผลไม้เครื่องเป่าเนื้อผัก Preserver จับเวลา 5 ถาด GGJ10 Food Dehydrator Maker",
+          "description": "Variation: White [LA-GGJ10 JZE-R2-White]",
+          "amount": 1,
+          "item_id": 18170048757,
+          "model_id": 157267108713
+        }
+      ],
+      "shipping_name": "ส******ิ",
+      "shipping_phone": "******93",
+      "shipping_address": "******ลบ่อผุด อำเภอเกาะสมุย จังหวัดสุราษฎร์ธานี 84320",
+      "tracking_numbers": [
+        "TH2658137975513"
+      ]
+    },
+    {
+      "order_id": 228455308285385,
+      "order_sn": "260329D817T5E9",
+      "buyer_user_id": 129467287,
+      "buyer_username": "jujujang250324",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 53000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Coffee Stirrer 6 Needles Distributor เข็มเกลี่ยกาแฟ เข็มเกลี่ยผงกาแฟ เข็มใส่ผงผ้า ที่ใส่ผงกาแฟ สเตนเลสสตี",
+          "description": "Variation: Coffee Powder Needle [Needles01 Needles01]",
+          "amount": 1,
+          "item_id": 26576074228,
+          "model_id": 218211237882
+        }
+      ],
+      "shipping_name": "ร******​",
+      "shipping_phone": "******55",
+      "shipping_address": "******้มป่อย ตำบลส้มป่อย อำเภอราษีไศล จังหวัดศรีสะเกษ 33160",
+      "tracking_numbers": [
+        "TH268783315209X"
+      ]
+    },
+    {
+      "order_id": 228450670277745,
+      "order_sn": "260329D3Q0ND3H",
+      "buyer_user_id": 33638435,
+      "buyer_username": "nickychawon",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "Express Delivery (SHP Food)",
+      "total_price": 543000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME เครื่องทำโฟมนม ไฟฟ้าดิจิตอล 4-in-1 เครื่องตีฟองนมโฟมนุ่มอุ่นสําหรับกาแฟ Cold / Hot Electric Milk Frother Steamer",
+          "description": "Variation: Smart Touch Frother [NPJ-YL29 NPJ-YL29White]",
+          "amount": 1,
+          "item_id": 40311034306,
+          "model_id": 167253757884
+        }
+      ],
+      "shipping_name": "ธ******น",
+      "shipping_phone": "******98",
+      "shipping_address": "******ยาสุเรนทร์39 แขวงสามวาตะวันตก เขตคลองสามวา จังหวัดกรุงเทพมหานคร 10510",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228432982219398,
+      "order_sn": "260329CK7V0PM6",
+      "buyer_user_id": 26620324,
+      "buyer_username": "geixx_shop",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 793000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Hot/Ice Coffee Drip Maker Espresso Machine เครื่องชงกาแฟดริป เครื่องชงกาแฟแบบฟิลเตอร์ เครื่องชงกาแฟอัตโนมัติ 1.8L",
+          "description": "Variation: Cold/Hot Coffee Make [KFJ530 KFJ530]",
+          "amount": 1,
+          "item_id": 27812894944,
+          "model_id": 195432543825
+        }
+      ],
+      "shipping_name": "G******p",
+      "shipping_phone": "******54",
+      "shipping_address": "******ตำบล อ้อมน้อย ตำบลอ้อมน้อย อำเภอกระทุ่มแบน จังหวัดสมุทรสาคร 74130",
+      "tracking_numbers": [
+        "TH263361068459Z"
+      ]
+    },
+    {
+      "order_id": 228416431294195,
+      "order_sn": "260329C3TKTHQK",
+      "buyer_user_id": 73804492,
+      "buyer_username": "kooncharee21",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 623000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LaHome เครื่องบดกาแฟ เครื่องเทศไฟฟ้า ข้าว ถั่ว สมุนไพร เครื่องปรุงรส เครื่องบดเมล็ดพืช ใบมีดสแตนเลส",
+          "description": "Variation: เวอร์ชั่นอัพเกรด [CG981S CG981S]",
+          "amount": 1,
+          "item_id": 23584810057,
+          "model_id": 79714247341
+        }
+      ],
+      "shipping_name": "ก******ี",
+      "shipping_phone": "******49",
+      "shipping_address": "******ตำบลในเมือง อำเภอเมืองนครราชสีมา จังหวัดนครราชสีมา 30000",
+      "tracking_numbers": [
+        "TH263782537472O"
+      ]
+    },
+    {
+      "order_id": 228410212271575,
+      "order_sn": "260328BX18W1EQ",
+      "buyer_user_id": 90043890,
+      "buyer_username": "kintkintt",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 614000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LaHome เครื่องบดกาแฟ เครื่องเทศไฟฟ้า ข้าว ถั่ว สมุนไพร เครื่องปรุงรส เครื่องบดเมล็ดพืช ใบมีดสแตนเลส",
+          "description": "Variation: Grinder+Clean tools [CG981S CG981S+Brush+Pump]",
+          "amount": 1,
+          "item_id": 23584810057,
+          "model_id": 195898848008
+        }
+      ],
+      "shipping_name": "ว******์",
+      "shipping_phone": "******22",
+      "shipping_address": "******ประดิษฐ์  ต.ช่องนนทรี แขวงช่องนนทรี เขตยานนาวา จังหวัดกรุงเทพมหานคร 10120",
+      "tracking_numbers": [
+        "TH262058334776R"
+      ]
+    },
+    {
+      "order_id": 228410107213780,
+      "order_sn": "260328BWX4PWXM",
+      "buyer_user_id": 384648062,
+      "buyer_username": "namkangmt",
+      "shop_id": null,
+      "status": "To Ship",
+      "fulfilment_channel": "Express Delivery (SHP Food)",
+      "total_price": 98000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME ไม้มะเกลือ Rolling Pin โรลลิ่งพิน ไม้กลม หัวกลม แป้งไม่ติด , ลูกกลิ้งแป้งไม้ – อุปกรณ์เบเกอรี่ (แบบตรง) GMZ30",
+          "description": "[GMZ30 GMZ30]",
+          "amount": 1,
+          "item_id": 21115836303,
+          "model_id": 180876421689
+        }
+      ],
+      "shipping_name": "น******)",
+      "shipping_phone": "******32",
+      "shipping_address": "******สตรีวิทย์ 2 แขวงลาดพร้าว เขตลาดพร้าว จังหวัดกรุงเทพมหานคร 10230",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228399454240069,
+      "order_sn": "260328BM0N7YA5",
+      "buyer_user_id": 1157972098,
+      "buyer_username": "_qc40b7mzr",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 1663000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "กาต้มน้ำคอห่าน Lahome กาต้มน้ำเทกาแฟ กาต้มน้ำเทไฟฟ้า ระบบควบคุมอุณหภูมิที่แม่นยำ 12 ชม. ฟังก์ชั่นอุ่นอุ่น อเมริกาโน่เย็น",
+          "description": "Variation: White +Milk Frother [DSH YL29+DSH-101W]",
+          "amount": 1,
+          "item_id": 15898190878,
+          "model_id": 129229807316
+        }
+      ],
+      "shipping_name": "เ***ง",
+      "shipping_phone": "******91",
+      "shipping_address": "******มู่บ้าน ถา ม.เหล่านาดี ซอย ช.อภิชนอุทิศ ตำบลบ้านเป็ด อำเภอเมืองขอนแก่น จังหวัดขอนแก่น 40000",
+      "tracking_numbers": [
+        "TH264242056993R"
+      ]
+    },
+    {
+      "order_id": 228376294269237,
+      "order_sn": "260328AXEE5R9N",
+      "buyer_user_id": 645347010,
+      "buyer_username": "ucy5uighy8",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 481000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME เครื่องต้มไข่ เครื่องทำอาหารเช้าอเนกประสงค์สำหรับเด็ก Egg Boiler",
+          "description": "Variation: LAHOME หม้อต้มไข่ [ZDQ-A14R1 ZDQ-B14R1]",
+          "amount": 1,
+          "item_id": 21915751307,
+          "model_id": 200872115297
+        }
+      ],
+      "shipping_name": "ส******ี",
+      "shipping_phone": "******44",
+      "shipping_address": "******3/2 หมู่7 ตำบลทุ่งหลวง อำเภอปากท่อ จังหวัดราชบุรี 70140",
+      "tracking_numbers": [
+        "TH2680815751788"
+      ]
+    },
+    {
+      "order_id": 228375999295335,
+      "order_sn": "260328AX5MUUU7",
+      "buyer_user_id": 5703527042,
+      "buyer_username": "eqyokj094k",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 340000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME เครื่องทำโฟมนม ไฟฟ้าดิจิตอล 4-in-1 เครื่องตีฟองนมโฟมนุ่มอุ่นสําหรับกาแฟ Cold / Hot Electric Milk Frother Steamer",
+          "description": "Variation: Smart Touch Frother [NPJ-YL29 NPJ-YL29White]",
+          "amount": 1,
+          "item_id": 40311034306,
+          "model_id": 167253757884
+        }
+      ],
+      "shipping_name": "ท******์",
+      "shipping_phone": "******86",
+      "shipping_address": "******สัง อำเภอกระสัง จังหวัดบุรีรัมย์ 31160",
+      "tracking_numbers": [
+        "TH2615614331801"
+      ]
+    },
+    {
+      "order_id": 228368619239591,
+      "order_sn": "260328AQ9PPE57",
+      "buyer_user_id": 214677003,
+      "buyer_username": "chonphas",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 1026000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "กาต้มน้ำคอห่าน Lahome กาต้มน้ำเทกาแฟ กาต้มน้ำเทไฟฟ้า ระบบควบคุมอุณหภูมิที่แม่นยำ 12 ชม. ฟังก์ชั่นอุ่นอุ่น อเมริกาโน่เย็น",
+          "description": "Variation: White Pour Over [DSH DSH-101W]",
+          "amount": 1,
+          "item_id": 15898190878,
+          "model_id": 222052541166
+        }
+      ],
+      "shipping_name": "ช******ง",
+      "shipping_phone": "******61",
+      "shipping_address": "******.แกลง, อำเภอเมืองระยอง 21160 ซอยเพ-แกลง-กร่ำ4 หรือ ซอยสเต็ก&ไวน์เนินพยอม ตำบลแกลง อำเภอเมืองระยอง จังหวัดระยอง 21160",
+      "tracking_numbers": [
+        "TH265288302429W"
+      ]
+    },
+    {
+      "order_id": 228360552219211,
+      "order_sn": "260328AFS9CGJB",
+      "buyer_user_id": 214673183,
+      "buyer_username": "firsttirawat",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "Express Delivery (SHP Food)",
+      "total_price": 480000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME เครื่องทำโฟมนม ไฟฟ้าดิจิตอล 4-in-1 เครื่องตีฟองนมโฟมนุ่มอุ่นสําหรับกาแฟ Cold / Hot Electric Milk Frother Steamer",
+          "description": "Variation: Cold/Hot Frother [NPJ-YL29 NPJ-YL29Black]",
+          "amount": 1,
+          "item_id": 40311034306,
+          "model_id": 355590365499
+        }
+      ],
+      "shipping_name": "ร******า",
+      "shipping_phone": "******53",
+      "shipping_address": "****** คลองจั่น, เขตบางกะปิ แขวงคลองจั่น เขตบางกะปิ จังหวัดกรุงเทพมหานคร 10240",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228359084201452,
+      "order_sn": "260328AEDHC5FC",
+      "buyer_user_id": 151446847,
+      "buyer_username": "aunman.soap18",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 1796000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "【ปลั๊กไทย+ปุ่มอังกฤษ】LAHOME Bear เครื่องนวดแป้ง 5L เครื่องผสมแป้ง เครื่องผสมแป้งแบบไฟฟ้า เครื่องผสมแป้ง นวดขนมปัง Dough",
+          "description": "Variation: 5L（Thai Version） [HMJ-A50B1 HMJ-A50B1]",
+          "amount": 1,
+          "item_id": 21314315948,
+          "model_id": 106925434174
+        }
+      ],
+      "shipping_name": "จ******)",
+      "shipping_phone": "******11",
+      "shipping_address": "******ำบลหาดท่าเสา อำเภอเมืองชัยนาท จังหวัดชัยนาท 17000",
+      "tracking_numbers": [
+        "TH2657595705393"
+      ]
+    },
+    {
+      "order_id": 228324241212145,
+      "order_sn": "2603279DY4GGQH",
+      "buyer_user_id": 585688806,
+      "buyer_username": "make.abakee",
+      "shop_id": null,
+      "status": "Shipped",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 1952000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "【ปลั๊กไทย+ปุ่มอังกฤษ】LAHOME Bear เครื่องนวดแป้ง 5L เครื่องผสมแป้ง เครื่องผสมแป้งแบบไฟฟ้า เครื่องผสมแป้ง นวดขนมปัง Dough",
+          "description": "Variation: 5L（Thai Version） [HMJ-A50B1 HMJ-A50B1]",
+          "amount": 1,
+          "item_id": 21314315948,
+          "model_id": 106925434174
+        }
+      ],
+      "shipping_name": "ม******ง",
+      "shipping_phone": "******82",
+      "shipping_address": "******เมือง เชียงใหม่ 50100 ตำบลป่าแดด อำเภอเมืองเชียงใหม่ จังหวัดเชียงใหม่ 50100",
+      "tracking_numbers": [
+        "TH2625298755628"
+      ]
+    },
+    {
+      "order_id": 228303220285477,
+      "order_sn": "2603278TCNCR15",
+      "buyer_user_id": 50013973,
+      "buyer_username": "sukijsuksamran",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 2343000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Coffee Stirrer 6 Needles Distributor เข็มเกลี่ยกาแฟ เข็มเกลี่ยผงกาแฟ เข็มใส่ผงผ้า ที่ใส่ผงกาแฟ สเตนเลสสตี",
+          "description": "Variation: Coffee Powder Needle [Needles01 Needles01]",
+          "amount": 1,
+          "item_id": 26576074228,
+          "model_id": 218211237882
+        },
+        {
+          "name": "LAHOME เครื่องชงกาแฟสด 20Bar เครื่องชงกาแฟเอสเพรสโซ่ เครื่องชงกาแฟอิตาลี เครื่องชงกาแฟสกัดเย็น Cold / Hot Coffee Maker",
+          "description": "Variation: 2in1 เครื่องชงกาแฟ-B [KF5082-1 5082-B+CF-51B]",
+          "amount": 1,
+          "item_id": 26810180677,
+          "model_id": 226734122894
+        }
+      ],
+      "shipping_name": "ส******ญ",
+      "shipping_phone": "******75",
+      "shipping_address": "******นนเพชรบุรี แขวง ถนนเพชรบุรี เขต ราชเทวี แขวงถนนเพชรบุรี เขตราชเทวี จังหวัดกรุงเทพมหานคร 10400",
+      "tracking_numbers": [
+        "TH260954867709K"
+      ]
+    },
+    {
+      "order_id": 228291583298398,
+      "order_sn": "2603278FHUG2TX",
+      "buyer_user_id": 1047669541,
+      "buyer_username": "rawipa633",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 4015000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME เครื่องบดกาแฟ เครื่องบดกาแฟ Commercial Coffee Grinder 100 Grinding Flat Burr Stainless Steel เครื่องบดกาแฟอัตโนมั",
+          "description": "Variation: Grinder+Cleaning Set [CG308SUS CG308-Combo+Brush+Pump]",
+          "amount": 1,
+          "item_id": 42718344583,
+          "model_id": 282206780272
+        }
+      ],
+      "shipping_name": "ร***า",
+      "shipping_phone": "******58",
+      "shipping_address": "******านร่มไทย, ตำบล ท่าตอน, อำเภอแม่อาย ตำบลท่าตอน อำเภอแม่อาย จังหวัดเชียงใหม่ 50280",
+      "tracking_numbers": [
+        "TH260815768320J"
+      ]
+    },
+    {
+      "order_id": 228285888243910,
+      "order_sn": "2603278A848T66",
+      "buyer_user_id": 442806721,
+      "buyer_username": "woman063891",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 480000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME เครื่องทำโฟมนม ไฟฟ้าดิจิตอล 4-in-1 เครื่องตีฟองนมโฟมนุ่มอุ่นสําหรับกาแฟ Cold / Hot Electric Milk Frother Steamer",
+          "description": "Variation: Smart Touch Frother [NPJ-YL29 NPJ-YL29White]",
+          "amount": 1,
+          "item_id": 40311034306,
+          "model_id": 167253757884
+        }
+      ],
+      "shipping_name": "ม****า",
+      "shipping_phone": "******69",
+      "shipping_address": "******บางเดื่อ อำเภอเมืองปทุมธานี จังหวัดปทุมธานี 12000",
+      "tracking_numbers": [
+        "TH266537164165Z"
+      ]
+    },
+    {
+      "order_id": 228280456221054,
+      "order_sn": "2603278567VMBX",
+      "buyer_user_id": 99830054,
+      "buyer_username": "krunalshah",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "Express Delivery (SHP Food)",
+      "total_price": 1058000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME หม้ออัดแรงดันไฟฟ้า 2.5 ลิตร Black หม้อไฟฟ้า อเนกประสงค์ ไม่ติดหม้อ Smart Electric Pressure Cooker Safety Cooking",
+          "description": "Variation: เตาหุงต้มWhite-2.5L [EPC3325-Black EPC3325-W]",
+          "amount": 1,
+          "item_id": 27588294046,
+          "model_id": 280606588818
+        }
+      ],
+      "shipping_name": "K******h",
+      "shipping_phone": "******00",
+      "shipping_address": "******ding , room 306 แขวงสี่พระยา เขตบางรัก จังหวัดกรุงเทพมหานคร 10500",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228276818246182,
+      "order_sn": "26032781STEEH6",
+      "buyer_user_id": 756879512,
+      "buyer_username": "faharanya253",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "",
+      "total_price": 460000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "เครื่องอบแห้งอาหาร LAHOME เนื้อแห้ง ผลไม้ ผัก สมุนไพร และขนมสัตว์เลี้ยง ด้วยเครื่องอบแห้งอาหารแห้งนี้ R2",
+          "description": "Variation: White-สีขาว [JZE-R2-White JZE-R2-White]",
+          "amount": 1,
+          "item_id": 21815839329,
+          "model_id": 87930986968
+        }
+      ],
+      "shipping_name": "อ******น",
+      "shipping_phone": "******88",
+      "shipping_address": "******หมู่ที่ 1 ตำบลตาสิทธิ์ อำเภอปลวกแดง จังหวัดระยอง 21140",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228247115292621,
+      "order_sn": "260327764KG7XD",
+      "buyer_user_id": 68523062,
+      "buyer_username": "janphawinee",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 1634000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "【ปลั๊กไทย+ปุ่มอังกฤษ】LAHOME Bear เครื่องนวดแป้ง 5L เครื่องผสมแป้ง เครื่องผสมแป้งแบบไฟฟ้า เครื่องผสมแป้ง นวดขนมปัง Dough",
+          "description": "Variation: 5L（Thai Version） [HMJ-A50B1 HMJ-A50B1]",
+          "amount": 1,
+          "item_id": 21314315948,
+          "model_id": 106925434174
+        }
+      ],
+      "shipping_name": "น******ี",
+      "shipping_phone": "******22",
+      "shipping_address": "******มบูรณ์) ตำบลบ้านโป่ง อำเภอบ้านโป่ง จังหวัดราชบุรี 70110",
+      "tracking_numbers": [
+        "TH2654374667494"
+      ]
+    },
+    {
+      "order_id": 228244233248361,
+      "order_sn": "26032773EPY7K9",
+      "buyer_user_id": 68751389,
+      "buyer_username": "thanyaporn.rong",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "Express Delivery (SHP Food)",
+      "total_price": 589000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LaHome เครื่องบดกาแฟ เครื่องเทศไฟฟ้า ข้าว ถั่ว สมุนไพร เครื่องปรุงรส เครื่องบดเมล็ดพืช ใบมีดสแตนเลส",
+          "description": "Variation: เวอร์ชั่นอัพเกรด [CG981S CG981S]",
+          "amount": 1,
+          "item_id": 23584810057,
+          "model_id": 79714247341
+        }
+      ],
+      "shipping_name": "น******ฐ",
+      "shipping_phone": "******95",
+      "shipping_address": "******วิถี 15 ถนนราชวิถี แขวงทุ่งพญาไท เขตราชเทวี จังหวัดกรุงเทพมหานคร 10400",
+      "tracking_numbers": [
+        "3018366065981440992"
+      ]
+    },
+    {
+      "order_id": 228239589239861,
+      "order_sn": "2603266Y4A3B1N",
+      "buyer_user_id": 150968565,
+      "buyer_username": "nichakorn78",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 561000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME เครื่องต้มไข่ เครื่องทำอาหารเช้าอเนกประสงค์สำหรับเด็ก Egg Boiler",
+          "description": "Variation: เครื่องต้มไข่-อัพเกร [ZDQ-A14R1 ZDQ126.1]",
+          "amount": 1,
+          "item_id": 21915751307,
+          "model_id": 234167772595
+        }
+      ],
+      "shipping_name": "N******n",
+      "shipping_phone": "******56",
+      "shipping_address": "****** Nakorn in rd, mahasawad, ตำบลบางขุนกอง อำเภอบางกรวย จังหวัดนนทบุรี 11130",
+      "tracking_numbers": [
+        "TH2694476472847"
+      ]
+    },
+    {
+      "order_id": 228232140246665,
+      "order_sn": "2603266R6A63M9",
+      "buyer_user_id": 964228942,
+      "buyer_username": "coollylook.store",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 236000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Lahome กระทะย่างทรงกลมบาร์บีคิวเกาหลีไม่ติด/สแตนเลสกลางแจ้งในร่มย่างบาร์บีคิวกระทะแหนบ Korean BBQ Grill Pan",
+          "description": "Variation: เคลือบสารกันติด [KP KP-NON02]",
+          "amount": 1,
+          "item_id": 14688798405,
+          "model_id": 163438515724
+        }
+      ],
+      "shipping_name": "ป*****ณ",
+      "shipping_phone": "******42",
+      "shipping_address": "******ค์วาน 47, แยก 15, แขวงทุ่งสองห้อง, เขตหลักสี่ (ณภัทรา ซอยชินเขต 2 แยก 15) แขวงทุ่งสองห้อง เขตหลักสี่ จังหวัดกรุงเทพมหานคร 10210",
+      "tracking_numbers": [
+        "TH260992006711L"
+      ]
+    },
+    {
+      "order_id": 228227345201905,
+      "order_sn": "2603266KQD8XQH",
+      "buyer_user_id": 99830054,
+      "buyer_username": "krunalshah",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "Express Delivery (SHP Food)",
+      "total_price": 1113000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME หม้ออัดแรงดันไฟฟ้า 2.5 ลิตร Black หม้อไฟฟ้า อเนกประสงค์ ไม่ติดหม้อ Smart Electric Pressure Cooker Safety Cooking",
+          "description": "Variation: เตาหุงต้มBlack-2.5L [EPC3325-Black EPC3325-B]",
+          "amount": 1,
+          "item_id": 27588294046,
+          "model_id": 280606588817
+        }
+      ],
+      "shipping_name": "K******h",
+      "shipping_phone": "******00",
+      "shipping_address": "******ding , room 306 แขวงสี่พระยา เขตบางรัก จังหวัดกรุงเทพมหานคร 10500",
+      "tracking_numbers": [
+        "3018365910611456992"
+      ]
+    },
+    {
+      "order_id": 228221804297939,
+      "order_sn": "2603266EJ91YPK",
+      "buyer_user_id": 515102454,
+      "buyer_username": "v_van982",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 961000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Lahome อาหาร Dehydrator Maker เครื่อง 10L ผลไม้เครื่องเป่าเนื้อผัก Preserver จับเวลา 5 ถาด GGJ10 Food Dehydrator Maker",
+          "description": "Variation: Upgrade 10L w/ TIMER [LA-GGJ10 LA-GGJ10]",
+          "amount": 1,
+          "item_id": 18170048757,
+          "model_id": 107872174115
+        }
+      ],
+      "shipping_name": "ศ******ล",
+      "shipping_phone": "******10",
+      "shipping_address": "******แม่รำพึง ตำบลแม่รำพึง อำเภอบางสะพาน จังหวัดประจวบคีรีขันธ์ 77140",
+      "tracking_numbers": [
+        "TH2605553529939"
+      ]
+    },
+    {
+      "order_id": 228211396253141,
+      "order_sn": "26032664V35NEN",
+      "buyer_user_id": 53384380,
+      "buyer_username": "ladysasi",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "Express Delivery (SHP Food)",
+      "total_price": 397000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "เครื่องอบแห้งอาหาร LAHOME เนื้อแห้ง ผลไม้ ผัก สมุนไพร และขนมสัตว์เลี้ยง ด้วยเครื่องอบแห้งอาหารแห้งนี้ R2",
+          "description": "Variation: White-สีขาว [JZE-R2-White JZE-R2-White]",
+          "amount": 1,
+          "item_id": 21815839329,
+          "model_id": 87930986968
+        }
+      ],
+      "shipping_name": "ศ******า",
+      "shipping_phone": "******56",
+      "shipping_address": "******รพล ซอย 2 ถนนเพิ่มสิน แขวงคลองถนน เขตสายไหม จังหวัดกรุงเทพมหานคร 10220",
+      "tracking_numbers": [
+        "3018100834629120992"
+      ]
+    },
+    {
+      "order_id": 228186719204754,
+      "order_sn": "2603265DVN9WCJ",
+      "buyer_user_id": 214673183,
+      "buyer_username": "firsttirawat",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 480000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME เครื่องทำโฟมนม ไฟฟ้าดิจิตอล 4-in-1 เครื่องตีฟองนมโฟมนุ่มอุ่นสําหรับกาแฟ Cold / Hot Electric Milk Frother Steamer",
+          "description": "Variation: Cold/Hot Frother [NPJ-YL29 NPJ-YL29Black]",
+          "amount": 1,
+          "item_id": 40311034306,
+          "model_id": 355590365499
+        }
+      ],
+      "shipping_name": "ร******า",
+      "shipping_phone": "******53",
+      "shipping_address": "****** คลองจั่น, เขตบางกะปิ แขวงคลองจั่น เขตบางกะปิ จังหวัดกรุงเทพมหานคร 10240",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228182159229388,
+      "order_sn": "26032659MRJGEC",
+      "buyer_user_id": 123679576,
+      "buyer_username": "irin.42896395",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "Express Delivery (SHP Food)",
+      "total_price": 480000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME เครื่องทำโฟมนม ไฟฟ้าดิจิตอล 4-in-1 เครื่องตีฟองนมโฟมนุ่มอุ่นสําหรับกาแฟ Cold / Hot Electric Milk Frother Steamer",
+          "description": "Variation: Smart Touch Frother [NPJ-YL29 NPJ-YL29White]",
+          "amount": 1,
+          "item_id": 40311034306,
+          "model_id": 167253757884
+        }
+      ],
+      "shipping_name": "ไ******)",
+      "shipping_phone": "******61",
+      "shipping_address": "******ทราย, อำเภอเมืองนนทบุรี ตำบลท่าทราย อำเภอเมืองนนทบุรี จังหวัดนนทบุรี 11000",
+      "tracking_numbers": [
+        "3016949866018304992"
+      ]
+    },
+    {
+      "order_id": 228170117261053,
+      "order_sn": "2603264XDVESQW",
+      "buyer_user_id": 150208344,
+      "buyer_username": "grimhiro",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 1602000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "【ปลั๊กไทย+ปุ่มอังกฤษ】LAHOME Bear เครื่องนวดแป้ง 5L เครื่องผสมแป้ง เครื่องผสมแป้งแบบไฟฟ้า เครื่องผสมแป้ง นวดขนมปัง Dough",
+          "description": "Variation: 5L（Thai Version） [HMJ-A50B1 HMJ-A50B1]",
+          "amount": 1,
+          "item_id": 21314315948,
+          "model_id": 106925434174
+        }
+      ],
+      "shipping_name": "เ******ย",
+      "shipping_phone": "******92",
+      "shipping_address": "****** 17 ตำบลกาบเชิง ถนนสุรินทร์-ช่องจอม ตำบลกาบเชิง อำเภอกาบเชิง จังหวัดสุรินทร์ 32210",
+      "tracking_numbers": [
+        "TH264826878012G"
+      ]
+    },
+    {
+      "order_id": 228170068226260,
+      "order_sn": "2603264XCDPC6M",
+      "buyer_user_id": 150208344,
+      "buyer_username": "grimhiro",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 1684000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "【ปลั๊กไทย+ปุ่มอังกฤษ】LAHOME Bear เครื่องนวดแป้ง 5L เครื่องผสมแป้ง เครื่องผสมแป้งแบบไฟฟ้า เครื่องผสมแป้ง นวดขนมปัง Dough",
+          "description": "Variation: 5L（Thai Version） [HMJ-A50B1 HMJ-A50B1]",
+          "amount": 1,
+          "item_id": 21314315948,
+          "model_id": 106925434174
+        }
+      ],
+      "shipping_name": "เ******ย",
+      "shipping_phone": "******92",
+      "shipping_address": "****** 17 ตำบลกาบเชิง ถนนสุรินทร์-ช่องจอม ตำบลกาบเชิง อำเภอกาบเชิง จังหวัดสุรินทร์ 32210",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228158477287539,
+      "order_sn": "2603264KJYQ03K",
+      "buyer_user_id": 126020663,
+      "buyer_username": "ketsagda",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 641000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAhome เตาไฟฟ้าเซรามิก เตาอินฟราเรด อินเวอร์เตอร์ อินฟราเรด จานร้อน เตาตั้งโต๊ะ จับเวลา Infrared Stove Energy Saving",
+          "description": "Variation: Black 3 Heating Mode [W811 D480-B]",
+          "amount": 1,
+          "item_id": 20584391776,
+          "model_id": 207046944393
+        }
+      ],
+      "shipping_name": "เ******์",
+      "shipping_phone": "******90",
+      "shipping_address": "******09 หมู่ 1 ต.ริมเหนือ ตำบลริมเหนือ อำเภอแม่ริม จังหวัดเชียงใหม่ 50180",
+      "tracking_numbers": [
+        "TH2664889468678"
+      ]
+    },
+    {
+      "order_id": 228157173236251,
+      "order_sn": "2603264JC42GGU",
+      "buyer_user_id": 314936634,
+      "buyer_username": "ummuzayn8",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 769000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "กาต้มน้ำคอห่าน Lahome กาต้มน้ำเทกาแฟ กาต้มน้ำเทไฟฟ้า ระบบควบคุมอุณหภูมิที่แม่นยำ 12 ชม. ฟังก์ชั่นอุ่นอุ่น อเมริกาโน่เย็น",
+          "description": "Variation: Black Pour Over [DSH DSH-301B]",
+          "amount": 1,
+          "item_id": 15898190878,
+          "model_id": 222052541167
+        }
+      ],
+      "shipping_name": "ม******น",
+      "shipping_phone": "******44",
+      "shipping_address": "******ตำบลรูสะมิแล อำเภอเมืองปัตตานี จังหวัดปัตตานี 94000",
+      "tracking_numbers": [
+        "TH2664979034132"
+      ]
+    },
+    {
+      "order_id": 228154827252136,
+      "order_sn": "2603264G66RRD8",
+      "buyer_user_id": 53325907,
+      "buyer_username": "goodocafe",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 3674000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME เครื่องบดกาแฟ เครื่องบดกาแฟ Commercial Coffee Grinder 100 Grinding Flat Burr Stainless Steel เครื่องบดกาแฟอัตโนมั",
+          "description": "Variation: เครื่องบดกาแฟ-SUS [CG308SUS CG308-Combo]",
+          "amount": 1,
+          "item_id": 42718344583,
+          "model_id": 266508106549
+        }
+      ],
+      "shipping_name": "3******์",
+      "shipping_phone": "******80",
+      "shipping_address": "******คอนโด 333 Riverside ตึก B) แขวงบางซื่อ เขตบางซื่อ จังหวัดกรุงเทพมหานคร 10800",
+      "tracking_numbers": [
+        "TH2659617995547"
+      ]
+    },
+    {
+      "order_id": 228151651293043,
+      "order_sn": "2603254D7HX5UK",
+      "buyer_user_id": 390119539,
+      "buyer_username": "123wannarat",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "",
+      "total_price": 1610000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "【ปลั๊กไทย+ปุ่มอังกฤษ】LAHOME Bear เครื่องนวดแป้ง 5L เครื่องผสมแป้ง เครื่องผสมแป้งแบบไฟฟ้า เครื่องผสมแป้ง นวดขนมปัง Dough",
+          "description": "Variation: 3.5L  (Thai Version) [HMJ-A50B1 A35M1.1]",
+          "amount": 1,
+          "item_id": 21314315948,
+          "model_id": 270442458483
+        }
+      ],
+      "shipping_name": "ว******อ",
+      "shipping_phone": "******19",
+      "shipping_address": "******ง จ.แพร่ ตำบลแม่คำมี อำเภอเมืองแพร่ จังหวัดแพร่ 54000",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228144799255621,
+      "order_sn": "26032546UBAK25",
+      "buyer_user_id": 1183146095,
+      "buyer_username": "ironman439",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 760000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME เตาไฟฟ้าเซรามิก เคาน์เตอร์ เครื่องทำความร้อนอินฟราเรด หม้อหุงในตัว อเนกประสงค์ Electric Ceramic Stove Infrared",
+          "description": "Variation: 3 โหมดทำความร้อน+NON [D390 D480B+NON02]",
+          "amount": 1,
+          "item_id": 20014317242,
+          "model_id": 210804601174
+        }
+      ],
+      "shipping_name": "น******ม",
+      "shipping_phone": "******03",
+      "shipping_address": "******ทางรถไฟตลิ่งชัน,แขวงบางขุนศรี,เขตบางกอกน้อย แขวงบางขุนศรี เขตบางกอกน้อย จังหวัดกรุงเทพมหานคร 10700",
+      "tracking_numbers": [
+        "TH2607671029284"
+      ]
+    },
+    {
+      "order_id": 228127469274191,
+      "order_sn": "2603253PPV5H2F",
+      "buyer_user_id": 180951070,
+      "buyer_username": "n_aunnoy17",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "Express Delivery (SHP Food)",
+      "total_price": 518000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LaHome เครื่องบดกาแฟ เครื่องเทศไฟฟ้า ข้าว ถั่ว สมุนไพร เครื่องปรุงรส เครื่องบดเมล็ดพืช ใบมีดสแตนเลส",
+          "description": "Variation: Grinder+Clean tools [CG981S CG981S+Brush+Pump]",
+          "amount": 1,
+          "item_id": 23584810057,
+          "model_id": 195898848008
+        }
+      ],
+      "shipping_name": "ป******ำ",
+      "shipping_phone": "******83",
+      "shipping_address": "******หม แขวงสายไหม เขต สายไหม แขวงสายไหม เขตสายไหม จังหวัดกรุงเทพมหานคร 10220",
+      "tracking_numbers": [
+        "3016950745495553992"
+      ]
+    },
+    {
+      "order_id": 228117610294936,
+      "order_sn": "2603253DH1WBMR",
+      "buyer_user_id": 407640981,
+      "buyer_username": "mhhbp6ec8l",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 159000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME เครื่องตีฟองนม เครื่องตีฟองนมแบบมือถือ ชาร์จ USB ได้ ความเร็ว 3 ระดับ",
+          "description": "Variation: 2in1 Milk Frotther [EW-071-White J3-White.1]",
+          "amount": 1,
+          "item_id": 23640234598,
+          "model_id": 235129570448
+        }
+      ],
+      "shipping_name": "น******ก",
+      "shipping_phone": "******89",
+      "shipping_address": "******จ.เชียงราย 57000 บ้านสีเขียว รั้วสีเขียว ตำบลรอบเวียง อำเภอเมืองเชียงราย จังหวัดเชียงราย 57000",
+      "tracking_numbers": [
+        "TH264617261479O"
+      ]
+    },
+    {
+      "order_id": 228113787259665,
+      "order_sn": "26032539Y3YJRH",
+      "buyer_user_id": 1065257504,
+      "buyer_username": "sandy528",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 876000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME 3-in-1 Drip Coffee Maker เครื่องชงกาแฟดริป เครื่องชงกาแฟแบบฟิลเตอร์ 0.7L Tea Maker Pour Over Coffee Household",
+          "description": "Variation: 3N1 Coffee&Tea Maker [KJF516W KFJ516W]",
+          "amount": 1,
+          "item_id": 42015611946,
+          "model_id": 296285590875
+        }
+      ],
+      "shipping_name": "J******t",
+      "shipping_phone": "******66",
+      "shipping_address": "****** 1 ตำบลทับใต้ อำเภอหัวหิน จังหวัดประจวบคีรีขันธ์ 77110",
+      "tracking_numbers": [
+        "TH2662143665523"
+      ]
+    },
+    {
+      "order_id": 228110462234209,
+      "order_sn": "26032536V0YUK1",
+      "buyer_user_id": 1615431627,
+      "buyer_username": "7numo8_rfx",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 1684000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "【ปลั๊กไทย+ปุ่มอังกฤษ】LAHOME Bear เครื่องนวดแป้ง 5L เครื่องผสมแป้ง เครื่องผสมแป้งแบบไฟฟ้า เครื่องผสมแป้ง นวดขนมปัง Dough",
+          "description": "Variation: 5L（Thai Version） [HMJ-A50B1 HMJ-A50B1]",
+          "amount": 1,
+          "item_id": 21314315948,
+          "model_id": 106925434174
+        }
+      ],
+      "shipping_name": "ร******)",
+      "shipping_phone": "******76",
+      "shipping_address": "******แขวงยานนาวา แขวงยานนาวา เขตสาทร จังหวัดกรุงเทพมหานคร 10120",
+      "tracking_numbers": [
+        "TH266827893686D"
+      ]
+    },
+    {
+      "order_id": 228109879205207,
+      "order_sn": "26032536AMY7AQ",
+      "buyer_user_id": 55345935,
+      "buyer_username": "byeurngchand",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "",
+      "total_price": 416000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "เครื่องอบแห้งอาหาร LAHOME เนื้อแห้ง ผลไม้ ผัก สมุนไพร และขนมสัตว์เลี้ยง ด้วยเครื่องอบแห้งอาหารแห้งนี้ R2",
+          "description": "Variation: White-สีขาว [JZE-R2-White JZE-R2-White]",
+          "amount": 1,
+          "item_id": 21815839329,
+          "model_id": 87930986968
+        }
+      ],
+      "shipping_name": "จ******ง",
+      "shipping_phone": "******96",
+      "shipping_address": "******ต.เมืองชุม ตำบลเมืองชุม อำเภอเวียงชัย จังหวัดเชียงราย 57210",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228109161245674,
+      "order_sn": "26032535N88TYA",
+      "buyer_user_id": 10929949,
+      "buyer_username": "cherryampapornkunkabcoffee",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "",
+      "total_price": 3514000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME เครื่องบดกาแฟ เครื่องบดกาแฟ Commercial Coffee Grinder 100 Grinding Flat Burr Stainless Steel เครื่องบดกาแฟอัตโนมั",
+          "description": "Variation: เครื่องบดกาแฟ-SUS [CG308SUS CG308-Combo]",
+          "amount": 1,
+          "item_id": 42718344583,
+          "model_id": 266508106549
+        }
+      ],
+      "shipping_name": "เ****่",
+      "shipping_phone": "******91",
+      "shipping_address": "******บ้านตึก2ชั้นตรงข้ามร้านขายข้าวเหนียว) ตำบลมีชัย อำเภอเมืองหนองคาย จังหวัดหนองคาย 43000",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228101416213341,
+      "order_sn": "2603252XEE16TW",
+      "buyer_user_id": 250223643,
+      "buyer_username": "warradate16",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 2252000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "【ปลั๊กไทย+ปุ่มอังกฤษ】LAHOME Bear เครื่องนวดแป้ง 5L เครื่องผสมแป้ง เครื่องผสมแป้งแบบไฟฟ้า เครื่องผสมแป้ง นวดขนมปัง Dough",
+          "description": "Variation: 7L  (Thai Version) [HMJ-A50B1 A70C1.1]",
+          "amount": 1,
+          "item_id": 21314315948,
+          "model_id": 270442458484
+        }
+      ],
+      "shipping_name": "น******ร",
+      "shipping_phone": "******18",
+      "shipping_address": "****** ถนนนวมินทร์ แยก17 แขวงนวลจันทร์ เขตบึงกุ่ม จังหวัดกรุงเทพมหานคร 10230",
+      "tracking_numbers": [
+        "TH261264118508Q"
+      ]
+    },
+    {
+      "order_id": 228097250284382,
+      "order_sn": "2603252TJ934TX",
+      "buyer_user_id": 208560326,
+      "buyer_username": "nureeyahsalaemae",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 1572000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "【ปลั๊กไทย+ปุ่มอังกฤษ】LAHOME Bear เครื่องนวดแป้ง 5L เครื่องผสมแป้ง เครื่องผสมแป้งแบบไฟฟ้า เครื่องผสมแป้ง นวดขนมปัง Dough",
+          "description": "Variation: 5L（Thai Version） [HMJ-A50B1 HMJ-A50B1]",
+          "amount": 1,
+          "item_id": 21314315948,
+          "model_id": 106925434174
+        }
+      ],
+      "shipping_name": "น******ม",
+      "shipping_phone": "******82",
+      "shipping_address": "******ยือนัง, ตำบลกาบัง, อำเภอกาบัง ตำบลกาบัง อำเภอกาบัง จังหวัดยะลา 95120",
+      "tracking_numbers": [
+        "TH261520109923S"
+      ]
+    },
+    {
+      "order_id": 228096814226974,
+      "order_sn": "2603252T597QGX",
+      "buyer_user_id": 94507105,
+      "buyer_username": "spursth",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "Express Delivery (SHP Food)",
+      "total_price": 786000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME อุปกรณ์กาแฟเฉพาะทาง Coffee Machine Maker Accessories Tamper+Filter 51mm+Pitcher 350ml+Knock Box+Tamper Mat",
+          "description": "Variation: Hot Selling Set 7 [Cset5 CSet7]",
+          "amount": 1,
+          "item_id": 50656792552,
+          "model_id": 198811648776
+        }
+      ],
+      "shipping_name": "ณ******์",
+      "shipping_phone": "******89",
+      "shipping_address": "****** ไพเวซี่ ต.ลาดสวาย ตำบลลาดสวาย อำเภอลำลูกกา จังหวัดปทุมธานี 12150",
+      "tracking_numbers": [
+        "3015536045274624992"
+      ]
+    },
+    {
+      "order_id": 228096030284447,
+      "order_sn": "2603252SDWKPMY",
+      "buyer_user_id": 570397343,
+      "buyer_username": "saitanonlamoon",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 1572000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "【ปลั๊กไทย+ปุ่มอังกฤษ】LAHOME Bear เครื่องนวดแป้ง 5L เครื่องผสมแป้ง เครื่องผสมแป้งแบบไฟฟ้า เครื่องผสมแป้ง นวดขนมปัง Dough",
+          "description": "Variation: 5L（Thai Version） [HMJ-A50B1 HMJ-A50B1]",
+          "amount": 1,
+          "item_id": 21314315948,
+          "model_id": 106925434174
+        }
+      ],
+      "shipping_name": "น******ล",
+      "shipping_phone": "******37",
+      "shipping_address": "******, ต.ท่าชัย, อ.ศรีสัชนาลัย , จ.สุโขทัย ตำบลท่าชัย อำเภอศรีสัชนาลัย จังหวัดสุโขทัย 64190",
+      "tracking_numbers": [
+        "TH262749688164O"
+      ]
+    },
+    {
+      "order_id": 228095804270201,
+      "order_sn": "2603252S7629KS",
+      "buyer_user_id": 22885715,
+      "buyer_username": "jlowfat",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 486000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LaHome เครื่องบดกาแฟ เครื่องเทศไฟฟ้า ข้าว ถั่ว สมุนไพร เครื่องปรุงรส เครื่องบดเมล็ดพืช ใบมีดสแตนเลส",
+          "description": "Variation: เวอร์ชั่นอัพเกรด [CG981S CG981S]",
+          "amount": 1,
+          "item_id": 23584810057,
+          "model_id": 79714247341
+        }
+      ],
+      "shipping_name": "อ******ญ",
+      "shipping_phone": "******63",
+      "shipping_address": "******a ถนน บางกรวยไทรน้อย ตำบล บางรักพัฒนา ตำบลบางรักพัฒนา อำเภอบางบัวทอง จังหวัดนนทบุรี 11110",
+      "tracking_numbers": [
+        "TH262074061430R"
+      ]
+    },
+    {
+      "order_id": 228073116253527,
+      "order_sn": "26032524312YAQ",
+      "buyer_user_id": 95085481,
+      "buyer_username": "alisaramingma",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 95000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME ไม้มะเกลือ Rolling Pin โรลลิ่งพิน ไม้กลม หัวกลม แป้งไม่ติด , ลูกกลิ้งแป้งไม้ – อุปกรณ์เบเกอรี่ (แบบตรง) GMZ30",
+          "description": "[GMZ30 GMZ30]",
+          "amount": 1,
+          "item_id": 21115836303,
+          "model_id": 180876421689
+        }
+      ],
+      "shipping_name": "ย******า",
+      "shipping_phone": "******59",
+      "shipping_address": "******88/5 หมู่ที่ 6  ถนน พุทธมณฑลสายสี่ ตำบลศาลายา อำเภอพุทธมณฑล จังหวัดนครปฐม 73170",
+      "tracking_numbers": [
+        "TH266996886486Y"
+      ]
+    },
+    {
+      "order_id": 228072092230609,
+      "order_sn": "260325234GG8XH",
+      "buyer_user_id": 15633375,
+      "buyer_username": "fahsaikladkaew",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "Express Delivery (SHP Food)",
+      "total_price": 897000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "กาต้มน้ำคอห่าน Lahome กาต้มน้ำเทกาแฟ กาต้มน้ำเทไฟฟ้า ระบบควบคุมอุณหภูมิที่แม่นยำ 12 ชม. ฟังก์ชั่นอุ่นอุ่น อเมริกาโน่เย็น",
+          "description": "Variation: White Pour Over [DSH DSH-101W]",
+          "amount": 1,
+          "item_id": 15898190878,
+          "model_id": 222052541166
+        }
+      ],
+      "shipping_name": "ภ******ว",
+      "shipping_phone": "******41",
+      "shipping_address": "******.ประชาราษฎร์ แขวงห้วยขวาง แขวงห้วยขวาง เขตห้วยขวาง จังหวัดกรุงเทพมหานคร 10310",
+      "tracking_numbers": [
+        "3015536943183360992"
+      ]
+    },
+    {
+      "order_id": 228067494217370,
+      "order_sn": "2603251XUFG1MT",
+      "buyer_user_id": 123928581,
+      "buyer_username": "damrongsak.ya",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 761000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Hot/Ice Coffee Drip Maker Espresso Machine เครื่องชงกาแฟดริป เครื่องชงกาแฟแบบฟิลเตอร์ เครื่องชงกาแฟอัตโนมัติ 1.8L",
+          "description": "Variation: Cold/Hot Coffee Make [KFJ530 KFJ530]",
+          "amount": 1,
+          "item_id": 27812894944,
+          "model_id": 195432543825
+        }
+      ],
+      "shipping_name": "ด******ย",
+      "shipping_phone": "******78",
+      "shipping_address": "******สตร์ มหาวิทยาลัยพะเยา ตำบลแม่กา อำเภอเมืองพะเยา จังหวัดพะเยา 56000",
+      "tracking_numbers": [
+        "TH268140000148X"
+      ]
+    },
+    {
+      "order_id": 228064175237872,
+      "order_sn": "2603241URJ8TQG",
+      "buyer_user_id": 48470206,
+      "buyer_username": "toytingnoi",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 921000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Lahome อาหาร Dehydrator Maker เครื่อง 10L ผลไม้เครื่องเป่าเนื้อผัก Preserver จับเวลา 5 ถาด GGJ10 Food Dehydrator Maker",
+          "description": "Variation: Upgrade 10L w/ TIMER [LA-GGJ10 LA-GGJ10]",
+          "amount": 1,
+          "item_id": 18170048757,
+          "model_id": 107872174115
+        }
+      ],
+      "shipping_name": "พ*****ง",
+      "shipping_phone": "******98",
+      "shipping_address": "******ต.ปากช่อง ตำบลปากช่อง อำเภอปากช่อง จังหวัดนครราชสีมา 30130",
+      "tracking_numbers": [
+        "TH2600634912857"
+      ]
+    },
+    {
+      "order_id": 228062299200662,
+      "order_sn": "2603241T0N4Q4P",
+      "buyer_user_id": 756879512,
+      "buyer_username": "faharanya253",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 444000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "เครื่องอบแห้งอาหาร LAHOME เนื้อแห้ง ผลไม้ ผัก สมุนไพร และขนมสัตว์เลี้ยง ด้วยเครื่องอบแห้งอาหารแห้งนี้ R2",
+          "description": "Variation: White-สีขาว [JZE-R2-White JZE-R2-White]",
+          "amount": 1,
+          "item_id": 21815839329,
+          "model_id": 87930986968
+        }
+      ],
+      "shipping_name": "อ******น",
+      "shipping_phone": "******88",
+      "shipping_address": "******หมู่ที่ 1 ตำบลตาสิทธิ์ อำเภอปลวกแดง จังหวัดระยอง 21140",
+      "tracking_numbers": [
+        "TH264702149275L"
+      ]
+    },
+    {
+      "order_id": 228062243227068,
+      "order_sn": "2603241SXYRHDV",
+      "buyer_user_id": 756879512,
+      "buyer_username": "faharanya253",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "",
+      "total_price": 461000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "เครื่องอบแห้งอาหาร LAHOME เนื้อแห้ง ผลไม้ ผัก สมุนไพร และขนมสัตว์เลี้ยง ด้วยเครื่องอบแห้งอาหารแห้งนี้ R2",
+          "description": "Variation: White-สีขาว [JZE-R2-White JZE-R2-White]",
+          "amount": 1,
+          "item_id": 21815839329,
+          "model_id": 87930986968
+        }
+      ],
+      "shipping_name": "อ******น",
+      "shipping_phone": "******88",
+      "shipping_address": "******หมู่ที่ 1 ตำบลตาสิทธิ์ อำเภอปลวกแดง จังหวัดระยอง 21140",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228061262203342,
+      "order_sn": "2603241S1R62EE",
+      "buyer_user_id": 84573740,
+      "buyer_username": "kongtham_kasornbua",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 519000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME เครื่องต้มไข่ เครื่องทำอาหารเช้าอเนกประสงค์สำหรับเด็ก Egg Boiler",
+          "description": "Variation: LAHOME หม้อต้มไข่ [ZDQ-A14R1 ZDQ-B14R1]",
+          "amount": 1,
+          "item_id": 21915751307,
+          "model_id": 200872115297
+        }
+      ],
+      "shipping_name": "ค******ว",
+      "shipping_phone": "******64",
+      "shipping_address": "******ะหาร,(อยู่ตรงป้ายสี่แยกเกษศิริ) ตำบลเทนมีย์ อำเภอเมืองสุรินทร์ จังหวัดสุรินทร์ 32000",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228060965235186,
+      "order_sn": "2603241RRVYAFJ",
+      "buyer_user_id": 756879512,
+      "buyer_username": "faharanya253",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "",
+      "total_price": 460000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "เครื่องอบแห้งอาหาร LAHOME เนื้อแห้ง ผลไม้ ผัก สมุนไพร และขนมสัตว์เลี้ยง ด้วยเครื่องอบแห้งอาหารแห้งนี้ R2",
+          "description": "Variation: White-สีขาว [JZE-R2-White JZE-R2-White]",
+          "amount": 1,
+          "item_id": 21815839329,
+          "model_id": 87930986968
+        }
+      ],
+      "shipping_name": "อ******น",
+      "shipping_phone": "******88",
+      "shipping_address": "******หมู่ที่ 1 ตำบลตาสิทธิ์ อำเภอปลวกแดง จังหวัดระยอง 21140",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228060135293352,
+      "order_sn": "2603241R05FGD8",
+      "buyer_user_id": 27675481,
+      "buyer_username": "teniztenio",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 615000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Electric Ceramic Stove Original Burner Infrared Induction Cooker Inverter Countertop Cooktop",
+          "description": "Variation: 3 Heating Mode [W811 W811]",
+          "amount": 1,
+          "item_id": 18881000505,
+          "model_id": 175946844558
+        }
+      ],
+      "shipping_name": "พ******ย",
+      "shipping_phone": "******43",
+      "shipping_address": "******ง จ.มุกดาหาร 49000 ตำบลมุกดาหาร อำเภอเมืองมุกดาหาร จังหวัดมุกดาหาร 49000",
+      "tracking_numbers": [
+        "TH265801229523S"
+      ]
+    },
+    {
+      "order_id": 228060023211612,
+      "order_sn": "2603241QVTK1JV",
+      "buyer_user_id": 276662085,
+      "buyer_username": "hj28qqp7qn",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "Express Delivery (SHP Food)",
+      "total_price": 519000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LaHome เครื่องบดกาแฟ เครื่องเทศไฟฟ้า ข้าว ถั่ว สมุนไพร เครื่องปรุงรส เครื่องบดเมล็ดพืช ใบมีดสแตนเลส",
+          "description": "Variation: เวอร์ชั่นอัพเกรด [CG981S CG981S]",
+          "amount": 1,
+          "item_id": 23584810057,
+          "model_id": 79714247341
+        }
+      ],
+      "shipping_name": "ร******ล",
+      "shipping_phone": "******54",
+      "shipping_address": "****** ซ.ลาดพร้าว112(เอี่ยมสมบูรณ์) แขวงพลับพลา, เขตวังทองหลาง แขวงพลับพลา เขตวังทองหลาง จังหวัดกรุงเทพมหานคร 10310",
+      "tracking_numbers": [
+        "3015535174301696992"
+      ]
+    },
+    {
+      "order_id": 228058688258374,
+      "order_sn": "2603241PN1FGA6",
+      "buyer_user_id": 916698979,
+      "buyer_username": "laddaaom09",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 2116000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "【ปลั๊กไทย+ปุ่มอังกฤษ】LAHOME Bear เครื่องนวดแป้ง 5L เครื่องผสมแป้ง เครื่องผสมแป้งแบบไฟฟ้า เครื่องผสมแป้ง นวดขนมปัง Dough",
+          "description": "Variation: 7L  (Thai Version) [HMJ-A50B1 A70C1.1]",
+          "amount": 1,
+          "item_id": 21314315948,
+          "model_id": 270442458484
+        }
+      ],
+      "shipping_name": "น******ย",
+      "shipping_phone": "******99",
+      "shipping_address": "******งตรุ อำเภอพนมทวน จังหวัดกาญจนบุรี 71140",
+      "tracking_numbers": [
+        "TH262995419006V"
+      ]
+    },
+    {
+      "order_id": 228057379237804,
+      "order_sn": "2603241NE13BWC",
+      "buyer_user_id": 158242568,
+      "buyer_username": "suwarin4",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 98000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME ไม้มะเกลือ Rolling Pin โรลลิ่งพิน ไม้กลม หัวกลม แป้งไม่ติด , ลูกกลิ้งแป้งไม้ – อุปกรณ์เบเกอรี่ (แบบตรง) GMZ30",
+          "description": "[GMZ30 GMZ30]",
+          "amount": 1,
+          "item_id": 21115836303,
+          "model_id": 180876421689
+        }
+      ],
+      "shipping_name": "ส******ง",
+      "shipping_phone": "******16",
+      "shipping_address": "******ระตูสีส้ม ก่อนถึงสามแยก) แขวงจอมพล เขตจตุจักร จังหวัดกรุงเทพมหานคร 10900",
+      "tracking_numbers": [
+        "TH265453172617V"
+      ]
+    },
+    {
+      "order_id": 228054198267110,
+      "order_sn": "2603241JF7FU76",
+      "buyer_user_id": 1328918185,
+      "buyer_username": "fin_indiashop",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 2301000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "【ปลั๊กไทย+ปุ่มอังกฤษ】LAHOME Bear เครื่องนวดแป้ง 5L เครื่องผสมแป้ง เครื่องผสมแป้งแบบไฟฟ้า เครื่องผสมแป้ง นวดขนมปัง Dough",
+          "description": "Variation: 7L  (Thai Version) [HMJ-A50B1 A70C1.1]",
+          "amount": 1,
+          "item_id": 21314315948,
+          "model_id": 270442458484
+        }
+      ],
+      "shipping_name": "จ******ฐ",
+      "shipping_phone": "******39",
+      "shipping_address": "******วียง, อำเภอเมืองเชียงราย ตำบลรอบเวียง อำเภอเมืองเชียงราย จังหวัดเชียงราย 57000",
+      "tracking_numbers": [
+        "TH269058061426I"
+      ]
+    },
+    {
+      "order_id": 228053953242476,
+      "order_sn": "2603241J7WT9BC",
+      "buyer_user_id": 430411679,
+      "buyer_username": "aisdtoln_k",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 1684000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "【ปลั๊กไทย+ปุ่มอังกฤษ】LAHOME Bear เครื่องนวดแป้ง 5L เครื่องผสมแป้ง เครื่องผสมแป้งแบบไฟฟ้า เครื่องผสมแป้ง นวดขนมปัง Dough",
+          "description": "Variation: 5L（Thai Version） [HMJ-A50B1 HMJ-A50B1]",
+          "amount": 1,
+          "item_id": 21314315948,
+          "model_id": 106925434174
+        }
+      ],
+      "shipping_name": "ส******ค",
+      "shipping_phone": "******89",
+      "shipping_address": "******หญ่ จ.สงขลา ตำบลน้ำน้อย อำเภอหาดใหญ่ จังหวัดสงขลา 90110",
+      "tracking_numbers": [
+        "TH264727650551R"
+      ]
+    },
+    {
+      "order_id": 228051826251508,
+      "order_sn": "2603241G8HBNQM",
+      "buyer_user_id": 43119150,
+      "buyer_username": "peedchanchai",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "Express Delivery (SHP Food)",
+      "total_price": 909000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Lahome อาหาร Dehydrator Maker เครื่อง 10L ผลไม้เครื่องเป่าเนื้อผัก Preserver จับเวลา 5 ถาด GGJ10 Food Dehydrator Maker",
+          "description": "Variation: Upgrade 10L w/ TIMER [LA-GGJ10 LA-GGJ10]",
+          "amount": 1,
+          "item_id": 18170048757,
+          "model_id": 107872174115
+        }
+      ],
+      "shipping_name": "ช******ย",
+      "shipping_phone": "******44",
+      "shipping_address": "******/472 แขวงพญาไท เขตพญาไท จังหวัดกรุงเทพมหานคร 10400",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228036851231926,
+      "order_sn": "26032412A82B5P",
+      "buyer_user_id": 714666547,
+      "buyer_username": "j3l28p_651",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 809000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Hot/Ice Coffee Drip Maker Espresso Machine เครื่องชงกาแฟดริป เครื่องชงกาแฟแบบฟิลเตอร์ เครื่องชงกาแฟอัตโนมัติ 1.8L",
+          "description": "Variation: Cold/Hot Coffee Make [KFJ530 KFJ530]",
+          "amount": 1,
+          "item_id": 27812894944,
+          "model_id": 195432543825
+        }
+      ],
+      "shipping_name": "น******ส",
+      "shipping_phone": "******59",
+      "shipping_address": "******ตำบลช่อผกา, อำเภอชำนิ จังหวัดบุรีรัมย์ 31110 ตำบลช่อผกา อำเภอชำนิ จังหวัดบุรีรัมย์ 31110",
+      "tracking_numbers": [
+        "TH262381015133A"
+      ]
+    },
+    {
+      "order_id": 228035310241189,
+      "order_sn": "26032410VAF1D5",
+      "buyer_user_id": 63464968,
+      "buyer_username": "mug1991",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 1572000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "【ปลั๊กไทย+ปุ่มอังกฤษ】LAHOME Bear เครื่องนวดแป้ง 5L เครื่องผสมแป้ง เครื่องผสมแป้งแบบไฟฟ้า เครื่องผสมแป้ง นวดขนมปัง Dough",
+          "description": "Variation: 5L（Thai Version） [HMJ-A50B1 HMJ-A50B1]",
+          "amount": 1,
+          "item_id": 21314315948,
+          "model_id": 106925434174
+        }
+      ],
+      "shipping_name": "พ******ย",
+      "shipping_phone": "******09",
+      "shipping_address": "******ว ต. มาบข่า ตำบลมาบข่า อำเภอนิคมพัฒนา จังหวัดระยอง 21180",
+      "tracking_numbers": [
+        "TH2687616456580"
+      ]
+    },
+    {
+      "order_id": 228035011207034,
+      "order_sn": "26032410KD97UT",
+      "buyer_user_id": 46068884,
+      "buyer_username": "rungtreerat",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 554000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "[หม้อไหนก็ใช้ได้ค่ะ] Lahome เตาเซรามิกไฟฟ้า ประหยัดพลังงานและประหยัดไฟ เตาอเนกประสงค์ Electric Ceramic Stove Infrared",
+          "description": "Variation: Stove-Energy Saving [SQ816 SQ816]",
+          "amount": 1,
+          "item_id": 28114054809,
+          "model_id": 226877992416
+        }
+      ],
+      "shipping_name": "ร******์",
+      "shipping_phone": "******63",
+      "shipping_address": "******ะ    ประเทศไทย ตำบลห้วยพระ อำเภอดอนตูม จังหวัดนครปฐม 73150",
+      "tracking_numbers": [
+        "TH261832566513R"
+      ]
+    },
+    {
+      "order_id": 228032517228186,
+      "order_sn": "2603240X92U1MT",
+      "buyer_user_id": 1001132902,
+      "buyer_username": "somsrihorn",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 1608000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME Automatic Bread Maker เครื่องทำขนมปังดิจิตอลอัตโนมัติ 19-in-1 330*270*290MM",
+          "description": "Variation: 3lb [Bread Machine BM8902]",
+          "amount": 1,
+          "item_id": 20814320764,
+          "model_id": 126110231291
+        }
+      ],
+      "shipping_name": "ส***ี",
+      "shipping_phone": "******66",
+      "shipping_address": "******าน เฮ้าออฟเดอะคานารี่, ตำบล หนองขาม, อำเภอศรีราชา ตำบลหนองขาม อำเภอศรีราชา จังหวัดชลบุรี 20230",
+      "tracking_numbers": [
+        "TH265827410670I"
+      ]
+    },
+    {
+      "order_id": 228027405287590,
+      "order_sn": "2603240SGQQ056",
+      "buyer_user_id": 95085481,
+      "buyer_username": "alisaramingma",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 1685000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "【ปลั๊กไทย+ปุ่มอังกฤษ】LAHOME Bear เครื่องนวดแป้ง 5L เครื่องผสมแป้ง เครื่องผสมแป้งแบบไฟฟ้า เครื่องผสมแป้ง นวดขนมปัง Dough",
+          "description": "Variation: 5L（Thai Version） [HMJ-A50B1 HMJ-A50B1]",
+          "amount": 1,
+          "item_id": 21314315948,
+          "model_id": 106925434174
+        }
+      ],
+      "shipping_name": "ย******า",
+      "shipping_phone": "******59",
+      "shipping_address": "******88/5 หมู่ที่ 6  ถนน พุทธมณฑลสายสี่ ตำบลศาลายา อำเภอพุทธมณฑล จังหวัดนครปฐม 73170",
+      "tracking_numbers": [
+        "TH266464520424W"
+      ]
+    },
+    {
+      "order_id": 228026865219772,
+      "order_sn": "2603240S0MNE5V",
+      "buyer_user_id": 43241705,
+      "buyer_username": "paifonchairach",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 1077000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME 330ml Milk Pitcher เหยือกตีฟองนมสแตนเลสกาแฟลาเต้เสิร์ฟเหยือกฟองนม",
+          "description": "[CUP350 CUP350]",
+          "amount": 1,
+          "item_id": 17277252615,
+          "model_id": 116956388983
+        },
+        {
+          "name": "LaHome Gooseneck Kettle Pour Over Kettle Electric Pouring Kettle Temperature Control 12h Keep Warm กาต้มน้ำคอห่าน Lahome",
+          "description": "Variation: White Pour Over [DSH101 DSH-101W]",
+          "amount": 1,
+          "item_id": 24010770236,
+          "model_id": 255272905093
+        }
+      ],
+      "shipping_name": "พ******ช",
+      "shipping_phone": "******92",
+      "shipping_address": "******ราย, อำเภอเมืองเชียงราย แผนกทางเดินอาหารและตับ ตำบลสันทราย อำเภอเมืองเชียงราย จังหวัดเชียงราย 57000",
+      "tracking_numbers": [
+        "TH267968762365L"
+      ]
+    },
+    {
+      "order_id": 228025765297340,
+      "order_sn": "2603240QYUPF5V",
+      "buyer_user_id": 67788382,
+      "buyer_username": "chanisara_4289",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 2138000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "【เวอร์ชั่นภาษาไทย】 Lahome Bear เครื่องนวดแป้ง หม้อหมี เครื่องนวดแป้งหมี หม้อหมี Dough Mixer Maker Machine 7L",
+          "description": "Variation: 7L（Biggest Capacity） [HMJ-A70C1 HMJ-A70C1]",
+          "amount": 1,
+          "item_id": 18014321579,
+          "model_id": 200804759399
+        }
+      ],
+      "shipping_name": "ช******์",
+      "shipping_phone": "******96",
+      "shipping_address": "******ุกกรณีก่อนส่ง ไม่ว่าจะรู้ที่อยู่บ้านหรือไม่รู้ให้โททุกกรณี ตำบลนาหูกวาง อำเภอทับสะแก จังหวัดประจวบคีรีขันธ์ 77130",
+      "tracking_numbers": [
+        "TH2680701202849"
+      ]
+    },
+    {
+      "order_id": 228025589298914,
+      "order_sn": "2603240QTKUDQ2",
+      "buyer_user_id": 116043902,
+      "buyer_username": "komsanchaibubpha",
+      "shop_id": null,
+      "status": "Cancelled",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 2926000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LAHOME เครื่องบดเมล็ดกาแฟเสี้ยน เครื่องบดกาแฟอัตโนมัติ มาพร้อมกับ ขารองด้ามชง แถมฟรี  Conical Burr Grinder adjustable",
+          "description": "Variation: CG018 Pro [CG015S CG018Pro]",
+          "amount": 1,
+          "item_id": 21016295682,
+          "model_id": 186932303437
+        },
+        {
+          "name": "Lahome เครื่องบดกาแฟแบบ Conical Burr เครื่องบดแบบปรับเสี้ยนได้ 38 การตั้งค่าสำหรับกาแฟดริปเอสเปรสโซ Coffee Been Grinder",
+          "description": "Variation: เครื่องเจียรขาว [CG011-White CG011-W.1]",
+          "amount": 1,
+          "item_id": 25541099087,
+          "model_id": 176952501989
+        }
+      ],
+      "shipping_name": "ค******า",
+      "shipping_phone": "******84",
+      "shipping_address": "******อง จ.อุดรธานี ตำบลหนองนาคำ อำเภอเมืองอุดรธานี จังหวัดอุดรธานี 41000",
+      "tracking_numbers": []
+    },
+    {
+      "order_id": 228025046292025,
+      "order_sn": "2603240QAE05HS",
+      "buyer_user_id": 15849869,
+      "buyer_username": "atit.j",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 1063000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "Lahome กระทะย่างทรงกลมบาร์บีคิวเกาหลีไม่ติด/สแตนเลสกลางแจ้งในร่มย่างบาร์บีคิวกระทะแหนบ Korean BBQ Grill Pan",
+          "description": "Variation: เคลือบสารกันติด [KP KP-NON02]",
+          "amount": 5,
+          "item_id": 14688798405,
+          "model_id": 163438515724
+        }
+      ],
+      "shipping_name": "ผ******่",
+      "shipping_phone": "******41",
+      "shipping_address": "******ight market ถนน มหาเทพ ตำบล ปากน้ำโพ ตำบลนครสวรรค์ออก อำเภอเมืองนครสวรรค์ จังหวัดนครสวรรค์ 60002",
+      "tracking_numbers": [
+        "TH261244583004K"
+      ]
+    },
+    {
+      "order_id": 228019788257185,
+      "order_sn": "2603240JDQHNW1",
+      "buyer_user_id": 1092482,
+      "buyer_username": "applelada",
+      "shop_id": null,
+      "status": "Delivered",
+      "fulfilment_channel": "Express Delivery (SHP Food)",
+      "total_price": 519000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "LaHome เครื่องบดกาแฟ เครื่องเทศไฟฟ้า ข้าว ถั่ว สมุนไพร เครื่องปรุงรส เครื่องบดเมล็ดพืช ใบมีดสแตนเลส",
+          "description": "Variation: เวอร์ชั่นอัพเกรด [CG981S CG981S]",
+          "amount": 1,
+          "item_id": 23584810057,
+          "model_id": 79714247341
+        }
+      ],
+      "shipping_name": "ล******)",
+      "shipping_phone": "******19",
+      "shipping_address": "****** 1 ถนนพหลโยธิน แขวงพญาไท แขวงพญาไท เขตพญาไท จังหวัดกรุงเทพมหานคร 10400",
+      "tracking_numbers": [
+        "3014120052897792992"
+      ]
+    },
+    {
+      "order_id": 228018581237311,
+      "order_sn": "2603240H9REBHY",
+      "buyer_user_id": 116677443,
+      "buyer_username": "tawatchaitantiveerakul",
+      "shop_id": null,
+      "status": "Order Received",
+      "fulfilment_channel": "SPX Express",
+      "total_price": 561000.0,
+      "currency": "MYR",
+      "items": [
+        {
+          "name": "[หม้อไหนก็ใช้ได้ค่ะ] Lahome เตาเซรามิกไฟฟ้า ประหยัดพลังงานและประหยัดไฟ เตาอเนกประสงค์ Electric Ceramic Stove Infrared",
+          "description": "Variation: Energy Saving-White [SQ816 W536]",
+          "amount": 1,
+          "item_id": 28114054809,
+          "model_id": 208279365261
+        }
+      ],
+      "shipping_name": "ธ******ล",
+      "shipping_phone": "******14",
+      "shipping_address": "******อปปี้ B ถนนนราธิวาสราชนครินทร์24 แขวงช่องนนทรี เขตยานนาวา จังหวัดกรุงเทพมหานคร 10120",
+      "tracking_numbers": [
+        "TH263992317189C"
+      ]
+    }
+  ]
+}
