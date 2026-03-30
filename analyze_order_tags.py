@@ -5,7 +5,7 @@
 筛选条件：status = 'To Ship' AND tracking_number 为空
 """
 import os
-from datetime import datetime, timedelta
+from datetime import datetime
 from typing import Dict, List, Set
 
 # 尝试导入所需库
@@ -43,7 +43,7 @@ def get_all_orders(conn) -> List[Dict]:
     # 筛选条件: status = 'To Ship' AND tracking_number 为空或空字符串
     cursor.execute("""
         SELECT order_sn, order_id, buyer_user_id, rating, shipping_address,
-               total_price, currency, create_time, status, tracking_number
+               total_price, currency, order_create_time, status, tracking_number
         FROM shopee_orders
         WHERE status = 'To Ship' AND (tracking_number IS NULL OR tracking_number = '')
     """)
@@ -97,33 +97,40 @@ def check_same_order_multi_items(order_sn: str, items: List[Dict]) -> bool:
 
 
 def check_high_frequency_repurchase(orders: List[Dict], order_sn: str,
-                                     buyer_user_id: str, create_time) -> bool:
+                                     buyer_user_id: str, order_create_time,
+                                     order_items_map: Dict) -> bool:
     """
     检查高频复购：同一顾客在2小时内有多次下单记录，
-    且购买了同款产品（存在历史订单中包含相同产品）
+    且购买了同款产品（item_id 相同）
     """
-    if not buyer_user_id or not create_time:
+    if not buyer_user_id or not order_create_time:
         return False
 
-    # 获取同一买家的所有订单
-    buyer_orders = [
-        o for o in orders
-        if o.get('buyer_user_id') == buyer_user_id
-        and o.get('create_time')
-    ]
+    # 获取当前订单的商品
+    current_items = order_items_map.get(order_sn, [])
+    current_item_ids = set(i.get('item_id') for i in current_items if i.get('item_id'))
+    if not current_item_ids:
+        return False
 
-    # 检查2小时内是否有多个订单
-    two_hours_ago = create_time - timedelta(hours=2)
-    two_hours_later = create_time + timedelta(hours=2)
+    # 遍历同一买家的其他订单，检查是否同时满足：
+    # 1. 时间差在2小时内
+    # 2. 存在同款产品（item_id 相同）
+    for o in orders:
+        if o.get('order_sn') == order_sn:
+            continue
+        if o.get('buyer_user_id') != buyer_user_id:
+            continue
+        if not o.get('order_create_time'):
+            continue
 
-    recent_orders = [
-        o for o in buyer_orders
-        if o.get('order_sn') != order_sn
-        and two_hours_ago <= o.get('create_time') <= two_hours_later
-    ]
+        time_diff = abs((order_create_time - o.get('order_create_time')).total_seconds()) / 3600
+        if time_diff <= 2:
+            o_items = order_items_map.get(o.get('order_sn'), [])
+            o_item_ids = set(i.get('item_id') for i in o_items if i.get('item_id'))
+            if current_item_ids & o_item_ids:
+                return True
 
-    # 需要有至少1个其他订单才算高频
-    return len(recent_orders) >= 1
+    return False
 
 
 def check_ph_remote_area(order, buyer_info) -> Dict:
@@ -166,7 +173,7 @@ def check_ph_remote_area(order, buyer_info) -> Dict:
 
 
 def check_suspicious_customer(conn, order_sn: str, buyer_user_id: str,
-                              current_create_time) -> Dict:
+                              current_order_create_time) -> Dict:
     """
     检查可疑顾客
     - 历史派送失败次数 >= 2 -> 历史派送失败
@@ -278,7 +285,7 @@ def main():
         order_sn = order.get('order_sn', '')
         buyer_user_id = order.get('buyer_user_id')
         rating = order.get('rating')
-        create_time = order.get('create_time')
+        order_create_time = order.get('order_create_time')
 
         tags = []
 
@@ -291,37 +298,8 @@ def main():
             tags.append('同单多件')
 
         # 2b. 高频复购
-        if check_high_frequency_repurchase(orders, order_sn, buyer_user_id, create_time):
-            # 需要进一步检查是否有相同产品
-            current_items = order_items_map.get(order_sn, [])
-            current_item_ids = set(i.get('item_id') for i in current_items if i.get('item_id'))
-
-            if current_item_ids:
-                # 获取该买家所有订单的item_id
-                buyer_all_item_ids = set()
-                for o in orders:
-                    if o.get('buyer_user_id') == buyer_user_id:
-                        items = order_items_map.get(o.get('order_sn'), [])
-                        buyer_all_item_ids.update(i.get('item_id') for i in items if i.get('item_id'))
-
-                # 检查是否有交集
-                if current_item_ids & buyer_all_item_ids:
-                    # 进一步确认时间在2小时内
-                    for o in orders:
-                        if o.get('order_sn') == order_sn:
-                            continue
-                        if o.get('buyer_user_id') != buyer_user_id:
-                            continue
-                        if not o.get('create_time') or not create_time:
-                            continue
-
-                        time_diff = abs((create_time - o.get('create_time')).total_seconds()) / 3600
-                        if time_diff <= 2:
-                            o_items = order_items_map.get(o.get('order_sn'), [])
-                            o_item_ids = set(i.get('item_id') for i in o_items if i.get('item_id'))
-                            if current_item_ids & o_item_ids:
-                                tags.append('高频复购')
-                                break
+        if check_high_frequency_repurchase(orders, order_sn, buyer_user_id, order_create_time, order_items_map):
+            tags.append('高频复购')
 
         # 3. 菲律宾边远地区
         buyer_info = buyer_info_map.get(order_sn, {})
@@ -330,7 +308,7 @@ def main():
             tags.append('地址偏远')
 
         # 4. 可疑顾客
-        suspicious = check_suspicious_customer(conn, order_sn, buyer_user_id, create_time)
+        suspicious = check_suspicious_customer(conn, order_sn, buyer_user_id, order_create_time)
         if suspicious.get('has_delivery_failure'):
             tags.append('历史派送失败')
         if suspicious.get('has_refund'):

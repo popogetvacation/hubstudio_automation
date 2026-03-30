@@ -17,7 +17,7 @@
 |--------|------|------|------|------|
 | order_sn | TEXT | 订单号 | YES | |
 | order_id | TEXT | 订单ID | | |
-| shop_id | BIGINT | 店铺ID | | |
+| shop_id | TEXT | 店铺ID | | |
 | region_id | TEXT | 区域ID | | |
 | env_name | TEXT | 环境名称 | | |
 | status | TEXT | 订单状态 | | |
@@ -30,9 +30,8 @@
 | tracking_number | TEXT | 追踪号 | | |
 | buyer_user_id | TEXT | 买家用户ID | | 可重复索引 |
 | rating | FLOAT | 评分 | | |
-| create_time | DATETIME | 创建时间 | | |
 | update_time | DATETIME | 更新时间 | | |
-| created_at | DATETIME | 记录创建时间 | |
+| order_create_time | DATETIME | 订单创建时间 | | |
 
 ### 2. shopee_order_items (订单商品表)
 
@@ -41,7 +40,6 @@
 | item_id | TEXT | 商品ID | |
 | order_sn | TEXT | 订单号 | 可重复索引 |
 | order_id | TEXT | 订单ID | |
-| order_sn | TEXT | 订单号 | |
 | item_name | TEXT | 商品名称 | |
 | item_description | TEXT | 商品描述 | |
 | amount | INTEGER | 数量 | |
@@ -54,7 +52,6 @@
 |--------|------|------|------|
 | order_sn | TEXT | 订单号 | YES |
 | order_id | TEXT | 订单ID | |
-| order_sn | TEXT | 订单号 | |
 | buyer_user_id | TEXT | 买家用户ID | |
 | buyer_username | TEXT | 买家用户名 | |
 | avatar | TEXT | 头像URL | |
@@ -64,8 +61,10 @@
 | conversation_id | TEXT | 对话ID | |
 | total_messages | INTEGER | 消息总数 | |
 | user_messages_count | INTEGER | 用户消息数 | |
-| user_message_text | TEXT | 用户消息内容 | |
+| user_message_text | LONGTEXT | 用户消息内容 | |
 | created_at | DATETIME | 记录创建时间 | |
+
+> 注：聊天信息已合并到此表，不再单独创建 shopee_order_chat 表
 
 ### 4. tasks (任务表)
 
