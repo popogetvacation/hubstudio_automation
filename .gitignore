@@ -12,5 +12,6 @@ venv/
 .venv/
 dist/
 build/
-*.egg-info/
-.DS_Store
+output/
+screenshots/
+data/
