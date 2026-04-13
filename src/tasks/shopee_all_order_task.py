@@ -11,6 +11,7 @@ from datetime import datetime
 
 from .task_base import BaseTask, TaskFactory
 from ..browser.selenium_driver import HubStudioSeleniumDriver
+from selenium.webdriver.support.ui import WebDriverWait
 from ..database.access_db import AccessDatabase
 from ..api.shopee_api import ShopeeAPI
 from ..utils.logger import default_logger as logger
@@ -106,12 +107,11 @@ class ShopeeAllOrderTask(BaseTask):
 
         current_url = driver.get_current_url()
 
-        if current_url == 'about:blank' or not current_url or 'devtools' in current_url:
-            logger.info(f"[ShopeeAllOrder] 导航到目标页面: {target_url}")
-            driver.goto(target_url)
-            # 等待页面加载
-            time.sleep(3)
-            current_url = driver.get_current_url()
+        logger.info(f"[ShopeeAllOrder] 导航到目标页面: {target_url}")
+        driver.goto(target_url)
+        # 等待页面加载
+        time.sleep(3)
+        current_url = driver.get_current_url()
 
         cookies = driver.get_cookies()
         cookie_names = [c.get('name') for c in cookies]
@@ -175,7 +175,7 @@ class ShopeeAllOrderTask(BaseTask):
             browser_request.start_api_capture(url_filter="order")
 
         # 2. 使用 ShopeeAPI 获取订单列表
-        tracker.start('获取订单列表')
+        tracker.start('获取订单列表', env=env_name)
         all_orders = []
         page_number = 1
         next_page_sentinel = None
@@ -233,7 +233,7 @@ class ShopeeAllOrderTask(BaseTask):
         result['pages_fetched'] = page_number - 1
 
         logger.info(f"[ShopeeAllOrder] 订单列表获取完成: {len(all_orders)} 条订单，{page_number - 1} 页")
-        tracker.end('获取订单列表', {'orders_count': len(all_orders), 'pages': page_number - 1})
+        tracker.end('获取订单列表', {'orders_count': len(all_orders), 'pages': page_number - 1}, env=env_name)
 
         # 检查订单列表是否有重复 order_id
         order_ids_list = [str(o.get('order_id')) for o in all_orders if o.get('order_id')]
@@ -252,23 +252,23 @@ class ShopeeAllOrderTask(BaseTask):
         # 3. 批量获取订单详情
         if self.fetch_detail and all_orders:
             logger.info(f"[ShopeeAllOrder] 开始获取订单详情...")
-            tracker.start('获取订单详情')
+            tracker.start('获取订单详情', env=env_name)
             order_details = self._fetch_order_details(shopee_api, base_url, all_orders)
             result['order_details'] = order_details
-            tracker.end('获取订单详情', {'details_count': len(order_details)})
+            tracker.end('获取订单详情', {'details_count': len(order_details)}, env=env_name)
             logger.info(f"[ShopeeAllOrder] 订单详情获取完成: {len(order_details)} 条")
 
             # 4. 获取聊天消息和买家信息
             if self.save_to_db:
                 logger.info(f"[ShopeeAllOrder] 开始获取聊天消息...")
-                tracker.start('获取聊天消息和买家信息')
+                tracker.start('获取聊天消息和买家信息', env=env_name)
                 chat_result = self._fetch_chat_messages(driver, all_orders, order_details)
                 result['chat_messages'] = chat_result.get('chat_messages', {})
                 result['buyer_info'] = chat_result.get('buyer_info', {})
                 tracker.end('获取聊天消息和买家信息', {
                     'chat_count': len(result['chat_messages']),
                     'buyer_count': len(result['buyer_info'])
-                })
+                }, env=env_name)
                 logger.info(f"[ShopeeAllOrder] 聊天消息获取完成: {len(result['chat_messages'])} 条")
 
         if self.capture_api:
@@ -282,9 +282,9 @@ class ShopeeAllOrderTask(BaseTask):
         # 5. 保存订单到数据库
         if self.save_to_db and self.database and result.get('order_details'):
             result['order_list'] = all_orders
-            tracker.start('保存到数据库')
+            tracker.start('保存到数据库', env=env_name)
             self._save_orders_to_database(result, env_name)
-            tracker.end('保存到数据库')
+            tracker.end('保存到数据库', env=env_name)
 
         # 输出性能统计摘要
         tracker.log_summary("ShopeeAllOrder 任务性能统计")
@@ -358,10 +358,7 @@ class ShopeeAllOrderTask(BaseTask):
 
     def _wait_for_login(self, driver: HubStudioSeleniumDriver, timeout: int = 60):
         """等待用户登录，尝试点击登录按钮"""
-        from selenium.webdriver.support.ui import WebDriverWait
         from selenium.webdriver.support import expected_conditions as EC
-
-        start_time = time.time()
 
         # 等待页面完全加载
         logger.info(f"[ShopeeAllOrder] 等待页面加载...")
@@ -375,7 +372,7 @@ class ShopeeAllOrderTask(BaseTask):
 
         # 额外等待确保动态内容加载完成
         time.sleep(2)
-
+        start_time = time.time()
         # 尝试查找并点击 "Log in" 按钮
         login_button_selectors = [
             "button:contains('Log in')",
@@ -720,12 +717,19 @@ class ShopeeAllOrderTask(BaseTask):
                 if not buyer_info_from_detail:
                     buyer_info_from_detail = order_ext.get('buyer_info', {})
 
-                buyer_user_id = order_ext.get('buyer_user_id') or buyer_info_from_detail.get('user_id')
+                # 获取买家用户 ID - 支持多种字段名，避免日期混入
+                buyer_user_id = order_ext.get('buyer_user_id','')
+                if not buyer_user_id:
+                    buyer_user_id = buyer_info_from_detail.get('user_id')
+                # 如果 buyer_user_id 看起来像日期（包含 - 或 /），则丢弃
+                if buyer_user_id and isinstance(buyer_user_id, str) and ('/' in buyer_user_id or '-' in buyer_user_id and len(buyer_user_id) > 8):
+                    logger.error(f"buyer_user_id error, order_ext:{str(order_ext)}, buyer_user_id:{str(buyer_user_id)}")
+
                 api_info = api_buyer_info.get(buyer_user_id, {}) if api_buyer_info else {}
 
                 # 订单数据
                 order_data = {
-                    'order_id': order_id,  # 保持原样，由 format_value 处理
+                    'order_id': str(order_id),
                     'order_sn': order_sn,
                     'shop_id': shop_id,
                     'region_id': region_id,

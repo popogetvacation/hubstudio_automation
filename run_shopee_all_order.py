@@ -24,8 +24,8 @@ def run_shopee_all_order_task():
 
     # 2. 创建全部订单任务
     task_config = {
-        'page_size': 40,           # 每页订单数
-        'max_pages': 2,            # 最大获取页数
+        'page_size': 200,           # 每页订单数
+        'max_pages': 1,            # 最大获取页数
         'order_list_tab': 100,     # 全部订单
         'sort_type': 3,            # 按更新时间排序
         'ascending': False,        # 降序（新订单在前）
@@ -41,7 +41,7 @@ def run_shopee_all_order_task():
     print()
 
     # 3. 运行指定分组的任务
-    group_name = "test"  # HubStudio 中的环境分组名称
+    group_name = "shopee"  # HubStudio 中的环境分组名称
     print(f"正在获取 '{group_name}' 分组的环境...")
     result = runner.run_task_by_group(task, group_name)
 

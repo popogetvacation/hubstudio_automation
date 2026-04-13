@@ -13,7 +13,7 @@ from selenium.common.exceptions import (
     NoSuchElementException,
     WebDriverException
 )
-from typing import Optional, Dict, Any, Union
+from typing import Optional, Dict, Any, Union, List
 from ..utils.logger import default_logger as logger
 
 # 尝试导入 webdriver_manager
@@ -137,6 +137,10 @@ class HubStudioSeleniumDriver:
             return False
         except Exception as e:
             logger.error(f"访问页面失败: {url}, 错误: {e}")
+            # 网络错误（如 ERR_CONNECTION_CLOSED）是严重错误，应该抛出异常
+            error_msg = str(e)
+            if any(keyword in error_msg for keyword in ['ERR_CONNECTION_CLOSED', 'net::', 'timeout', 'timeout']):
+                raise ConnectionError(f"无法访问页面 {url}: {e}")
             return False
 
     def find_element(self, selector: str, by: str = "css",

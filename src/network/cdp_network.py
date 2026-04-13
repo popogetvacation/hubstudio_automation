@@ -779,49 +779,47 @@ class CDPRequest:
             else:
                 body = str(data)
 
-        # 使用 Fetch API 发送请求
-        fetch_options = {
-            'method': method.upper(),
-            'url': url,
-            'credentials': 'include',  # 包含 cookies
-        }
-
-        if request_headers:
-            fetch_options['headers'] = request_headers
-        if body:
-            fetch_options['body'] = body
-
-        # 执行 Fetch 请求
+        # 使用 XMLHttpRequest 发送请求
         js_code = f"""
         return (async () => {{
             try {{
-                const response = await fetch('{url}', {{
-                    method: '{method.upper()}',
-                    headers: {json.dumps(request_headers)},
-                    body: {json.dumps(body) if body else 'undefined'},
-                    credentials: 'include'
+                // 使用 XMLHttpRequest（与浏览器原生 XHR 请求一致）
+                const reqHeaders = {json.dumps(request_headers)};
+
+                return new Promise((resolve, reject) => {{
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('{method.upper()}', '{url}', true);
+                    xhr.withCredentials = true;
+
+                    // 设置请求头
+                    Object.entries(reqHeaders).forEach(([key, value]) => {{
+                        xhr.setRequestHeader(key, value);
+                    }});
+
+                    xhr.onload = function() {{
+                        const headers = {{}};
+                        xhr.getAllResponseHeaders().split('\\r\\n').forEach(line => {{
+                            const parts = line.split(': ');
+                            if (parts.length >= 2) {{
+                                headers[parts[0]] = parts.slice(1).join(': ');
+                            }}
+                        }});
+
+                        resolve({{
+                            status: xhr.status,
+                            statusText: xhr.statusText,
+                            headers: headers,
+                            url: xhr.responseURL,
+                            body: xhr.responseText
+                        }});
+                    }};
+
+                    xhr.onerror = function() {{
+                        reject(new Error('Network request failed'));
+                    }};
+
+                    xhr.send({json.dumps(body) if body else 'undefined'});
                 }});
-
-                const headers = {{}};
-                response.headers.forEach((value, key) => {{
-                    headers[key] = value;
-                }});
-
-                let body;
-                const contentType = response.headers.get('content-type') || '';
-                if (contentType.includes('application/json')) {{
-                    body = await response.text();
-                }} else {{
-                    body = await response.text();
-                }}
-
-                return {{
-                    status: response.status,
-                    statusText: response.statusText,
-                    headers: headers,
-                    url: response.url,
-                    body: body
-                }};
             }} catch (error) {{
                 return {{ error: error.message }};
             }}

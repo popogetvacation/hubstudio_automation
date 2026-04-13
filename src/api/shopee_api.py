@@ -13,6 +13,15 @@ from ..network.browser_request import BrowserRequest
 from ..utils.logger import default_logger as logger
 
 
+class ShopeeApiError(Exception):
+    """Shopee API 调用失败异常"""
+    def __init__(self, method: str, code: int, message: str):
+        self.method = method
+        self.code = code
+        self.message = message
+        super().__init__(f"[{method}] API返回错误: code={code}, message={message}")
+
+
 class ShopeeAPI:
     """
     Shopee API 封装类
@@ -285,13 +294,16 @@ class ShopeeAPI:
                 data = response.json()
                 if data and data.get('code') == 0:
                     return data.get('data', {})
+                else:
+                    code = data.get('code') if data else -1
+                    msg = data.get('message', 'unknown') if data else 'empty response'
+                    raise ShopeeApiError('get_order_list', code, msg)
             else:
-                logger.error(f"获取订单列表失败: HTTP {response.status_code}")
+                raise ShopeeApiError('get_order_list', response.status_code, f"HTTP error: {response.status_code}")
 
         except Exception as e:
             logger.error(f"获取订单列表异常: {e}")
-
-        return None
+            raise
 
     def _get_order_card_list(self, base_url: str,
                              package_params: List[Dict],

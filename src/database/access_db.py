@@ -1131,42 +1131,43 @@ class AccessDatabase:
             return 0
 
         tracker = get_tracker()
-        tracker.start('DB:保存订单')
+        tracker.start('DB:保存订单', env=env_name)
         saved_count = 0
         now = datetime.now()
-        with self.transaction() as conn:
-            cursor = conn.cursor()
+        with self._lock:
+            with self.transaction() as conn:
+                cursor = conn.cursor()
 
-            # 准备批量插入的 SQL（使用 UNION ALL 子查询方式）
-            for order_data in orders:
-                try:
-                    order_record = {
-                        'order_id': order_data.get('order_id'),
-                        'order_sn': order_data.get('order_sn'),
-                        'shop_id': order_data.get('shop_id'),
-                        'region_id': order_data.get('region_id'),
-                        'env_name': env_name or '',
-                        'status': order_data.get('status', ''),
-                        'fulfilment_channel': order_data.get('fulfilment_channel', ''),
-                        'total_price': order_data.get('total_price', 0),
-                        'currency': order_data.get('currency', 'MYR'),
-                        'shipping_name': order_data.get('shipping_name', ''),
-                        'shipping_phone': order_data.get('shipping_phone', ''),
-                        'shipping_address': order_data.get('shipping_address', ''),
-                        'tracking_number': order_data.get('tracking_number', ''),
-                        'buyer_user_id': order_data.get('buyer_user_id', ''),
-                        'rating': order_data.get('rating'),
-                        'order_create_time': order_data.get('order_create_time'),
-                        'update_time': now,
-                    }
+                # 准备批量插入的 SQL（使用 UNION ALL 子查询方式）
+                for order_data in orders:
+                    try:
+                        order_record = {
+                            'order_id': order_data.get('order_id'),
+                            'order_sn': order_data.get('order_sn'),
+                            'shop_id': order_data.get('shop_id'),
+                            'region_id': order_data.get('region_id'),
+                            'env_name': env_name or '',
+                            'status': order_data.get('status', ''),
+                            'fulfilment_channel': order_data.get('fulfilment_channel', ''),
+                            'total_price': order_data.get('total_price', 0),
+                            'currency': order_data.get('currency', 'MYR'),
+                            'shipping_name': order_data.get('shipping_name', ''),
+                            'shipping_phone': order_data.get('shipping_phone', ''),
+                            'shipping_address': order_data.get('shipping_address', ''),
+                            'tracking_number': order_data.get('tracking_number', ''),
+                            'buyer_user_id': order_data.get('buyer_user_id', ''),
+                            'rating': order_data.get('rating'),
+                            'order_create_time': order_data.get('order_create_time'),
+                            'update_time': now,
+                        }
 
-                    # 使用 upsert：先尝试更新，再尝试插入
-                    self._upsert_single_in_transaction(cursor, 'shopee_orders', order_record, 'order_sn')
-                    saved_count += 1
-                except Exception as e:
-                    logger.warning(f"保存订单失败: {e}")
+                        # 使用 upsert：先尝试更新，再尝试插入
+                        self._upsert_single_in_transaction(cursor, 'shopee_orders', order_record, 'order_sn')
+                        saved_count += 1
+                    except Exception as e:
+                        logger.warning(f"保存订单失败: {e}")
 
-        tracker.end('DB:保存订单', {'count': saved_count})
+        tracker.end('DB:保存订单', {'count': saved_count}, env=env_name)
         return saved_count
 
     def update_orders_batch(self, orders: List[Dict], env_name: str = None) -> int:
@@ -1184,41 +1185,42 @@ class AccessDatabase:
             return 0
 
         tracker = get_tracker()
-        tracker.start('DB:更新订单')
+        tracker.start('DB:更新订单', env=env_name)
         updated_count = 0
-        with self.transaction() as conn:
-            cursor = conn.cursor()
-            now = datetime.now()
+        with self._lock:
+            with self.transaction() as conn:
+                cursor = conn.cursor()
+                now = datetime.now()
 
-            for order_data in orders:
-                try:
-                    order_record = {
-                        'order_id': order_data.get('order_id'),
-                        'shop_id': order_data.get('shop_id'),
-                        'region_id': order_data.get('region_id'),
-                        'env_name': env_name or '',
-                        'status': order_data.get('status', ''),
-                        'fulfilment_channel': order_data.get('fulfilment_channel', ''),
-                        'total_price': order_data.get('total_price', 0),
-                        'currency': order_data.get('currency', 'MYR'),
-                        'shipping_name': order_data.get('shipping_name', ''),
-                        'shipping_phone': order_data.get('shipping_phone', ''),
-                        'shipping_address': order_data.get('shipping_address', ''),
-                        'tracking_number': order_data.get('tracking_number', ''),
-                        'buyer_user_id': order_data.get('buyer_user_id', ''),
-                        'rating': order_data.get('rating'),
-                        'order_create_time': order_data.get('order_create_time'),
-                        'update_time': now,
-                    }
+                for order_data in orders:
+                    try:
+                        order_record = {
+                            'order_id': order_data.get('order_id'),
+                            'shop_id': order_data.get('shop_id'),
+                            'region_id': order_data.get('region_id'),
+                            'env_name': env_name or '',
+                            'status': order_data.get('status', ''),
+                            'fulfilment_channel': order_data.get('fulfilment_channel', ''),
+                            'total_price': order_data.get('total_price', 0),
+                            'currency': order_data.get('currency', 'MYR'),
+                            'shipping_name': order_data.get('shipping_name', ''),
+                            'shipping_phone': order_data.get('shipping_phone', ''),
+                            'shipping_address': order_data.get('shipping_address', ''),
+                            'tracking_number': order_data.get('tracking_number', ''),
+                            'buyer_user_id': order_data.get('buyer_user_id', ''),
+                            'rating': order_data.get('rating'),
+                            'order_create_time': order_data.get('order_create_time'),
+                            'update_time': now,
+                        }
 
-                    order_sn = order_data.get('order_sn')
-                    if order_sn:
-                        self._update_single_in_transaction(cursor, 'shopee_orders', order_record, 'order_sn', order_sn)
-                        updated_count += 1
-                except Exception as e:
-                    logger.warning(f"更新订单失败: {e}")
+                        order_sn = order_data.get('order_sn')
+                        if order_sn:
+                            self._update_single_in_transaction(cursor, 'shopee_orders', order_record, 'order_sn', order_sn)
+                            updated_count += 1
+                    except Exception as e:
+                        logger.warning(f"更新订单失败: {e}")
 
-        tracker.end('DB:更新订单', {'count': updated_count})
+        tracker.end('DB:更新订单', {'count': updated_count}, env=env_name)
         return updated_count
 
     def update_order_buyers_batch(self, buyers: List[Dict]) -> int:
@@ -1236,47 +1238,37 @@ class AccessDatabase:
 
         tracker = get_tracker()
         tracker.start('DB:更新买家')
-
-        # 按 order_sn 去重，保留最后一条记录（数据库主键是 order_sn）
-        buyer_map = {}
-        for item in buyers:
-            order_sn = item.get('order_sn')
-            if order_sn:
-                buyer_map[order_sn] = item
-
-        unique_buyers = list(buyer_map.values())
-        logger.info(f"[acc_db] 买家数据去重: {len(buyers)} -> {len(unique_buyers)}")
-
         total_affected = 0
         now = datetime.now()
 
-        with self.transaction() as conn:
-            cursor = conn.cursor()
+        with self._lock:
+            with self.transaction() as conn:
+                cursor = conn.cursor()
 
-            for item in unique_buyers:
-                try:
-                    buyer_data = item.get('buyer_data', {})
-                    chat_data = item.get('chat_data', {})
-                    buyer_record = {
-                        'buyer_user_id': buyer_data.get('buyer_user_id'),
-                        'buyer_username': buyer_data.get('buyer_username', ''),
-                        'avatar': buyer_data.get('avatar'),
-                        'rating': buyer_data.get('rating'),
-                        'country': buyer_data.get('country'),
-                        'city': buyer_data.get('city'),
-                        'conversation_id': chat_data.get('conversation_id'),
-                        'total_messages': chat_data.get('total_messages', 0),
-                        'user_messages_count': chat_data.get('user_messages_count', 0),
-                        'user_message_text': chat_data.get('user_message_text', ''),
-                    }
+                for item in buyers:
+                    try:
+                        buyer_data = item.get('buyer_data', {})
+                        chat_data = item.get('chat_data', {})
+                        buyer_record = {
+                            'buyer_user_id': buyer_data.get('buyer_user_id'),
+                            'buyer_username': buyer_data.get('buyer_username', ''),
+                            'avatar': buyer_data.get('avatar'),
+                            'rating': buyer_data.get('rating'),
+                            'country': buyer_data.get('country'),
+                            'city': buyer_data.get('city'),
+                            'conversation_id': chat_data.get('conversation_id'),
+                            'total_messages': chat_data.get('total_messages', 0),
+                            'user_messages_count': chat_data.get('user_messages_count', 0),
+                            'user_message_text': chat_data.get('user_message_text', ''),
+                        }
 
-                    order_sn = item.get('order_sn')
-                    if order_sn:
-                        self._update_single_in_transaction(cursor, 'shopee_order_buyer', buyer_record, 'order_sn', order_sn)
-                        total_affected += 1
-                except Exception as e:
-                    logger.warning(f"更新买家失败: {e}")
-                    continue
+                        order_sn = item.get('order_sn')
+                        if order_sn:
+                            self._update_single_in_transaction(cursor, 'shopee_order_buyer', buyer_record, 'order_sn', order_sn)
+                            total_affected += 1
+                    except Exception as e:
+                        logger.warning(f"更新买家失败: {e}")
+                        continue
 
         tracker.end('DB:更新买家', {'count': total_affected})
         return total_affected
@@ -1358,27 +1350,28 @@ class AccessDatabase:
         total_affected = 0
         now = datetime.now()
 
-        with self.transaction() as conn:
-            cursor = conn.cursor()
+        with self._lock:
+            with self.transaction() as conn:
+                cursor = conn.cursor()
 
-            for item in items:
-                try:
-                    item_record = {
-                        'item_id': item.get('item_id'),
-                        'order_id': order_id,
-                        'order_sn': order_sn,
-                        'item_name': item.get('name', ''),
-                        'item_description': item.get('description', ''),
-                        'amount': item.get('amount', 1),
-                        'model_id': item.get('model_id'),
-                        'created_at': now
-                    }
-                    # 直接插入，忽略重复键错误（表已无主键）
-                    self._insert_ignore_duplicates(cursor, 'shopee_order_items', item_record)
-                    total_affected += 1
-                except Exception as e:
-                    logger.warning(f"保存商品失败: {e}")
-                    continue
+                for item in items:
+                    try:
+                        item_record = {
+                            'item_id': item.get('item_id'),
+                            'order_id': order_id,
+                            'order_sn': order_sn,
+                            'item_name': item.get('name', ''),
+                            'item_description': item.get('description', ''),
+                            'amount': item.get('amount', 1),
+                            'model_id': item.get('model_id'),
+                            'created_at': now
+                        }
+                        # 直接插入，忽略重复键错误（表已无主键）
+                        self._insert_ignore_duplicates(cursor, 'shopee_order_items', item_record)
+                        total_affected += 1
+                    except Exception as e:
+                        logger.warning(f"保存商品失败: {e}")
+                        continue
 
         tracker.end('DB:保存商品', {'count': total_affected})
         return total_affected
@@ -1412,33 +1405,34 @@ class AccessDatabase:
         total_affected = 0
         now = datetime.now()
 
-        with self.transaction() as conn:
-            cursor = conn.cursor()
+        with self._lock:
+            with self.transaction() as conn:
+                cursor = conn.cursor()
 
-            for item in unique_buyers:
-                try:
-                    buyer_data = item.get('buyer_data', {})
-                    chat_data = item.get('chat_data', {})
-                    buyer_record = {
-                        'order_id': item.get('order_id'),
-                        'order_sn': item.get('order_sn'),
-                        'buyer_user_id': buyer_data.get('buyer_user_id'),
-                        'buyer_username': buyer_data.get('buyer_username', ''),
-                        'avatar': buyer_data.get('avatar'),
-                        'rating': buyer_data.get('rating'),
-                        'country': buyer_data.get('country'),
-                        'city': buyer_data.get('city'),
-                        'conversation_id': chat_data.get('conversation_id'),
-                        'total_messages': chat_data.get('total_messages', 0),
-                        'user_messages_count': chat_data.get('user_messages_count', 0),
-                        'user_message_text': chat_data.get('user_message_text', ''),
-                        'created_at': now
-                    }
-                    self._upsert_single_in_transaction(cursor, 'shopee_order_buyer', buyer_record, 'order_sn')
-                    total_affected += 1
-                except Exception as e:
-                    logger.warning(f"保存买家失败: {e}")
-                    continue
+                for item in buyers:
+                    try:
+                        buyer_data = item.get('buyer_data', {})
+                        chat_data = item.get('chat_data', {})
+                        buyer_record = {
+                            'order_id': item.get('order_id'),
+                            'order_sn': item.get('order_sn'),
+                            'buyer_user_id': buyer_data.get('buyer_user_id'),
+                            'buyer_username': buyer_data.get('buyer_username', ''),
+                            'avatar': buyer_data.get('avatar'),
+                            'rating': buyer_data.get('rating'),
+                            'country': buyer_data.get('country'),
+                            'city': buyer_data.get('city'),
+                            'conversation_id': chat_data.get('conversation_id'),
+                            'total_messages': chat_data.get('total_messages', 0),
+                            'user_messages_count': chat_data.get('user_messages_count', 0),
+                            'user_message_text': chat_data.get('user_message_text', ''),
+                            'created_at': now
+                        }
+                        self._upsert_single_in_transaction(cursor, 'shopee_order_buyer', buyer_record, 'order_sn')
+                        total_affected += 1
+                    except Exception as e:
+                        logger.warning(f"保存买家失败: {e}")
+                        continue
 
         tracker.end('DB:保存买家', {'count': total_affected})
         return total_affected

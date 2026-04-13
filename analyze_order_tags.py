@@ -122,6 +122,8 @@ def check_high_frequency_repurchase(orders: List[Dict], order_sn: str,
             continue
         if not o.get('order_create_time'):
             continue
+        if o.get('status') != 'To Ship':
+            continue
 
         time_diff = abs((order_create_time - o.get('order_create_time')).total_seconds()) / 3600
         if time_diff <= 2:
@@ -173,14 +175,12 @@ def check_ph_remote_area(order, buyer_info) -> Dict:
 
 
 def check_suspicious_customer(conn, order_sn: str, buyer_user_id: str,
-                              current_order_create_time) -> Dict:
+                              current_order_create_time) -> bool:
     """
-    检查可疑顾客
-    - 历史派送失败次数 >= 2 -> 历史派送失败
-    - 历史存在退货/退款记录 -> 历史退货退款
+    检查可疑顾客：历史是否存在订单状态为cancel且有运单号的记录
     """
     if not buyer_user_id:
-        return {'has_delivery_failure': False, 'has_refund': False}
+        return False
 
     # Access ODBC 不支持参数化查询，使用字符串拼接
     escaped_buyer = buyer_user_id.replace("'", "''")
@@ -188,33 +188,21 @@ def check_suspicious_customer(conn, order_sn: str, buyer_user_id: str,
 
     cursor = conn.cursor()
     cursor.execute(f"""
-        SELECT order_sn, status
+        SELECT order_sn, status, tracking_number
         FROM shopee_orders
         WHERE buyer_user_id = '{escaped_buyer}' AND order_sn <> '{escaped_sn}'
     """)
 
     history_orders = cursor.fetchall()
 
-    # 统计派送失败次数
-    delivery_failure_count = 0
-    has_refund = False
-
+    # 判断条件：订单状态为 cancel 且存在运单号
     for row in history_orders:
-        history_sn, status = row
-        # 派送失败状态判断
-        if status and 'failed' in str(status).lower():
-            delivery_failure_count += 1
+        status = row[1]
+        tracking_number = row[2]
+        if status and status.lower() == 'cancel' and tracking_number and str(tracking_number).strip():
+            return True
 
-        # 退款/退货状态判断
-        if status and any(keyword in str(status).lower()
-                         for keyword in ['refund', 'return', 'cancel']):
-            has_refund = True
-
-    return {
-        'has_delivery_failure': delivery_failure_count >= 2,
-        'delivery_failure_count': delivery_failure_count,
-        'has_refund': has_refund
-    }
+    return False
 
 
 # 税务关键词列表
@@ -245,6 +233,30 @@ def main():
     print("订单标签分析脚本")
     print("筛选条件: status = 'To Ship' AND tracking_number 为空")
     print("=" * 60)
+
+    # 保存到 data 目录
+    data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
+    os.makedirs(data_dir, exist_ok=True)
+
+    # 清除旧的 order_tags 文件
+    print("\n[0/6] 清除旧的 order_tags 文件...")
+    cleared_files = []
+    if os.path.exists(data_dir):
+        for fname in os.listdir(data_dir):
+            if fname.startswith('order_tags') and fname.endswith('.xlsx'):
+                fpath = os.path.join(data_dir, fname)
+                try:
+                    os.remove(fpath)
+                    cleared_files.append(fname)
+                except Exception as e:
+                    print(f"     清除失败: {fname}, {e}")
+    if cleared_files:
+        print(f"     已清除 {len(cleared_files)} 个旧文件: {cleared_files}")
+    else:
+        print("     没有旧文件需要清除")
+
+    # 生成时间戳（格式：20260413_105651）
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
 
     # 连接数据库
     print("\n[1/6] 连接数据库...")
@@ -307,12 +319,9 @@ def main():
         if ph_check.get('is_remote'):
             tags.append('地址偏远')
 
-        # 4. 可疑顾客
-        suspicious = check_suspicious_customer(conn, order_sn, buyer_user_id, order_create_time)
-        if suspicious.get('has_delivery_failure'):
-            tags.append('历史派送失败')
-        if suspicious.get('has_refund'):
-            tags.append('历史退货退款')
+        # 4. 可疑顾客（历史退货退款派送失败）
+        if check_suspicious_customer(conn, order_sn, buyer_user_id, order_create_time):
+            tags.append('历史退货退款派送失败')
 
         # 5. 税务相关
         if check_tax_request(order, buyer_info):
@@ -333,20 +342,18 @@ def main():
     for tag, count in sorted(tag_counts.items(), key=lambda x: -x[1]):
         print(f"       - {tag}: {count} 条")
 
-    # 过滤掉没有标签的订单
-    results_with_tags = [r for r in results if r['tags']]
-    print(f"\n     有标签订单: {len(results_with_tags)} / {len(results)}")
+    # 给没有标签的订单添加 pass 标签
+    for r in results:
+        if not r['tags']:
+            r['tags'].append('pass')
+    print(f"\n     有标签订单: {len(results)} / {len(results)}")
 
     # 导出Excel（支持拆分多个文件，每个最多1000条）
     print("\n[6/6] 导出Excel...")
 
-    # 保存到 data 目录
-    data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
-    os.makedirs(data_dir, exist_ok=True)
-
     # 准备所有数据行
     all_data_rows = []
-    for r in results_with_tags:
+    for r in results:
         order_sn = r['order_sn']
         for tag in r['tags']:
             all_data_rows.append((order_sn, tag))
@@ -378,11 +385,11 @@ def main():
         ws.column_dimensions['A'].width = 25
         ws.column_dimensions['B'].width = 20
 
-        # 保存文件
+        # 保存文件（命名格式: order_tags_PH_Shopee-Lamall_20260413_105651.xlsx）
         if file_count == 1:
-            output_filename = 'order_tags.xlsx'
+            output_filename = f'order_tags_PH_Shopee-Lamall_{timestamp}.xlsx'
         else:
-            output_filename = f'order_tags_{file_idx + 1}.xlsx'
+            output_filename = f'order_tags_PH_Shopee-Lamall_{timestamp}_{file_idx + 1}.xlsx'
         output_path = os.path.join(data_dir, output_filename)
         wb.save(output_path)
         generated_files.append(output_path)
@@ -394,7 +401,7 @@ def main():
     conn.close()
 
     print("\n" + "=" * 60)
-    print(f"共分析 {len(orders)} 个订单，其中 {len(results_with_tags)} 个有标签")
+    print(f"共分析 {len(orders)} 个订单，全部添加标签")
     print("=" * 60)
 
     # 返回生成的文件列表，供 BigSeller 上传使用

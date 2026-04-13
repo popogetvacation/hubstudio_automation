@@ -16,7 +16,7 @@ database:
 
 scheduler:
   # 最大并发环境数
-  max_concurrent: 10
+  max_concurrent: 7
   # 单个任务超时时间(秒)
   task_timeout: 300
   # 环境启动超时(秒)

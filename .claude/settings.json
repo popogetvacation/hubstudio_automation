@@ -4,19 +4,7 @@
       "Bash(python run_shopee_order.py)",
       "Bash(python test_order_detail.py)",
       "Bash(python debug_auth.py)",
-      "Bash(python debug_buyer_info.py)",
-      "Bash(git:*)"
+      "Bash(python debug_buyer_info.py)"
     ]
-  },
-  "hooks": {
-    "PostToolUse": [{
-      "matcher": "Edit|Write",
-      "hooks": [{
-        "type": "command",
-        "command": "cd \"c:/Users/popo/Desktop/工作buf区/hubstudio_automation\" && git add -A && git diff --cached --quiet || git commit -m \"$(date '+%Y-%m-%d %H:%M') - Code update\" --allow-empty",
-        "shell": "bash",
-        "timeout": 30
-      }]
-    }]
   }
 }

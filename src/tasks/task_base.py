@@ -35,6 +35,7 @@ class TaskResult:
     error: Optional[str] = None
     duration: float = 0
     task_id: str = ""
+    retry_count: int = 0
 
 
 @dataclass
@@ -149,6 +150,7 @@ class TaskRunner:
         self.startup_timeout = startup_timeout
         self.task_timeout = task_timeout
         self.max_retries = max_retries
+        self.retry_interval = 5  # 默认重试间隔5秒
 
         # 环境管理器
         self.env_manager = EnvironmentManager(
@@ -159,6 +161,29 @@ class TaskRunner:
 
         # 已加载的环境
         self._loaded = False
+
+    def _is_retryable_error(self, error_msg: str) -> bool:
+        """
+        判断错误是否可重试
+
+        Args:
+            error_msg: 错误信息
+
+        Returns:
+            是否可重试
+        """
+        retryable_keywords = [
+            '无法打开环境',
+            '连接失败',
+            'connection',
+            'timeout',
+            '超时',
+            '网络错误',
+            '断开',
+            '会话丢失'
+        ]
+        error_lower = error_msg.lower()
+        return any(keyword.lower() in error_lower for keyword in retryable_keywords)
 
     def load_environments(self, group_code: str = None) -> int:
         """
@@ -240,110 +265,145 @@ class TaskRunner:
             env_id = env_info['env_id']
             env_name = env_info['env_name']
             start_time = time.time()
+            retry_count = 0
 
             driver = None
 
-            try:
-                # 打开浏览器
-                logger.info(f"[{task.task_name}] 正在打开环境: {env_name}")
-
-                browser_info = self.env_manager.open_environment(env_id)
-                if not browser_info:
-                    raise RuntimeError(f"无法打开环境: {env_id}")
-
-                self.env_manager.mark_busy(env_id)
-
-                # 创建 Selenium 驱动
-                # 优先使用 HubStudio 自带的 webdriver，其次使用配置的
-                webdriver_path = browser_info.webdriver_path or self.chromedriver_path
-                driver = HubStudioSeleniumDriver(
-                    debug_port=browser_info.debug_port,
-                    chromedriver_path=webdriver_path
-                )
-                driver.connect()
-
-                # 等待页面加载并检查是否有多个标签页
-                time.sleep(2)
-
-                # 检查是否有多个窗口/标签页，切换到正确的页面
-                window_handles = driver.driver.window_handles
-                if len(window_handles) > 1:
-                    # 查找非 devtools 的窗口
-                    target_handle = None
-                    for handle in window_handles:
-                        driver.switch_to_window(handle)
-                        current_url = driver.get_current_url()
-                        if 'devtools://' not in current_url and 'chrome://' not in current_url:
-                            target_handle = handle
-                            break
-
-                    # 如果没找到，使用第一个窗口
-                    if target_handle:
-                        driver.switch_to_window(target_handle)
-                        logger.info(f"[{task.task_name}] 切换到目标标签页")
-                    else:
-                        driver.switch_to_window(window_handles[0])
-
-                # 等待页面加载完成
+            while retry_count <= self.max_retries:
                 try:
-                    from selenium.webdriver.support.ui import WebDriverWait
-                    WebDriverWait(driver.driver, 10).until(
-                        lambda d: d.execute_script("return document.readyState") == "complete"
+                    # 打开浏览器
+                    logger.info(f"[{task.task_name}] 正在打开环境: {env_name}")
+
+                    browser_info = self.env_manager.open_environment(env_id)
+                    if not browser_info:
+                        raise RuntimeError(f"无法打开环境: {env_id}")
+
+                    self.env_manager.mark_busy(env_id)
+
+                    # 创建 Selenium 驱动
+                    # 优先使用 HubStudio 自带的 webdriver，其次使用配置的
+                    webdriver_path = browser_info.webdriver_path or self.chromedriver_path
+                    driver = HubStudioSeleniumDriver(
+                        debug_port=browser_info.debug_port,
+                        chromedriver_path=webdriver_path
                     )
-                except Exception:
-                    pass
+                    driver.connect()
 
-                # 执行前置操作
-                task.setup(driver, env_info)
+                    # 等待页面加载并检查是否有多个标签页
+                    time.sleep(2)
 
-                # 执行任务
-                logger.info(f"[{task.task_name}] 开始执行: {env_name}")
-                task_result = task.execute(driver, env_info)
+                    # 检查是否有多个窗口/标签页，切换到正确的页面
+                    window_handles = driver.driver.window_handles
+                    if len(window_handles) > 1:
+                        # 查找非 devtools 的窗口
+                        target_handle = None
+                        for handle in window_handles:
+                            driver.switch_to_window(handle)
+                            current_url = driver.get_current_url()
+                            if 'devtools://' not in current_url and 'chrome://' not in current_url:
+                                target_handle = handle
+                                break
 
-                # 执行后置操作
-                task.teardown(driver, env_info)
+                        # 如果没找到，使用第一个窗口
+                        if target_handle:
+                            driver.switch_to_window(target_handle)
+                            logger.info(f"[{task.task_name}] 切换到目标标签页")
+                        else:
+                            driver.switch_to_window(window_handles[0])
 
-                duration = time.time() - start_time
-                logger.info(f"[{task.task_name}] 执行成功: {env_name}, 耗时: {duration:.2f}s")
-
-                return TaskResult(
-                    env_id=env_id,
-                    env_name=env_name,
-                    success=True,
-                    result=task_result,
-                    duration=duration
-                )
-
-            except Exception as e:
-                duration = time.time() - start_time
-                error_msg = str(e)
-                logger.error(f"[{task.task_name}] 执行失败: {env_name}, 错误: {error_msg}")
-
-                # 错误处理
-                if driver:
+                    # 等待页面加载完成
                     try:
-                        task.on_error(driver, env_info, e)
+                        from selenium.webdriver.support.ui import WebDriverWait
+                        WebDriverWait(driver.driver, 10).until(
+                            lambda d: d.execute_script("return document.readyState") == "complete"
+                        )
                     except Exception:
                         pass
 
-                return TaskResult(
-                    env_id=env_id,
-                    env_name=env_name,
-                    success=False,
-                    error=error_msg,
-                    duration=duration
-                )
+                    # 执行前置操作
+                    task.setup(driver, env_info)
 
-            finally:
-                # 断开驱动
-                if driver:
-                    try:
-                        driver.disconnect()
-                    except Exception:
-                        pass
+                    # 执行任务
+                    logger.info(f"[{task.task_name}] 开始执行: {env_name}")
+                    task_result = task.execute(driver, env_info)
 
-                # 标记环境空闲
-                self.env_manager.mark_idle(env_id)
+                    # 执行后置操作
+                    task.teardown(driver, env_info)
+
+                    duration = time.time() - start_time
+                    logger.info(f"[{task.task_name}] 执行成功: {env_name}, 耗时: {duration:.2f}s")
+
+                    return TaskResult(
+                        env_id=env_id,
+                        env_name=env_name,
+                        success=True,
+                        result=task_result,
+                        duration=duration,
+                        retry_count=retry_count
+                    )
+
+                except Exception as e:
+                    duration = time.time() - start_time
+                    error_msg = str(e)
+                    is_retryable = self._is_retryable_error(error_msg)
+
+                    # 判断是否需要重试
+                    if is_retryable and retry_count < self.max_retries:
+                        retry_count += 1
+                        logger.warning(f"[{task.task_name}] 执行失败: {env_name}, 错误: {error_msg}, "
+                                      f"将在 {self.retry_interval}秒后重试 ({retry_count}/{self.max_retries})")
+
+                        # 清理资源准备重试
+                        if driver:
+                            try:
+                                driver.disconnect()
+                            except Exception:
+                                pass
+                            driver = None
+
+                        self.env_manager.mark_idle(env_id)
+                        time.sleep(self.retry_interval)
+                        continue
+                    else:
+                        # 不重试或已超过最大重试次数
+                        logger.error(f"[{task.task_name}] 执行失败: {env_name}, 错误: {error_msg}")
+
+                        # 错误处理
+                        if driver:
+                            try:
+                                task.on_error(driver, env_info, e)
+                            except Exception:
+                                pass
+
+                        return TaskResult(
+                            env_id=env_id,
+                            env_name=env_name,
+                            success=False,
+                            error=error_msg,
+                            duration=duration,
+                            retry_count=retry_count
+                        )
+
+                finally:
+                    # 断开驱动
+                    if driver:
+                        try:
+                            driver.disconnect()
+                        except Exception:
+                            pass
+
+                    # 标记环境空闲
+                    self.env_manager.mark_idle(env_id)
+
+            # 理论上不会走到这里
+            return TaskResult(
+                env_id=env_id,
+                env_name=env_name,
+                success=False,
+                error="未知错误",
+                duration=time.time() - start_time,
+                retry_count=retry_count
+            )
 
         # 并发执行
         with ThreadPoolExecutor(max_workers=concurrency) as executor:

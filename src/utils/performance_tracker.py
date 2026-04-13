@@ -22,12 +22,28 @@ class PerformanceTracker:
         # 统计数据
         self.stats: Dict[str, Dict[str, Any]] = {}
 
-    def start(self, name: str):
-        """开始计时"""
+    def start(self, name: str, env: str = None):
+        """开始计时
+
+        Args:
+            name: 计时名称
+            env: 环境名称，用于多线程/多环境区分
+        """
+        if env:
+            name = f"{name}_{env}"
         self.start_times[name] = time.time()
 
-    def end(self, name: str, detail: Any = None) -> float:
-        """结束计时，返回耗时（秒）"""
+    def end(self, name: str, detail: Any = None, env: str = None) -> float:
+        """结束计时，返回耗时（秒）
+
+        Args:
+            name: 计时名称
+            detail: 详细信息
+            env: 环境名称，用于多线程/多环境区分
+        """
+        if env:
+            name = f"{name}_{env}"
+
         if name not in self.start_times:
             logger.warning(f"[Performance] '{name}' 没有对应的 start 调用")
             return 0
@@ -59,8 +75,17 @@ class PerformanceTracker:
         return elapsed
 
     @contextmanager
-    def measure(self, name: str, detail: Any = None):
-        """上下文管理器，自动计时"""
+    def measure(self, name: str, detail: Any = None, env: str = None):
+        """上下文管理器，自动计时
+
+        Args:
+            name: 计时名称
+            detail: 详细信息
+            env: 环境名称，用于多线程/多环境区分
+        """
+        if env:
+            name = f"{name}_{env}"
+
         start = time.time()
         try:
             yield
@@ -164,7 +189,13 @@ def reset_tracker():
 
 
 @contextmanager
-def measure_time(name: str, detail: Any = None):
-    """全局上下文管理器计时"""
-    with _global_tracker.measure(name, detail):
+def measure_time(name: str, detail: Any = None, env: str = None):
+    """全局上下文管理器计时
+
+    Args:
+        name: 计时名称
+        detail: 详细信息
+        env: 环境名称，用于多线程/多环境区分
+    """
+    with _global_tracker.measure(name, detail, env):
         yield
