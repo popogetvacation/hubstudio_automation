@@ -224,7 +224,7 @@ class APICapturer:
     """
     API 捕获器
 
-    专门用于捕获和解析 XHR/Fetch API 请求
+    使用 CDP Fetch 域拦截 XHR/Fetch API 请求和响应
     """
 
     def __init__(self, driver):
@@ -235,8 +235,10 @@ class APICapturer:
             driver: Selenium WebDriver 实例
         """
         self.driver = driver
-        self.listener = NetworkEventListener(driver)
         self._api_calls: List[Dict] = []
+        self._url_filter = None
+        self._enabled = False
+        self._intercepted_request_ids = set()  # 已拦截的 request_id
 
     def start(self, url_filter: str = None):
         """
@@ -247,14 +249,109 @@ class APICapturer:
         """
         self._url_filter = url_filter
         self._api_calls.clear()
+        self._intercepted_request_ids.clear()
 
-        # 注册回调
-        self.listener.on_response(self._on_response)
+        # 使用 JavaScript 注入方式监听网络请求
+        try:
+            inject_js = """
+(function() {
+    if (window.__api_capturer__) {
+        window.__api_capturer__.requests = [];
+        return 'Reset existing capturer';
+    }
 
-        # 启动监听
-        self.listener.start()
+    window.__api_capturer__ = {
+        requests: [],
+        originalFetch: window.fetch,
+        originalXHR: window.XMLHttpRequest
+    };
 
-        logger.info(f"[API Capturer] 开始捕获，过滤: {url_filter}")
+    // 重写 fetch
+    window.fetch = function(input, init) {
+        var startTime = Date.now();
+        var url = typeof input === 'string' ? input : input.url;
+        var method = (init && init.method) || 'GET';
+
+        var requestRecord = {
+            id: 'fetch_' + startTime,
+            url: url,
+            method: method,
+            headers: (init && init.headers) || {},
+            body: (init && init.body) || null,
+            startTime: startTime
+        };
+        window.__api_capturer__.requests.push(requestRecord);
+
+        return window.__api_capturer__.originalFetch.call(this, input, init).then(function(response) {
+            var clonedResponse = response.clone();
+            return clonedResponse.text().then(function(bodyText) {
+                requestRecord.response = {
+                    status: response.status,
+                    statusText: response.statusText,
+                    headers: {},
+                    body: bodyText
+                };
+                return response;
+            });
+        });
+    };
+
+    // 重写 XMLHttpRequest
+    var OriginalXHR = window.XMLHttpRequest;
+    var XHRProxy = new Proxy(OriginalXHR, function(target) {
+        return new Proxy(target, {
+            construct: function(Target, args) {
+                var xhr = new Target(...args);
+                var url = typeof args[0] === 'string' ? args[0] : args[0].toString();
+                var method = 'GET';
+                var startTime = Date.now();
+
+                var requestRecord = {
+                    id: 'xhr_' + startTime,
+                    url: url,
+                    method: method,
+                    headers: {},
+                    body: null,
+                    startTime: startTime
+                };
+
+                xhr.addEventListener('readystatechange', function() {
+                    if (xhr.readyState === 1) {
+                        method = xhr._method || method;
+                        requestRecord.method = method;
+                    }
+                    if (xhr.readyState === 2) {
+                        requestRecord.response = {
+                            status: xhr.status,
+                            statusText: xhr.statusText,
+                            headers: {},
+                            body: null
+                        };
+                    }
+                    if (xhr.readyState === 4) {
+                        try {
+                            requestRecord.response.body = xhr.responseText;
+                        } catch(e) {}
+                    }
+                });
+
+                window.__api_capturer__.requests.push(requestRecord);
+                return xhr;
+            }
+        });
+    });
+
+    window.XMLHttpRequest = XHRProxy;
+
+    return 'API capturer initialized';
+})();
+"""
+            self.driver.execute_script(inject_js)
+            self._enabled = True
+            logger.info(f"[API Capturer] 开始捕获（JavaScript 注入），过滤: {url_filter}")
+        except Exception as e:
+            logger.error(f"[API Capturer] 注入网络监听失败: {e}")
+            raise
 
     def stop(self) -> List[Dict]:
         """
@@ -263,11 +360,36 @@ class APICapturer:
         Returns:
             捕获的 API 调用列表
         """
-        self.listener.stop()
+        if self._enabled:
+            # 获取所有捕获的请求
+            self._capture_all_requests()
+
+            try:
+                # 清理注入的代码
+                cleanup_js = """
+if (window.__api_capturer__) {
+    window.fetch = window.__api_capturer__.originalFetch;
+    window.XMLHttpRequest = window.__api_capturer__.originalXHR;
+    delete window.__api_capturer__;
+    return 'API capturer cleaned';
+}
+return 'No capturer found';
+"""
+                self.driver.execute_script(cleanup_js)
+                self._enabled = False
+                logger.info("[API Capturer] 停止捕获")
+            except Exception as e:
+                logger.warning(f"[API Capturer] 清理失败: {e}")
         return self._api_calls
 
     def get_api_calls(self) -> List[Dict]:
-        """获取捕获的 API 调用"""
+        """
+        获取捕获的 API 调用
+
+        Returns:
+            捕获的 API 调用列表
+        """
+        self._capture_all_requests()
         return self._api_calls
 
     def get_json_responses(self) -> List[Dict]:
@@ -288,49 +410,72 @@ class APICapturer:
                     pass
         return results
 
-    def _on_response(self, params: Dict):
-        """响应回调"""
-        response = params.get('response', {})
-        request_id = params.get('requestId')
-
-        # 获取请求信息
-        request = self.listener.get_request(request_id)
-        if not request:
-            return
-
-        # 只处理 XHR/Fetch
-        if request.get('type') not in ('XHR', 'Fetch'):
-            return
-
-        url = response.get('url', '')
-
-        # URL 过滤
-        if self._url_filter and self._url_filter not in url:
-            return
-
-        # 获取响应体
-        body = None
+    def _capture_all_requests(self):
+        """
+        从 JavaScript 获取所有捕获的请求
+        """
         try:
-            result = self.driver.execute_cdp_cmd('Network.getResponseBody', {
-                'requestId': request_id
-            })
-            body = result.get('body')
-        except Exception:
-            pass
+            requests_data = self.driver.execute_script("""
+                if (window.__api_capturer__) {
+                    var result = [];
+                    for (var i = 0; i < window.__api_capturer__.requests.length; i++) {
+                        var req = window.__api_capturer__.requests[i];
+                        if (req.response) {
+                            result.push({
+                                id: req.id,
+                                url: req.url,
+                                method: req.method,
+                                request: {
+                                    headers: req.headers,
+                                    body: req.body
+                                },
+                                response: req.response,
+                                timestamp: req.startTime / 1000
+                            });
+                        }
+                    }
+                    return result;
+                }
+                return [];
+            """)
 
-        api_call = {
-            'request_id': request_id,
-            'url': url,
-            'method': request.get('request', {}).get('method', 'GET'),
-            'request': request,
-            'response': response,
-            'body': body,
-            'timestamp': time.time()
-        }
+            # 过滤并添加到结果
+            for req in requests_data:
+                url = req.get('url', '')
+                request_id = req.get('id')
 
-        self._api_calls.append(api_call)
+                # 跳过已处理的
+                if request_id in self._intercepted_request_ids:
+                    continue
 
-        logger.debug(f"[API Capturer] 捕获: {request.get('request', {}).get('method')} {url}")
+                # URL 过滤
+                if self._url_filter and self._url_filter not in url:
+                    self._intercepted_request_ids.add(request_id)
+                    continue
+
+                # 组装 API 调用
+                api_call = {
+                    'request_id': request_id,
+                    'url': url,
+                    'method': req.get('method', 'GET'),
+                    'request': req.get('request', {}),
+                    'response': {
+                        'status_code': req.get('response', {}).get('status', 0),
+                        'status_text': req.get('response', {}).get('statusText', ''),
+                        'headers': req.get('response', {}).get('headers', {}),
+                        'mime_type': ''
+                    },
+                    'body': req.get('response', {}).get('body'),
+                    'timestamp': req.get('timestamp', time.time())
+                }
+
+                self._api_calls.append(api_call)
+                self._intercepted_request_ids.add(request_id)
+
+                logger.debug(f"[API Capturer] 捕获: {api_call['method']} {url} -> {api_call['response']['status_code']}")
+
+        except Exception as e:
+            logger.debug(f"[API Capturer] 获取捕获请求失败: {e}")
 
 
 class WebSocketMonitor:

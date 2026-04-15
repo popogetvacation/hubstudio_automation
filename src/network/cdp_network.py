@@ -785,18 +785,38 @@ class CDPRequest:
             try {{
                 // 使用 XMLHttpRequest（与浏览器原生 XHR 请求一致）
                 const reqHeaders = {json.dumps(request_headers)};
+                const reqBody = {json.dumps(body) if body else 'null'};
+
+                console.log('[CDP Request] 开始请求:', {{
+                    method: '{method.upper()}',
+                    url: '{url}',
+                    headers: reqHeaders,
+                    body: reqBody
+                }});
 
                 return new Promise((resolve, reject) => {{
                     const xhr = new XMLHttpRequest();
                     xhr.open('{method.upper()}', '{url}', true);
                     xhr.withCredentials = true;
+                    xhr.timeout = 30000;  // 30秒超时
+                    xhr.ontimeout = function() {{
+                        console.error('[CDP Request] 请求超时');
+                        reject(new Error('Request timed out'));
+                    }};
 
                     // 设置请求头
                     Object.entries(reqHeaders).forEach(([key, value]) => {{
                         xhr.setRequestHeader(key, value);
                     }});
+                    console.log('[CDP Request] 请求头已设置，准备发送');
 
                     xhr.onload = function() {{
+                        console.log('[CDP Request] 收到响应:', {{
+                            status: xhr.status,
+                            statusText: xhr.statusText,
+                            responseURL: xhr.responseURL,
+                            responseLength: xhr.responseText?.length || 0
+                        }});
                         const headers = {{}};
                         xhr.getAllResponseHeaders().split('\\r\\n').forEach(line => {{
                             const parts = line.split(': ');
@@ -815,6 +835,11 @@ class CDPRequest:
                     }};
 
                     xhr.onerror = function() {{
+                        console.error('[CDP Request] 网络错误:', {{
+                            status: xhr.status,
+                            readyState: xhr.readyState,
+                            responseText: xhr.responseText?.substring(0, 200) || '(empty)'
+                        }});
                         reject(new Error('Network request failed'));
                     }};
 

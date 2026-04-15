@@ -231,6 +231,92 @@ class ShopeeAPI:
 
     # ==================== 订单 API ====================
 
+    async def get_order_list_async(self, base_url: str,
+                                  order_list_tab: int = 300,
+                                  page_number: int = 1,
+                                  page_sentinel: str = None,
+                                  page_size: int = 40,
+                                  sort_type: int = 3,
+                                  ascending: bool = False) -> Optional[Dict]:
+        """
+        异步获取订单列表（使用 AsyncBatchRequest）
+
+        Args:
+            base_url: 基础 URL
+            order_list_tab: 订单标签页类型 (300=待发货, 1000=全部)
+            page_number: 页码
+            page_sentinel: 分页标记
+            page_size: 每页数量
+            sort_type: 排序类型
+            ascending: 是否升序
+
+        Returns:
+            订单列表数据或 None
+        """
+        from ..network.async_http import AsyncBatchRequest
+
+        request_body = {
+            "order_list_tab": order_list_tab,
+            "entity_type": 0,
+            "pagination": {
+                "from_page_number": 1,
+                "page_number": page_number,
+                "page_size": min(page_size, 200)
+            },
+            "filter": {
+                "fulfillment_type": 0,
+                "is_drop_off": 0,
+                "fulfillment_source": 0,
+                "action_filter": 0,
+                "order_to_ship_status": 1,
+                "shipping_priority": 0
+            },
+            "sort": {
+                "sort_type": sort_type,
+                "ascending": ascending
+            }
+        }
+
+        if page_sentinel:
+            request_body["pagination"]["page_sentinel"] = page_sentinel
+            logger.info(f"[get_order_list_async] 使用 page_sentinel 分页，page_number={page_number}")
+        else:
+            logger.info(f"[get_order_list_async] 无 page_sentinel，使用 page_number={page_number}")
+
+        request_headers = self._build_headers(base_url)
+        logger.info(f"[get_order_list_async] 请求体: {json.dumps(request_body, ensure_ascii=False)}")
+
+        cookies = self._driver.get_cookies()
+        auth_info = self.auth_info
+
+        async_request = AsyncBatchRequest(cookies=cookies, auth_info=auth_info)
+
+        try:
+            response = await async_request.post(
+                url=f"{base_url}{self.ORDER_LIST_API}",
+                json_data=request_body,
+                headers=request_headers,
+                timeout=30
+            )
+
+            if response.ok:
+                data = response.json()
+                logger.info(f"[get_order_list_async] 响应状态: {response.status_code}")
+                if data and data.get('code') == 0:
+                    return data.get('data', {})
+                else:
+                    code = data.get('code') if data else -1
+                    msg = data.get('message', 'unknown') if data else 'empty response'
+                    raise ShopeeApiError('get_order_list_async', code, msg)
+            else:
+                raise ShopeeApiError('get_order_list_async', response.status_code, f"HTTP error: {response.status_code}")
+
+        except Exception as e:
+            logger.error(f"[get_order_list_async] 获取订单列表异常: {e}")
+            raise
+        finally:
+            await async_request.close()
+
     def get_order_list(self, base_url: str,
                        order_list_tab: int = 300,
                        page_number: int = 1,
@@ -282,28 +368,71 @@ class ShopeeAPI:
         else:
             logger.info(f"[get_order_list] 无 page_sentinel，使用 page_number={page_number}")
 
+        # 调试：打印请求内容和请求头
+        request_headers = self._build_headers(base_url)
+        logger.info(f"[get_order_list] 请求头: {json.dumps(request_headers, ensure_ascii=False)}")
+        logger.info(f"[get_order_list] 请求体: {json.dumps(request_body, ensure_ascii=False)}")
+
+        # 额外调试：添加环境信息
         try:
+            env_debug = {
+                'current_url': self._driver.get_current_url(),
+                'user_agent': self._driver.execute_script("return navigator.userAgent"),
+                'cookie_count': len(self._driver.get_cookies()),
+                'cookie_sample': self._driver.get_cookies()[:3]  # 记录前3个cookie
+            }
+            logger.info(f"[get_order_list] 环境信息: {json.dumps(env_debug, ensure_ascii=False)}")
+        except Exception as e:
+            logger.warning(f"[get_order_list] 获取环境信息失败: {e}")
+
+        try:
+            # 启动 API 捕获以便在出错时查看详细信息（使用 CDP Fetch 实时拦截）
+            self.browser_request.start_api_capture(url_filter="search_order_list_index")
+
             response = self.browser_request.post(
                 url=f"{base_url}{self.ORDER_LIST_API}",
                 json_data=request_body,
-                headers=self._build_headers(base_url),
+                headers=request_headers,
                 timeout=30
             )
 
             if response.ok:
                 data = response.json()
+                # 调试：记录完整响应
+                logger.info(f"[get_order_list] 响应状态: {response.status_code}, 响应数据: {json.dumps(data, ensure_ascii=False)[:500]}...")
                 if data and data.get('code') == 0:
                     return data.get('data', {})
                 else:
                     code = data.get('code') if data else -1
                     msg = data.get('message', 'unknown') if data else 'empty response'
+
+                    # 捕获实际的请求细节
+                    captured_apis = self.browser_request.get_captured_apis()
+                    logger.error(f"[get_order_list] 错误时捕获的请求数量: {len(captured_apis)}")
+                    if captured_apis:
+                        for i, api_call in enumerate(captured_apis[:3]):  # 只记录前3个
+                            logger.error(f"[get_order_list] 捕获请求 #{i+1}: {json.dumps(api_call, ensure_ascii=False)[:1000]}...")
+
                     raise ShopeeApiError('get_order_list', code, msg)
             else:
+                # 捕获失败的请求
+                captured_apis = self.browser_request.get_captured_apis()
+                logger.error(f"[get_order_list] HTTP错误，捕获的请求数量: {len(captured_apis)}")
+                if captured_apis:
+                    logger.error(f"[get_order_list] 捕获请求: {json.dumps(captured_apis[0], ensure_ascii=False)[:1500] if captured_apis else 'none'}")
                 raise ShopeeApiError('get_order_list', response.status_code, f"HTTP error: {response.status_code}")
 
         except Exception as e:
             logger.error(f"获取订单列表异常: {e}")
             raise
+        finally:
+            # 确保停止 API 捕获
+            try:
+                captured = self.browser_request.stop_api_capture()
+                logger.debug(f"[get_order_list] 停止API捕获，共捕获: {len(captured)} 个调用")
+            except Exception:
+                pass
+
 
     def _get_order_card_list(self, base_url: str,
                              package_params: List[Dict],

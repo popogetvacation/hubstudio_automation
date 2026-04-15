@@ -127,6 +127,84 @@ class AsyncBatchRequest:
 
         return headers
 
+    async def post(self, url: str, json_data: Dict = None,
+                 headers: Dict = None, timeout: int = 30) -> AsyncHTTPResponse:
+        """
+        发送单个 POST 请求
+
+        Args:
+            url: 完整 URL
+            json_data: JSON 请求体
+            headers: 额外的请求头
+            timeout: 超时时间（秒）
+
+        Returns:
+            响应对象
+        """
+        session = await self._get_session()
+
+        # 构建请求头并添加 Cookie
+        request_headers = self._build_headers(url.rsplit('/', 1)[0], headers)
+        cookies_header = self._build_cookies_header()
+        if cookies_header:
+            request_headers['Cookie'] = cookies_header
+
+        try:
+            async with session.post(
+                url=url,
+                json=json_data or {},
+                headers=request_headers,
+                timeout=aiohttp.ClientTimeout(total=timeout)
+            ) as response:
+                return AsyncHTTPResponse({
+                    'status': response.status,
+                    'headers': dict(response.headers),
+                    'body': await response.text(),
+                    'url': url
+                })
+        except Exception as e:
+            logger.error(f"[AsyncBatch] POST 请求失败: {e}")
+            raise
+
+    async def get(self, url: str, params: Dict = None,
+                headers: Dict = None, timeout: int = 30) -> AsyncHTTPResponse:
+        """
+        发送单个 GET 请求
+
+        Args:
+            url: 完整 URL
+            params: 查询参数
+            headers: 额外的请求头
+            timeout: 超时时间（秒）
+
+        Returns:
+            响应对象
+        """
+        session = await self._get_session()
+
+        # 构建请求头并添加 Cookie
+        request_headers = self._build_headers(url.rsplit('/', 1)[0], headers)
+        cookies_header = self._build_cookies_header()
+        if cookies_header:
+            request_headers['Cookie'] = cookies_header
+
+        try:
+            async with session.get(
+                url=url,
+                params=params or {},
+                headers=request_headers,
+                timeout=aiohttp.ClientTimeout(total=timeout)
+            ) as response:
+                return AsyncHTTPResponse({
+                    'status': response.status,
+                    'headers': dict(response.headers),
+                    'body': await response.text(),
+                    'url': str(response.url)
+                })
+        except Exception as e:
+            logger.error(f"[AsyncBatch] GET 请求失败: {e}")
+            raise
+
     async def post_batch(self, base_url: str, api_path: str,
                          batches: List[List[Dict]],
                          request_key: str = 'order_param_list',

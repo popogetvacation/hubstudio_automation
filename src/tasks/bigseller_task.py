@@ -36,7 +36,7 @@ class BigSellerTask(BaseTask):
         self.wait_completion = self.config.get('wait_completion', False)
         self.poll_interval = self.config.get('poll_interval', 2)
 
-    def execute(self, driver: HubStudioSeleniumDriver, env_info: Dict[str, Any]) -> Any:
+    def execute(self, driver: "HubStudioSeleniumDriver", env_info: Dict[str, Any]) -> Any:
         """
         执行 BigSeller 订单标记导入任务
 

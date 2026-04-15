@@ -127,8 +127,16 @@ class LazadaOrderTask(BaseTask):
         self._auth_info = lazada_api.auth_info
         lazada_api.set_auth_info(self._auth_info)
 
-        # 获取 topack 待发货订单列表
-        all_orders = lazada_api.get_all_orders(tab="topack", max_pages=self.max_pages)
+        # 使用异步获取 topack 待发货订单列表
+        logger.info(f"[LazadaOrder] 开始异步获取订单列表...")
+        loop = asyncio.new_event_loop()
+        try:
+            all_orders = loop.run_until_complete(
+                lazada_api.get_all_orders_async(tab="topack", max_pages=self.max_pages)
+            )
+        finally:
+            loop.close()
+
         result['orders'] = all_orders
         result['total_count'] = len(all_orders)
 

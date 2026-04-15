@@ -11,6 +11,7 @@ import threading
 from typing import Dict, Any, Optional, List
 
 from ..network.browser_request import BrowserRequest
+from ..network.async_http import AsyncBatchRequest, AsyncHTTPResponse
 from ..utils.logger import default_logger as logger
 
 
@@ -800,6 +801,388 @@ class TokopediaAPI:
 
         return all_orders
 
+    # ==================== 异步请求方法 ====================
+
+    async def get_order_list_async(self, base_url: str,
+                                 order_status: List[str] = None,
+                                 search_tab: List[str] = None,
+                                 search_cursor: str = "",
+                                 offset: int = 0,
+                                 count: int = 20,
+                                 sort_info: str = "11") -> Optional[Dict]:
+        """
+        异步获取订单列表
+
+        Args:
+            base_url: 基础 URL
+            order_status: 订单状态列表
+            search_tab: 标签页
+            search_cursor: 分页游标
+            offset: 分页偏移量
+            count: 每页数量
+            sort_info: 排序标识
+
+        Returns:
+            订单列表数据或 None
+        """
+        if order_status is None:
+            order_status = ["1"]
+        if search_tab is None:
+            search_tab = ["101"]
+
+        auth = self.auth_info
+        oec_seller_id = auth.get('oec_seller_id') or auth.get('seller_id', '')
+        seller_id = auth.get('seller_id') or oec_seller_id
+
+        params = {
+            'aid': '4068',
+            'locale': 'en',
+            'oec_seller_id': str(oec_seller_id),
+            'seller_id': str(seller_id)
+        }
+        param_str = '&'.join(f"{k}={v}" for k, v in params.items())
+        full_url = f"{base_url}{self.ORDER_LIST_API}?{param_str}"
+
+        request_body = {
+            "search_condition": {
+                "condition_list": {
+                    "order_status": {"value": order_status},
+                    "search_tab": {"value": search_tab}
+                }
+            },
+            "offset": offset,
+            "count": count,
+            "sort_info": sort_info,
+            "search_cursor": search_cursor,
+            "pagination_type": 0
+        }
+
+        try:
+            headers = self._build_headers(base_url)
+
+            cookies = auth.get('cookies', [])
+            async_request = AsyncBatchRequest(cookies=cookies, auth_info=auth)
+
+            response = await async_request.post(
+                url=full_url,
+                json_data=request_body,
+                headers=headers,
+                timeout=30
+            )
+
+            if response.ok:
+                data = response.json()
+                if data and data.get('code') == 0:
+                    return data.get('data', {})
+                else:
+                    code = data.get('code') if data else -1
+                    msg = data.get('message', 'unknown') if data else 'empty response'
+                    raise ApiError('get_order_list_async', code, msg)
+            else:
+                raise ApiError('get_order_list_async', response.status_code, f"HTTP error: {response.status_code}")
+
+        except ApiError:
+            raise
+        except Exception as e:
+            logger.error(f"异步获取订单列表异常: {e}")
+            raise ApiError('get_order_list_async', -1, str(e))
+
+    async def get_all_orders_async(self, base_url: str, max_pages: int = 100) -> List[Dict]:
+        """
+        异步获取所有订单（分页）
+
+        Args:
+            base_url: 基础 URL
+            max_pages: 最大页数
+
+        Returns:
+            订单列表
+        """
+        all_orders = []
+        offset = 0
+        page = 1
+
+        logger.info(f"[TokopediaAPI] 开始异步分页获取订单，max_pages={max_pages}")
+
+        while page <= max_pages:
+            logger.info(f"[TokopediaAPI] ===== 正在获取第 {page} 页... (offset={offset})")
+
+            try:
+                data = await self.get_order_list_async(
+                    base_url=base_url,
+                    offset=offset,
+                    count=20
+                )
+
+                if data:
+                    main_orders = data.get('main_orders', [])
+                    all_orders.extend(main_orders)
+
+                    total_count = data.get('total_count', 0)
+                    has_more = data.get('has_more', False)
+
+                    logger.info(f"[TokopediaAPI] 第 {page} 页获取成功，"
+                               f"本页 {len(main_orders)} 条，总计 {total_count} 条")
+
+                    if not has_more:
+                        logger.info(f"[TokopediaAPI] 无下一页，停止获取")
+                        break
+                    if len(main_orders) < 20:
+                        logger.info(f"[TokopediaAPI] 本页数据不足一页，停止获取")
+                        break
+
+                    offset += len(main_orders)
+                else:
+                    logger.warning(f"[TokopediaAPI] API 返回为空，继续尝试...")
+
+            except ApiError:
+                raise
+            except Exception as e:
+                logger.warning(f"[TokopediaAPI] 获取订单异常: {e}, 继续尝试...")
+
+            page += 1
+            await asyncio.sleep(0.5)
+
+        logger.info(f"[TokopediaAPI] 订单列表获取完成: {len(all_orders)} 条")
+        return all_orders
+
+    async def get_buyer_contact_info_async(self, base_url: str, main_order_id: str) -> Optional[Dict]:
+        """
+        异步获取买家联系信息
+
+        Args:
+            base_url: 基础 URL
+            main_order_id: 主订单 ID
+
+        Returns:
+            买家联系信息或 None
+        """
+        logger.info(f"[TokopediaAPI] get_buyer_contact_info_async 请求: main_order_id={main_order_id}")
+
+        auth = self.auth_info
+        oec_seller_id = auth.get('oec_seller_id') or auth.get('seller_id', '')
+        seller_id = auth.get('seller_id') or oec_seller_id
+
+        params = {
+            'aid': '4068',
+            'locale': 'en',
+            'oec_seller_id': str(oec_seller_id),
+            'seller_id': str(seller_id)
+        }
+        param_str = '&'.join(f"{k}={v}" for k, v in params.items())
+        full_url = f"{base_url}{self.BUYER_CONTACT_API}?{param_str}"
+
+        request_body = {
+            "main_order_id": main_order_id,
+            "contact_info_type": 1
+        }
+
+        try:
+            headers = self._build_headers(base_url)
+
+            cookies = auth.get('cookies', [])
+            async_request = AsyncBatchRequest(cookies=cookies, auth_info=auth)
+
+            response = await async_request.post(
+                url=full_url,
+                json_data=request_body,
+                headers=headers,
+                timeout=30
+            )
+
+            if response.ok:
+                data = response.json()
+                logger.info(f"[TokopediaAPI] 买家联系信息响应: code={data.get('code') if data else 'None'}")
+
+                if data and data.get('code') == 0:
+                    return data.get('data', {})
+                else:
+                    code = data.get('code') if data else -1
+                    msg = data.get('message', 'unknown') if data else 'empty response'
+                    raise ApiError('get_buyer_contact_info_async', code, msg)
+            else:
+                raise ApiError('get_buyer_contact_info_async', response.status_code, f"HTTP error: {response.status_code}")
+
+        except ApiError:
+            raise
+        except Exception as e:
+            logger.error(f"异步获取买家联系信息异常: {e}")
+            raise ApiError('get_buyer_contact_info_async', -1, str(e))
+
+    async def get_buyer_chat_link_async(self, base_url: str, main_order_id: str) -> Optional[Dict]:
+        """
+        异步获取买家聊天链接
+
+        Args:
+            base_url: 基础 URL
+            main_order_id: 主订单 ID
+
+        Returns:
+            包含 pigeonUid 的字典或 None
+        """
+        logger.info(f"[TokopediaAPI] get_buyer_chat_link_async 请求: main_order_id={main_order_id}")
+
+        auth = self.auth_info
+        oec_seller_id = auth.get('oec_seller_id') or auth.get('seller_id', '')
+        seller_id = auth.get('seller_id') or oec_seller_id
+
+        params = {
+            'orderType': '0',
+            'orderIds': main_order_id,
+            'oec_seller_id': str(oec_seller_id),
+            'seller_id': str(seller_id),
+            'aid': '4068',
+            'locale': 'en'
+        }
+
+        param_str = urllib.parse.urlencode(params)
+        full_url = f"{base_url}{self.CHAT_BUYER_LINK_API}?{param_str}"
+
+        try:
+            headers = self._build_headers(base_url)
+
+            cookies = auth.get('cookies', [])
+            async_request = AsyncBatchRequest(cookies=cookies, auth_info=auth)
+
+            response = await async_request.get(
+                url=full_url,
+                headers=headers,
+                timeout=30
+            )
+
+            if response.ok:
+                data = response.json()
+                logger.info(f"[TokopediaAPI] get_buyer_chat_link_async 响应: code={data.get('code') if data else 'None'}")
+
+                if data and data.get('code') == 0:
+                    order_info = data.get('data', {}).get('orderIdToContactLinkInfo', {})
+                    contact_link = order_info.get(main_order_id, {})
+                    pigeon_uid = contact_link.get('pigeonUid')
+
+                    logger.info(f"[TokopediaAPI] main_order_id={main_order_id} -> pigeonUid={pigeon_uid}")
+
+                    return {
+                        'pigeonUid': pigeon_uid,
+                        'urlPc': contact_link.get('urlPc', '')
+                    }
+                else:
+                    code = data.get('code') if data else -1
+                    msg = data.get('message', 'unknown') if data else 'empty response'
+                    raise ApiError('get_buyer_chat_link_async', code, msg)
+            else:
+                raise ApiError('get_buyer_chat_link_async', response.status_code, f"HTTP error: {response.status_code}")
+
+        except ApiError:
+            raise
+        except Exception as e:
+            logger.error(f"异步获取买家聊天链接异常: {e}")
+            raise ApiError('get_buyer_chat_link_async', -1, str(e))
+
+    async def get_buyer_orders_async(self, base_url: str, buyer_user_id: str,
+                                   offset: int = 0, count: int = 20) -> Optional[Dict]:
+        """
+        异步获取买家的历史订单列表
+
+        Args:
+            base_url: 基础 URL
+            buyer_user_id: 买家用户 ID
+            offset: 分页偏移量
+            count: 每页数量
+
+        Returns:
+            买家订单列表或 None
+        """
+        request_body = {
+            "order_workbench_query": {
+                "seller_order_req": {
+                    "without_overview": True,
+                    "pagination_type": 0,
+                    "sort_info": "6",
+                    "count": count,
+                    "offset": offset,
+                    "search_condition": {
+                        "condition_list": {
+                            "search_tab": {"value": ["0"]},
+                            "buyer_user_id": {"value": [buyer_user_id]}
+                        }
+                    }
+                }
+            }
+        }
+
+        try:
+            auth = self.auth_info
+            cookies = auth.get('cookies', [])
+            async_request = AsyncBatchRequest(cookies=cookies, auth_info=auth)
+
+            response = await async_request.post(
+                url=f"{base_url}{self.WORKBENCH_DATA_API}",
+                json_data=request_body,
+                headers=self._build_headers(base_url),
+                timeout=30
+            )
+
+            if response.ok:
+                data = response.json()
+                logger.info(f"[TokopediaAPI] 买家历史订单响应: code={data.get('code') if data else 'None'}")
+
+                if data and data.get('code') == 0:
+                    return data.get('data', {})
+                else:
+                    code = data.get('code') if data else -1
+                    msg = data.get('message', 'unknown') if data else 'empty response'
+                    raise ApiError('get_buyer_orders_async', code, msg)
+            else:
+                raise ApiError('get_buyer_orders_async', response.status_code, f"HTTP error: {response.status_code}")
+
+        except Exception as e:
+            logger.error(f"异步获取买家历史订单异常: {e}")
+            raise ApiError('get_buyer_orders_async', -1, str(e))
+
+    async def get_buyer_all_orders_async(self, base_url: str, buyer_user_id: str,
+                                       max_count: int = 100) -> List[Dict]:
+        """
+        异步获取买家的所有历史订单
+
+        Args:
+            base_url: 基础 URL
+            buyer_user_id: 买家用户 ID
+            max_count: 最大获取数量
+
+        Returns:
+            买家订单列表
+        """
+        all_orders = []
+        offset = 0
+
+        while len(all_orders) < max_count:
+            try:
+                data = await self.get_buyer_orders_async(
+                    base_url=base_url,
+                    buyer_user_id=buyer_user_id,
+                    offset=offset,
+                    count=20
+                )
+
+                if data:
+                    main_orders = data.get('main_orders', [])
+                    all_orders.extend(main_orders)
+
+                    if len(main_orders) < 20:
+                        break
+
+                    offset += len(main_orders)
+                else:
+                    break
+
+            except Exception as e:
+                logger.warning(f"获取买家订单异常: {e}")
+                break
+
+            await asyncio.sleep(0.3)
+
+        return all_orders
+
     # ==================== 异步并发版本 ====================
 
     async def get_buyer_contact_info_batch(self, base_url: str,
@@ -823,7 +1206,7 @@ class TokopediaAPI:
             async with semaphore:
                 try:
                     await asyncio.sleep(0.1)  # 避免请求过快
-                    info = self.get_buyer_contact_info(base_url, order_id)
+                    info = await self.get_buyer_contact_info_async(base_url, order_id)
                     return order_id, info
                 except Exception as e:
                     logger.warning(f"[Async] 获取订单 {order_id} 联系信息失败: {e}")
@@ -862,7 +1245,7 @@ class TokopediaAPI:
             async with semaphore:
                 try:
                     await asyncio.sleep(0.1)
-                    orders = self.get_buyer_all_orders(base_url, buyer_id, max_count=50)
+                    orders = await self.get_buyer_all_orders_async(base_url, buyer_id, max_count=50)
                     return buyer_id, orders
                 except Exception as e:
                     logger.warning(f"[Async] 获取买家 {buyer_id} 历史订单失败: {e}")
@@ -900,7 +1283,7 @@ class TokopediaAPI:
             async with semaphore:
                 try:
                     await asyncio.sleep(0.1)
-                    info = self.get_buyer_chat_link(base_url, order_id)
+                    info = await self.get_buyer_chat_link_async(base_url, order_id)
                     return order_id, info
                 except Exception as e:
                     logger.warning(f"[Async] 获取订单 {order_id} 聊天链接失败: {e}")

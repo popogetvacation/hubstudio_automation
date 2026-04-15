@@ -125,7 +125,16 @@ class TokopediaOrderTask(BaseTask):
         self._auth_info = tiktok_api.auth_info
         tiktok_api.set_auth_info(self._auth_info)
 
-        all_orders = tiktok_api.get_all_orders(base_url, max_pages=self.max_pages)
+        # 使用异步获取订单列表
+        logger.info(f"[TokopediaOrder] 开始异步获取订单列表...")
+        loop = asyncio.new_event_loop()
+        try:
+            all_orders = loop.run_until_complete(
+                tiktok_api.get_all_orders_async(base_url, max_pages=self.max_pages)
+            )
+        finally:
+            loop.close()
+
         result['orders'] = all_orders
         result['total_count'] = len(all_orders)
 

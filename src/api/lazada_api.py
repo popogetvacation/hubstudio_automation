@@ -12,6 +12,7 @@ import urllib.parse
 from typing import Dict, Any, Optional, List
 
 from ..network.browser_request import BrowserRequest
+from ..network.async_http import AsyncBatchRequest, AsyncHTTPResponse
 from ..utils.logger import default_logger as logger
 
 
@@ -157,11 +158,6 @@ class LazadaAPI:
         if cdp_cookies:
             cookie_parts = [f"{c['name']}={c['value']}" for c in cdp_cookies]
             cookie_header = '; '.join(cookie_parts)
-            logger.info(f"[LazadaAPI] CDP cookies 数量: {len(cdp_cookies)}, header长度: {len(cookie_header)}")
-            # 调试：检查关键 cookie 是否存在
-            for c in cdp_cookies:
-                if c['name'] in ['_m_h5_tk', '_m_h5_tk_enc', 'asc_uid']:
-                    logger.info(f"[LazadaAPI] Cookie {c['name']}: {c.get('domain', 'unknown')}, value={c['value'][:30]}...")
             return cookie_header
 
         cookies = self._driver.get_cookies()
@@ -246,12 +242,12 @@ class LazadaAPI:
         data_str = json.dumps(data, separators=(',', ':'))
 
         # 调试：输出完整的签名计算参数
-        logger.info(f"[LazadaAPI] ===== 签名计算参数 =====")
-        logger.info(f"[LazadaAPI] token: {token}")
-        logger.info(f"[LazadaAPI] timestamp: {timestamp}")
-        logger.info(f"[LazadaAPI] app_key: {app_key}")
-        logger.info(f"[LazadaAPI] data_str: {data_str}")
-        logger.info(f"[LazadaAPI] =============================")
+        # logger.info(f"[LazadaAPI] ===== 签名计算参数 =====")
+        # logger.info(f"[LazadaAPI] token: {token}")
+        # logger.info(f"[LazadaAPI] timestamp: {timestamp}")
+        # logger.info(f"[LazadaAPI] app_key: {app_key}")
+        # logger.info(f"[LazadaAPI] data_str: {data_str}")
+        # logger.info(f"[LazadaAPI] =============================")
 
         # 计算签名
         sign = self._calculate_sign(token, timestamp, app_key, data_str)
@@ -298,7 +294,6 @@ class LazadaAPI:
 
             if response.ok:
                 resp_data = response.json()
-                logger.info(f"[LazadaAPI] API {api_path} 响应: {str(resp_data)[:200]}")
 
                 # 检查 API 返回码
                 if resp_data.get('api'):
@@ -655,6 +650,157 @@ class LazadaAPI:
         except Exception as e:
             logger.error(f"[LazadaAPI] 获取聊天记录异常: {e}")
             return []
+
+    # ==================== 异步 MTOP 请求 ====================
+
+    async def _make_mtop_request_async(self, api_path: str, data: Dict,
+                                        app_key: str = None) -> Optional[Dict]:
+        """
+        异步发送 MTOP 请求
+
+        Args:
+            api_path: API 路径
+            data: 请求体数据
+            app_key: appKey，不传则使用订单 API 的 appKey
+
+        Returns:
+            响应数据或 None
+        """
+        if app_key is None:
+            app_key = self.APP_KEY_ORDER
+
+        base_url = f"https://{self.DOMAIN}"
+        timestamp = self._generate_timestamp()
+
+        auth = self.auth_info
+        token = auth.get('token', '')
+        if not token:
+            logger.warning(f"[LazadaAPI] 未找到 token，使用空字符串")
+            token = ''
+
+        # 将 data 转为 JSON 字符串
+        data_str = json.dumps(data, separators=(',', ':'))
+
+        # 计算签名
+        sign = self._calculate_sign(token, timestamp, app_key, data_str)
+
+        # data 参数需要 URL 编码
+        encoded_data = urllib.parse.quote(data_str)
+
+        # 构建 URL 参数
+        params = {
+            'jsv': '2.6.1',
+            'appKey': app_key,
+            't': timestamp,
+            'sign': sign,
+            'v': '1.0',
+            'timeout': '30000',
+            'H5Request': 'true',
+            'url': api_path.replace('/h5/', '').replace('/1.0/', ''),
+            'api': api_path.replace('/h5/', '').replace('/1.0/', ''),
+            'type': 'originaljson',
+            'dataType': 'json',
+            'valueType': 'original',
+            'x-i18n-regionID': 'LAZADA_PH',
+            'data': encoded_data,
+        }
+
+        # 构建完整 URL
+        query_string = '&'.join(f"{k}={v}" for k, v in params.items())
+        full_url = f"{base_url}{api_path}?{query_string}"
+
+        # 构建请求头
+        headers = self._build_common_headers(api_path, app_key)
+
+        # 使用 AsyncBatchRequest 发送请求
+        cookies = auth.get('cookies', [])
+        async_request = AsyncBatchRequest(cookies=cookies, auth_info=auth)
+
+        try:
+            response = await async_request.get(url=full_url, headers=headers, timeout=30)
+
+            if response.ok:
+                resp_data = response.json()
+
+                if resp_data.get('api'):
+                    return resp_data.get('data', {})
+                else:
+                    code = resp_data.get('code', -1)
+                    message = resp_data.get('message', 'unknown')
+                    raise LazadaAPIError(api_path, code, message)
+            else:
+                raise LazadaAPIError(api_path, response.status_code, f"HTTP error: {response.status_code}")
+
+        except LazadaAPIError:
+            raise
+        except Exception as e:
+            logger.error(f"API {api_path} 请求异常: {e}")
+            raise LazadaAPIError(api_path, -1, str(e))
+
+    async def get_all_orders_async(self, tab: str = "toship", max_pages: int = 100) -> List[Dict]:
+        """
+        异步获取所有订单（分页）
+
+        Args:
+            tab: 订单状态标签
+            max_pages: 最大页数
+
+        Returns:
+            订单列表
+        """
+        all_orders = []
+        page = 1
+        page_size = 20
+
+        logger.info(f"[LazadaAPI] 开始异步分页获取订单，tab={tab}，max_pages={max_pages}")
+
+        while page <= max_pages:
+            logger.info(f"[LazadaAPI] ===== 正在获取第 {page} 页...")
+
+            try:
+                data = {
+                    "page": page,
+                    "pageSize": page_size,
+                    "filterOrderItems": True,
+                    "sort": "SHIPPING_SLA",
+                    "sortOrder": "ASC",
+                    "tab": tab
+                }
+
+                result = await self._make_mtop_request_async(self.API_ORDER_LIST, data)
+
+                if result:
+                    data_obj = result.get('data', {})
+                    data_source = data_obj.get('dataSource', [])
+                    orders = data_source if isinstance(data_source, list) else []
+
+                    if not orders:
+                        logger.info(f"[LazadaAPI] 第 {page} 页无数据，停止")
+                        break
+
+                    all_orders.extend(orders)
+
+                    page_info = data_obj.get('pageInfo', {})
+                    total = page_info.get('total', 0)
+                    logger.info(f"[LazadaAPI] 第 {page} 页获取成功，"
+                               f"本页 {len(orders)} 条，总计 {total} 条")
+
+                    if len(orders) < page_size:
+                        logger.info(f"[LazadaAPI] 本页数据不足，停止获取")
+                        break
+                else:
+                    logger.warning(f"[LazadaAPI] API 返回为空")
+                    break
+
+            except Exception as e:
+                logger.warning(f"[LazadaAPI] 获取订单异常: {e}")
+                break
+
+            page += 1
+            await asyncio.sleep(0.5)
+
+        logger.info(f"[LazadaAPI] 订单列表获取完成: {len(all_orders)} 条")
+        return all_orders
 
     # ==================== 异步批量获取 ====================
 

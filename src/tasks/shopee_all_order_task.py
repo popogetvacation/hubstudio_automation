@@ -169,12 +169,12 @@ class ShopeeAllOrderTask(BaseTask):
         self._auth_info = shopee_api.auth_info
         shopee_api.set_auth_info(self._auth_info)
 
-        logger.info(f"[ShopeeAllOrder] 开始获取订单列表")
+        logger.info(f"[ShopeeAllOrder] 开始获取订单列表（使用 AsyncBatchRequest）")
 
         if self.capture_api:
             browser_request.start_api_capture(url_filter="order")
 
-        # 2. 使用 ShopeeAPI 获取订单列表
+        # 2. 使用 ShopeeAPI 异步获取订单列表
         tracker.start('获取订单列表', env=env_name)
         all_orders = []
         page_number = 1
@@ -182,55 +182,67 @@ class ShopeeAllOrderTask(BaseTask):
 
         logger.info(f"[ShopeeAllOrder] 开始分页获取订单，max_pages={self.max_pages}, page_size={self.page_size}")
 
-        while page_number <= self.max_pages:
-            logger.info(f"[ShopeeAllOrder] ===== 正在获取第 {page_number} 页... (sentinel={next_page_sentinel[:20] if next_page_sentinel else None})")
+        # 创建事件循环用于异步获取订单列表
+        async def fetch_order_list_async():
+            nonlocal all_orders, page_number, next_page_sentinel, result
+            import asyncio
 
-            try:
-                order_data = shopee_api.get_order_list(
-                    base_url=base_url,
-                    order_list_tab=self.order_list_tab,
-                    page_number=page_number,
-                    page_sentinel=next_page_sentinel,
-                    page_size=self.page_size,
-                    sort_type=self.sort_type,
-                    ascending=self.ascending
-                )
+            while page_number <= self.max_pages:
+                logger.info(f"[ShopeeAllOrder] ===== 正在获取第 {page_number} 页... (sentinel={next_page_sentinel[:20] if next_page_sentinel else None})")
 
-                if order_data:
-                    index_list = order_data.get('index_list', [])
-                    pagination = order_data.get('pagination', {})
+                try:
+                    order_data = await shopee_api.get_order_list_async(
+                        base_url=base_url,
+                        order_list_tab=self.order_list_tab,
+                        page_number=page_number,
+                        page_sentinel=next_page_sentinel,
+                        page_size=self.page_size,
+                        sort_type=self.sort_type,
+                        ascending=self.ascending
+                    )
 
-                    all_orders.extend(index_list)
+                    if order_data:
+                        index_list = order_data.get('index_list', [])
+                        pagination = order_data.get('pagination', {})
 
-                    result['total_count'] = pagination.get('total', 0)
-                    next_page_sentinel = pagination.get('next_page_sentinel')
-                    logger.info(f"[ShopeeAllOrder] 第 {page_number} 页获取成功，"
-                               f"本页 {len(index_list)} 条，总计 {result['total_count']} 条")
+                        all_orders.extend(index_list)
 
-                    # 检查是否已获取全部订单
-                    # 1. 没有下一页标记
-                    # 2. 或者本页数据量小于 page_size
-                    # 3. 或者已获取的订单数 >= 总订单数
-                    if not next_page_sentinel:
-                        logger.info(f"[ShopeeAllOrder] 无下一页，停止获取")
-                        break
-                    if len(index_list) < self.page_size:
-                        logger.info(f"[ShopeeAllOrder] 本页数据不足一页，停止获取")
-                        break
-                    if result['total_count'] > 0 and len(all_orders) >= result['total_count']:
-                        logger.info(f"[ShopeeAllOrder] 已获取全部 {result['total_count']} 条订单，停止获取")
-                        break
-                else:
-                    logger.warning(f"[ShopeeAllOrder] API 返回为空，继续尝试...")
+                        result['total_count'] = pagination.get('total', 0)
+                        next_page_sentinel = pagination.get('next_page_sentinel')
+                        logger.info(f"[ShopeeAllOrder] 第 {page_number} 页获取成功，"
+                                   f"本页 {len(index_list)} 条，总计 {result['total_count']} 条")
 
-            except Exception as e:
-                logger.warning(f"[ShopeeAllOrder] 获取订单异常: {e}, 继续尝试...")
+                        # 检查是否已获取全部订单
+                        # 1. 没有下一页标记
+                        # 2. 或者本页数据量小于 page_size
+                        # 3. 或者已获取的订单数 >= 总订单数
+                        if not next_page_sentinel:
+                            logger.info(f"[ShopeeAllOrder] 无下一页，停止获取")
+                            break
+                        if len(index_list) < self.page_size:
+                            logger.info(f"[ShopeeAllOrder] 本页数据不足一页，停止获取")
+                            break
+                        if result['total_count'] > 0 and len(all_orders) >= result['total_count']:
+                            logger.info(f"[ShopeeAllOrder] 已获取全部 {result['total_count']} 条订单，停止获取")
+                            break
+                    else:
+                        logger.warning(f"[ShopeeAllOrder] API 返回为空，继续尝试...")
 
-            page_number += 1
-            time.sleep(0.5)
+                except Exception as e:
+                    logger.warning(f"[ShopeeAllOrder] 获取订单异常: {e}, 继续尝试...")
 
-        result['orders'] = all_orders
-        result['pages_fetched'] = page_number - 1
+                page_number += 1
+                await asyncio.sleep(0.5)
+
+            result['orders'] = all_orders
+            result['pages_fetched'] = page_number - 1
+
+        # 运行异步获取订单列表
+        loop = asyncio.new_event_loop()
+        try:
+            loop.run_until_complete(fetch_order_list_async())
+        finally:
+            loop.close()
 
         logger.info(f"[ShopeeAllOrder] 订单列表获取完成: {len(all_orders)} 条订单，{page_number - 1} 页")
         tracker.end('获取订单列表', {'orders_count': len(all_orders), 'pages': page_number - 1}, env=env_name)
