@@ -303,7 +303,6 @@ class AsyncBatchRequest:
                                 try:
                                     data = json.loads(content)
                                     card_list = data.get('data', {}).get('card_list', [])
-                                    logger.info(f"[AsyncBatch] 批次 {batch_idx + 1} 成功，获取 {len(card_list)} 条")
                                     return {'success': True, 'data': card_list, 'batch': batch_idx + 1}
                                 except json.JSONDecodeError as e:
                                     logger.error(f"[AsyncBatch] 批次 {batch_idx + 1} JSON 解析失败: {e}")

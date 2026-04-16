@@ -284,7 +284,6 @@ class ShopeeAPI:
             logger.info(f"[get_order_list_async] 无 page_sentinel，使用 page_number={page_number}")
 
         request_headers = self._build_headers(base_url)
-        logger.info(f"[get_order_list_async] 请求体: {json.dumps(request_body, ensure_ascii=False)}")
 
         cookies = self._driver.get_cookies()
         auth_info = self.auth_info
@@ -864,12 +863,6 @@ class ShopeeAPI:
                 user_messages.append(msg)
                 continue
 
-        if not user_messages:
-            # 如果没有匹配到，可能消息是卖家发送的（自动回复等）
-            logger.info(f"[ShopeeAPI] 没有找到买家发送的消息，所有消息可能来自卖家")
-
-        logger.info(f"[ShopeeAPI] 筛选结果: 共 {len(messages)} 条消息，筛选出 {len(user_messages)} 条买家消息")
-
         return user_messages
 
     def concatenate_messages(self, messages: List[Dict]) -> str:
@@ -1133,7 +1126,6 @@ class ShopeeAPI:
                                 elif response.status == 429:
                                     # 429 时等待后重试
                                     if attempt < max_retries - 1:
-                                        logger.warning(f"[Async] 获取买家 {buyer_user_id} 触发限流 (429)，等待 {retry_delay}秒后重试...")
                                         await asyncio.sleep(retry_delay)
                                         retry_delay *= 2  # 指数退避
                                         continue

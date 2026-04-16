@@ -32,9 +32,15 @@ class LazadaAPI:
     提供订单列表、买家信息、历史订单等 API 调用方法
     """
 
-    # Lazada API 域名
-    DOMAIN = "acs-m.lazada.com.ph"
-    SELLER_CENTER_DOMAIN = "sellercenter.lazada.com.ph"
+    # 域名后缀映射（环境名前两个字母 -> 域名后缀）
+    DOMAIN_SUFFIX_MAP = {
+        'ph': ('.com.ph', 'PH'),
+        'my': ('.com.my', 'MY'),
+        'th': ('.co.th', 'TH'),
+        'vn': ('.com.vn', 'VN'),
+        'sg': ('.com.sg', 'SG'),
+        'id': ('.co.id', 'ID'),
+    }
 
     # appKey 映射
     APP_KEY_ORDER = "4272"
@@ -56,18 +62,38 @@ class LazadaAPI:
     API_IM_BUYER_PROFILE = "/h5/mtop.global.im.biz.seller.buyerprofile.get/1.0/"
     API_IM_SESSION_READ = "/h5/mtop.lazada.im.web.seller.session.read/1.0/"
 
-    def __init__(self, driver, browser_request: BrowserRequest = None):
+    def __init__(self, driver, browser_request: BrowserRequest = None, env_name: str = None):
         """
         初始化 Lazada API
 
         Args:
             driver: Selenium 驱动
             browser_request: 网络请求对象，如果为 None 会自动创建
+            env_name: 环境名称（前两个字母用于确定国家，如 ph, my, th 等）
         """
         self._driver = driver
         self._browser_request = browser_request
         self._auth_info = None
         self._cdp_cookies_cache = None
+        self._env_name = env_name or ''
+
+        # 先解析国家代码和域名后缀（注意：map 返回 (domain_suffix, country_code)）
+        self._domain_suffix, self._country_code = self._parse_country_from_env()
+
+    def _parse_country_from_env(self) -> tuple:
+        """
+        从环境名解析国家代码和域名后缀
+
+        Returns:
+            (country_code, domain_suffix) 元组
+        """
+        if self._env_name and len(self._env_name) >= 2:
+            key = self._env_name[:2].lower()
+            if key in self.DOMAIN_SUFFIX_MAP:
+                return self.DOMAIN_SUFFIX_MAP[key]
+
+        # 默认菲律宾
+        return self.DOMAIN_SUFFIX_MAP['ph']
 
     @property
     def browser_request(self) -> BrowserRequest:
@@ -75,6 +101,22 @@ class LazadaAPI:
         if self._browser_request is None:
             self._browser_request = BrowserRequest(self._driver)
         return self._browser_request
+
+    @property
+    def DOMAIN(self) -> str:
+        """API 域名"""
+        return f"acs-m.lazada{self._domain_suffix}"
+
+    @property
+    def SELLER_CENTER_DOMAIN(self) -> str:
+        """Seller Center 域名"""
+        domain = f"sellercenter.lazada{self._domain_suffix}"
+        return domain
+
+    @property
+    def REGION_ID(self) -> str:
+        """区域 ID (用于 API 参数)"""
+        return f"LAZADA_{self._country_code}"
 
     @property
     def auth_info(self) -> Dict[str, Any]:
@@ -109,7 +151,7 @@ class LazadaAPI:
         auth_info = {
             'cookies': cookies,
             'cookie_dict': cookie_dict,
-            'site': 'LAZADA_PH'
+            'site': self.REGION_ID
         }
 
         # 提取关键认证 Cookie
@@ -121,7 +163,6 @@ class LazadaAPI:
             if len(parts) >= 2:
                 auth_info['token'] = parts[0]
                 auth_info['token_timestamp'] = parts[1]
-                logger.info(f"[LazadaAPI] _m_h5_tk token: {parts[0]}, timestamp: {parts[1]}")
 
         # 其他认证 Cookie
         auth_info['m_h5_tk_enc'] = cookie_dict.get('_m_h5_tk_enc', '')
@@ -129,10 +170,6 @@ class LazadaAPI:
         auth_info['asc_uid_enc'] = cookie_dict.get('asc_uid_enc', '')
         auth_info['csrftoken'] = cookie_dict.get('CSRFT', '') or cookie_dict.get('csrftoken', '')
         auth_info['t_sid'] = cookie_dict.get('t_sid', '')
-
-        logger.info(f"[LazadaAPI] 提取认证信息: m_h5_tk={bool(m_h5_tk)}, m_h5_tk_enc={bool(auth_info['m_h5_tk_enc'])}, asc_uid={bool(auth_info['asc_uid'])}")
-        logger.info(f"[LazadaAPI] 完整 _m_h5_tk: {m_h5_tk}")
-        logger.info(f"[LazadaAPI] _m_h5_tk_enc: {auth_info['m_h5_tk_enc']}")
 
         return auth_info
 
@@ -175,13 +212,6 @@ class LazadaAPI:
         """
         message = f"{token}&{timestamp}&{app_key}&{data}"
         sign = hashlib.md5(message.encode('utf-8')).hexdigest()
-
-        logger.info(f"[LazadaAPI] 签名计算 (MD5):")
-        logger.info(f"  token: {token}")
-        logger.info(f"  timestamp: {timestamp}")
-        logger.info(f"  app_key: {app_key}")
-        logger.info(f"  data: {data[:100]}...")
-        logger.info(f"  计算签名: {sign}")
         return sign.lower()
 
     def _generate_timestamp(self) -> str:
@@ -269,7 +299,7 @@ class LazadaAPI:
             'type': 'originaljson',
             'dataType': 'json',
             'valueType': 'original',
-            'x-i18n-regionID': 'LAZADA_PH',
+            'x-i18n-regionID': self.REGION_ID,
             'data': encoded_data,  # GET 请求时 data 在 URL 参数中
         }
 
@@ -278,9 +308,6 @@ class LazadaAPI:
         if params:
             query_string = '&'.join(f"{k}={v}" for k, v in params.items())
             full_url = f"{full_url}?{query_string}"
-
-        logger.info(f"[LazadaAPI] 完整URL: {full_url[:300]}...")
-        logger.info(f"[LazadaAPI] data参数: {params.get('data', '')[:100]}...")
 
         headers = self._build_common_headers(api_path, app_key)
 
@@ -701,7 +728,7 @@ class LazadaAPI:
             'type': 'originaljson',
             'dataType': 'json',
             'valueType': 'original',
-            'x-i18n-regionID': 'LAZADA_PH',
+            'x-i18n-regionID': self.REGION_ID,
             'data': encoded_data,
         }
 
@@ -714,9 +741,8 @@ class LazadaAPI:
 
         # 使用 AsyncBatchRequest 发送请求
         cookies = auth.get('cookies', [])
-        async_request = AsyncBatchRequest(cookies=cookies, auth_info=auth)
 
-        try:
+        async with AsyncBatchRequest(cookies=cookies, auth_info=auth) as async_request:
             response = await async_request.get(url=full_url, headers=headers, timeout=30)
 
             if response.ok:
@@ -730,12 +756,6 @@ class LazadaAPI:
                     raise LazadaAPIError(api_path, code, message)
             else:
                 raise LazadaAPIError(api_path, response.status_code, f"HTTP error: {response.status_code}")
-
-        except LazadaAPIError:
-            raise
-        except Exception as e:
-            logger.error(f"API {api_path} 请求异常: {e}")
-            raise LazadaAPIError(api_path, -1, str(e))
 
     async def get_all_orders_async(self, tab: str = "toship", max_pages: int = 100) -> List[Dict]:
         """

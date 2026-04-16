@@ -116,8 +116,6 @@ class ShopeeAllOrderTask(BaseTask):
         cookies = driver.get_cookies()
         cookie_names = [c.get('name') for c in cookies]
         logger.info(f"[ShopeeAllOrder] 当前URL: {current_url}")
-        logger.info(f"[ShopeeAllOrder] Cookies数量: {len(cookies)}")
-        logger.info(f"[ShopeeAllOrder] Cookie名称: {cookie_names}")
 
         # 检查是否需要登录：URL包含/login 或者 没有关键的登录Cookie
         login_cookies = ['SPC_CI', 'SPC_U', 'SHOPEE_TOKEN']
@@ -258,8 +256,7 @@ class ShopeeAllOrderTask(BaseTask):
             id_counter = Counter(order_ids_list)
             duplicate_ids = [oid for oid, count in id_counter.items() if count > 1]
             logger.warning(f"[ShopeeAllOrder] 重复的 order_id: {duplicate_ids[:10]}")
-        else:
-            logger.info(f"[ShopeeAllOrder] 订单列表无重复 order_id")
+
 
         # 3. 批量获取订单详情
         if self.fetch_detail and all_orders:
@@ -288,8 +285,8 @@ class ShopeeAllOrderTask(BaseTask):
             result['captured_apis'] = len(captured_apis)
 
         # 4. 保存结果到文件
-        if self.save_to_file:
-            self._save_results(result, env_name)
+        # if self.save_to_file:
+        #     self._save_results(result, env_name)
 
         # 5. 保存订单到数据库
         if self.save_to_db and self.database and result.get('order_details'):
@@ -332,7 +329,6 @@ class ShopeeAllOrderTask(BaseTask):
 
         # 使用订单ID作为备用
         if not package_params:
-            logger.info(f"[ShopeeAllOrder] 无 package_number，使用 order_id 构建查询参数")
             for order in orders:
                 order_id = order.get('order_id')
                 shop_id = order.get('shop_id')
@@ -347,8 +343,6 @@ class ShopeeAllOrderTask(BaseTask):
         if not package_params:
             logger.warning("[ShopeeAllOrder] 没有可用的订单参数")
             return all_details
-
-        logger.info(f"[ShopeeAllOrder] 开始异步并发获取 {len(package_params)} 条订单详情...")
 
         # 创建新的事件循环来运行异步代码
         loop = asyncio.new_event_loop()
@@ -365,7 +359,6 @@ class ShopeeAllOrderTask(BaseTask):
         finally:
             loop.close()
 
-        logger.info(f"[ShopeeAllOrder] 订单详情获取完成，共 {len(all_details)} 条")
         return all_details
 
     def _wait_for_login(self, driver: HubStudioSeleniumDriver, timeout: int = 60):
@@ -534,7 +527,6 @@ class ShopeeAllOrderTask(BaseTask):
         for order in all_orders:
             shop_id = order.get('shop_id')
             if shop_id:
-                logger.info(f"[ShopeeAllOrder] 从订单列表中获取到 shop_id: {shop_id}")
                 return shop_id
 
         # 3. 从 cookie 中解析 shop_id
@@ -793,16 +785,12 @@ class ShopeeAllOrderTask(BaseTask):
                 logger.error(f"[ShopeeAllOrder] 解析订单数据失败: {e}")
 
         # 1. 先按 order_sn (主键) 检查已存在的订单
-        logger.info(f"[ShopeeAllOrder] all_orders length: {len(all_orders)}")
         order_sns = [str(o.get('order_sn')) for o in all_orders if o.get('order_sn')]
-        logger.info(f"[ShopeeAllOrder] 检查订单是否存在，order_sn 数量: {len(order_sns)}")
-        logger.info(f"[ShopeeAllOrder] 样本 order_sn: {order_sns[:5] if len(order_sns) >= 5 else order_sns}")
 
         existing_map = {}
         if order_sns:
             try:
                 existing_map = self.database.check_orders_exist_batch(order_sns)
-                logger.info(f"[ShopeeAllOrder] 检查完成，现有结果数量: {len(existing_map)}")
             except Exception as e:
                 logger.error(f"[ShopeeAllOrder] 检查订单存在失败: {e}")
                 existing_map = {}
@@ -838,11 +826,6 @@ class ShopeeAllOrderTask(BaseTask):
                 existing_buyers.append(buyer)
             else:
                 new_buyers.append(buyer)
-
-        # 调试：检查 existing_map 的详细信息
-        true_count = sum(1 for v in existing_map.values() if v is True)
-        false_count = sum(1 for v in existing_map.values() if v is False)
-        logger.info(f"[ShopeeAllOrder] existing_map 详情: True={true_count}, False={false_count}")
 
         logger.info(f"[ShopeeAllOrder] 总订单数: {len(all_orders)}, 新订单: {len(new_orders)}, 已存在: {len(existing_orders)}")
 

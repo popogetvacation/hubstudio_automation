@@ -66,7 +66,7 @@ class LazadaOrderTask(BaseTask):
     def setup(self, driver: HubStudioSeleniumDriver, env_info: Dict[str, Any]):
         """前置操作：导航到目标页面，确保登录状态"""
         env_name = env_info.get('env_name', '')
-        lazada_api = LazadaAPI(driver)
+        lazada_api = LazadaAPI(driver, env_name=env_name)
         target_url = f"https://{lazada_api.SELLER_CENTER_DOMAIN}/"
 
         logger.info(f"[LazadaOrder] 导航到: {target_url}")
@@ -112,7 +112,7 @@ class LazadaOrderTask(BaseTask):
         }
 
         # 初始化 API
-        lazada_api = LazadaAPI(driver)
+        lazada_api = LazadaAPI(driver, env_name=env_name)
         base_url = lazada_api.get_base_url(env_name)
 
         logger.info(f"[LazadaOrder] 目标URL: {base_url}")
@@ -567,18 +567,23 @@ class LazadaOrderTask(BaseTask):
             driver.goto(login_url)
             time.sleep(3)
 
-        # 尝试自动点击登录按钮
+        # 尝试自动点击登录按钮（使用 XPath 选择器）
         login_button_selectors = [
-            'button[data-spm="home_next"]',
-            '.login-button',
-            'button.login-button',
-            'button.next-btn-primary'
+            # button 元素选择器
+            '//button[@data-spm="home_next"]',
+            '//button[contains(@class, "login-button")]',
+            '//button[contains(@class, "next-btn-primary")]',
+            # a 标签选择器
+            '//a[@class="to-login-link"]',
+            '//a[@data-spm="d_local_login"]',
+            '//a[contains(text(), "Log in")]',
+            '//a[contains(text(), "登录")]',
         ]
 
         for selector in login_button_selectors:
             try:
                 from selenium.webdriver.common.by import By
-                elements = driver.driver.find_elements(By.CSS_SELECTOR, selector)
+                elements = driver.driver.find_elements(By.XPATH, selector)
                 if elements and len(elements) > 0:
                     for elem in elements:
                         try:
