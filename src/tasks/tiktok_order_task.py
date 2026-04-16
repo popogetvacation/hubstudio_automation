@@ -61,6 +61,10 @@ class TokopediaOrderTask(BaseTask):
 
         self._auth_info = None
 
+        # 追踪已检查的买家，避免重复打印日志
+        self._checked_buyers = set()
+        self._suspicious_checked_buyers = set()
+
     def setup(self, driver: HubStudioSeleniumDriver, env_info: Dict[str, Any]):
         """前置操作：导航到目标页面，确保登录状态"""
         env_name = env_info.get('env_name', '')
@@ -125,16 +129,8 @@ class TokopediaOrderTask(BaseTask):
         self._auth_info = tiktok_api.auth_info
         tiktok_api.set_auth_info(self._auth_info)
 
-        # 使用异步获取订单列表
-        logger.info(f"[TokopediaOrder] 开始异步获取订单列表...")
-        loop = asyncio.new_event_loop()
-        try:
-            all_orders = loop.run_until_complete(
-                tiktok_api.get_all_orders_async(base_url, max_pages=self.max_pages)
-            )
-        finally:
-            loop.close()
-
+        # 获取订单列表
+        all_orders = tiktok_api.get_all_orders(base_url, max_pages=self.max_pages)
         result['orders'] = all_orders
         result['total_count'] = len(all_orders)
 
@@ -208,41 +204,65 @@ class TokopediaOrderTask(BaseTask):
 
         logger.info(f"[TokopediaOrder] 获取到 {len(chat_links)} 个买家聊天链接")
 
-        # 3c. 从聊天链接中提取 pigeonUid 作为 buyer_user_id，建立映射
-        buyer_order_map = {}  # buyer_user_id -> [main_order_ids]
+        # 3c. 从聊天链接中提取 pigeonUid 作为 im_buyer_id，建立映射
+        buyer_order_map = {}  # im_buyer_id -> [main_order_ids]
         for main_order_id, chat_info in chat_links.items():
             if chat_info:
-                # pigeonUid 就是买家的唯一 ID
-                buyer_user_id = chat_info.get('pigeonUid')
-                if buyer_user_id:
+                # pigeonUid 就是买家的 IM 用户 ID
+                im_buyer_id = chat_info.get('pigeonUid')
+                if im_buyer_id:
                     # 更新 order_buyer_map
-                    order_buyer_map[main_order_id] = buyer_user_id
-                    # 建立 buyer -> orders 映射
-                    if buyer_user_id not in buyer_order_map:
-                        buyer_order_map[buyer_user_id] = []
-                    buyer_order_map[buyer_user_id].append(main_order_id)
+                    order_buyer_map[main_order_id] = im_buyer_id
+                    # 建立 im_buyer_id -> orders 映射
+                    if im_buyer_id not in buyer_order_map:
+                        buyer_order_map[im_buyer_id] = []
+                    buyer_order_map[im_buyer_id].append(main_order_id)
 
         logger.info(f"[TokopediaOrder] 找到 {len(buyer_order_map)} 个唯一买家")
 
-        # 3c. 如果有买家 ID，获取买家历史订单
-        buyer_histories = {}
+        # 3d. 将 im_buyer_id 转换为 oec_uid
+        im_buyer_to_oec_uid_map = {}
         if buyer_order_map:
-            logger.info(f"[TokopediaOrder] 开始获取买家历史订单...")
+            logger.info(f"[TokopediaOrder] 开始转换 IM 买家 ID 到 OEC UID...")
             loop = asyncio.new_event_loop()
             try:
-                buyer_ids = list(buyer_order_map.keys())
-                buyer_histories = loop.run_until_complete(
-                    tiktok_api.get_buyer_orders_batch(
+                im_buyer_ids = list(buyer_order_map.keys())
+                im_buyer_to_oec_uid_map = loop.run_until_complete(
+                    tiktok_api.im_buyer_ids_to_oec_uids_batch(
                         base_url=base_url,
-                        buyer_ids=buyer_ids,
+                        im_buyer_ids=im_buyer_ids,
                         max_concurrent=self.MAX_WORKERS
                     )
                 )
             finally:
                 loop.close()
 
-        logger.info(f"[TokopediaOrder] 获取到 {len(buyer_histories)} 个买家的历史订单")
+        logger.info(f"[TokopediaOrder] 转换完成: {len(im_buyer_to_oec_uid_map)} 个成功")
 
+        # 3e. 使用 oec_uid 获取买家历史订单
+        buyer_histories = {}  # im_buyer_id -> [orders]
+        if im_buyer_to_oec_uid_map:
+            logger.info(f"[TokopediaOrder] 开始获取买家历史订单...")
+            loop = asyncio.new_event_loop()
+            try:
+                # 提取 oec_uid 并去重
+                oec_uids = list(set(im_buyer_to_oec_uid_map.values()))
+                # 使用 oec_uid 获取订单
+                oec_uid_to_orders = loop.run_until_complete(
+                    tiktok_api.get_buyer_orders_batch(
+                        base_url=base_url,
+                        buyer_ids=oec_uids,
+                        max_concurrent=self.MAX_WORKERS
+                    )
+                )
+                # 将结果映射回 im_buyer_id
+                for im_buyer_id, oec_uid in im_buyer_to_oec_uid_map.items():
+                    if oec_uid in oec_uid_to_orders:
+                        buyer_histories[im_buyer_id] = oec_uid_to_orders[oec_uid]
+            finally:
+                loop.close()
+
+        logger.info(f"[TokopediaOrder] 获取到 {len(buyer_histories)} 个买家的历史订单")
         # 4. 内存中标签分析
         logger.info(f"[TokopediaOrder] 开始标签分析...")
 
@@ -288,6 +308,10 @@ class TokopediaOrderTask(BaseTask):
         Returns:
             标签分析结果
         """
+        # 记录已检查过的买家，避免重复打印日志
+        checked_buyers = set()
+        suspicious_checked_buyers = set()
+
         tagged_orders = []
         tag_counts = defaultdict(int)
 
@@ -300,14 +324,12 @@ class TokopediaOrderTask(BaseTask):
             # 1. 同单多件
             if self._check_same_order_multi_items(order_data):
                 tags.append('同单多件')
-
             # 2. 高频复购 (需要买家历史订单)
             if buyer_user_id and buyer_histories.get(buyer_user_id):
                 if self._check_high_frequency_repurchase(
-                    buyer_user_id, order_data, buyer_histories[buyer_user_id]
+                    buyer_user_id, main_order_id, order_data, buyer_histories[buyer_user_id]
                 ):
                     tags.append('高频复购')
-
             # 3. 地址偏远 (需要买家联系信息)
             contact_info = buyer_contacts.get(main_order_id)
             if contact_info and buyer_user_id and parsed_addresses:
@@ -317,7 +339,7 @@ class TokopediaOrderTask(BaseTask):
 
             # 4. 历史退货退款派送失败
             if buyer_user_id and buyer_histories.get(buyer_user_id):
-                if self._check_suspicious_customer(buyer_histories[buyer_user_id]):
+                if self._check_suspicious_customer(buyer_user_id, main_order_id, buyer_histories[buyer_user_id]):
                     tags.append('历史退货退款派送失败')
 
             # 5. 顾客税务要求 (预留，目前没有聊天消息)
@@ -353,6 +375,7 @@ class TokopediaOrderTask(BaseTask):
         return False
 
     def _check_high_frequency_repurchase(self, buyer_user_id: str,
+                                          current_order_id: str,
                                           order_data: Dict,
                                           history_orders: List[Dict]) -> bool:
         """
@@ -377,11 +400,17 @@ class TokopediaOrderTask(BaseTask):
             return False
 
         # 遍历历史订单，检查是否同时满足：
-        # 1. 时间差在2小时内
-        # 2. 存在同款产品
+        # 1. 不是当前订单
+        # 2. 时间差在2小时内
+        # 3. 存在同款产品
         current_time = int(order_create_time) if order_create_time else 0
 
         for hist_order in history_orders:
+            # 跳过当前订单
+            hist_main_order_id = hist_order.get('main_order_id')
+            if hist_main_order_id == current_order_id:
+                continue
+
             hist_trade_module = hist_order.get('trade_order_module', {})
             hist_time = hist_trade_module.get('create_time')  # Unix 时间戳
 
@@ -434,16 +463,52 @@ class TokopediaOrderTask(BaseTask):
         # 只有同时满足高价和偏远地区才返回 True
         return is_high_value and is_remote
 
-    def _check_suspicious_customer(self, history_orders: List[Dict]) -> bool:
+    def _check_suspicious_customer(self, buyer_id: str, current_order_id: str, history_orders: List[Dict]) -> bool:
         """
-        检查可疑顾客：历史是否存在订单状态为 cancel 且有运单号的记录
-        """
-        for order in history_orders:
-            status = order.get('order_status', '')
-            tracking_number = order.get('tracking_number', '')
+        检查可疑顾客：历史订单是否存在 reverse_module 且 reverse_type != 1
 
-            if status and status.lower() == 'cancel' and tracking_number:
-                return True
+        reverse_type 说明：
+        - 1: 买家预期未支付系统自动取消（不算可疑）
+        - 其他值（如3）: 实际的退货退款（算可疑）
+        """
+        # 如果该买家已检查过，直接返回 False
+        if buyer_id in self._suspicious_checked_buyers:
+            return False
+        # 标记为已检查，避免重复
+        self._suspicious_checked_buyers.add(buyer_id)
+        # 去重：避免重复检测同一订单
+        seen_order_ids = set()
+
+        for order in history_orders:
+            # 跳过当前订单
+            hist_main_order_id = order.get('main_order_id')
+            logger.info(f"[TokopediaOrder] hist_main_order_id {hist_main_order_id} current_order_id{current_order_id}")
+            if hist_main_order_id == current_order_id:
+                continue
+
+            # 跳过已处理的订单
+            if hist_main_order_id in seen_order_ids:
+                continue
+            seen_order_ids.add(hist_main_order_id)
+
+            # 跳过 Awaiting shipment 状态的订单 (main_order_status = 101)
+            order_status_module = order.get('order_status_module', [])
+            if order_status_module:
+                main_order_status = order_status_module[0].get('main_order_status')
+                if main_order_status == 101:  # Awaiting shipment
+                    logger.info(f"[TokopediaOrder] 跳过 Awaiting shipment 状态的订单: {hist_main_order_id}")
+                    continue
+
+            reverse_module = order.get('reverse_module', [])
+
+            if reverse_module:
+                # 遍历 reverse_module，检查是否存在 reverse_type != 1 的记录
+                for reverse in reverse_module:
+                    reverse_type = reverse.get('reverse_type', 0)
+                    if reverse_type != 1:
+                        logger.info(f"[TokopediaOrder] 检测到可疑顾客: reverse_type={reverse_type}, main_order_id={order.get('main_order_id')}")
+                        self._suspicious_checked_buyers.add(buyer_id)
+                        return True
 
         return False
 
@@ -483,13 +548,6 @@ class TokopediaOrderTask(BaseTask):
         ws.column_dimensions['B'].width = 20
 
         wb.save(filepath)
-
-        # 如果是单个环境，额外保存一份 tiktok_order_tags.xlsx
-        if env_name:
-            main_filename = "tiktok_order_tags.xlsx"
-            main_filepath = os.path.join(self.output_dir, main_filename)
-            wb.save(main_filepath)
-            logger.info(f"[TokopediaOrder] 同时保存到: {main_filepath}")
 
         return filepath
 

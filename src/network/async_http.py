@@ -59,20 +59,44 @@ class AsyncBatchRequest:
     """
     异步批量请求处理器
 
-    支持并发执行多个请求
+    支持并发执行多个请求，支持自定义 headers 模板
     """
 
-    def __init__(self, cookies: List[Dict] = None, auth_info: Dict = None):
+    # 默认 Shopee headers 模板（向后兼容）
+    DEFAULT_SHOPEE_HEADERS = {
+        'accept': 'application/json, text/plain, */*',
+        'accept-encoding': 'gzip, deflate, br',
+        'accept-language': 'en-US,en;q=0.9',
+        'content-type': 'application/json;charset=UTF-8',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'same-origin',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
+    }
+
+    def __init__(self, cookies: List[Dict] = None, auth_info: Dict = None,
+                 headers_template: Dict[str, str] = None,
+                 platform: str = 'shopee'):
         """
         初始化
 
         Args:
             cookies: 浏览器 Cookies 列表
             auth_info: 认证信息字典
+            headers_template: 自定义 headers 模板（可选）
+            platform: 平台类型 'shopee' 或 'tokopedia/tiktok'（用于自动选择默认模板）
         """
         self._cookies = cookies or []
         self._auth_info = auth_info or {}
         self._session: Optional[aiohttp.ClientSession] = None
+
+        # 设置 headers 模板
+        if headers_template:
+            self._headers_template = headers_template.copy()
+        elif platform.lower() in ('tokopedia', 'tiktok', 'tt'):
+            self._headers_template = self._get_tokopedia_headers_template()
+        else:
+            self._headers_template = self.DEFAULT_SHOPEE_HEADERS.copy()
 
     async def _get_session(self) -> aiohttp.ClientSession:
         """获取或创建 session"""
@@ -91,6 +115,19 @@ class AsyncBatchRequest:
 
         return self._session
 
+    def _get_tokopedia_headers_template(self) -> Dict[str, str]:
+        """获取 Tokopedia/TikTok Shop 的默认 headers 模板"""
+        return {
+            'accept': '*/*',
+            'sec-ch-ua': '"Chromium";v="146", "Not-A.Brand";v="24", "Google Chrome";v="146"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36',
+        }
+
     def _build_cookies_header(self) -> str:
         """构建 Cookie 请求头"""
         # 手动构建 Cookie 头，确保 cookies 被包含在请求中
@@ -101,27 +138,35 @@ class AsyncBatchRequest:
         )
 
     def _build_headers(self, base_url: str, additional_headers: Dict = None) -> Dict[str, str]:
-        """构建请求头"""
-        headers = {
-            'accept': 'application/json, text/plain, */*',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9',
-            'content-type': 'application/json;charset=UTF-8',
-            'origin': base_url,
-            'referer': f"{base_url}/portal/sale/order",
-            'sec-fetch-dest': 'empty',
-            'sec-fetch-mode': 'cors',
-            'sec-fetch-site': 'same-origin',
-            'x-csrftoken': self._auth_info.get('csrf_token', ''),
-            'SPC_CDS': self._auth_info.get('spc_cds_chat', ''),
-            'x-shopee-region': self._auth_info.get('region', 'MY').lower(),
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36',
-        }
+        """
+        构建请求头
 
-        bearer_token = self._auth_info.get('bearer_token', '')
-        if bearer_token:
-            headers['Authorization'] = f'Bearer {bearer_token}'
+        Args:
+            base_url: 基础 URL
+            additional_headers: 额外的请求头（会覆盖模板中的同名 header）
 
+        Returns:
+            完整的请求头字典
+        """
+        # 从模板开始
+        headers = self._headers_template.copy()
+
+        # 添加 URL 相关 headers
+        headers['origin'] = base_url
+        headers['referer'] = f"{base_url}/order"
+
+        # 检查平台特定 headers
+        if 'x-shopee-region' in self._headers_template:
+            # Shopee 平台
+            headers['x-csrftoken'] = self._auth_info.get('csrf_token', '')
+            headers['SPC_CDS'] = self._auth_info.get('spc_cds_chat', '')
+            headers['x-shopee-region'] = self._auth_info.get('region', 'MY').lower()
+
+            bearer_token = self._auth_info.get('bearer_token', '')
+            if bearer_token:
+                headers['Authorization'] = f'Bearer {bearer_token}'
+
+        # 合并额外的 headers（会覆盖模板中的同名 header）
         if additional_headers:
             headers.update(additional_headers)
 
@@ -298,3 +343,19 @@ class AsyncBatchRequest:
         if self._session and not self._session.closed:
             await self._session.close()
             self._session = None
+
+    def __del__(self):
+        """析构时自动关闭 session（避免 Unclosed connector 警告）"""
+        # 注意：不能在 __del__ 中调用异步方法，所以只能记录日志
+        # 实际关闭需要显式调用 close() 或使用 context manager
+        if self._session and not self._session.closed:
+            logger.warning("[AsyncBatchRequest] session 未显式关闭，存在资源泄漏风险")
+
+    async def __aenter__(self):
+        """支持 async with 语法"""
+        return self
+
+    async def __aexit__(self, _exc_type, _exc_val, _exc_tb):  # noqa: ARG002
+        """退出 async with 块时自动关闭"""
+        await self.close()
+        return False

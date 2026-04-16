@@ -177,7 +177,10 @@ def check_ph_remote_area(order, buyer_info) -> Dict:
 def check_suspicious_customer(conn, order_sn: str, buyer_user_id: str,
                               current_order_create_time) -> bool:
     """
-    检查可疑顾客：历史是否存在订单状态为cancel且有运单号的记录
+    检查可疑顾客：历史是否存在满足以下条件的订单：
+    1. 订单状态不为 Completed
+    2. 订单状态不为 Canceled
+    3. 且无运单号
     """
     if not buyer_user_id:
         return False
@@ -195,12 +198,27 @@ def check_suspicious_customer(conn, order_sn: str, buyer_user_id: str,
 
     history_orders = cursor.fetchall()
 
-    # 判断条件：订单状态为 cancel 且存在运单号
+    # 判断条件：
+    # 1. status 不为 'Completed'
+    # 2. (status 为 'Canceled' 但有运单号) 或 (status 不为 'Canceled' 且无运单号)
+    #    即：排除正常取消（Canceled + 无运单号）和已完成（Completed）
     for row in history_orders:
         status = row[1]
         tracking_number = row[2]
-        if status and status.lower() == 'cancel' and tracking_number and str(tracking_number).strip():
-            return True
+        if status:
+            status_lower = status.lower()
+            # 条件1: 订单状态不为 Completed
+            is_not_completed = status_lower != 'completed'
+
+            # 条件2: 检查是否为可疑订单
+            # - 如果是 Canceled 但有运单号 -> 可疑（发货后取消）
+            # - 如果不是 Canceled 且无运单号 -> 可疑（未完成且未发货）
+            has_tracking = tracking_number and str(tracking_number).strip()
+            is_canceled_with_tracking = (status_lower == 'canceled') and has_tracking
+            is_not_canceled_no_tracking = (status_lower != 'canceled') and not has_tracking
+
+            if is_not_completed and (is_canceled_with_tracking or is_not_canceled_no_tracking):
+                return True
 
     return False
 
@@ -238,12 +256,12 @@ def main():
     data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
     os.makedirs(data_dir, exist_ok=True)
 
-    # 清除旧的 order_tags 文件
-    print("\n[0/6] 清除旧的 order_tags 文件...")
+    # 清除旧的 shopee_order_tags 文件
+    print("\n[0/6] 清除旧的 shopee_order_tags 文件...")
     cleared_files = []
     if os.path.exists(data_dir):
         for fname in os.listdir(data_dir):
-            if fname.startswith('order_tags') and fname.endswith('.xlsx'):
+            if fname.startswith('shopee_order_tags') and fname.endswith('.xlsx'):
                 fpath = os.path.join(data_dir, fname)
                 try:
                     os.remove(fpath)
@@ -385,11 +403,11 @@ def main():
         ws.column_dimensions['A'].width = 25
         ws.column_dimensions['B'].width = 20
 
-        # 保存文件（命名格式: order_tags_PH_Shopee-Lamall_20260413_105651.xlsx）
+        # 保存文件（命名格式: shopee_order_tags_20260413_105651.xlsx）
         if file_count == 1:
-            output_filename = f'order_tags_PH_Shopee-Lamall_{timestamp}.xlsx'
+            output_filename = f'shopee_order_tags_{timestamp}.xlsx'
         else:
-            output_filename = f'order_tags_PH_Shopee-Lamall_{timestamp}_{file_idx + 1}.xlsx'
+            output_filename = f'shopee_order_tags_{timestamp}_{file_idx + 1}.xlsx'
         output_path = os.path.join(data_dir, output_filename)
         wb.save(output_path)
         generated_files.append(output_path)

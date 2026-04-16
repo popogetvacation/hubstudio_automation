@@ -36,6 +36,7 @@ class TokopediaAPI:
     BUYER_CONTACT_API = "/api/fulfillment/orders/buyer_contact_info/get"
     WORKBENCH_DATA_API = "/api/v1/shop_im/shop/workbench/data/list"
     CHAT_BUYER_LINK_API = "/chat/api/seller/mGetContactBuyerLinkByOrder"  # 获取买家联系链接（包含 pigeonUid）
+    CREATE_CONVERSATION_API = "/api/v1/shop_im/shop/conversation/create_conversation"  # 创建对话，获取 imcloud_conversation_id
 
     # 国家域名映射
     DOMAIN_MAP = {
@@ -384,14 +385,6 @@ class TokopediaAPI:
 
             if response.ok:
                 data = response.json()
-                # 写入文件用于调试
-                debug_file = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
-                                          'data', 'debug_order_response.json')
-                os.makedirs(os.path.dirname(debug_file), exist_ok=True)
-                with open(debug_file, 'w', encoding='utf-8') as f:
-                    f.write(response.text)
-                logger.info(f"[TokopediaAPI] 响应已保存到: {debug_file}")
-                logger.info(f"[TokopediaAPI] 响应文本长度: {len(response.text)}")
 
                 if data and data.get('code') == 0:
                     return data.get('data', {})
@@ -482,8 +475,6 @@ class TokopediaAPI:
         Returns:
             买家联系信息或 None
         """
-        # 调试：打印请求参数
-        logger.info(f"[TokopediaAPI] get_buyer_contact_info 请求: main_order_id={main_order_id}")
 
         # 获取认证信息用于构建请求头
         auth = self.auth_info
@@ -505,12 +496,9 @@ class TokopediaAPI:
             "contact_info_type": 1  # 1 = 收货地址
         }
 
-        logger.info(f"[TokopediaAPI] 请求体: {json.dumps(request_body)[:200]}")
-
         try:
             # 构建请求头
             headers = self._build_headers(base_url)
-            logger.info(f"[TokopediaAPI] Cookie header 长度: {len(headers.get('Cookie', ''))}")
 
             response = self.browser_request.post(
                 url=full_url,
@@ -521,22 +509,8 @@ class TokopediaAPI:
 
             if response.ok:
                 data = response.json()
-                # 调试：打印响应
-                logger.info(f"[TokopediaAPI] 买家联系信息响应: code={data.get('code') if data else 'None'}, data={data.get('data') if data else 'None'}")
-
-                # 调试：保存完整响应到文件
                 if data and data.get('code') == 0:
                     contact_data = data.get('data', {})
-                    # 打印所有顶层键
-                    logger.info(f"[TokopediaAPI] 买家联系信息的所有键: {list(contact_data.keys())}")
-
-                    # 写入文件用于调试
-                    debug_file = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
-                                              'data', 'debug_contact_response.json')
-                    with open(debug_file, 'w', encoding='utf-8') as f:
-                        json.dump(data, f, ensure_ascii=False, indent=2)
-                    logger.info(f"[TokopediaAPI] 买家联系信息已保存到: {debug_file}")
-
                     return contact_data
                 else:
                     code = data.get('code') if data else -1
@@ -565,7 +539,6 @@ class TokopediaAPI:
         Returns:
             包含 pigeonUid 的字典或 None
         """
-        logger.info(f"[TokopediaAPI] get_buyer_chat_link 请求: main_order_id={main_order_id}")
 
         # 获取认证信息
         auth = self.auth_info
@@ -602,15 +575,6 @@ class TokopediaAPI:
                     order_info = data.get('data', {}).get('orderIdToContactLinkInfo', {})
                     contact_link = order_info.get(main_order_id, {})
                     pigeon_uid = contact_link.get('pigeonUid')
-
-                    logger.info(f"[TokopediaAPI] main_order_id={main_order_id} -> pigeonUid={pigeon_uid}")
-
-                    # 调试：保存响应
-                    debug_file = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
-                                              'data', 'debug_chat_link_response.json')
-                    with open(debug_file, 'w', encoding='utf-8') as f:
-                        json.dump(data, f, ensure_ascii=False, indent=2)
-                    logger.info(f"[TokopediaAPI] 聊天链接响应已保存到: {debug_file}")
 
                     return {
                         'pigeonUid': pigeon_uid,
@@ -700,20 +664,35 @@ class TokopediaAPI:
 
     # ==================== 聊天工作台订单 API ====================
 
-    def get_buyer_orders(self, base_url: str, buyer_user_id: str,
+    def get_buyer_orders(self, base_url: str, oec_uid: str,
                          offset: int = 0, count: int = 20) -> Optional[Dict]:
         """
         获取买家的历史订单列表
 
         Args:
             base_url: 基础 URL
-            buyer_user_id: 买家用户 ID
+            oec_uid: 买家的 OEC 用户 ID
             offset: 分页偏移量
             count: 每页数量
 
         Returns:
             买家订单列表或 None
         """
+        # 获取认证信息用于构建 URL 参数
+        auth = self.auth_info
+        oec_seller_id = auth.get('oec_seller_id') or auth.get('seller_id', '')
+        seller_id = auth.get('seller_id') or oec_seller_id
+
+        # 构建 URL 参数
+        params = {
+            'im_version_code': '1523',
+            'aid': '4068',
+            'PIGEON_BIZ_TYPE': '1',
+            'oec_seller_id': str(oec_seller_id),
+            }
+        param_str = '&'.join(f"{k}={v}" for k, v in params.items())
+        full_url = f"{base_url}{self.WORKBENCH_DATA_API}?{param_str}"
+
         request_body = {
             "order_workbench_query": {
                 "seller_order_req": {
@@ -725,16 +704,15 @@ class TokopediaAPI:
                     "search_condition": {
                         "condition_list": {
                             "search_tab": {"value": ["0"]},  # 全部订单
-                            "buyer_user_id": {"value": [buyer_user_id]}
+                            "buyer_user_id": {"value": [oec_uid]}
                         }
                     }
                 }
             }
         }
-
         try:
             response = self.browser_request.post(
-                url=f"{base_url}{self.WORKBENCH_DATA_API}",
+                url=full_url,
                 json_data=request_body,
                 headers=self._build_headers(base_url),
                 timeout=30
@@ -742,8 +720,6 @@ class TokopediaAPI:
 
             if response.ok:
                 data = response.json()
-                # 调试：打印响应
-                logger.info(f"[TokopediaAPI] 买家历史订单响应: code={data.get('code') if data else 'None'}")
                 if data and data.get('code') == 0:
                     return data.get('data', {})
                 else:
@@ -757,14 +733,14 @@ class TokopediaAPI:
             logger.error(f"获取买家历史订单异常: {e}")
             raise
 
-    def get_buyer_all_orders(self, base_url: str, buyer_user_id: str,
+    def get_buyer_all_orders(self, base_url: str, oec_uid: str,
                              max_count: int = 100) -> List[Dict]:
         """
         获取买家的所有历史订单
 
         Args:
             base_url: 基础 URL
-            buyer_user_id: 买家用户 ID
+            oec_uid: 买家的 OEC 用户 ID
             max_count: 最大获取数量
 
         Returns:
@@ -777,13 +753,14 @@ class TokopediaAPI:
             try:
                 data = self.get_buyer_orders(
                     base_url=base_url,
-                    buyer_user_id=buyer_user_id,
+                    oec_uid=oec_uid,
                     offset=offset,
                     count=20
                 )
-
                 if data:
-                    main_orders = data.get('main_orders', [])
+                    workbench_data = data.get('order_workbench_data', {})
+                    seller_data = workbench_data.get('seller_order_data', {})
+                    main_orders = seller_data.get('main_orders', [])
                     all_orders.extend(main_orders)
 
                     if len(main_orders) < 20:
@@ -800,6 +777,189 @@ class TokopediaAPI:
             time.sleep(0.3)
 
         return all_orders
+
+    def create_conversation(self, base_url: str, im_buyer_id: str) -> Optional[str]:
+        """
+        创建与买家的对话，获取 imcloud_conversation_id
+
+        Args:
+            base_url: 基础 URL
+            im_buyer_id: 买家的 IM 用户 ID
+
+        Returns:
+            imcloud_conversation_id 对话 ID，失败返回 None
+        """
+
+        # 获取认证信息用于构建 URL 参数
+        auth = self.auth_info
+        oec_seller_id = auth.get('oec_seller_id') or auth.get('seller_id', '')
+        region = self.get_region_code()
+
+        # 构建 URL 参数
+        params = {
+            'PIGEON_BIZ_TYPE': '1',
+            'oec_region': region,
+            'aid': '4068',
+            'oec_seller_id': str(oec_seller_id)
+        }
+        param_str = '&'.join(f"{k}={v}" for k, v in params.items())
+        full_url = f"{base_url}{self.CREATE_CONVERSATION_API}?{param_str}"
+
+        request_body = {
+            "im_buyer_id": str(im_buyer_id)
+        }
+
+        try:
+            headers = self._build_headers(base_url)
+            response = self.browser_request.post(
+                url=full_url,
+                json_data=request_body,
+                headers=headers,
+                timeout=30
+            )
+
+            if response.ok:
+                data = response.json()
+
+                if data and data.get('code') == 0:
+                    conversation_id = data.get('data', {}).get('imcloud_conversation_id')
+                    return conversation_id
+                else:
+                    code = data.get('code') if data else -1
+                    msg = data.get('message', 'unknown') if data else 'empty response'
+                    raise ApiError('create_conversation', code, msg)
+            else:
+                raise ApiError('create_conversation', response.status_code, f"HTTP error: {response.status_code}")
+
+        except ApiError:
+            raise
+        except Exception as e:
+            logger.error(f"创建对话异常: {e}")
+            raise ApiError('create_conversation', -1, str(e))
+
+    def get_conversation_oec_uid(self, base_url: str, conversation_id: str) -> Optional[str]:
+        """
+        通过对话 ID 获取 oec_uid（买家的 OEC 用户 ID）
+
+        Args:
+            base_url: 基础 URL
+            conversation_id: imcloud_conversation_id 对话 ID
+
+        Returns:
+            oec_uid 买家 OEC 用户 ID，失败返回 None
+        """
+
+        # 获取认证信息用于构建 URL 参数
+        auth = self.auth_info
+        oec_seller_id = auth.get('oec_seller_id') or auth.get('seller_id', '')
+        region = self.get_region_code()
+
+        # 构建 URL 参数
+        params = {
+            'PIGEON_BIZ_TYPE': '1',
+            'oec_region': region,
+            'aid': '4068',
+            'oec_seller_id': str(oec_seller_id)
+        }
+        param_str = '&'.join(f"{k}={v}" for k, v in params.items())
+        full_url = f"{base_url}/api/v1/shop_im/shop/user/mget_info_v2?{param_str}"
+
+        request_body = {
+            "imcloud_conversation_ids": [str(conversation_id)]
+        }
+
+        try:
+            headers = self._build_headers(base_url)
+            response = self.browser_request.post(
+                url=full_url,
+                json_data=request_body,
+                headers=headers,
+                timeout=30
+            )
+
+            if response.ok:
+                data = response.json()
+
+                if data and data.get('code') == 0:
+                    user_info = data.get('data', {}).get('user_info_map', {}).get(str(conversation_id), {})
+                    oec_uid = user_info.get('oec_uid')
+                    return oec_uid
+                else:
+                    code = data.get('code') if data else -1
+                    msg = data.get('message', 'unknown') if data else 'empty response'
+                    raise ApiError('get_conversation_oec_uid', code, msg)
+            else:
+                raise ApiError('get_conversation_oec_uid', response.status_code, f"HTTP error: {response.status_code}")
+
+        except ApiError:
+            raise
+        except Exception as e:
+            logger.error(f"获取对话 oec_uid 异常: {e}")
+            raise ApiError('get_conversation_oec_uid', -1, str(e))
+
+    def im_buyer_id_to_oec_uid(self, base_url: str, im_buyer_id: str) -> Optional[str]:
+        """
+        将 IM 买家 ID 转换为 OEC UID
+
+        Args:
+            base_url: 基础 URL
+            im_buyer_id: IM 买家 ID
+
+        Returns:
+            oec_uid 或 None
+        """
+        try:
+            conversation_id = self.create_conversation(base_url, im_buyer_id)
+            if conversation_id:
+                return self.get_conversation_oec_uid(base_url, conversation_id)
+            return None
+        except Exception as e:
+            logger.error(f"[TokopediaAPI] 转换 im_buyer_id={im_buyer_id} 到 oec_uid 失败: {e}")
+            return None
+
+    async def im_buyer_ids_to_oec_uids_batch(self, base_url: str, im_buyer_ids: List[str], max_concurrent: int = 10) -> Dict[str, str]:
+        """
+        批量将 IM 买家 ID 转换为 OEC UID
+
+        Args:
+            base_url: 基础 URL
+            im_buyer_ids: IM 买家 ID 列表
+            max_concurrent: 最大并发数
+
+        Returns:
+            im_buyer_id -> oec_uid 的映射
+        """
+        result = {}
+        semaphore = asyncio.Semaphore(max_concurrent)
+
+        async def convert_single(im_buyer_id: str):
+            async with semaphore:
+                try:
+                    await asyncio.sleep(0.1)
+                    # 在事件循环中调用同步方法
+                    loop = asyncio.get_event_loop()
+                    oec_uid = await loop.run_in_executor(
+                        None,
+                        self.im_buyer_id_to_oec_uid,
+                        base_url,
+                        im_buyer_id
+                    )
+                    return im_buyer_id, oec_uid
+                except Exception as e:
+                    logger.warning(f"[Async] 转换 IM 买家 ID {im_buyer_id} 到 OEC UID 失败: {e}")
+                    return im_buyer_id, None
+
+        tasks = [convert_single(bid) for bid in im_buyer_ids if bid]
+        results = await asyncio.gather(*tasks, return_exceptions=True)
+
+        for r in results:
+            if isinstance(r, tuple) and len(r) == 2:
+                im_buyer_id, oec_uid = r
+                if oec_uid:
+                    result[im_buyer_id] = oec_uid
+
+        logger.info(f"[TokopediaAPI] 批量转换完成: {len(result)}/{len(im_buyer_ids)} 个成功")
+        return result
 
     # ==================== 异步请求方法 ====================
 
@@ -861,7 +1021,7 @@ class TokopediaAPI:
             headers = self._build_headers(base_url)
 
             cookies = auth.get('cookies', [])
-            async_request = AsyncBatchRequest(cookies=cookies, auth_info=auth)
+            async_request = AsyncBatchRequest(cookies=cookies, auth_info=auth, platform='tokopedia')
 
             response = await async_request.post(
                 url=full_url,
@@ -981,7 +1141,7 @@ class TokopediaAPI:
             headers = self._build_headers(base_url)
 
             cookies = auth.get('cookies', [])
-            async_request = AsyncBatchRequest(cookies=cookies, auth_info=auth)
+            async_request = AsyncBatchRequest(cookies=cookies, auth_info=auth, platform='tokopedia')
 
             response = await async_request.post(
                 url=full_url,
@@ -992,7 +1152,6 @@ class TokopediaAPI:
 
             if response.ok:
                 data = response.json()
-                logger.info(f"[TokopediaAPI] 买家联系信息响应: code={data.get('code') if data else 'None'}")
 
                 if data and data.get('code') == 0:
                     return data.get('data', {})
@@ -1042,7 +1201,7 @@ class TokopediaAPI:
             headers = self._build_headers(base_url)
 
             cookies = auth.get('cookies', [])
-            async_request = AsyncBatchRequest(cookies=cookies, auth_info=auth)
+            async_request = AsyncBatchRequest(cookies=cookies, auth_info=auth, platform='tokopedia')
 
             response = await async_request.get(
                 url=full_url,
@@ -1078,20 +1237,34 @@ class TokopediaAPI:
             logger.error(f"异步获取买家聊天链接异常: {e}")
             raise ApiError('get_buyer_chat_link_async', -1, str(e))
 
-    async def get_buyer_orders_async(self, base_url: str, buyer_user_id: str,
+    async def get_buyer_orders_async(self, base_url: str, oec_uid: str,
                                    offset: int = 0, count: int = 20) -> Optional[Dict]:
         """
         异步获取买家的历史订单列表
 
         Args:
             base_url: 基础 URL
-            buyer_user_id: 买家用户 ID
+            oec_uid: 买家的 OEC 用户 ID
             offset: 分页偏移量
             count: 每页数量
 
         Returns:
             买家订单列表或 None
         """
+        auth = self.auth_info
+        oec_seller_id = auth.get('oec_seller_id') or auth.get('seller_id', '')
+        seller_id = auth.get('seller_id') or oec_seller_id
+
+        # 构建 URL 参数
+        params = {
+            'aid': '4068',
+            'locale': 'en',
+            'oec_seller_id': str(oec_seller_id),
+            # 'seller_id': str(seller_id)
+        }
+        param_str = '&'.join(f"{k}={v}" for k, v in params.items())
+        full_url = f"{base_url}{self.WORKBENCH_DATA_API}?{param_str}"
+
         request_body = {
             "order_workbench_query": {
                 "seller_order_req": {
@@ -1103,7 +1276,7 @@ class TokopediaAPI:
                     "search_condition": {
                         "condition_list": {
                             "search_tab": {"value": ["0"]},
-                            "buyer_user_id": {"value": [buyer_user_id]}
+                            "oec_uid": {"value": [oec_uid]}
                         }
                     }
                 }
@@ -1111,12 +1284,11 @@ class TokopediaAPI:
         }
 
         try:
-            auth = self.auth_info
             cookies = auth.get('cookies', [])
-            async_request = AsyncBatchRequest(cookies=cookies, auth_info=auth)
+            async_request = AsyncBatchRequest(cookies=cookies, auth_info=auth, platform='tokopedia')
 
             response = await async_request.post(
-                url=f"{base_url}{self.WORKBENCH_DATA_API}",
+                url=full_url,
                 json_data=request_body,
                 headers=self._build_headers(base_url),
                 timeout=30
@@ -1124,7 +1296,6 @@ class TokopediaAPI:
 
             if response.ok:
                 data = response.json()
-                logger.info(f"[TokopediaAPI] 买家历史订单响应: code={data.get('code') if data else 'None'}")
 
                 if data and data.get('code') == 0:
                     return data.get('data', {})
@@ -1139,14 +1310,14 @@ class TokopediaAPI:
             logger.error(f"异步获取买家历史订单异常: {e}")
             raise ApiError('get_buyer_orders_async', -1, str(e))
 
-    async def get_buyer_all_orders_async(self, base_url: str, buyer_user_id: str,
+    async def get_buyer_all_orders_async(self, base_url: str, oec_uid: str,
                                        max_count: int = 100) -> List[Dict]:
         """
         异步获取买家的所有历史订单
 
         Args:
             base_url: 基础 URL
-            buyer_user_id: 买家用户 ID
+            oec_uid: 买家的 OEC 用户 ID
             max_count: 最大获取数量
 
         Returns:
@@ -1159,13 +1330,15 @@ class TokopediaAPI:
             try:
                 data = await self.get_buyer_orders_async(
                     base_url=base_url,
-                    buyer_user_id=buyer_user_id,
+                    oec_uid=oec_uid,
                     offset=offset,
                     count=20
                 )
 
                 if data:
-                    main_orders = data.get('main_orders', [])
+                    workbench_data = data.get('order_workbench_data', {})
+                    seller_data = workbench_data.get('seller_order_data', {})
+                    main_orders = seller_data.get('main_orders', [])
                     all_orders.extend(main_orders)
 
                     if len(main_orders) < 20:
@@ -1206,7 +1379,7 @@ class TokopediaAPI:
             async with semaphore:
                 try:
                     await asyncio.sleep(0.1)  # 避免请求过快
-                    info = await self.get_buyer_contact_info_async(base_url, order_id)
+                    info = self.get_buyer_contact_info(base_url, order_id)
                     return order_id, info
                 except Exception as e:
                     logger.warning(f"[Async] 获取订单 {order_id} 联系信息失败: {e}")
@@ -1232,11 +1405,11 @@ class TokopediaAPI:
 
         Args:
             base_url: 基础 URL
-            buyer_ids: 买家用户 ID 列表
+            buyer_ids: OEC 用户 ID 列表（实际应为 oec_uid）
             max_concurrent: 最大并发数
 
         Returns:
-            buyer_user_id -> 订单列表 的映射
+            oec_uid -> 订单列表 的映射
         """
         result = {}
         semaphore = asyncio.Semaphore(max_concurrent)
@@ -1245,7 +1418,7 @@ class TokopediaAPI:
             async with semaphore:
                 try:
                     await asyncio.sleep(0.1)
-                    orders = await self.get_buyer_all_orders_async(base_url, buyer_id, max_count=50)
+                    orders = self.get_buyer_all_orders(base_url, buyer_id, max_count=50)
                     return buyer_id, orders
                 except Exception as e:
                     logger.warning(f"[Async] 获取买家 {buyer_id} 历史订单失败: {e}")
@@ -1283,7 +1456,7 @@ class TokopediaAPI:
             async with semaphore:
                 try:
                     await asyncio.sleep(0.1)
-                    info = await self.get_buyer_chat_link_async(base_url, order_id)
+                    info = self.get_buyer_chat_link(base_url, order_id)
                     return order_id, info
                 except Exception as e:
                     logger.warning(f"[Async] 获取订单 {order_id} 聊天链接失败: {e}")

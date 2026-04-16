@@ -793,7 +793,7 @@ class ShopeeAllOrderTask(BaseTask):
                 logger.error(f"[ShopeeAllOrder] 解析订单数据失败: {e}")
 
         # 1. 先按 order_sn (主键) 检查已存在的订单
-        logger.error(f"[ShopeeAllOrder] all_orders length: {len(all_orders)}")
+        logger.info(f"[ShopeeAllOrder] all_orders length: {len(all_orders)}")
         order_sns = [str(o.get('order_sn')) for o in all_orders if o.get('order_sn')]
         logger.info(f"[ShopeeAllOrder] 检查订单是否存在，order_sn 数量: {len(order_sns)}")
         logger.info(f"[ShopeeAllOrder] 样本 order_sn: {order_sns[:5] if len(order_sns) >= 5 else order_sns}")

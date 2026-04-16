@@ -320,11 +320,11 @@ class LazadaOrderTask(BaseTask):
             # 5. 顾客税务要求（检查聊天记录）
             if buyer_id and buyer_chats.get(buyer_id):
                 if self._check_tax_requirement(buyer_chats[buyer_id]):
-                    tags.append('顾客税务要求')
+                    tags.append('税务要求')
 
             # 6. 低分不发 (rating > 0 && rating < 3)
-            if self._check_low_rating(order_data):
-                tags.append('低分不发')
+            # if self._check_low_rating(order_data):
+            #     tags.append('低分不发')
 
             # 7. 如果没有标签，添加 pass
             if not tags:
@@ -407,7 +407,7 @@ class LazadaOrderTask(BaseTask):
         检查菲律宾偏远地区订单
 
         条件：
-        1. rating = 0
+        1. rating = 0 (废除)
         2. 地址含 Mindanao/Visayas
         3. 金额 > 6000 PHP
         """
@@ -425,13 +425,7 @@ class LazadaOrderTask(BaseTask):
         full_address = parsed_address.get('full_address', '').lower()
         is_remote = any(keyword in full_address for keyword in self.PH_REMOTE_KEYWORDS)
 
-        # Lazada 订单数据中可能有 rating 字段用于评分
-        rating = order_data.get('rating', 0)
-
-        # 条件1: rating = 0（表示新顾客或未评价）
-        is_zero_rating = rating == 0
-
-        result = is_zero_rating and is_remote and is_high_value
+        result =  is_remote and is_high_value
         if result:
             logger.info(f"[LazadaOrder] 检测到偏远地区: 地址={full_address[:50]}, 金额={price_val}")
 
@@ -439,15 +433,19 @@ class LazadaOrderTask(BaseTask):
 
     def _check_suspicious_customer(self, history_orders: List[Dict]) -> bool:
         """
-        检查可疑顾客：历史是否存在订单状态为 cancel 且有运单号的记录
+        检查可疑顾客：历史订单状态不为 confirmed 且不为 unpaid
         """
         for order in history_orders:
             status = order.get('tabStatus', '') or order.get('orderStatus', '')
-            tracking_number = order.get('trackingNumber', '')
 
-            if status and status.lower() == 'canceled' and tracking_number:
-                logger.info(f"[LazadaOrder] 检测到可疑顾客: status={status}, tracking={tracking_number}")
-                return True
+            if status:
+                status_lower = status.lower()
+                is_not_confirmed = status_lower != 'confirmed'
+                is_not_unpaid = status_lower != 'unpaid'
+
+                if is_not_confirmed and is_not_unpaid:
+                    logger.info(f"[LazadaOrder] 检测到可疑顾客: status={status}")
+                    return True
 
         return False
 
