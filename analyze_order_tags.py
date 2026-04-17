@@ -7,6 +7,12 @@
 import os
 from datetime import datetime
 from typing import Dict, List, Set
+import sys
+
+# 添加 src 目录到路径以导入配置
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src'))
+
+from config import load_config
 
 # 尝试导入所需库
 try:
@@ -17,20 +23,18 @@ except ImportError:
 
 try:
     from openpyxl import Workbook
-    from openpyxl.styles import Alignment
 except ImportError:
     print("请安装 openpyxl: pip install openpyxl")
     exit(1)
 
 
-# 数据库配置
-DB_PATH = r"c:\Users\popo\Desktop\工作buf区\hubstudio_automation\data\automation.accdb"
-
-
 def get_db_connection():
-    """获取数据库连接"""
+    """获取数据库连接（从 config/settings.yaml 中读取路径）"""
+    config = load_config()
+    db_path = config.database.access_path
     driver = 'Microsoft Access Driver (*.mdb, *.accdb)'
-    conn_str = f"DRIVER={{{driver}}};DBQ={DB_PATH};charset=utf-8;"
+    print(f"数据库地址：{db_path}")
+    conn_str = f"DRIVER={{{driver}}};DBQ={db_path};charset=utf-8;"
     conn = pyodbc.connect(conn_str)
     conn.setdecoding(pyodbc.SQL_CHAR, encoding='latin1')
     conn.setdecoding(pyodbc.SQL_WCHAR, encoding='latin1')
@@ -197,7 +201,6 @@ def check_suspicious_customer(conn, order_sn: str, buyer_user_id: str,
     """)
 
     history_orders = cursor.fetchall()
-
     # 判断条件：
     # 1. status 不为 'Completed'
     # 2. (status 为 'Canceled' 但有运单号) 或 (status 不为 'Canceled' 且无运单号)
@@ -214,8 +217,8 @@ def check_suspicious_customer(conn, order_sn: str, buyer_user_id: str,
             # - 如果是 Canceled 但有运单号 -> 可疑（发货后取消）
             # - 如果不是 Canceled 且无运单号 -> 可疑（未完成且未发货）
             has_tracking = tracking_number and str(tracking_number).strip()
-            is_canceled_with_tracking = (status_lower == 'canceled') and has_tracking
-            is_not_canceled_no_tracking = (status_lower != 'canceled') and not has_tracking
+            is_canceled_with_tracking = (status_lower == 'cancelled') and has_tracking
+            is_not_canceled_no_tracking = (status_lower != 'cancelled') and not has_tracking
 
             if is_not_completed and (is_canceled_with_tracking or is_not_canceled_no_tracking):
                 return True

@@ -1023,7 +1023,7 @@ class ShopeeAPI:
 
     async def get_buyer_user_info_async(self, base_url: str, buyer_user_ids: List[int],
                                         shop_id: int, region: str = 'MY',
-                                        max_concurrent: int = 5) -> Dict[int, Dict]:
+                                        max_concurrent: int = 5, env_name: str = '') -> Dict[int, Dict]:
         """
         异步并发获取买家用户信息
 
@@ -1033,6 +1033,7 @@ class ShopeeAPI:
             shop_id: 店铺 ID
             region: 地区
             max_concurrent: 最大并发数
+            env_name: 环境名称
 
         Returns:
             buyer_user_id -> 用户信息 的映射
@@ -1130,7 +1131,7 @@ class ShopeeAPI:
                                         retry_delay *= 2  # 指数退避
                                         continue
                                 else:
-                                    logger.warning(f"[Async] 获取买家 {buyer_user_id} 失败: HTTP {response.status}")
+                                    logger.warning(f"[Async][{env_name}] 获取买家 {buyer_user_id} 失败: HTTP {response.status}")
 
                             return buyer_user_id, {}
 
@@ -1344,7 +1345,7 @@ class ShopeeAPI:
     async def fetch_chat_messages_async(self, base_url: str, all_orders: List[Dict],
                                         order_details: List[Dict], shop_id: int,
                                         region: str = 'MY',
-                                        max_concurrent: int = 20) -> Dict[str, Any]:
+                                        max_concurrent: int = 20, env_name: str = '') -> Dict[str, Any]:
         """
         异步并发获取聊天消息和买家信息
 
@@ -1355,6 +1356,7 @@ class ShopeeAPI:
             shop_id: 店铺 ID
             region: 地区
             max_concurrent: 最大并发数
+            env_name: 环境名称
 
         Returns:
             包含 chat_messages 和 buyer_info 的字典
@@ -1403,7 +1405,8 @@ class ShopeeAPI:
                 buyer_user_ids=buyer_user_ids,
                 shop_id=shop_id,
                 region=region,
-                max_concurrent=max_concurrent
+                max_concurrent=max_concurrent,
+                env_name=env_name
             )
             result['buyer_info'] = buyer_info_map
 

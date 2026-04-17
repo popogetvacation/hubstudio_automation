@@ -34,7 +34,7 @@ def run_tiktok_order_task():
     print()
 
     # 3. 运行指定分组的任务 (group_code = "test")
-    group_name = "test"  # HubStudio 中的环境分组名称
+    group_name = "tiktok"  # HubStudio 中的环境分组名称
     print(f"正在获取 '{group_name}' 分组的环境...")
     result = runner.run_task_by_group(task, group_name)
 

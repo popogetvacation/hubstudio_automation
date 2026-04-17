@@ -263,6 +263,7 @@ class TokopediaOrderTask(BaseTask):
                 loop.close()
 
         logger.info(f"[TokopediaOrder] 获取到 {len(buyer_histories)} 个买家的历史订单")
+
         # 4. 内存中标签分析
         logger.info(f"[TokopediaOrder] 开始标签分析...")
 
@@ -379,7 +380,8 @@ class TokopediaOrderTask(BaseTask):
                                           order_data: Dict,
                                           history_orders: List[Dict]) -> bool:
         """
-        检查高频复购：同一顾客在2小时内有多次下单记录，且购买了同款产品
+        检查高频复购：同一顾客在3小时内有多次下单记录，且购买了同款产品
+        注：如果历史订单存在 reverse_module，则不作为高频复购（视为退货重新下单）
         """
         if not buyer_user_id or not order_data or not history_orders:
             return False
@@ -403,6 +405,7 @@ class TokopediaOrderTask(BaseTask):
         # 1. 不是当前订单
         # 2. 时间差在2小时内
         # 3. 存在同款产品
+        # 4. 不存在 reverse_module（退货重新下单不计入高频复购）
         current_time = int(order_create_time) if order_create_time else 0
 
         for hist_order in history_orders:
@@ -426,6 +429,13 @@ class TokopediaOrderTask(BaseTask):
                 hist_item_ids = set(str(item.get('sku_id', '')) for item in hist_sku_module if item.get('sku_id'))
 
                 if current_items & hist_item_ids:
+                    # 检查是否有 reverse_module（退货），如果有则跳过
+                    hist_reverse_module = hist_order.get('reverse_module', [])
+                    if hist_reverse_module:
+                        logger.info(f"[TokopediaOrder] 历史订单存在退货(reverse_module)，不标记为高频复购: "
+                                  f"main_order_id={hist_main_order_id}, 时间差={time_diff:.1f}小时")
+                        continue
+
                     logger.info(f"[TokopediaOrder] 检测到高频复购: buyer={buyer_user_id}, 时间差={time_diff:.1f}小时")
                     return True
 
@@ -465,11 +475,9 @@ class TokopediaOrderTask(BaseTask):
 
     def _check_suspicious_customer(self, buyer_id: str, current_order_id: str, history_orders: List[Dict]) -> bool:
         """
-        检查可疑顾客：历史订单是否存在 reverse_module 且 reverse_type != 1
+        检查可疑顾客：历史订单同时存在 reverse_module 和 logistics_info_module
 
-        reverse_type 说明：
-        - 1: 买家预期未支付系统自动取消（不算可疑）
-        - 其他值（如3）: 实际的退货退款（算可疑）
+        判断逻辑：只有同时存在 reverse_module 和 logistics_info_module 时才标记为可疑（确认订单已发货后退货）
         """
         # 如果该买家已检查过，直接返回 False
         if buyer_id in self._suspicious_checked_buyers:
@@ -482,7 +490,6 @@ class TokopediaOrderTask(BaseTask):
         for order in history_orders:
             # 跳过当前订单
             hist_main_order_id = order.get('main_order_id')
-            logger.info(f"[TokopediaOrder] hist_main_order_id {hist_main_order_id} current_order_id{current_order_id}")
             if hist_main_order_id == current_order_id:
                 continue
 
@@ -500,15 +507,13 @@ class TokopediaOrderTask(BaseTask):
                     continue
 
             reverse_module = order.get('reverse_module', [])
+            logistics_info_module = order.get('logistics_info_module', [])
 
-            if reverse_module:
-                # 遍历 reverse_module，检查是否存在 reverse_type != 1 的记录
-                for reverse in reverse_module:
-                    reverse_type = reverse.get('reverse_type', 0)
-                    if reverse_type != 1:
-                        logger.info(f"[TokopediaOrder] 检测到可疑顾客: reverse_type={reverse_type}, main_order_id={order.get('main_order_id')}")
-                        self._suspicious_checked_buyers.add(buyer_id)
-                        return True
+            if reverse_module and logistics_info_module:
+                # 同时存在 reverse_module 和 logistics_info_module，确认是顾客退货
+                logger.info(f"[TokopediaOrder] 检测到可疑顾客: main_order_id={hist_main_order_id}")
+                self._suspicious_checked_buyers.add(buyer_id)
+                return True
 
         return False
 

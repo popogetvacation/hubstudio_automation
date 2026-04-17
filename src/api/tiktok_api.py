@@ -197,10 +197,6 @@ class TokopediaAPI:
             name = cookie.get('name', '')
             value = cookie.get('value', '')
 
-            # 检查 gd_random
-            if name == 'gd_random':
-                logger.info(f"[TokopediaAPI] 从 Selenium cookies 找到 gd_random: {value[:100]}...")
-
             if name == 'SELLER_TOKEN':
                 auth_info['seller_token'] = value
             elif name == 'UNIFIED_SELLER_TOKEN':
@@ -255,8 +251,6 @@ class TokopediaAPI:
             if domain in current_url:
                 auth_info['region'] = self.REGION_CODE_MAP.get(code, 'ID')
                 break
-
-        logger.info(f"[TokopediaAPI] 提取的 auth_info: seller_id={auth_info.get('seller_id')}, oec_seller_id={auth_info.get('oec_seller_id')}")
 
         return auth_info
 
@@ -569,7 +563,6 @@ class TokopediaAPI:
 
             if response.ok:
                 data = response.json()
-                logger.info(f"[TokopediaAPI] get_buyer_chat_link 响应: code={data.get('code') if data else 'None'}")
 
                 if data and data.get('code') == 0:
                     order_info = data.get('data', {}).get('orderIdToContactLinkInfo', {})
@@ -1179,7 +1172,6 @@ class TokopediaAPI:
         Returns:
             包含 pigeonUid 的字典或 None
         """
-        logger.info(f"[TokopediaAPI] get_buyer_chat_link_async 请求: main_order_id={main_order_id}")
 
         auth = self.auth_info
         oec_seller_id = auth.get('oec_seller_id') or auth.get('seller_id', '')
@@ -1211,7 +1203,6 @@ class TokopediaAPI:
 
             if response.ok:
                 data = response.json()
-                logger.info(f"[TokopediaAPI] get_buyer_chat_link_async 响应: code={data.get('code') if data else 'None'}")
 
                 if data and data.get('code') == 0:
                     order_info = data.get('data', {}).get('orderIdToContactLinkInfo', {})

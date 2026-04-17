@@ -16,6 +16,7 @@ from ..database.access_db import AccessDatabase
 from ..api.shopee_api import ShopeeAPI
 from ..utils.logger import default_logger as logger
 from ..utils.performance_tracker import get_tracker, measure_time
+from ..config import load_config
 
 
 class ShopeeAllOrderTask(BaseTask):
@@ -61,9 +62,13 @@ class ShopeeAllOrderTask(BaseTask):
                 - save_to_file: 是否保存结果到文件 (默认 True)
                 - output_dir: 输出目录 (默认 ./output/all_orders)
                 - save_to_db: 是否保存到数据库 (默认 False)
-                - db_path: 数据库路径 (默认 ./data/automation.accdb)
+                - db_path: 数据库路径 (默认从 config/settings.yaml 中读取)
         """
         super().__init__(config)
+
+        # 加载全局配置
+        global_config = load_config()
+        default_db_path = global_config.database.access_path
 
         # 默认配置
         self.page_size = self.config.get('page_size', 200)
@@ -77,7 +82,7 @@ class ShopeeAllOrderTask(BaseTask):
         self.save_to_file = self.config.get('save_to_file', True)
         self.output_dir = self.config.get('output_dir', './output/all_orders')
         self.save_to_db = self.config.get('save_to_db', False)
-        self.db_path = self.config.get('db_path', './data/automation.accdb')
+        self.db_path = self.config.get('db_path', default_db_path)
 
         # 数据库实例
         self._db = None
@@ -271,7 +276,7 @@ class ShopeeAllOrderTask(BaseTask):
             if self.save_to_db:
                 logger.info(f"[ShopeeAllOrder] 开始获取聊天消息...")
                 tracker.start('获取聊天消息和买家信息', env=env_name)
-                chat_result = self._fetch_chat_messages(driver, all_orders, order_details)
+                chat_result = self._fetch_chat_messages(driver, all_orders, order_details, env_name)
                 result['chat_messages'] = chat_result.get('chat_messages', {})
                 result['buyer_info'] = chat_result.get('buyer_info', {})
                 tracker.end('获取聊天消息和买家信息', {
@@ -452,7 +457,8 @@ class ShopeeAllOrderTask(BaseTask):
 
     def _fetch_chat_messages(self, driver: HubStudioSeleniumDriver,
                              all_orders: List[Dict],
-                             order_details: List[Dict]) -> Dict[str, Any]:
+                             order_details: List[Dict],
+                             env_name: str = '') -> Dict[str, Any]:
         """获取订单的聊天消息和买家信息（异步并发版本）"""
         result = {
             'chat_messages': {},
@@ -492,7 +498,8 @@ class ShopeeAllOrderTask(BaseTask):
                         order_details=order_details,
                         shop_id=shop_id,
                         region=region,
-                        max_concurrent=5
+                        max_concurrent=5,
+                        env_name=env_name
                     )
                 )
             finally:
