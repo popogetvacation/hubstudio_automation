@@ -59,6 +59,7 @@ class LazadaOrderTask(BaseTask):
         self.max_pages = self.config.get('max_pages', 100)
         self.page_size = self.config.get('page_size', 20)
         self.save_to_file = self.config.get('save_to_file', True)
+        self.save_to_excel = self.config.get('save_to_excel', False)  # 新增：是否生成 Excel
         self.output_dir = self.config.get('output_dir', './data')
 
         self._auth_info = None
@@ -258,8 +259,11 @@ class LazadaOrderTask(BaseTask):
         result['tags_result'] = tags_result
         result['tags_count'] = tags_result['tag_counts']
 
-        # 7. 输出 Excel
-        if self.save_to_file:
+        # 始终返回 tagged_orders，供 run_scheduler 使用
+        result['tagged_orders'] = tags_result['tagged_orders']
+
+        # 根据 save_to_excel 配置决定是否生成 Excel
+        if self.save_to_excel:
             output_file = self._save_to_excel(tags_result['tagged_orders'], env_name)
             result['output_file'] = output_file
             logger.info(f"[LazadaOrder] 标签已保存到: {output_file}")
@@ -326,18 +330,20 @@ class LazadaOrderTask(BaseTask):
             # if self._check_low_rating(order_data):
             #     tags.append('低分不发')
 
-            # 7. 如果没有标签，添加 pass
-            if not tags:
-                tags.append('pass')
+            # 不再添加 'pass' 到 tags，只通过 is_pass 标记
 
             # 记录标签
             for tag in tags:
                 tag_counts[tag] += 1
 
+            # 计算是否为 pass 订单（tags 为空时为 pass）
+            is_pass = len(tags) == 0
+
             tagged_orders.append({
-                'order_id': order_number,
+                'platform_order_id': order_number,  # 改为 platform_order_id 用于匹配
                 'order_sn': order_number,
-                'tags': tags
+                'tags': tags,
+                'is_pass': is_pass  # 添加 is_pass 字段
             })
 
         logger.info(f"[LazadaOrder] 标签分析完成: {dict(tag_counts)}")

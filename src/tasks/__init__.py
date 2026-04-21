@@ -4,6 +4,7 @@
 """
 from .task_base import BaseTask, TaskRunner, TaskResult, TaskFactory, TaskStatus, GroupTaskResult
 from .bigseller_task import BigSellerTask
+from .bigseller_order_label_task import BigSellerOrderLabelTask
 
 # 导入其他任务模块以触发注册
 from . import shopee_all_order_task
@@ -18,5 +19,6 @@ __all__ = [
     'TaskStatus',
     'TaskFactory',
     'GroupTaskResult',
-    'BigSellerTask'
+    'BigSellerTask',
+    'BigSellerOrderLabelTask'
 ]

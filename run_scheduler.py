@@ -1,6 +1,6 @@
 """
 定时调度脚本
-顺序执行：shopee_all_order任务 → analyze_order_tags.py → bigseller任务推送报表
+顺序执行：shopee_all_order任务 → 订单标签分析 → bigseller_order_label任务处理
 """
 import sys
 import os
@@ -72,66 +72,58 @@ def run_shopee_flow():
 
     # 步骤2: 执行订单标签分析
     logger.info("=" * 60)
-    logger.info("[Shopee流程 - 步骤2] 执行订单标签分析脚本")
+    logger.info("[Shopee流程 - 步骤2] 执行订单标签分析")
     logger.info("=" * 60)
 
-    from analyze_order_tags import main as analyze_main
+    from src.utils.order_tag_analyzer import analyze_orders_from_db
+    from src.database.access_db import get_db_connection
 
+    # 获取数据库连接
+    conn = get_db_connection()
     try:
-        generated_files = analyze_main()
-        logger.info(f"Shopee订单标签分析完成，生成 {len(generated_files)} 个文件")
+        order_tags_data = analyze_orders_from_db(conn)
+        logger.info(f"Shopee订单标签分析完成，生成 {len(order_tags_data)} 条数据")
     except Exception as e:
-        logger.error(f"Shopee订单标签分析失败: {e}")
+        logger.error(f"Shopee订单标签分析失败: {e}", exc_info=True)
+        return False
+    finally:
+        conn.close()
+
+    if not order_tags_data:
+        logger.error("[Shopee流程] 没有生成订单标签数据，终止流程")
         return False
 
-    if not generated_files:
-        logger.error("[Shopee流程] 没有生成Excel文件，终止流程")
-        return False
-
-    # 步骤3: 上传 BigSeller
+    # 步骤3: BigSeller 订单标签处理
     logger.info("=" * 60)
-    logger.info("[Shopee流程 - 步骤3] 执行 BigSeller 报表推送任务")
+    logger.info("[Shopee流程 - 步骤3] 执行 BigSeller 订单标签管理任务")
     logger.info("=" * 60)
 
     _, _, runner = init_app()
 
-    total_success = 0
-    total_failed = 0
+    task_config = {
+        'order_tags_data': order_tags_data,
+        'label_ids_to_remove': ['1657', '1848', '1825'],
+        'pass_label_id': '1825',
+        'low_score_label_id': '1657',
+        'audit_label_id': '1848',
+        'max_pages': 50,
+        'page_size': 300,
+        'batch_size': 300
+    }
+    task = create_task('bigseller_order_label', task_config)
 
-    for excel_file in generated_files:
-        logger.info(f"正在上传: {excel_file}")
+    group_name = "bigseller"
+    logger.info(f"正在获取 '{group_name}' 分组的环境...")
 
-        if not os.path.exists(excel_file):
-            logger.error(f"Excel文件不存在: {excel_file}")
-            total_failed += 1
-            continue
+    result = runner.run_task_by_group(task, group_name)
 
-        task_config = {
-            'excel_file': excel_file,
-            'wait_completion': True,
-            'poll_interval': 2
-        }
-        task = create_task('bigseller_import_order_mark', task_config)
-
-        group_name = "bigseller"
-        logger.info(f"正在获取 '{group_name}' 分组的环境...")
-
-        result = runner.run_task_by_group(task, group_name)
-
-        logger.info(f"文件 {os.path.basename(excel_file)} 推送结果: 总数={result.total}, 成功={result.success}, 失败={result.failed}")
-
-        if result.success > 0:
-            total_success += 1
-        else:
-            total_failed += 1
-
-    logger.info(f"[Shopee流程] BigSeller推送完成: 成功={total_success}, 失败={total_failed}")
-    return total_success > 0
+    logger.info(f"BigSeller订单标签处理结果: 总数={result.total}, 成功={result.success}, 失败={result.failed}")
+    return result.success > 0
 
 
 def run_tiktok_flow():
     """
-    TikTok 独立流程：订单同步 → 生成标签文件 → 上传 BigSeller
+    TikTok 独立流程：订单同步 → 订单标签分析 → BigSeller 处理
     """
     logger.info("=" * 60)
     logger.info("[TikTok流程] 开始执行")
@@ -144,10 +136,12 @@ def run_tiktok_flow():
 
     _, _, runner = init_app()
 
+    # TikTok 任务配置（添加 save_to_excel=False 参数）
     task_config = {
         'max_pages': 10,
         'page_size': 20,
         'save_to_file': True,
+        'save_to_excel': False,  # 新增：不生成 Excel
         'output_dir': './data',
     }
     task = create_task('tokopedia_order', task_config)
@@ -163,64 +157,54 @@ def run_tiktok_flow():
         logger.error("[TikTok流程] 订单同步失败，终止流程")
         return False
 
-    # 提取 TikTok 生成的标签文件路径（支持多环境）
-    tiktok_output_files = []
+    # 步骤2: 提取订单标签数据（从 tagged_orders）
+    logger.info("=" * 60)
+    logger.info("[TikTok流程 - 步骤2] 提取订单标签数据")
+    logger.info("=" * 60)
+
+    order_tags_data = []
     if result.results:
         for r in result.results:
-            if r.result and r.result.get('output_file'):
-                tiktok_output_files.append(r.result.get('output_file'))
+            if r.result and r.result.get('tagged_orders'):
+                order_tags_data.extend(r.result['tagged_orders'])
 
-    if not tiktok_output_files:
-        logger.error("[TikTok流程] 没有生成标签文件，终止流程")
+    if not order_tags_data:
+        logger.error("[TikTok流程] 没有订单标签数据，终止流程")
         return False
 
-    logger.info(f"[TikTok流程] 找到 {len(tiktok_output_files)} 个标签文件")
+    logger.info(f"[TikTok流程] 获取到 {len(order_tags_data)} 条订单标签数据")
 
-    # 步骤2: 上传 BigSeller（遍历所有文件）
+    # 步骤3: BigSeller 订单标签处理
     logger.info("=" * 60)
-    logger.info("[TikTok流程 - 步骤2] 执行 BigSeller 报表推送任务")
+    logger.info("[TikTok流程 - 步骤3] 执行 BigSeller 订单标签管理任务")
     logger.info("=" * 60)
 
     _, _, runner = init_app()
 
-    total_success = 0
-    total_failed = 0
+    task_config = {
+        'order_tags_data': order_tags_data,
+        'label_ids_to_remove': ['1657', '1848', '1825'],
+        'pass_label_id': '1825',
+        'low_score_label_id': '1657',
+        'audit_label_id': '1848',
+        'max_pages': 50,
+        'page_size': 300,
+        'batch_size': 300
+    }
+    task = create_task('bigseller_order_label', task_config)
 
-    for excel_file in tiktok_output_files:
-        logger.info(f"正在上传: {excel_file}")
+    group_name = "bigseller"
+    logger.info(f"正在获取 '{group_name}' 分组的环境...")
 
-        if not os.path.exists(excel_file):
-            logger.error(f"Excel文件不存在: {excel_file}")
-            total_failed += 1
-            continue
+    result = runner.run_task_by_group(task, group_name)
 
-        task_config = {
-            'excel_file': excel_file,
-            'wait_completion': True,
-            'poll_interval': 2
-        }
-        task = create_task('bigseller_import_order_mark', task_config)
-
-        group_name = "bigseller"
-        logger.info(f"正在获取 '{group_name}' 分组的环境...")
-
-        result = runner.run_task_by_group(task, group_name)
-
-        logger.info(f"文件 {os.path.basename(excel_file)} 推送结果: 总数={result.total}, 成功={result.success}, 失败={result.failed}")
-
-        if result.success > 0:
-            total_success += 1
-        else:
-            total_failed += 1
-
-    logger.info(f"[TikTok流程] BigSeller推送完成: 成功={total_success}, 失败={total_failed}")
-
-    return total_success > 0
+    logger.info(f"BigSeller订单标签处理结果: 总数={result.total}, 成功={result.success}, 失败={result.failed}")
+    return result.success > 0
 
 
 def run_lazada_flow():
     """
-    Lazada 独立流程：订单同步 → 生成标签文件 → 上传 BigSeller
+    Lazada 独立流程：订单同步 → 订单标签分析 → BigSeller 处理
     """
     logger.info("=" * 60)
     logger.info("[Lazada流程] 开始执行")
@@ -233,10 +217,12 @@ def run_lazada_flow():
 
     _, _, runner = init_app()
 
+    # Lazada 任务配置（添加 save_to_excel=False 参数）
     task_config = {
         'max_pages': 10,
         'page_size': 20,
         'save_to_file': True,
+        'save_to_excel': False,  # 新增：不生成 Excel
         'output_dir': './data',
     }
     task = create_task('lazada_order', task_config)
@@ -252,59 +238,49 @@ def run_lazada_flow():
         logger.error("[Lazada流程] 订单同步失败，终止流程")
         return False
 
-    # 提取 Lazada 生成的标签文件路径（支持多环境）
-    lazada_output_files = []
+    # 步骤2: 提取订单标签数据（从 tagged_orders）
+    logger.info("=" * 60)
+    logger.info("[Lazada流程 - 步骤2] 提取订单标签数据")
+    logger.info("=" * 60)
+
+    order_tags_data = []
     if result.results:
         for r in result.results:
-            if r.result and r.result.get('output_file'):
-                lazada_output_files.append(r.result.get('output_file'))
+            if r.result and r.result.get('tagged_orders'):
+                order_tags_data.extend(r.result['tagged_orders'])
 
-    if not lazada_output_files:
-        logger.error("[Lazada流程] 没有生成标签文件，终止流程")
+    if not order_tags_data:
+        logger.error("[Lazada流程] 没有订单标签数据，终止流程")
         return False
 
-    logger.info(f"[Lazada流程] 找到 {len(lazada_output_files)} 个标签文件")
+    logger.info(f"[Lazada流程] 获取到 {len(order_tags_data)} 条订单标签数据")
 
-    # 步骤2: 上传 BigSeller（遍历所有文件）
+    # 步骤3: BigSeller 订单标签处理
     logger.info("=" * 60)
-    logger.info("[Lazada流程 - 步骤2] 执行 BigSeller 报表推送任务")
+    logger.info("[Lazada流程 - 步骤3] 执行 BigSeller 订单标签管理任务")
     logger.info("=" * 60)
 
     _, _, runner = init_app()
 
-    total_success = 0
-    total_failed = 0
+    task_config = {
+        'order_tags_data': order_tags_data,
+        'label_ids_to_remove': ['1657', '1848', '1825'],
+        'pass_label_id': '1825',
+        'low_score_label_id': '1657',
+        'audit_label_id': '1848',
+        'max_pages': 50,
+        'page_size': 300,
+        'batch_size': 300
+    }
+    task = create_task('bigseller_order_label', task_config)
 
-    for excel_file in lazada_output_files:
-        logger.info(f"正在上传: {excel_file}")
+    group_name = "bigseller"
+    logger.info(f"正在获取 '{group_name}' 分组的环境...")
 
-        if not os.path.exists(excel_file):
-            logger.error(f"Excel文件不存在: {excel_file}")
-            total_failed += 1
-            continue
+    result = runner.run_task_by_group(task, group_name)
 
-        task_config = {
-            'excel_file': excel_file,
-            'wait_completion': True,
-            'poll_interval': 2
-        }
-        task = create_task('bigseller_import_order_mark', task_config)
-
-        group_name = "bigseller"
-        logger.info(f"正在获取 '{group_name}' 分组的环境...")
-
-        result = runner.run_task_by_group(task, group_name)
-
-        logger.info(f"文件 {os.path.basename(excel_file)} 推送结果: 总数={result.total}, 成功={result.success}, 失败={result.failed}")
-
-        if result.success > 0:
-            total_success += 1
-        else:
-            total_failed += 1
-
-    logger.info(f"[Lazada流程] BigSeller推送完成: 成功={total_success}, 失败={total_failed}")
-
-    return total_success > 0
+    logger.info(f"BigSeller订单标签处理结果: 总数={result.total}, 成功={result.success}, 失败={result.failed}")
+    return result.success > 0
 
 
 def run_scheduler(interval: int = None, skip_tiktok: bool = False, skip_lazada: bool = False):
@@ -353,7 +329,7 @@ def run_scheduler(interval: int = None, skip_tiktok: bool = False, skip_lazada: 
 
         try:
             # Shopee 独立流程
-            shopee_ok = run_shopee_flow()
+            # shopee_ok = run_shopee_flow()
 
             # TikTok 独立流程
             if skip_tiktok:
@@ -369,7 +345,7 @@ def run_scheduler(interval: int = None, skip_tiktok: bool = False, skip_lazada: 
             else:
                 lazada_ok = run_lazada_flow()
 
-            logger.info(f"执行完成 - Shopee: {'成功' if shopee_ok else '失败'}, TikTok: {'成功' if tiktok_ok else '失败'}, Lazada: {'成功' if lazada_ok else '失败'}")
+            # logger.info(f"执行完成 - Shopee: {'成功' if shopee_ok else '失败'}, TikTok: {'成功' if tiktok_ok else '失败'}, Lazada: {'成功' if lazada_ok else '失败'}")
 
         except Exception as e:
             logger.error(f"执行过程中发生异常: {e}", exc_info=True)

@@ -50,6 +50,7 @@ class TokopediaOrderTask(BaseTask):
                 - max_pages: 最大获取页数 (默认 100)
                 - page_size: 每页数量 (默认 20)
                 - save_to_file: 是否保存结果到文件 (默认 True)
+                - save_to_excel: 是否生成 Excel 文件 (默认 False)
                 - output_dir: 输出目录 (默认 ./data)
         """
         super().__init__(config)
@@ -57,6 +58,7 @@ class TokopediaOrderTask(BaseTask):
         self.max_pages = self.config.get('max_pages', 100)
         self.page_size = self.config.get('page_size', 20)
         self.save_to_file = self.config.get('save_to_file', True)
+        self.save_to_excel = self.config.get('save_to_excel', False)  # 新增：是否生成 Excel
         self.output_dir = self.config.get('output_dir', './data')
 
         self._auth_info = None
@@ -87,7 +89,7 @@ class TokopediaOrderTask(BaseTask):
 
         if '/login' in current_url or not has_login_cookie:
             logger.warning(f"[TokopediaOrder] 未登录或登录状态失效，等待登录...")
-            self._wait_for_login(driver)
+            self._wait_for_login(driver, env_name, tiktok_api)
         else:
             logger.info(f"[TokopediaOrder] 检测到已登录Cookie，会话已恢复")
 
@@ -285,8 +287,11 @@ class TokopediaOrderTask(BaseTask):
         result['tags_result'] = tags_result
         result['tags_count'] = tags_result['tag_counts']
 
-        # 5. 输出 Excel
-        if self.save_to_file:
+        # 始终返回 tagged_orders，供 run_scheduler 使用
+        result['tagged_orders'] = tags_result['tagged_orders']
+
+        # 5. 根据 save_to_excel 配置决定是否生成 Excel
+        if self.save_to_excel:
             output_file = self._save_to_excel(tags_result['tagged_orders'], env_name)
             result['output_file'] = output_file
             logger.info(f"[TokopediaOrder] 标签已保存到: {output_file}")
@@ -346,18 +351,20 @@ class TokopediaOrderTask(BaseTask):
             # 5. 顾客税务要求 (预留，目前没有聊天消息)
             # TODO: 如果有聊天消息，添加税务关键词检查
 
-            # 6. 如果没有标签，添加 pass
-            if not tags:
-                tags.append('pass')
+            # 不再添加 'pass' 到 tags，只通过 is_pass 标记
 
             # 记录标签
             for tag in tags:
                 tag_counts[tag] += 1
 
+            # 计算是否为 pass 订单（tags 为空时为 pass）
+            is_pass = len(tags) == 0
+
             tagged_orders.append({
-                'order_id': main_order_id,
+                'platform_order_id': main_order_id,  # 改为 platform_order_id 用于匹配
                 'order_sn': order_data.get('order_sn', main_order_id),
-                'tags': tags
+                'tags': tags,
+                'is_pass': is_pass  # 添加 is_pass 字段
             })
 
         return {
@@ -556,7 +563,7 @@ class TokopediaOrderTask(BaseTask):
 
         return filepath
 
-    def _wait_for_login(self, driver: HubStudioSeleniumDriver, timeout: int = 180):
+    def _wait_for_login(self, driver: HubStudioSeleniumDriver, env_name: str = None, tiktok_api: TokopediaAPI = None, timeout: int = 180):
         """
         等待用户手动登录
 
@@ -583,8 +590,19 @@ class TokopediaOrderTask(BaseTask):
         if '/login' in current_url or not has_login_cookie:
             logger.info(f"[TokopediaOrder] 检测到未登录，准备跳转到邮箱登录页面...")
 
+            # 根据环境获取正确的登录域名
+            if tiktok_api and env_name:
+                domain = tiktok_api._get_domain(env_name)
+            else:
+                # 备用方案：从当前 URL 提取
+                domain = 'seller-id.tokopedia.com'  # 默认
+                for code, d in TokopediaAPI.DOMAIN_MAP.items():
+                    if d in current_url:
+                        domain = d
+                        break
+
             # 跳转到邮箱登录页面
-            login_url = "https://seller-id.tokopedia.com/login"
+            login_url = f"https://{domain}/account/login"
             logger.info(f"[TokopediaOrder] 跳转到: {login_url}")
             driver.goto(login_url)
             time.sleep(3)

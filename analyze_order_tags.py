@@ -100,14 +100,22 @@ def check_same_order_multi_items(order_sn: str, items: List[Dict]) -> bool:
     return False
 
 
-def check_high_frequency_repurchase(orders: List[Dict], order_sn: str,
-                                     buyer_user_id: str, order_create_time,
+def check_high_frequency_repurchase(order_sn: str, order_create_time,
+                                     history_orders: List[tuple],
                                      order_items_map: Dict) -> bool:
     """
-    检查高频复购：同一顾客在2小时内有多次下单记录，
+    检查高频复购：同一顾客在3小时内有多次下单记录，
     且购买了同款产品（item_id 相同）
+
+    Args:
+        order_sn: 当前订单号
+        order_create_time: 当前订单创建时间
+        history_orders: 历史订单列表，每项为 (order_sn, status, tracking_number, order_create_time) 元组
+        order_items_map: 订单商品映射
+
+    注：从历史订单中检查，包括所有状态的订单
     """
-    if not buyer_user_id or not order_create_time:
+    if not order_create_time:
         return False
 
     # 获取当前订单的商品
@@ -116,24 +124,36 @@ def check_high_frequency_repurchase(orders: List[Dict], order_sn: str,
     if not current_item_ids:
         return False
 
-    # 遍历同一买家的其他订单，检查是否同时满足：
-    # 1. 时间差在2小时内
+    # 遍历历史订单，检查是否同时满足：
+    # 1. 时间差在3小时内
     # 2. 存在同款产品（item_id 相同）
-    for o in orders:
-        if o.get('order_sn') == order_sn:
-            continue
-        if o.get('buyer_user_id') != buyer_user_id:
-            continue
-        if not o.get('order_create_time'):
-            continue
-        if o.get('status') != 'To Ship':
+    # 3. 不存在退货记录（status 为 Canceled 且有 tracking_number 视为发货后退货）
+    for row in history_orders:
+        hist_order_sn = row[0]
+        hist_status = row[1]
+        hist_tracking_number = row[2]
+        hist_order_create_time = row[3]
+
+        if not hist_order_create_time:
             continue
 
-        time_diff = abs((order_create_time - o.get('order_create_time')).total_seconds()) / 3600
-        if time_diff <= 2:
-            o_items = order_items_map.get(o.get('order_sn'), [])
+        # 计算时间差（小时）
+        time_diff = abs((order_create_time - hist_order_create_time).total_seconds()) / 3600
+
+        if time_diff <= 3:
+            # 检查同款商品
+            o_items = order_items_map.get(hist_order_sn, [])
             o_item_ids = set(i.get('item_id') for i in o_items if i.get('item_id'))
+
             if current_item_ids & o_item_ids:
+                # 检查是否有退货记录：Canceled 且有 tracking_number 视为退货
+                has_tracking = hist_tracking_number and str(hist_tracking_number).strip()
+                is_canceled_with_tracking = (hist_status and hist_status.lower() == 'cancelled') and has_tracking
+
+                if is_canceled_with_tracking:
+                    # 退货重新下单，不计入高频复购
+                    continue
+
                 return True
 
     return False
@@ -178,16 +198,20 @@ def check_ph_remote_area(order, buyer_info) -> Dict:
         return {'is_remote': True, 'has_chat': False, 'reason': '地址偏远'}
 
 
-def check_suspicious_customer(conn, order_sn: str, buyer_user_id: str,
-                              current_order_create_time) -> bool:
+def get_buyer_history_orders(conn, order_sn: str, buyer_user_id: str) -> List[tuple]:
     """
-    检查可疑顾客：历史是否存在满足以下条件的订单：
-    1. 订单状态不为 Completed
-    2. 订单状态不为 Canceled
-    3. 且无运单号
+    获取买家的全部历史订单（排除当前订单）
+
+    Args:
+        conn: 数据库连接
+        order_sn: 当前订单号（需要排除）
+        buyer_user_id: 买家用户ID
+
+    Returns:
+        历史订单列表，每项为 (order_sn, status, tracking_number, order_create_time) 元组
     """
     if not buyer_user_id:
-        return False
+        return []
 
     # Access ODBC 不支持参数化查询，使用字符串拼接
     escaped_buyer = buyer_user_id.replace("'", "''")
@@ -195,12 +219,24 @@ def check_suspicious_customer(conn, order_sn: str, buyer_user_id: str,
 
     cursor = conn.cursor()
     cursor.execute(f"""
-        SELECT order_sn, status, tracking_number
+        SELECT order_sn, status, tracking_number, order_create_time
         FROM shopee_orders
         WHERE buyer_user_id = '{escaped_buyer}' AND order_sn <> '{escaped_sn}'
     """)
 
-    history_orders = cursor.fetchall()
+    return cursor.fetchall()
+
+
+def check_suspicious_customer(history_orders: List[tuple]) -> bool:
+    """
+    检查可疑顾客：历史是否存在满足以下条件的订单：
+    1. 订单状态不为 Completed
+    2. 订单状态不为 Canceled
+    3. 且无运单号
+
+    Args:
+        history_orders: 历史订单列表，每项为 (order_sn, status, tracking_number, order_create_time) 元组
+    """
     # 判断条件：
     # 1. status 不为 'Completed'
     # 2. (status 为 'Canceled' 但有运单号) 或 (status 不为 'Canceled' 且无运单号)
@@ -210,8 +246,8 @@ def check_suspicious_customer(conn, order_sn: str, buyer_user_id: str,
         tracking_number = row[2]
         if status:
             status_lower = status.lower()
-            # 条件1: 订单状态不为 Completed
-            is_not_completed = status_lower != 'completed'
+            # 条件1: 订单状态不为 Completed 且不为 To Ship
+            is_not_completed_or_to_ship = (status_lower != 'completed' and status_lower != 'to_ship')
 
             # 条件2: 检查是否为可疑订单
             # - 如果是 Canceled 但有运单号 -> 可疑（发货后取消）
@@ -220,7 +256,7 @@ def check_suspicious_customer(conn, order_sn: str, buyer_user_id: str,
             is_canceled_with_tracking = (status_lower == 'cancelled') and has_tracking
             is_not_canceled_no_tracking = (status_lower != 'cancelled') and not has_tracking
 
-            if is_not_completed and (is_canceled_with_tracking or is_not_canceled_no_tracking):
+            if is_not_completed_or_to_ship and (is_canceled_with_tracking or is_not_canceled_no_tracking):
                 return True
 
     return False
@@ -330,8 +366,13 @@ def main():
         if check_same_order_multi_items(order_sn, order_items):
             tags.append('同单多件')
 
+        # 2b & 4. 获取买家历史订单（一次查询，供两个函数使用）
+        buyer_history_orders = []
+        if buyer_user_id:
+            buyer_history_orders = get_buyer_history_orders(conn, order_sn, buyer_user_id)
+
         # 2b. 高频复购
-        if check_high_frequency_repurchase(orders, order_sn, buyer_user_id, order_create_time, order_items_map):
+        if buyer_history_orders and check_high_frequency_repurchase(order_sn, order_create_time, buyer_history_orders, order_items_map):
             tags.append('高频复购')
 
         # 3. 菲律宾边远地区
@@ -341,7 +382,7 @@ def main():
             tags.append('地址偏远')
 
         # 4. 可疑顾客（历史退货退款派送失败）
-        if check_suspicious_customer(conn, order_sn, buyer_user_id, order_create_time):
+        if buyer_history_orders and check_suspicious_customer(buyer_history_orders):
             tags.append('历史退货退款派送失败')
 
         # 5. 税务相关
