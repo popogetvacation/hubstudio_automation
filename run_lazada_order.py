@@ -22,7 +22,7 @@ def run_lazada_order_task():
 
     # 2. 创建 Lazada 订单任务
     task_config = {
-        'max_pages': 10,           # 最大获取页数
+        'max_pages': 1,           # 最大获取页数
         'page_size': 20,            # 每页订单数
         'save_to_file': True,       # 保存到 Excel 文件
         'output_dir': './data',     # 输出目录

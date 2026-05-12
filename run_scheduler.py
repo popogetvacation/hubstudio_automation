@@ -76,18 +76,18 @@ def run_shopee_flow():
     logger.info("=" * 60)
 
     from src.utils.order_tag_analyzer import analyze_orders_from_db
-    from src.database.access_db import get_db_connection
+    from src.config import load_config
 
-    # 获取数据库连接
-    conn = get_db_connection()
+    # 获取数据库路径
+    config = load_config()
+    db_path = config.database.access_path
+
     try:
-        order_tags_data = analyze_orders_from_db(conn)
+        order_tags_data = analyze_orders_from_db(db_path)
         logger.info(f"Shopee订单标签分析完成，生成 {len(order_tags_data)} 条数据")
     except Exception as e:
         logger.error(f"Shopee订单标签分析失败: {e}", exc_info=True)
         return False
-    finally:
-        conn.close()
 
     if not order_tags_data:
         logger.error("[Shopee流程] 没有生成订单标签数据，终止流程")
@@ -332,11 +332,11 @@ def run_scheduler(interval: int = None, skip_tiktok: bool = False, skip_lazada: 
             # shopee_ok = run_shopee_flow()
 
             # TikTok 独立流程
-            if skip_tiktok:
-                logger.info("跳过 TikTok 订单同步步骤")
-                tiktok_ok = True
-            else:
-                tiktok_ok = run_tiktok_flow()
+            # if skip_tiktok:
+            #     logger.info("跳过 TikTok 订单同步步骤")
+            #     tiktok_ok = True
+            # else:
+            #     tiktok_ok = run_tiktok_flow()
 
             # Lazada 独立流程
             if skip_lazada:

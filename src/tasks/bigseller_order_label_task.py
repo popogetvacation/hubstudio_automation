@@ -288,7 +288,7 @@ class BigSellerOrderLabelTask(BaseTask):
                          bigseller_api: BigSellerAPI,
                          env_name: str) -> Dict[str, int]:
         """
-        批量添加备注
+        批量添加备注（分别处理客服备注和拣货备注）
 
         Args:
             matched_orders: 匹配到的订单列表
@@ -317,25 +317,39 @@ class BigSellerOrderLabelTask(BaseTask):
         for i in range(0, len(orders_to_add), self.batch_size):
             batch_orders = orders_to_add[i:i + self.batch_size]
 
-            # 构建备注请求
-            remark_requests = []
+            # 构建客服备注请求和拣货备注请求
+            customer_remark_requests = []
+            picking_remark_requests = []
 
             for order in batch_orders:
                 # 生成新备注内容
                 remark_data = self._generate_remark(order)
 
-                # 构建请求对象
-                remark_request = bigseller_api.build_order_remark(
-                    order_id=order['order_id'],
-                    item_total_num=order['item_total_num'],
-                    package_no=order['package_no'],
-                    order_item_list=order['order_item_list'],
-                    remark_type=1,  # 买家备注
-                    content=remark_data['content'],
-                    order_not_approved=False
-                )
+                # 客服备注（remarkType=1）
+                if remark_data['has_customer_remark']:
+                    customer_request = bigseller_api.build_order_remark(
+                        order_id=order['order_id'],
+                        item_total_num=order['item_total_num'],
+                        package_no=order['package_no'],
+                        order_item_list=order['order_item_list'],
+                        remark_type=1,
+                        content=remark_data['customer_remark'],
+                        order_not_approved=False
+                    )
+                    customer_remark_requests.append(customer_request)
 
-                remark_requests.append(remark_request)
+                # 拣货备注（remarkType=2）
+                if remark_data['has_picking_remark']:
+                    picking_request = bigseller_api.build_order_remark(
+                        order_id=order['order_id'],
+                        item_total_num=order['item_total_num'],
+                        package_no=order['package_no'],
+                        order_item_list=order['order_item_list'],
+                        remark_type=2,
+                        content=remark_data['picking_remark'],
+                        order_not_approved=False
+                    )
+                    picking_remark_requests.append(picking_request)
 
                 # 统计
                 if remark_data['is_new']:
@@ -343,24 +357,45 @@ class BigSellerOrderLabelTask(BaseTask):
                 else:
                     result['existing_audit'] += 1
 
-            try:
-                logger.info(f"[{env_name}] 添加备注: "
-                          f"批次 {i//self.batch_size + 1}, 数量 {len(remark_requests)}")
+            # 添加客服备注
+            if customer_remark_requests:
+                try:
+                    logger.info(f"[{env_name}] 添加客服备注: "
+                              f"批次 {i//self.batch_size + 1}, 数量 {len(customer_remark_requests)}")
 
-                api_result = bigseller_api.batch_edit_order_remarks(remark_requests)
+                    api_result = bigseller_api.batch_edit_order_remarks(customer_remark_requests)
 
-                if api_result.get('code') == 0:
-                    logger.info(f"[{env_name}] 备注添加成功: {len(remark_requests)} 个订单")
-                else:
-                    logger.error(f"[{env_name}] 备注添加失败: {api_result.get('msg')}")
-                    result['failed'] += len(remark_requests)
+                    if api_result.get('code') == 0:
+                        logger.info(f"[{env_name}] 客服备注添加成功: {len(customer_remark_requests)} 个订单")
+                    else:
+                        logger.error(f"[{env_name}] 客服备注添加失败: {api_result.get('msg')}")
+                        result['failed'] += len(customer_remark_requests)
 
-                # 延迟避免触发限流
-                time.sleep(0.5)
+                    time.sleep(0.5)
 
-            except Exception as e:
-                logger.error(f"[{env_name}] 添加备注异常: {e}")
-                result['failed'] += len(remark_requests)
+                except Exception as e:
+                    logger.error(f"[{env_name}] 添加客服备注异常: {e}")
+                    result['failed'] += len(customer_remark_requests)
+
+            # 添加拣货备注
+            if picking_remark_requests:
+                try:
+                    logger.info(f"[{env_name}] 添加拣货备注: "
+                              f"批次 {i//self.batch_size + 1}, 数量 {len(picking_remark_requests)}")
+
+                    api_result = bigseller_api.batch_edit_order_remarks(picking_remark_requests)
+
+                    if api_result.get('code') == 0:
+                        logger.info(f"[{env_name}] 拣货备注添加成功: {len(picking_remark_requests)} 个订单")
+                    else:
+                        logger.error(f"[{env_name}] 拣货备注添加失败: {api_result.get('msg')}")
+                        result['failed'] += len(picking_remark_requests)
+
+                    time.sleep(0.5)
+
+                except Exception as e:
+                    logger.error(f"[{env_name}] 添加拣货备注异常: {e}")
+                    result['failed'] += len(picking_remark_requests)
 
         return result
 
@@ -435,21 +470,24 @@ class BigSellerOrderLabelTask(BaseTask):
 
     def _generate_remark(self, order: Dict) -> Dict[str, Any]:
         """
-        生成备注内容
+        生成备注内容（客服备注和拣货备注）
 
         备注规则：
         - pass 订单不添加备注
         - 排除低分不发标签
-        - 格式：>>标签名<<
-        - 先清除原备注中所有 >>...<< 格式的行，然后在最后追加新备注
+        - 地址偏远标签 → 拣货备注（remarkType=2），内容为 "Reinforce Packaging"
+        - 其他标签 → 客服备注（remarkType=1），格式为 >>标签名<<
 
         Args:
             order: 订单数据字典
 
         Returns:
             {
-                'content': str,      # 最终备注内容
-                'is_new': bool     # 是否为新添加的备注
+                'customer_remark': str,      # 客服备注内容
+                'picking_remark': str,       # 拣货备注内容
+                'has_customer_remark': bool, # 是否需要添加客服备注
+                'has_picking_remark': bool,  # 是否需要添加拣货备注
+                'is_new': bool              # 是否为新添加的备注
             }
         """
         original_remark = order.get('seller_remark', '')
@@ -459,42 +497,41 @@ class BigSellerOrderLabelTask(BaseTask):
         # pass 订单不添加备注
         if is_pass:
             return {
-                'content': original_remark,
+                'customer_remark': original_remark,
+                'picking_remark': '',
+                'has_customer_remark': False,
+                'has_picking_remark': False,
                 'is_new': False
             }
 
-        # 排除低分不发标签
-        remark_tags = [t for t in tags if t != '低分不发']
+        # 分离偏远地区标签和其他标签
+        has_remote = '地址偏远' in tags
+        other_tags = [t for t in tags if t not in ['地址偏远', '低分不发']]
 
-        # 没有标签可添加
-        if not remark_tags:
-            return {
-                'content': original_remark,
-                'is_new': False
-            }
+        # 生成客服备注
+        customer_remark = original_remark
+        has_customer_remark = False
+        if other_tags:
+            remark_lines = [f">>{tag}<<" for tag in other_tags]
+            new_remark_block = chr(10).join(remark_lines)
+            cleaned_remark = re.sub(r'^>>.*<<\s*$', '', original_remark, flags=re.MULTILINE).strip()
+            customer_remark = f"{cleaned_remark}\n{new_remark_block}" if cleaned_remark else new_remark_block
+            has_customer_remark = True
 
-        # 使用原始标签名称，格式为 >>标签名<<
-        remark_lines = [f">>{tag}<<" for tag in remark_tags]
-        new_remark_block = chr(10).join(remark_lines)
+        # 生成拣货备注
+        picking_remark = 'Reinforce Packaging' if has_remote else ''
+        has_picking_remark = has_remote
 
-        # 清除原备注中所有 >>...<< 格式的行
-        cleaned_remark = re.sub(r'^>>.*<<\s*$', '', original_remark, flags=re.MULTILINE)
-        # 清理多余的空行
-        cleaned_remark = cleaned_remark.strip()
-
-        # 在末尾追加新备注
-        if cleaned_remark:
-            final_remark = f"{cleaned_remark}\n{new_remark_block}"
-        else:
-            final_remark = new_remark_block
-
-        # is_new 判断：检查是否需要添加新备注（有标签且与原备注不同）
+        # is_new 判断
         original_lines = set(re.findall(r'^>>(.*?)<<$', original_remark, flags=re.MULTILINE))
-        new_lines = set(remark_tags)
-        is_new = original_lines != new_lines and len(remark_tags) > 0
+        new_lines = set(other_tags)
+        is_new = (original_lines != new_lines and len(other_tags) > 0) or has_remote
 
         return {
-            'content': final_remark,
+            'customer_remark': customer_remark,
+            'picking_remark': picking_remark,
+            'has_customer_remark': has_customer_remark,
+            'has_picking_remark': has_picking_remark,
             'is_new': is_new
         }
 

@@ -466,9 +466,10 @@ class TokopediaOrderTask(BaseTask):
             price_val = float(total_price)
         except:
             price_val = 0
-
+        
         # 只有菲律宾(PH)的偏远地区才需要检查
         sale_region = order_data.get('trade_order_module', {}).get('sale_region', '')
+        logger.info(f"tiktok parsed_address:{str(parsed_address)}, sale_region:{str(sale_region)}")
         is_ph = sale_region == 'PH'
         is_high_value = is_ph and currency == 'PHP' and price_val > 6000
 

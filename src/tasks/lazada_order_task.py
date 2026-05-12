@@ -431,11 +431,7 @@ class LazadaOrderTask(BaseTask):
         full_address = parsed_address.get('full_address', '').lower()
         is_remote = any(keyword in full_address for keyword in self.PH_REMOTE_KEYWORDS)
 
-        result =  is_remote and is_high_value
-        if result:
-            logger.info(f"[LazadaOrder] 检测到偏远地区: 地址={full_address[:50]}, 金额={price_val}")
-
-        return result
+        return is_remote and is_high_value
 
     def _check_suspicious_customer(self, history_orders: List[Dict]) -> bool:
         """

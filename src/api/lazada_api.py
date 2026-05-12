@@ -501,7 +501,10 @@ class LazadaAPI:
         """
         sensitive_info = self.get_order_sensitive_info(order_number, need_ciphertext=False)
         if sensitive_info:
-            return sensitive_info.get('shippingAddress', {})
+            # 修复：从 data 包装层中获取 shippingAddress
+            data_content = sensitive_info.get('data', {})
+            address = data_content.get('shippingAddress', {}) if data_content else {}
+            return address
         return None
 
     # ==================== IM/聊天 API ====================
