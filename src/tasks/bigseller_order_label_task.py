@@ -407,6 +407,7 @@ class BigSellerOrderLabelTask(BaseTask):
 
         规则：
         - pass 订单 → 添加 pass 标签 (1825)
+        - 只有"地址偏远"标签 → 添加 pass 标签 (1825)
         - 有"低分不发"标签 → 添加低分不发标签 (1657)
         - 其他有标签的订单 → 添加"需要审核/检查(机审)"标签 (1848)
 
@@ -433,6 +434,10 @@ class BigSellerOrderLabelTask(BaseTask):
                 # pass 订单添加 pass 标签
                 label_id = self.pass_label_id
                 label_name = 'pass'
+            elif tags == ['地址偏远']:
+                # 只有地址偏远标签，添加 pass 标签
+                label_id = self.pass_label_id
+                label_name = 'pass (仅偏远地区)'
             elif '低分不发' in tags:
                 # 有低分不发标签的订单添加低分不发标签
                 label_id = self.low_score_label_id
