@@ -1,28 +1,28 @@
 @echo off
 chcp 65001 >nul
-echo [%date% %time%] å¯åŠ¨ HubStudio...
+echo [%date% %time%] Æô¶¯ HubStudio...
 
-REM æ£€æŸ¥æ˜¯å¦å·²è¿è¡Œ
+REM ¼ì²éÊÇ·ñÒÑÔËÐÐ
 tasklist /FI "IMAGENAME eq Hubstudio.exe" 2>NUL | find /I /N "Hubstudio.exe">NUL
 if "%ERRORLEVEL%"=="0" (
-    echo [%date% %time%] HubStudio å·²åœ¨è¿è¡Œ
+    echo [%date% %time%] HubStudio ÒÑÔÚÔËÐÐ
     exit /b 0
 )
 
-REM å¯åŠ¨ HubStudio
+REM Æô¶¯ HubStudio
 start "" "D:\Program Files\Hubstudio\Hubstudio.exe"
 
-REM ç­‰å¾… API å°±ç»ªï¼ˆæœ€å¤šç­‰å¾… 60 ç§’ï¼‰
+REM µÈ´ý API ¾ÍÐ÷£¨×î¶àµÈ´ý 60 Ãë£©
 set /a count=0
 :wait_loop
 timeout /t 2 /nobreak >nul
 curl -s http://127.0.0.1:6873 >nul 2>&1
 if %ERRORLEVEL% EQU 0 (
-    echo [%date% %time%] HubStudio API å·²å°±ç»ª
+    echo [%date% %time%] HubStudio API ÒÑ¾ÍÐ÷
     exit /b 0
 )
 set /a count+=1
 if %count% LSS 30 goto wait_loop
 
-echo [%date% %time%] è­¦å‘Š: HubStudio API æœªåœ¨ 60 ç§’å†…å°±ç»ª
+echo [%date% %time%] ¾¯¸æ: HubStudio API Î´ÔÚ 60 ÃëÄÚ¾ÍÐ÷
 exit /b 1

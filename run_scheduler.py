@@ -329,14 +329,14 @@ def run_scheduler(interval: int = None, skip_tiktok: bool = False, skip_lazada: 
 
         try:
             # Shopee 独立流程
-            # shopee_ok = run_shopee_flow()
+            shopee_ok = run_shopee_flow()
 
             # TikTok 独立流程
-            # if skip_tiktok:
-            #     logger.info("跳过 TikTok 订单同步步骤")
-            #     tiktok_ok = True
-            # else:
-            #     tiktok_ok = run_tiktok_flow()
+            if skip_tiktok:
+                logger.info("跳过 TikTok 订单同步步骤")
+                tiktok_ok = True
+            else:
+                tiktok_ok = run_tiktok_flow()
 
             # Lazada 独立流程
             if skip_lazada:
@@ -345,7 +345,7 @@ def run_scheduler(interval: int = None, skip_tiktok: bool = False, skip_lazada: 
             else:
                 lazada_ok = run_lazada_flow()
 
-            # logger.info(f"执行完成 - Shopee: {'成功' if shopee_ok else '失败'}, TikTok: {'成功' if tiktok_ok else '失败'}, Lazada: {'成功' if lazada_ok else '失败'}")
+            logger.info(f"执行完成 - Shopee: {'成功' if shopee_ok else '失败'}, TikTok: {'成功' if tiktok_ok else '失败'}, Lazada: {'成功' if lazada_ok else '失败'}")
 
         except Exception as e:
             logger.error(f"执行过程中发生异常: {e}", exc_info=True)
