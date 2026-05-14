@@ -273,6 +273,7 @@ class TokopediaOrderTask(BaseTask):
         parsed_addresses = {}
         for main_order_id, contact_info in buyer_contacts.items():
             if contact_info:
+                logger.info(f"[TokopediaOrder] 地址 {str(contact_info)}")
                 parsed = tiktok_api.parse_address(contact_info)
                 parsed_addresses[main_order_id] = parsed
 
@@ -471,7 +472,7 @@ class TokopediaOrderTask(BaseTask):
         sale_region = order_data.get('trade_order_module', {}).get('sale_region', '')
         logger.info(f"tiktok parsed_address:{str(parsed_address)}, sale_region:{str(sale_region)}")
         is_ph = sale_region == 'PH'
-        is_high_value = is_ph and currency == 'PHP' and price_val > 6000
+        is_high_value = is_ph and currency == 'PHP'
 
         # 条件2: 地址位于 Mindanao 或 Visayas 地区（使用已解析的地址）
         full_address = parsed_address.get('full_address', '').lower()

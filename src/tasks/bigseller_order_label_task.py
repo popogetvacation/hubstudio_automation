@@ -407,7 +407,6 @@ class BigSellerOrderLabelTask(BaseTask):
 
         规则：
         - pass 订单 → 添加 pass 标签 (1825)
-        - 只有"地址偏远"标签 → 添加 pass 标签 (1825)
         - 有"低分不发"标签 → 添加低分不发标签 (1657)
         - 其他有标签的订单 → 添加"需要审核/检查(机审)"标签 (1848)
 
@@ -434,10 +433,6 @@ class BigSellerOrderLabelTask(BaseTask):
                 # pass 订单添加 pass 标签
                 label_id = self.pass_label_id
                 label_name = 'pass'
-            elif tags == ['地址偏远']:
-                # 只有地址偏远标签，添加 pass 标签
-                label_id = self.pass_label_id
-                label_name = 'pass (仅偏远地区)'
             elif '低分不发' in tags:
                 # 有低分不发标签的订单添加低分不发标签
                 label_id = self.low_score_label_id
@@ -480,7 +475,7 @@ class BigSellerOrderLabelTask(BaseTask):
         备注规则：
         - pass 订单不添加备注
         - 排除低分不发标签
-        - 地址偏远标签 → 拣货备注（remarkType=2），内容为 "Reinforce Packaging"
+        - 地址偏远标签 → 同时添加到客服备注（>>地址偏远<<）和拣货备注（Reinforce Packaging）
         - 其他标签 → 客服备注（remarkType=1），格式为 >>标签名<<
 
         Args:
@@ -511,9 +506,9 @@ class BigSellerOrderLabelTask(BaseTask):
 
         # 分离偏远地区标签和其他标签
         has_remote = '地址偏远' in tags
-        other_tags = [t for t in tags if t not in ['地址偏远', '低分不发']]
+        other_tags = [t for t in tags if t != '低分不发']
 
-        # 生成客服备注
+        # 生成客服备注（包含所有标签，包括地址偏远）
         customer_remark = original_remark
         has_customer_remark = False
         if other_tags:
@@ -523,7 +518,7 @@ class BigSellerOrderLabelTask(BaseTask):
             customer_remark = f"{cleaned_remark}\n{new_remark_block}" if cleaned_remark else new_remark_block
             has_customer_remark = True
 
-        # 生成拣货备注
+        # 生成拣货备注（仅偏远地区）
         picking_remark = 'Reinforce Packaging' if has_remote else ''
         has_picking_remark = has_remote
 

@@ -181,8 +181,7 @@ def check_ph_remote_area(order, buyer_info) -> Dict:
     is_visayas = 'visayas' in address_lower or 'cebu' in address_lower or 'iloilo' in address_lower
     is_remote_region = is_mindanao or is_visayas
 
-    # 条件3: 订单金额 > 6000 PHP
-    is_high_value = currency == 'PHP' and total_price and float(total_price) > 6000
+    is_high_value = currency == 'PHP'
 
     # 如果不满足任一条件，不属于边远地区订单
     if not (rating_is_zero and is_remote_region and is_high_value):

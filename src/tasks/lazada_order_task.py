@@ -415,7 +415,6 @@ class LazadaOrderTask(BaseTask):
         条件：
         1. rating = 0 (废除)
         2. 地址含 Mindanao/Visayas
-        3. 金额 > 6000 PHP
         """
         # 获取订单金额
         total_retail_price = order_data.get('totalRetailPrice', '0')
@@ -424,14 +423,11 @@ class LazadaOrderTask(BaseTask):
         except:
             price_val = 0
 
-        # 条件3: 金额 > 6000 PHP
-        is_high_value = price_val > 6000
-
         # 条件2: 地址位于 Mindanao 或 Visayas 地区
         full_address = parsed_address.get('full_address', '').lower()
         is_remote = any(keyword in full_address for keyword in self.PH_REMOTE_KEYWORDS)
 
-        return is_remote and is_high_value
+        return is_remote
 
     def _check_suspicious_customer(self, history_orders: List[Dict]) -> bool:
         """
