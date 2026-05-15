@@ -10,7 +10,7 @@ if "%ERRORLEVEL%"=="0" (
 )
 
 REM 启动 HubStudio
-start "" "D:\Program Files\Hubstudio\Hubstudio.exe"
+start "" "C:\Program Files\Hubstudio\Hubstudio.exe"
 
 REM 等待 API 就绪（最多等待 60 秒）
 set /a count=0

@@ -140,37 +140,18 @@ def check_ph_remote_area(order: Dict, buyer_info: Dict) -> Dict:
     检查菲律宾PH偏远地区订单
     返回: {'is_remote': bool, 'has_chat': bool, 'reason': str}
     """
-    rating = order.get('rating')
-    total_price = order.get('total_price', 0)
-    currency = order.get('currency', '')
     shipping_address = order.get('shipping_address', '') or ''
 
-    # 条件1: 顾客评分 = 0
-    try:
-        rating_is_zero = rating is not None and float(rating) == 0
-    except:
-        rating_is_zero = False
-
-    # 条件2: 收货地址位于 Mindanao 或 Visayas 地区
+    # 收货地址位于 Mindanao 或 Visayas 地区
     address_lower = shipping_address.lower()
     is_mindanao = 'mindanao' in address_lower
     is_visayas = 'visayas' in address_lower or 'cebu' in address_lower or 'iloilo' in address_lower
     is_remote_region = is_mindanao or is_visayas
 
-    is_high_value = currency == 'PHP'
-
-    # 如果不满足任一条件，不属于偏远地区订单
-    if not (rating_is_zero and is_remote_region and is_high_value):
-        return {'is_remote': False, 'has_chat': False, 'reason': ''}
-
-    # 检查是否有客服交流记录
-    user_message_text = buyer_info.get('user_message_text', '') or ''
-    has_chat = len(user_message_text.strip()) > 0
-
-    if has_chat:
-        return {'is_remote': False, 'has_chat': True, 'reason': '可通过'}
-    else:
+    if is_remote_region:
         return {'is_remote': True, 'has_chat': False, 'reason': '地址偏远'}
+    else:
+        return {'is_remote': False, 'has_chat': False, 'reason': ''}
 
 
 def get_buyer_history_orders(conn: str, order_sn: str, buyer_user_id: str) -> List[Tuple]:
