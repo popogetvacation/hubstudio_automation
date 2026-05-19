@@ -176,10 +176,10 @@ def check_ph_remote_area(order, buyer_info) -> Dict:
         rating_is_zero = False
 
     # 条件2: 收货地址位于 Mindanao 或 Visayas 地区
+    from src.utils.area_config import get_ph_remote_keywords
     address_lower = shipping_address.lower()
-    is_mindanao = 'mindanao' in address_lower
-    is_visayas = 'visayas' in address_lower or 'cebu' in address_lower or 'iloilo' in address_lower
-    is_remote_region = is_mindanao or is_visayas
+    keywords = get_ph_remote_keywords()
+    is_remote_region = any(kw in address_lower for kw in keywords)
 
     is_high_value = currency == 'PHP'
 

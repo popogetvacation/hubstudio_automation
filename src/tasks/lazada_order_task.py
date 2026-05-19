@@ -41,7 +41,10 @@ class LazadaOrderTask(BaseTask):
     ]
 
     # 菲律宾偏远地区关键词
-    PH_REMOTE_KEYWORDS = ['mindanao', 'visayas', 'cebu', 'iloilo']
+    @property
+    def PH_REMOTE_KEYWORDS(self):
+        from src.utils.area_config import get_ph_remote_keywords
+        return get_ph_remote_keywords()
 
     def __init__(self, config: Dict[str, Any] = None):
         """
