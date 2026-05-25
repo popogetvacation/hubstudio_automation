@@ -12,7 +12,7 @@ from datetime import datetime
 from .task_base import BaseTask, TaskFactory
 from ..browser.selenium_driver import HubStudioSeleniumDriver
 from selenium.webdriver.support.ui import WebDriverWait
-from ..database.access_db import AccessDatabase
+from ..database import get_database
 from ..api.shopee_api import ShopeeAPI
 from ..utils.logger import default_logger as logger
 from ..utils.performance_tracker import get_tracker, measure_time
@@ -68,7 +68,8 @@ class ShopeeAllOrderTask(BaseTask):
 
         # 加载全局配置
         global_config = load_config()
-        default_db_path = global_config.database.access_path
+        db_cfg = global_config.database
+        default_db_path = db_cfg.sqlite_path if db_cfg.db_type == "sqlite" else db_cfg.access_path
 
         # 默认配置
         self.page_size = self.config.get('page_size', 200)
@@ -97,7 +98,7 @@ class ShopeeAllOrderTask(BaseTask):
                 if db_dir and not os.path.exists(db_dir):
                     os.makedirs(db_dir, exist_ok=True)
 
-                self._db = AccessDatabase.get_instance(self.db_path)
+                self._db = get_database(self.db_path)
                 self._db.init_order_tables()
             except Exception as e:
                 logger.warning(f"数据库连接失败: {e}")

@@ -5,11 +5,6 @@
 from typing import Dict, List, Tuple
 from datetime import datetime, timedelta
 
-try:
-    import pyodbc
-except ImportError:
-    raise ImportError("请安装 pyodbc: pip install pyodbc")
-
 
 # 税务关键词列表
 TAX_KEYWORDS = [
@@ -18,55 +13,37 @@ TAX_KEYWORDS = [
 ]
 
 
-def get_db_connection(db_path: str):
-    """获取数据库连接"""
-    import os
-    # 使用绝对路径
-    abs_path = os.path.abspath(db_path)
-    conn_str = 'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=' + abs_path + ';'
-    conn = pyodbc.connect(conn_str)
-    conn.setdecoding(pyodbc.SQL_CHAR, encoding='latin1')
-    conn.setdecoding(pyodbc.SQL_WCHAR, encoding='latin1')
-    return conn
+def get_db_instance(db_path: str = None):
+    """获取数据库实例"""
+    from ..database import get_database
+    return get_database(db_path)
 
 
-def get_all_orders(conn) -> List[Dict]:
+def get_all_orders(db) -> List[Dict]:
     """获取所有订单数据（筛选 To Ship 且无追踪号）"""
-    cursor = conn.cursor()
-    cursor.execute("""
+    return db.query("""
         SELECT order_sn, order_id, buyer_user_id, rating, shipping_address,
                total_price, currency, order_create_time, status, tracking_number
         FROM shopee_orders
         WHERE status = 'To Ship' AND (tracking_number IS NULL OR tracking_number = '')
     """)
-    columns = [desc[0] for desc in cursor.description]
-    rows = cursor.fetchall()
-    return [dict(zip(columns, row)) for row in rows]
 
 
-def get_order_items(conn) -> List[Dict]:
+def get_order_items(db) -> List[Dict]:
     """获取所有订单商品数据"""
-    cursor = conn.cursor()
-    cursor.execute("""
+    return db.query("""
         SELECT order_sn, item_id, model_id, amount, item_name
         FROM shopee_order_items
     """)
-    columns = [desc[0] for desc in cursor.description]
-    rows = cursor.fetchall()
-    return [dict(zip(columns, row)) for row in rows]
 
 
-def get_order_buyers(conn) -> List[Dict]:
+def get_order_buyers(db) -> List[Dict]:
     """获取所有订单买家信息（包括聊天记录）"""
-    cursor = conn.cursor()
-    cursor.execute("""
+    return db.query("""
         SELECT order_sn, buyer_user_id, buyer_username, rating as buyer_rating,
                country, city, conversation_id, user_message_text
         FROM shopee_order_buyer
     """)
-    columns = [desc[0] for desc in cursor.description]
-    rows = cursor.fetchall()
-    return [dict(zip(columns, row)) for row in rows]
 
 
 def check_low_score(rating) -> bool:
@@ -154,7 +131,7 @@ def check_ph_remote_area(order: Dict, buyer_info: Dict) -> Dict:
         return {'is_remote': False, 'has_chat': False, 'reason': ''}
 
 
-def get_buyer_history_orders(conn: str, order_sn: str, buyer_user_id: str) -> List[Tuple]:
+def get_buyer_history_orders(db, order_sn: str, buyer_user_id: str) -> List[Tuple]:
     """
     获取买家的全部历史订单（排除当前订单）
 
@@ -164,18 +141,11 @@ def get_buyer_history_orders(conn: str, order_sn: str, buyer_user_id: str) -> Li
     if not buyer_user_id:
         return []
 
-    # Access ODBC 不支持参数化查询，使用字符串拼接
-    escaped_buyer = buyer_user_id.replace("'", "''")
-    escaped_sn = order_sn.replace("'", "''")
-
-    cursor = conn.cursor()
-    cursor.execute(f"""
-        SELECT order_sn, status, tracking_number, order_create_time
-        FROM shopee_orders
-        WHERE buyer_user_id = '{escaped_buyer}' AND order_sn <> '{escaped_sn}'
-    """)
-
-    return cursor.fetchall()
+    rows = db.query(
+        "SELECT order_sn, status, tracking_number, order_create_time FROM shopee_orders WHERE buyer_user_id = ? AND order_sn <> ?",
+        (buyer_user_id, order_sn)
+    )
+    return [(r['order_sn'], r['status'], r['tracking_number'], r['order_create_time']) for r in rows]
 
 
 def check_suspicious_customer(history_orders: List[Tuple]) -> bool:
@@ -240,94 +210,89 @@ def analyze_orders_from_db(db_path: str) -> List[Dict]:
     """
     print("开始分析订单标签...")
 
-    # 连接数据库
-    conn = get_db_connection(db_path)
+    db = get_db_instance(db_path)
 
-    try:
-        # 获取数据
-        orders = get_all_orders(conn)
-        order_items = get_order_items(conn)
-        order_buyers = get_order_buyers(conn)
+    # 获取数据
+    orders = get_all_orders(db)
+    order_items = get_order_items(db)
+    order_buyers = get_order_buyers(db)
 
-        # 构建买家信息映射
-        buyer_info_map = {b.get('order_sn'): b for b in order_buyers}
+    # 构建买家信息映射
+    buyer_info_map = {b.get('order_sn'): b for b in order_buyers}
 
-        # 构建订单商品映射
-        order_items_map = {}
-        for item in order_items:
-            sn = item.get('order_sn')
-            if sn not in order_items_map:
-                order_items_map[sn] = []
-            order_items_map[sn].append(item)
+    # 构建订单商品映射
+    order_items_map = {}
+    for item in order_items:
+        sn = item.get('order_sn')
+        if sn not in order_items_map:
+            order_items_map[sn] = []
+        order_items_map[sn].append(item)
 
-        # 为每个订单计算标签
-        results = []
+    # 为每个订单计算标签
+    results = []
 
-        for order in orders:
-            order_sn = order.get('order_sn', '')
-            buyer_user_id = order.get('buyer_user_id')
-            rating = order.get('rating')
-            order_create_time = order.get('order_create_time')
-            tags = []
+    for order in orders:
+        order_sn = order.get('order_sn', '')
+        buyer_user_id = order.get('buyer_user_id')
+        rating = order.get('rating')
+        order_create_time = order.get('order_create_time')
+        tags = []
 
-            # 1. 低分用户
-            if check_low_score(rating):
-                tags.append('低分不发')
+        # 1. 低分用户
+        if check_low_score(rating):
+            tags.append('低分不发')
 
-            # 2a. 同单多件
-            if check_same_order_multi_items(order_sn, order_items):
-                tags.append('同单多件')
+        # 2a. 同单多件
+        if check_same_order_multi_items(order_sn, order_items):
+            tags.append('同单多件')
 
-            # 2b & 4. 获取买家历史订单
-            buyer_history_orders = []
-            if buyer_user_id:
-                buyer_history_orders = get_buyer_history_orders(conn, order_sn, buyer_user_id)
+        # 2b & 4. 获取买家历史订单
+        buyer_history_orders = []
+        if buyer_user_id:
+            buyer_history_orders = get_buyer_history_orders(db, order_sn, buyer_user_id)
 
-            # 2b. 高频复购
-            if buyer_history_orders and check_high_frequency_repurchase(
-                order_sn, order_create_time, buyer_history_orders, order_items_map
-            ):
-                tags.append('高频复购')
+        # 2b. 高频复购
+        if buyer_history_orders and check_high_frequency_repurchase(
+            order_sn, order_create_time, buyer_history_orders, order_items_map
+        ):
+            tags.append('高频复购')
 
-            # 3. 菲律宾偏远地区
-            buyer_info = buyer_info_map.get(order_sn, {})
-            ph_check = check_ph_remote_area(order, buyer_info)
-            if ph_check.get('is_remote'):
-                tags.append('地址偏远')
+        # 3. 菲律宾偏远地区
+        buyer_info = buyer_info_map.get(order_sn, {})
+        ph_check = check_ph_remote_area(order, buyer_info)
+        if ph_check.get('is_remote'):
+            tags.append('地址偏远')
 
-            # 4. 可疑顾客（历史退货退款派送失败）
-            if buyer_history_orders and check_suspicious_customer(buyer_history_orders):
-                tags.append('历史退货退款派送失败')
+        # 4. 可疑顾客（历史退货退款派送失败）
+        if buyer_history_orders and check_suspicious_customer(buyer_history_orders):
+            tags.append('历史退货退款派送失败')
 
-            # 5. 税务相关
-            if check_tax_request(order, buyer_info):
-                tags.append('顾客税务要求')
+        # 5. 税务相关
+        if check_tax_request(order, buyer_info):
+            tags.append('顾客税务要求')
 
-            # 判断是否为 pass 订单
-            is_pass = len(tags) == 0
+        # 判断是否为 pass 订单
+        is_pass = len(tags) == 0
 
-            results.append({
-                'platform_order_id': order_sn,  # 使用 order_sn 作为平台订单号
-                'order_sn': order_sn,
-                'tags': tags,
-                'is_pass': is_pass
-            })
+        results.append({
+            'platform_order_id': order_sn,  # 使用 order_sn 作为平台订单号
+            'order_sn': order_sn,
+            'tags': tags,
+            'is_pass': is_pass
+        })
 
-        print(f"分析完成: 共 {len(results)} 个订单")
-        tag_counts = {}
-        for r in results:
-            for tag in r['tags']:
-                tag_counts[tag] = tag_counts.get(tag, 0) + 1
-        print(f"标签统计: {tag_counts}")
+    print(f"分析完成: 共 {len(results)} 个订单")
+    tag_counts = {}
+    for r in results:
+        for tag in r['tags']:
+            tag_counts[tag] = tag_counts.get(tag, 0) + 1
+    print(f"标签统计: {tag_counts}")
 
-        # 给没有标签的订单添加 pass 标签
-        pass_count = sum(1 for r in results if r['is_pass'])
-        print(f"Pass 订单: {pass_count}")
+    # 给没有标签的订单添加 pass 标签
+    pass_count = sum(1 for r in results if r['is_pass'])
+    print(f"Pass 订单: {pass_count}")
 
-        return results
-
-    finally:
-        conn.close()
+    return results
 
 
 def get_label_id_mapping() -> Dict[str, str]:

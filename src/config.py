@@ -19,6 +19,8 @@ class HubStudioConfig:
 class DatabaseConfig:
     """数据库配置"""
     access_path: str = "./data/automation.accdb"
+    sqlite_path: str = "./data/automation.db"
+    db_type: str = "access"  # "access" | "sqlite"
     pool_size: int = 5
 
 
@@ -89,6 +91,8 @@ def load_config(config_path: str = "config/settings.yaml") -> Config:
         db = data['database']
         config.database = DatabaseConfig(
             access_path=db.get('access_path', config.database.access_path),
+            sqlite_path=db.get('sqlite_path', config.database.sqlite_path),
+            db_type=db.get('db_type', config.database.db_type),
             pool_size=db.get('pool_size', config.database.pool_size)
         )
 

@@ -6,20 +6,12 @@
 """
 import os
 from datetime import datetime
-from typing import Dict, List, Set
+from typing import Dict, List
 import sys
 
-# 添加 src 目录到路径以导入配置
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src'))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from config import load_config
-
-# 尝试导入所需库
-try:
-    import pyodbc
-except ImportError:
-    print("请安装 pyodbc: pip install pyodbc")
-    exit(1)
+from src.database import get_database
 
 try:
     from openpyxl import Workbook
@@ -28,57 +20,36 @@ except ImportError:
     exit(1)
 
 
-def get_db_connection():
-    """获取数据库连接（从 config/settings.yaml 中读取路径）"""
-    config = load_config()
-    db_path = config.database.access_path
-    driver = 'Microsoft Access Driver (*.mdb, *.accdb)'
-    print(f"数据库地址：{db_path}")
-    conn_str = f"DRIVER={{{driver}}};DBQ={db_path};charset=utf-8;"
-    conn = pyodbc.connect(conn_str)
-    conn.setdecoding(pyodbc.SQL_CHAR, encoding='latin1')
-    conn.setdecoding(pyodbc.SQL_WCHAR, encoding='latin1')
-    return conn
+def get_db_instance():
+    """获取数据库实例（从 config/settings.yaml 中读取配置）"""
+    return get_database()
 
 
-def get_all_orders(conn) -> List[Dict]:
+def get_all_orders(db) -> List[Dict]:
     """获取所有订单数据（筛选 To Ship 且无追踪号）"""
-    cursor = conn.cursor()
-    # 筛选条件: status = 'To Ship' AND tracking_number 为空或空字符串
-    cursor.execute("""
+    return db.query("""
         SELECT order_sn, order_id, buyer_user_id, rating, shipping_address,
                total_price, currency, order_create_time, status, tracking_number
         FROM shopee_orders
         WHERE status = 'To Ship' AND (tracking_number IS NULL OR tracking_number = '')
     """)
-    columns = [desc[0] for desc in cursor.description]
-    rows = cursor.fetchall()
-    return [dict(zip(columns, row)) for row in rows]
 
 
-def get_order_items(conn) -> List[Dict]:
+def get_order_items(db) -> List[Dict]:
     """获取所有订单商品数据"""
-    cursor = conn.cursor()
-    cursor.execute("""
+    return db.query("""
         SELECT order_sn, item_id, model_id, amount, item_name
         FROM shopee_order_items
     """)
-    columns = [desc[0] for desc in cursor.description]
-    rows = cursor.fetchall()
-    return [dict(zip(columns, row)) for row in rows]
 
 
-def get_order_buyers(conn) -> List[Dict]:
+def get_order_buyers(db) -> List[Dict]:
     """获取所有订单买家信息（包括聊天记录）"""
-    cursor = conn.cursor()
-    cursor.execute("""
+    return db.query("""
         SELECT order_sn, buyer_user_id, buyer_username, rating as buyer_rating,
                country, city, conversation_id, user_message_text
         FROM shopee_order_buyer
     """)
-    columns = [desc[0] for desc in cursor.description]
-    rows = cursor.fetchall()
-    return [dict(zip(columns, row)) for row in rows]
 
 
 def check_low_score(rating) -> bool:
@@ -138,7 +109,19 @@ def check_high_frequency_repurchase(order_sn: str, order_create_time,
             continue
 
         # 计算时间差（小时）
-        time_diff = abs((order_create_time - hist_order_create_time).total_seconds()) / 3600
+        def _to_dt(v):
+            if isinstance(v, str):
+                try:
+                    return datetime.fromtimestamp(float(v))
+                except ValueError:
+                    pass
+                for fmt in ('%Y-%m-%d %H:%M:%S', '%Y-%m-%dT%H:%M:%S'):
+                    try:
+                        return datetime.strptime(v, fmt)
+                    except ValueError:
+                        pass
+            return v
+        time_diff = abs((_to_dt(order_create_time) - _to_dt(hist_order_create_time)).total_seconds()) / 3600
 
         if time_diff <= 3:
             # 检查同款商品
@@ -197,14 +180,9 @@ def check_ph_remote_area(order, buyer_info) -> Dict:
         return {'is_remote': True, 'has_chat': False, 'reason': '地址偏远'}
 
 
-def get_buyer_history_orders(conn, order_sn: str, buyer_user_id: str) -> List[tuple]:
+def get_buyer_history_orders(db, order_sn: str, buyer_user_id: str) -> List[tuple]:
     """
     获取买家的全部历史订单（排除当前订单）
-
-    Args:
-        conn: 数据库连接
-        order_sn: 当前订单号（需要排除）
-        buyer_user_id: 买家用户ID
 
     Returns:
         历史订单列表，每项为 (order_sn, status, tracking_number, order_create_time) 元组
@@ -212,18 +190,11 @@ def get_buyer_history_orders(conn, order_sn: str, buyer_user_id: str) -> List[tu
     if not buyer_user_id:
         return []
 
-    # Access ODBC 不支持参数化查询，使用字符串拼接
-    escaped_buyer = buyer_user_id.replace("'", "''")
-    escaped_sn = order_sn.replace("'", "''")
-
-    cursor = conn.cursor()
-    cursor.execute(f"""
-        SELECT order_sn, status, tracking_number, order_create_time
-        FROM shopee_orders
-        WHERE buyer_user_id = '{escaped_buyer}' AND order_sn <> '{escaped_sn}'
-    """)
-
-    return cursor.fetchall()
+    rows = db.query(
+        "SELECT order_sn, status, tracking_number, order_create_time FROM shopee_orders WHERE buyer_user_id = ? AND order_sn <> ?",
+        (buyer_user_id, order_sn)
+    )
+    return [(r['order_sn'], r['status'], r['tracking_number'], r['order_create_time']) for r in rows]
 
 
 def check_suspicious_customer(history_orders: List[tuple]) -> bool:
@@ -316,20 +287,20 @@ def main():
 
     # 连接数据库
     print("\n[1/6] 连接数据库...")
-    conn = get_db_connection()
+    db = get_db_instance()
     print("     数据库连接成功")
 
     # 获取数据
     print("\n[2/6] 获取订单数据（To Ship + 无追踪号）...")
-    orders = get_all_orders(conn)
+    orders = get_all_orders(db)
     print(f"     共获取 {len(orders)} 条订单")
 
     print("\n[3/6] 获取订单商品数据...")
-    order_items = get_order_items(conn)
+    order_items = get_order_items(db)
     print(f"     共获取 {len(order_items)} 条商品记录")
 
     print("\n[4/6] 获取买家信息...")
-    order_buyers = get_order_buyers(conn)
+    order_buyers = get_order_buyers(db)
     print(f"     共获取 {len(order_buyers)} 条买家记录")
 
     # 构建查询索引
@@ -368,7 +339,7 @@ def main():
         # 2b & 4. 获取买家历史订单（一次查询，供两个函数使用）
         buyer_history_orders = []
         if buyer_user_id:
-            buyer_history_orders = get_buyer_history_orders(conn, order_sn, buyer_user_id)
+            buyer_history_orders = get_buyer_history_orders(db, order_sn, buyer_user_id)
 
         # 2b. 高频复购
         if buyer_history_orders and check_high_frequency_repurchase(order_sn, order_create_time, buyer_history_orders, order_items_map):
@@ -457,9 +428,6 @@ def main():
         print(f"     已保存: {output_filename} ({len(batch_rows)} 条)")
 
     print(f"\n完成! 共生成 {len(generated_files)} 个文件")
-
-    # 关闭连接
-    conn.close()
 
     print("\n" + "=" * 60)
     print(f"共分析 {len(orders)} 个订单，全部添加标签")

@@ -13,6 +13,10 @@ hubstudio:
 database:
   # Access 数据库路径
   access_path: "./data/automation.accdb"
+  # SQLite 数据库路径
+  sqlite_path: "./data/automation.db"
+  # 数据库类型: "access" | "sqlite"
+  db_type: "sqlite"
   # 数据库连接池大小
   pool_size: 5
 
