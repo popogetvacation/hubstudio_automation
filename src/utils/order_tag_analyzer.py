@@ -92,7 +92,19 @@ def check_high_frequency_repurchase(order_sn: str, order_create_time,
             continue
 
         # 计算时间差（小时）
-        time_diff = abs((order_create_time - hist_order_create_time).total_seconds()) / 3600
+        def _to_dt(v):
+            if isinstance(v, str):
+                try:
+                    return datetime.fromtimestamp(float(v))
+                except ValueError:
+                    pass
+                for fmt in ('%Y-%m-%d %H:%M:%S', '%Y-%m-%dT%H:%M:%S'):
+                    try:
+                        return datetime.strptime(v, fmt)
+                    except ValueError:
+                        pass
+            return v
+        time_diff = abs((_to_dt(order_create_time) - _to_dt(hist_order_create_time)).total_seconds()) / 3600
 
         if time_diff <= 3:
             # 检查同款商品
