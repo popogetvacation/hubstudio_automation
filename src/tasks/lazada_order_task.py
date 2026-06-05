@@ -333,6 +333,10 @@ class LazadaOrderTask(BaseTask):
             # if self._check_low_rating(order_data):
             #     tags.append('低分不发')
 
+            # 7. 历史客户（存在历史订单）
+            if buyer_id and buyer_histories.get(buyer_id):
+                tags.append('历史客户')
+
             # 不再添加 'pass' 到 tags，只通过 is_pass 标记
 
             # 记录标签

@@ -283,6 +283,10 @@ def analyze_orders_from_db(db_path: str) -> List[Dict]:
         if check_tax_request(order, buyer_info):
             tags.append('顾客税务要求')
 
+        # 6. 历史客户（存在历史订单）
+        if buyer_history_orders:
+            tags.append('历史客户')
+
         # 判断是否为 pass 订单
         is_pass = len(tags) == 0
 

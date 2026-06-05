@@ -355,6 +355,10 @@ class TokopediaOrderTask(BaseTask):
             # 5. 顾客税务要求 (预留，目前没有聊天消息)
             # TODO: 如果有聊天消息，添加税务关键词检查
 
+            # 6. 历史客户（存在历史订单）
+            if buyer_user_id and buyer_histories.get(buyer_user_id):
+                tags.append('历史客户')
+
             # 不再添加 'pass' 到 tags，只通过 is_pass 标记
 
             # 记录标签
